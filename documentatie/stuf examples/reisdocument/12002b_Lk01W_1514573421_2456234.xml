@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<kennisgevingsBericht xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.egem.nl/StUF/sector/bg/0204">
+  <stuurgegevens xmlns="http://www.egem.nl/StUF/StUF0204">
+    <berichtsoort>Lk01</berichtsoort>
+    <entiteittype>PRS</entiteittype>
+    <sectormodel>BG</sectormodel>
+    <versieStUF>0204</versieStUF>
+    <versieSectormodel>0204</versieSectormodel>
+    <zender>
+      <applicatie>DDS</applicatie>
+      <gebruiker>PRODPIV</gebruiker>
+    </zender>
+    <ontvanger>
+      <applicatie>DDS</applicatie>
+    </ontvanger>
+    <referentienummer>2456234_12002b</referentienummer>
+    <tijdstipBericht>2009032514384259</tijdstipBericht>
+    <kennisgeving>
+      <mutatiesoort>W</mutatiesoort>
+      <indicatorOvername>V</indicatorOvername>
+      <tijdstipMutatie>2009032222222200</tijdstipMutatie>
+    </kennisgeving>
+  </stuurgegevens>
+  <body>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="88228" d5p1:verwerkingssoort="W" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer>1514573421</a-nummer> 
+      <bsn-nummer>199002885</bsn-nummer> 
+      <PRSIDB d5p1:soortEntiteit="R" d5p1:verwerkingssoort="E">
+        <nummerIdentiteitsbewijs>IC2854601</nummerIdentiteitsbewijs> 
+        <SIB d5p1:soortEntiteit="T" d5p1:verwerkingssoort="I">
+          <soort>10</soort> 
+          <omschrijving d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+        </SIB>
+      </PRSIDB>
+    </PRS>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="88228" d5p1:verwerkingssoort="W" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer>1514573421</a-nummer> 
+      <bsn-nummer>199002885</bsn-nummer> 
+      <PRSIDB d5p1:soortEntiteit="R" d5p1:verwerkingssoort="E" d5p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+    </PRS>
+  </body>
+</kennisgevingsBericht>

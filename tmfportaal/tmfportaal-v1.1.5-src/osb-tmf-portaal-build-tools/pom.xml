@@ -1,0 +1,19 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.osb.tmf-portaal</groupId>
+  <artifactId>osb-tmf-portaal-build-tools</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>OSB TMF Build Tools</name>
+  <description>The osb-tmf-portaal-build-tools module provides a place for build configurtation files. For example smartjava-checks.xml
+        is stored in here (See also: http://maven.apache.org/plugins/maven-checkstyle-plugin/tips.html).</description>
+  <repositories>
+      <repository>
+          <id>project-repo</id>
+          <name>The osb-gateway's central project Maven repository</name>
+          <url>https://osb-gateway.smart-java.nl/repo</url>
+      </repository>
+  </repositories>
+</project>

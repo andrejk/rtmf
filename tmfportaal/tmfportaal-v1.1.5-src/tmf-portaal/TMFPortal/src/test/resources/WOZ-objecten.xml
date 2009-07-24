@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+	<!--
+		- Application context definition for "springapp" DispatcherServlet.
+	-->
+<beans>
+	<bean id="wozwoz"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObject">
+		<property name="tag">
+			<value>WOZ</value>
+		</property>
+		<property name="naam">
+			<value>WOZ object</value>
+		</property>
+	</bean>
+	<bean id="wozwrd"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObject">
+		<property name="tag">
+			<value>WRD</value>
+		</property>
+		<property name="naam">
+			<value>Waarde object</value>
+		</property>
+	</bean>
+</beans>

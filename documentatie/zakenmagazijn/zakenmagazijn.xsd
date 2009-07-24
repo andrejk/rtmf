@@ -1,0 +1,1036 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://www.interaccess.nl/webplus/statuswfm_v2"
+        attributeFormDefault="unqualified"
+        xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+        xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+        jaxb:extensionBindingPrefixes="xjc" jaxb:version="2.0"
+        elementFormDefault="qualified"
+        targetNamespace="http://www.interaccess.nl/webplus/statuswfm_v2"
+        xmlns="http://www.w3.org/2001/XMLSchema">
+  <annotation>
+    <appinfo>
+      <jaxb:globalBindings>
+        <xjc:serializable/>
+      </jaxb:globalBindings>
+    </appinfo>
+    <documentation>Versie 2.0</documentation>
+  </annotation>
+  <element name="zakenmagazijnFault">
+    <complexType>
+      <sequence>
+        <element name="zakenmagazijnMessage" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="Verzoek" type="tns:verzoek"/>
+  <element name="VerzoekUpdate" type="tns:verzoekUpdate"/>
+  <element name="VerzoekQuery" type="tns:verzoekQuery"/>
+  <element name="VerzoekQueryResponse">
+    <complexType>
+      <sequence>
+        <element minOccurs="0" maxOccurs="unbounded" name="Verzoek"
+                 type="tns:verzoekQueryResult"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="ZaakQuery" type="tns:zaakQuery"/>
+  <element name="ZaakQueryResponse">
+    <complexType>
+      <sequence>
+        <element minOccurs="0" maxOccurs="unbounded" name="Zaak"
+                 type="tns:zaak"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="ZaakDetailRequest">
+    <complexType>
+      <sequence>
+        <element name="Identificatie" type="tns:zaakidentificatieType"/>
+        <element name="Oge_id" type="tns:ogeIdType"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="HoofdzaakRequest">
+    <complexType>
+      <sequence>
+        <element name="Verzoekidentificatie"
+                 type="tns:verzoekidentificatieType"/>
+        <element name="Oge_id" type="tns:ogeIdType"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="ZaakDetailResponse" type="tns:zaakDetail"/>
+  <element name="Zaak" type="tns:zaak"/>
+  <element name="ZaakUpdate" type="tns:zaakUpdate"/>
+  <element name="Status" type="tns:status"/>
+  <element name="StapUpdate" type="tns:stapUpdate"/>
+  <element name="Stap" type="tns:stap"/>
+  <element name="Relatie_zaken" type="tns:relatie_zaken"/>
+  <element name="Retour" type="tns:retour"/>
+  <complexType name="subject">
+    <sequence>
+      <choice>
+        <element name="Subject_natuurlijk" type="tns:subject_natuurlijk"/>
+        <element name="Subject_niet_natuurlijk"
+                 type="tns:subject_niet_natuurlijk"/>
+      </choice>
+    </sequence>
+  </complexType>
+  <complexType name="subject_natuurlijk">
+    <sequence>
+      <element name="Bsn" type="tns:bsn"/>
+      <element name="Anummer" nillable="true" type="tns:anummer"/>
+    </sequence>
+  </complexType>
+  <complexType name="subject_niet_natuurlijk">
+    <sequence>
+      <choice>
+        <element name="Bin" type="tns:bin"/>
+        <element name="Unieke_code">
+          <simpleType>
+            <restriction base="string">
+              <minLength value="1"/>
+              <maxLength value="20"/>
+            </restriction>
+          </simpleType>
+        </element>
+      </choice>
+      <element name="Bsn_contactpersoon" nillable="true" type="tns:bsn"/>
+    </sequence>
+  </complexType>
+  <complexType name="subjectQuery">
+    <sequence>
+      <choice minOccurs="0">
+        <element name="Subject_natuurlijk" type="tns:subjectQuery_natuurlijk"/>
+        <element name="Subject_niet_natuurlijk"
+                 type="tns:subjectQuery_niet_natuurlijk"/>
+      </choice>
+    </sequence>
+  </complexType>
+  <complexType name="subjectQuery_natuurlijk">
+    <sequence>
+      <element minOccurs="0" name="Bsn" type="tns:bsn"/>
+      <element minOccurs="0" name="Anummer" type="tns:anummer"/>
+    </sequence>
+  </complexType>
+  <complexType name="subjectQuery_niet_natuurlijk">
+    <sequence>
+      <choice>
+        <element minOccurs="0" name="Bin" type="tns:bin"/>
+        <element minOccurs="0" name="Unieke_code">
+          <simpleType>
+            <restriction base="string">
+              <minLength value="1"/>
+              <maxLength value="20"/>
+            </restriction>
+          </simpleType>
+        </element>
+      </choice>
+      <element minOccurs="0" name="Bsn_contactpersoon" type="tns:bsn"/>
+    </sequence>
+  </complexType>
+  <complexType name="verzoekUpdate">
+    <sequence>
+      <element name="Verzoekidentificatie" type="tns:verzoekidentificatieType"/>
+      <element minOccurs="0" name="Aanvrager" nillable="true" type="string"/>
+      <element minOccurs="0" name="DatumAfgehandeld" nillable="true"
+               type="tns:datum"/>
+      <element minOccurs="0" name="DatumIndiening" nillable="true"
+               type="tns:datum"/>
+      <element minOccurs="0" name="Verantwoordelijke" nillable="true"
+               type="string"/>
+      <element minOccurs="0" name="VerzoekOmschrijving" nillable="true"
+               type="string"/>
+      <element minOccurs="0" name="VerzoekToelichting" nillable="true"
+               type="string"/>
+      <element name="Oge_id" type="tns:ogeIdType"/>
+      <element minOccurs="0" name="Formulier" type="tns:formulierType"/>
+    </sequence>
+  </complexType>
+  <complexType name="verzoek">
+    <annotation>
+        <documentation>
+            Definitie van een verzoek. Subject kan zowel een natuurlijk persoon als een niet natuurlijk persoon zijn. Het zakenmagazijn bevat alleen de identificatie van een subject, de verdere gegevens moeten uit een centraal gegevensmagazijn (basisregistratie) komen.
+            De volgende elementen zijn verplicht voor een verzoek:
+                Aanvrager, DatumIndiening, Verantwoordelijke, Verzoekidentificatie, VerzoekOmschrijving, VerzoekOmschrijving.
+            Optioneel kan een XML formulier worden meegegeven waarin alle informatie van het verzoek staat.
+        </documentation>
+    </annotation>
+    <sequence>
+      <element name="Subject" type="tns:subject"/>
+      <element name="Aanvrager">
+        <simpleType>
+          <restriction base="string"/>
+        </simpleType>
+      </element>
+      <element name="DatumAfgehandeld" nillable="true" type="tns:datum"/>
+      <element name="DatumIndiening" type="tns:datum"/>
+      <element name="Verantwoordelijke" type="string"/>
+      <element name="Verzoekidentificatie" type="tns:verzoekidentificatieType"/>
+      <element name="VerzoekOmschrijving" type="string"/>
+      <element name="VerzoekToelichting" type="string"/>
+      <element name="Oge_id" type="tns:ogeIdType"/>
+      <element minOccurs="0" name="Formulier" type="tns:formulierType"/>
+    </sequence>
+  </complexType>
+  <complexType name="verzoekQueryResult">
+    <complexContent>
+      <extension base="tns:verzoek">
+        <sequence>
+          <element minOccurs="0" maxOccurs="unbounded" name="Zaak"
+                   type="tns:zaak"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="verzoekQuery">
+    <sequence>
+      <element minOccurs="0" name="Subject" type="tns:subjectQuery"/>
+      <element minOccurs="0" name="Aanvrager" type="tns:queryString"/>
+      <element minOccurs="0" name="DatumAfgehandeldVanaf" type="tns:datum"/>
+      <element minOccurs="0" name="DatumAfgehandeldTot" type="tns:datum"/>
+      <element minOccurs="0" name="DatumIndieningVanaf" type="tns:datum"/>
+      <element minOccurs="0" name="DatumIndieningTot" type="tns:datum"/>
+      <element minOccurs="0" name="Verantwoordelijke" type="tns:queryString"/>
+      <element minOccurs="0" name="Verzoekidentificatie"
+               type="tns:verzoekidentificatieQueryType"/>
+      <element minOccurs="0" name="VerzoekOmschrijving" type="tns:queryString"/>
+      <element minOccurs="0" name="VerzoekToelichting" type="tns:queryString"/>
+      <element name="Oge_id" type="tns:ogeIdType"/>
+    </sequence>
+    <attribute name="returnFormulier" type="boolean" default="false"/>
+  </complexType>
+  <complexType name="zaakUpdate">
+    <sequence>
+      <element name="Zaakidentificatie" type="tns:zaakidentificatieType"/>
+      <element minOccurs="0" name="Subject" nillable="true" type="tns:subject"/>
+      <choice minOccurs="0">
+        <element name="Zaak_verantwoordelijke_mdw" type="tns:medewerker"/>
+        <element name="Zaak_verantwoordelijke_oeh" type="tns:oeh"/>
+        <element name="Geen_zaak_verantwoordelijke" type="tns:keuze"/>
+      </choice>
+      <choice minOccurs="0">
+        <element name="Zaak_initiator_mdw" type="tns:medewerker"/>
+        <element name="Zaak_initiator_oeh" type="tns:oeh"/>
+        <element name="Geen_zaak_initiator" type="tns:keuze"/>
+      </choice>
+      <element minOccurs="0" name="Zaaktypecode" nillable="true"
+               type="tns:codeType"/>
+      <element minOccurs="0" name="Zaaktypeversie" nillable="true"
+               type="string"/>
+      <element minOccurs="0" name="Zte_id" nillable="true" type="string"/>
+      <element minOccurs="0" name="Zaaktypeomschrijving" nillable="true"
+               type="tns:omschrijvingType"/>
+      <element minOccurs="0" name="Einddatum" nillable="true" type="tns:datum"/>
+      <element minOccurs="0" name="Einddatumgepland" nillable="true"
+               type="tns:datum"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="Hyperlink"
+               type="tns:hyperlinkGrpType"/>
+      <element minOccurs="0" name="Zaakomschrijving" nillable="true"
+               type="tns:omschrijvingType"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="Kenmerk"
+               type="tns:kenmerkGrpType"/>
+      <element minOccurs="0" name="Resultaatcode" nillable="true"
+               type="tns:codeType"/>
+      <element minOccurs="0" name="Resultaatomschrijving" nillable="true"
+               type="tns:omschrijvingType"/>
+      <element minOccurs="0" name="Resultaattoelichting" nillable="true"
+               type="tns:toelichtingType"/>
+      <element minOccurs="0" name="Zaaktoelichting" nillable="true"
+               type="tns:toelichtingType"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="Trefwoord"
+               type="tns:trefwoordType"/>
+      <element minOccurs="0" name="Uiterlijkeeinddatumafdoening" nillable="true"
+               type="tns:datum"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="Adres"
+               type="tns:adresType"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="Verblijfsobject"
+               type="tns:verblijfsobjectType"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="KadastraalObject"
+               type="tns:kadastraalObjectType"/>
+      <element name="Oge_id" type="tns:ogeIdType"/>
+      <element minOccurs="0" name="Formulier" type="tns:formulierType"/>
+    </sequence>
+  </complexType>
+  <complexType name="zaak">
+    <sequence>
+      <element name="Subject" type="tns:subject"/>
+      <choice>
+        <element name="Zaak_verantwoordelijke_mdw" type="tns:medewerker"/>
+        <element name="Zaak_verantwoordelijke_oeh" type="tns:oeh"/>
+        <element name="Geen_zaak_verantwoordelijke" type="tns:keuze"/>
+      </choice>
+      <choice>
+        <element name="Zaak_initiator_mdw" type="tns:medewerker"/>
+        <element name="Zaak_initiator_oeh" type="tns:oeh"/>
+        <element name="Geen_zaak_initiator" type="tns:keuze"/>
+      </choice>
+      <element name="Zaakidentificatie" type="tns:zaakidentificatieType"/>
+      <element name="Startdatum" type="tns:datum"/>
+      <element name="Zaaktypecode" type="tns:codeType"/>
+      <element minOccurs="0" maxOccurs="1" name="Zaaktypeversie" type="string"/>
+      <element minOccurs="0" maxOccurs="1" name="Zte_id" type="string"/>
+      <element name="Zaaktypeomschrijving" type="tns:omschrijvingType"/>
+      <element name="Einddatum" nillable="true" type="tns:datum"/>
+      <element name="Einddatumgepland" nillable="true" type="tns:datum"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="Hyperlink"
+               type="tns:hyperlinkGrpType"/>
+      <element name="Zaakomschrijving" nillable="true"
+               type="tns:omschrijvingType"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="Kenmerk"
+               type="tns:kenmerkGrpType"/>
+      <element name="Resultaatcode" nillable="true" type="tns:codeType"/>
+      <element name="Resultaatomschrijving" nillable="true"
+               type="tns:omschrijvingType"/>
+      <element name="Resultaattoelichting" nillable="true"
+               type="tns:toelichtingType"/>
+      <element name="Zaaktoelichting" nillable="true"
+               type="tns:toelichtingType"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="Trefwoord"
+               type="tns:trefwoordType"/>
+      <element name="Uiterlijkeeinddatumafdoening" nillable="true"
+               type="tns:datum"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="Adres"
+               type="tns:adresType"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="Verblijfsobject"
+               type="tns:verblijfsobjectType"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="KadastraalObject"
+               type="tns:kadastraalObjectType"/>
+      <element name="Oge_id" type="tns:ogeIdType"/>
+      <element minOccurs="0" name="Verzoekidentificatie"
+               type="tns:verzoekidentificatieType"/>
+      <element minOccurs="0" name="Formulier" type="tns:formulierType"/>
+    </sequence>
+  </complexType>
+  <complexType name="zaakDetail">
+    <complexContent mixed="false">
+      <extension base="tns:zaak">
+        <sequence>
+          <element minOccurs="0" maxOccurs="unbounded" name="Status"
+                   type="tns:status"/>
+          <element minOccurs="0" maxOccurs="unbounded" name="Stap"
+                   type="tns:stap"/>
+          <element minOccurs="0" maxOccurs="unbounded" name="Document"
+                   type="tns:document"/>
+          <element minOccurs="0" maxOccurs="unbounded" name="Hoofdzaak"
+                   type="tns:zaak"/>
+          <element minOccurs="0" maxOccurs="unbounded" name="Subzaak"
+                   type="tns:zaak"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="document">
+    <sequence>
+      <element name="Mimetype">
+        <simpleType>
+          <restriction base="string">
+            <maxLength value="100"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="Externe_dms_id">
+        <simpleType>
+          <restriction base="string">
+            <minLength value="1"/>
+            <maxLength value="100"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="Bestandsnaam">
+        <simpleType>
+          <restriction base="string">
+            <minLength value="1"/>
+            <maxLength value="256"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="Bestandsextensie">
+        <simpleType>
+          <restriction base="string">
+            <minLength value="1"/>
+            <maxLength value="25"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="Bestandsgrootte" nillable="true">
+        <simpleType>
+          <restriction base="positiveInteger">
+            <totalDigits value="12"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="Datumaanmaak" type="tns:datum"/>
+      <element name="Omschrijving">
+        <simpleType>
+          <restriction base="string">
+            <maxLength value="100"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="Oge_id">
+        <simpleType>
+          <restriction base="string">
+            <minLength value="1"/>
+            <maxLength value="100"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="Bronapplicatie">
+        <simpleType>
+          <restriction base="string">
+            <minLength value="1"/>
+            <maxLength value="100"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="Documentidentificatie" minOccurs="0">
+        <simpleType>
+          <restriction base="string">
+            <minLength value="1"/>
+            <maxLength value="30"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="Datumverzending" type="tns:datum" minOccurs="0"/>
+      <element name="Ingangsdatum" type="tns:datum" minOccurs="0"/>
+      <element name="Vervaldatum" type="tns:datum" minOccurs="0"/>
+      <element name="Datumpublicatie" type="tns:datum" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="zaakQuery">
+    <sequence>
+      <element minOccurs="0" name="Subject" type="tns:subjectQuery"/>
+      <choice minOccurs="0">
+        <element name="Zaak_verantwoordelijke_mdw" type="tns:medewerker"/>
+        <element name="Zaak_verantwoordelijke_oeh" type="tns:oeh"/>
+        <element name="Geen_zaak_verantwoordelijke" type="tns:keuze"/>
+      </choice>
+      <choice minOccurs="0">
+        <element name="Zaak_initiator_mdw" type="tns:medewerker"/>
+        <element name="Zaak_initiator_oeh" type="tns:oeh"/>
+        <element name="Geen_zaak_initiator" type="tns:keuze"/>
+      </choice>
+      <element minOccurs="0" maxOccurs="unbounded" name="Zaakidentificatie"
+               type="tns:zaakidentificatieQueryType"/>
+      <element minOccurs="0" name="StartdatumVanaf" type="tns:datum"/>
+      <element minOccurs="0" name="StartdatumTot" type="tns:datum"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="Zaaktypecode"
+               type="tns:codeQueryType"/>
+      <element minOccurs="0" maxOccurs="1" name="Zaaktypeversie"
+               type="tns:queryString"/>
+      <element minOccurs="0" maxOccurs="1" name="Zte_id"
+               type="tns:queryString"/>
+      <element minOccurs="0" name="Zaaktypeomschrijving"
+               type="tns:omschrijvingQueryType"/>
+      <element minOccurs="0" name="EinddatumVanaf" type="tns:datum"/>
+      <element minOccurs="0" name="EinddatumTot" type="tns:datum"/>
+      <element minOccurs="0" name="EinddatumgeplandVanaf" type="tns:datum"/>
+      <element minOccurs="0" name="EinddatumgeplandTot" type="tns:datum"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="Hyperlink"
+               type="tns:hyperlinkGrpType"/>
+      <element minOccurs="0" name="Zaakomschrijving"
+               type="tns:omschrijvingQueryType"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="Kenmerk"
+               type="tns:kenmerkGrpType"/>
+      <element minOccurs="0" name="Resultaatcode" nillable="true"
+               type="tns:codeQueryType"/>
+      <element minOccurs="0" name="Resultaatomschrijving"
+               type="tns:omschrijvingQueryType"/>
+      <element minOccurs="0" name="Resultaattoelichting"
+               type="tns:toelichtingQueryType"/>
+      <element minOccurs="0" name="Zaaktoelichting"
+               type="tns:toelichtingQueryType"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="Trefwoord"
+               type="tns:trefwoordType"/>
+      <element minOccurs="0" name="UiterlijkeeinddatumafdoeningVanaf"
+               type="tns:datum"/>
+      <element minOccurs="0" name="UiterlijkeeinddatumafdoeningTot"
+               type="tns:datum"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="Adres"
+               type="tns:adresQueryType"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="Verblijfsobject"
+               type="tns:verblijfsobjectQueryType"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="KadastraalObject"
+               type="tns:kadastraalObjectQueryType"/>
+      <element minOccurs="0" name="Status" type="tns:statusQuery"/>
+      <element minOccurs="0" name="Stap" type="tns:stapQuery"/>
+      <element name="Oge_id" type="tns:ogeIdType"/>
+      <element minOccurs="0" name="Verzoek" type="tns:verzoekQuery"/>
+    </sequence>
+    <attribute name="returnVerzoekIdentificatie" type="boolean" default="false"/>
+  </complexType>
+  <complexType name="status">
+    <sequence>
+      <element name="Zaakidentificatie" type="tns:zaakidentificatieType"/>
+      <choice>
+        <element name="Status_zetter_mdw" type="tns:medewerker"/>
+        <element name="Status_zetter_oeh" type="tns:oeh"/>
+        <element name="Geen_status_zetter" type="tns:keuze"/>
+      </choice>
+      <element name="Datumstatusgezet" type="tns:datum"/>
+      <element name="Statuscode" type="tns:codeType"/>
+      <element name="Statusomschrijving" type="tns:omschrijvingType"/>
+      <element name="Statustoelichting" nillable="true"
+               type="tns:toelichtingType"/>
+      <element name="Statusvolgnummer" type="tns:volgnummerType"/>
+      <element name="Oge_id" type="tns:ogeIdType"/>
+    </sequence>
+  </complexType>
+  <complexType name="statusQuery">
+    <sequence>
+      <choice minOccurs="0">
+        <element name="Status_zetter_mdw" type="tns:medewerker"/>
+        <element name="Status_zetter_oeh" type="tns:oeh"/>
+        <element name="Geen_status_zetter" type="tns:keuze"/>
+      </choice>
+      <element name="DatumstatusgezetVanaf" minOccurs="0" type="tns:datum"/>
+      <element name="DatumstatusgezetTot" minOccurs="0" type="tns:datum"/>
+      <element name="Statuscode" minOccurs="0" type="tns:codeQueryType"/>
+      <element name="Statusomschrijving" minOccurs="0"
+               type="tns:omschrijvingQueryType"/>
+      <element name="Statustoelichting" minOccurs="0" nillable="true"
+               type="tns:toelichtingQueryType"/>
+      <element name="Statusvolgnummer" minOccurs="0" type="tns:volgnummerType"/>
+    </sequence>
+  </complexType>
+  <complexType name="stap">
+    <sequence>
+      <element name="Zaakidentificatie" type="tns:zaakidentificatieType"/>
+      <choice>
+        <element name="Stap_uitvoerder_mdw" type="tns:medewerker"/>
+        <element name="Stap_uitvoerder_oeh" type="tns:oeh"/>
+        <element name="Geen_stap_uitvoerder" type="tns:keuze"/>
+      </choice>
+      <choice>
+        <element name="Stap_verantwoordelijke_mdw" type="tns:medewerker"/>
+        <element name="Stap_verantwoordelijke_oeh" type="tns:oeh"/>
+        <element name="Geen_stap_verantwoordelijke" type="tns:keuze"/>
+      </choice>
+      <element name="Begindatum" type="tns:datum"/>
+      <element name="Stapeinddatum" nillable="true" type="tns:datum"/>
+      <element name="Einddatumgepland" nillable="true" type="tns:datum"/>
+      <element name="Normdoorlooptijd" nillable="true"
+               type="tns:doorlooptijdType"/>
+      <element name="Procedurecode" nillable="true" type="tns:codeType"/>
+      <element name="Procedureomschrijving" nillable="true"
+               type="tns:omschrijvingType"/>
+      <element name="Rappeldatum" nillable="true" type="tns:datum"/>
+      <element name="Resultaatcode" nillable="true" type="tns:codeType"/>
+      <element name="Resultaatomschrijving" nillable="true"
+               type="tns:omschrijvingType"/>
+      <element name="Resultaattoelichting" nillable="true"
+               type="tns:toelichtingType"/>
+      <element name="Stapomschrijving" type="tns:omschrijvingType"/>
+      <element name="Staptypecode" nillable="true" type="tns:codeType"/>
+      <element name="Stapvolgnummer" type="tns:volgnummerType"/>
+      <element name="Staptoelichting" nillable="true"
+               type="tns:toelichtingType"/>
+      <element name="Oge_id" type="tns:ogeIdType"/>
+    </sequence>
+  </complexType>
+  <complexType name="stapQuery">
+    <sequence>
+      <choice minOccurs="0">
+        <element name="Stap_uitvoerder_mdw" type="tns:medewerker"/>
+        <element name="Stap_uitvoerder_oeh" type="tns:oeh"/>
+        <element name="Geen_stap_uitvoerder" type="tns:keuze"/>
+      </choice>
+      <choice minOccurs="0">
+        <element name="Stap_verantwoordelijke_mdw" type="tns:medewerker"/>
+        <element name="Stap_verantwoordelijke_oeh" type="tns:oeh"/>
+        <element name="Geen_stap_verantwoordelijke" type="tns:keuze"/>
+      </choice>
+      <element name="BegindatumVanaf" type="tns:datum" minOccurs="0"/>
+      <element name="BegindatumTot" type="tns:datum"  minOccurs="0"/>
+      <element name="StapeinddatumVanaf" minOccurs="0" type="tns:datum"/>
+      <element name="StapeinddatumTot" minOccurs="0" type="tns:datum"/>
+      <element name="EinddatumgeplandVanaf" minOccurs="0" type="tns:datum"/>
+      <element name="EinddatumgeplandTot" minOccurs="0" type="tns:datum"/>
+      <element name="Normdoorlooptijd" nillable="true" minOccurs="0" 
+               type="tns:doorlooptijdType"/>
+      <element name="Procedurecode" nillable="true" minOccurs="0" type="tns:codeQueryType"/>
+      <element name="Procedureomschrijving" nillable="true" minOccurs="0"
+               type="tns:omschrijvingQueryType"/>
+      <element name="RappeldatumVanaf" minOccurs="0" type="tns:datum"/>
+      <element name="RappeldatumTot" minOccurs="0" type="tns:datum"/>
+      <element name="Resultaatcode" nillable="true" minOccurs="0" type="tns:codeQueryType"/>
+      <element name="Resultaatomschrijving" nillable="true" minOccurs="0"
+               type="tns:omschrijvingQueryType"/>
+      <element name="Resultaattoelichting" nillable="true" minOccurs="0"
+               type="tns:toelichtingQueryType"/>
+      <element name="Stapomschrijving" type="tns:omschrijvingQueryType" minOccurs="0"/>
+      <element name="Staptypecode" nillable="true" type="tns:codeQueryType" minOccurs="0"/>
+      <element name="Stapvolgnummer" type="tns:volgnummerType"/>
+      <element name="Staptoelichting" nillable="true" minOccurs="0"
+               type="tns:toelichtingQueryType"/>
+    </sequence>
+    <attribute name="alleenOpenStap" type="boolean" default="false"/>
+  </complexType>
+  <complexType name="stapUpdate">
+    <sequence>
+      <element name="Zaakidentificatie" type="tns:zaakidentificatieType"/>
+      <element name="Begindatum" type="tns:datum"/>
+      <element name="Staptypecode" type="tns:codeType"/>
+      <choice minOccurs="0">
+        <element name="Stap_uitvoerder_mdw" type="tns:medewerker"/>
+        <element name="Stap_uitvoerder_oeh" type="tns:oeh"/>
+        <element name="Geen_stap_uitvoerder" type="tns:keuze"/>
+      </choice>
+      <choice minOccurs="0">
+        <element name="Stap_verantwoordelijke_mdw" type="tns:medewerker"/>
+        <element name="Stap_verantwoordelijke_oeh" type="tns:oeh"/>
+        <element name="Geen_stap_verantwoordelijke" type="tns:keuze"/>
+      </choice>
+      <element name="BegindatumNieuw" type="tns:datum" minOccurs="0"/>
+      <element name="StaptypecodeNieuw" type="tns:codeType" minOccurs="0"/>
+      <element name="Stapeinddatum" nillable="true" minOccurs="0"
+               type="tns:datum"/>
+      <element name="Einddatumgepland" nillable="true" minOccurs="0"
+               type="tns:datum"/>
+      <element name="Normdoorlooptijd" nillable="true" minOccurs="0"
+               type="tns:doorlooptijdType"/>
+      <element name="Procedurecode" nillable="true" minOccurs="0"
+               type="tns:codeType"/>
+      <element name="Procedureomschrijving" nillable="true" minOccurs="0"
+               type="tns:omschrijvingType"/>
+      <element name="Rappeldatum" nillable="true" minOccurs="0"
+               type="tns:datum"/>
+      <element name="Resultaatcode" nillable="true" minOccurs="0"
+               type="tns:codeType"/>
+      <element name="Resultaatomschrijving" nillable="true" minOccurs="0"
+               type="tns:omschrijvingType"/>
+      <element name="Resultaattoelichting" nillable="true" minOccurs="0"
+               type="tns:toelichtingType"/>
+      <element name="Stapomschrijving" minOccurs="0" nillable="true"
+               type="tns:omschrijvingType"/>
+      <element name="Stapvolgnummer" minOccurs="0" type="tns:volgnummerType"/>
+      <element name="Staptoelichting" nillable="true" minOccurs="0"
+               type="tns:toelichtingType"/>
+      <element name="Oge_id" type="tns:ogeIdType"/>
+    </sequence>
+  </complexType>
+  <complexType name="medewerker">
+    <sequence>
+      <element name="mdw_id" type="tns:mdw_id"/>
+      <element name="mdw_achternaam" type="tns:mdw_achternaam"/>
+      <element name="mdw_voorvoegsel" nillable="true"
+               type="tns:mdw_voorvoegsel"/>
+      <element name="mdw_roepnaam" type="tns:mdw_roepnaam"/>
+      <element name="mdw_voorletters" type="tns:mdw_voorletters"/>
+      <choice>
+        <element name="Geen_mdw_oeh" type="tns:keuze"/>
+        <sequence>
+          <element name="mdw_oeh_id" type="tns:oeh_id"/>
+          <element name="mdw_oeh_naam" type="tns:oeh_naam"/>
+        </sequence>
+      </choice>
+    </sequence>
+  </complexType>
+  <complexType name="oeh">
+    <sequence>
+      <element name="oeh_id" type="tns:oeh_id"/>
+      <element name="oeh_naam" type="tns:oeh_naam"/>
+      <element name="verantwoordelijke" type="tns:medewerker" minOccurs="0"/>
+      <element name="contactpersoon" type="tns:medewerker" minOccurs="0"/>
+      <element name="emailadres1" type="string" minOccurs="0"/>
+      <element name="emailadres2" type="string" minOccurs="0"/>
+      <element name="emailadres3" type="string" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  
+  <element name="ActorQuery">
+  <complexType>
+    <sequence>
+      <element name="mdw_id" type="tns:mdw_id" minOccurs="0" nillable="true"/>
+      <element name="oeh_id" type="tns:oeh_id" minOccurs="0" nillable="true"/>
+      <element name="mdw_naam" type="tns:queryString" minOccurs="0" />
+      <element name="oeh_naam" type="tns:queryString" minOccurs="0" />
+      <element name="functie" type="tns:queryString" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  </element>
+
+  <element name="ActorQueryResult">
+  <complexType>
+    <sequence>
+        <element name="actor" type="tns:actor" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+        </complexType>
+        </element>
+
+  <complexType name="actor">
+    <sequence>
+      <element name="medewerker" type="tns:medewerker" minOccurs="0"/>
+      <element name="oeh" type="tns:oeh" minOccurs="0"/>
+      <element name="emailadres1" type="string" minOccurs="0"/>
+      <element name="emailadres2" type="string" minOccurs="0"/>
+      <element name="emailadres3" type="string" minOccurs="0"/>
+      <element name="telefooonnummer1" type="string" minOccurs="0"/>
+      <element name="telefooonnummer2" type="string" minOccurs="0"/>
+      <element name="telefooonnummer3" type="string" minOccurs="0"/>
+      <element name="functie" type="string" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  
+  <complexType name="relatie_zaken">
+    <sequence>
+      <element name="Zaakidentificatie">
+        <simpleType>
+          <restriction base="string">
+            <minLength value="1"/>
+            <maxLength value="20"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element maxOccurs="unbounded" name="Relatie_zaak_id">
+        <simpleType>
+          <restriction base="string">
+            <minLength value="1"/>
+            <maxLength value="20"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="Oge_id">
+        <simpleType>
+          <restriction base="string">
+            <minLength value="1"/>
+            <maxLength value="100"/>
+          </restriction>
+        </simpleType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="formulierType">
+    <sequence>
+      <any/>
+    </sequence>
+  </complexType>
+  <complexType name="retour">
+    <sequence>
+      <element name="Operatiestatus">
+        <simpleType>
+          <restriction base="string">
+            <enumeration value="operatie mislukt"/>
+            <enumeration value="operatie succesvol"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="Operatiefout" nillable="true">
+        <simpleType>
+          <restriction base="string">
+            <maxLength value="100"/>
+          </restriction>
+        </simpleType>
+      </element>
+    </sequence>
+  </complexType>
+  <simpleType name="mdw_id">
+    <restriction base="string">
+      <minLength value="1"/>
+      <maxLength value="20"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="mdw_achternaam">
+    <restriction base="string">
+      <minLength value="1"/>
+      <maxLength value="80"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="mdw_voorvoegsel">
+    <restriction base="string">
+      <maxLength value="10"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="mdw_roepnaam">
+    <restriction base="string">
+      <minLength value="1"/>
+      <maxLength value="30"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="mdw_voorletters">
+    <restriction base="string">
+      <minLength value="1"/>
+      <maxLength value="10"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="oeh_id">
+    <restriction base="string">
+      <minLength value="1"/>
+      <maxLength value="20"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="oeh_naam">
+    <restriction base="string">
+      <minLength value="1"/>
+      <maxLength value="50"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="keuze">
+    <restriction base="string">
+      <enumeration value="true"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="bsn">
+    <restriction base="string">
+      <minLength value="9"/>
+      <maxLength value="9"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="anummer">
+    <restriction base="string">
+      <minLength value="10"/>
+      <maxLength value="10"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="bin">
+    <restriction base="string">
+      <minLength value="1"/>
+      <maxLength value="20"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="string80">
+    <restriction base="string">
+      <maxLength value="80"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="string100">
+    <restriction base="string">
+      <maxLength value="100"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="string10">
+    <restriction base="string">
+      <maxLength value="10"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="datum">
+    <restriction base="dateTime"/>
+  </simpleType>
+  <simpleType name="verzoekidentificatieType">
+    <restriction base="string">
+      <maxLength value="25"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="ogeIdType">
+    <restriction base="string">
+      <minLength value="1"/>
+      <maxLength value="100"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="codeType">
+    <restriction base="string">
+      <minLength value="1"/>
+      <maxLength value="10"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="zaakidentificatieType">
+    <restriction base="string">
+      <maxLength value="20"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="omschrijvingType">
+    <restriction base="string">
+      <minLength value="1"/>
+      <maxLength value="80"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="urlType">
+    <restriction base="string">
+      <maxLength value="256"/>
+    </restriction>
+  </simpleType>
+  <complexType name="hyperlinkGrpType">
+    <sequence>
+      <element name="url" type="tns:urlType"/>
+      <element name="omschrijving" type="tns:omschrijvingType"/>
+    </sequence>
+  </complexType>
+  <complexType name="kenmerkGrpType">
+    <sequence>
+      <element name="kenmerk" type="tns:kenmerkType"/>
+      <element name="kenmerkBron" type="tns:kenmerkBronType"/>
+    </sequence>
+  </complexType>
+  <simpleType name="kenmerkType">
+    <restriction base="string">
+      <maxLength value="20"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="kenmerkBronType">
+    <restriction base="string">
+      <maxLength value="40"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="toelichtingType">
+    <restriction base="string">
+      <maxLength value="1000"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="trefwoordType">
+    <restriction base="string">
+      <maxLength value="1000"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="volgnummerType">
+    <restriction base="positiveInteger">
+      <totalDigits value="4"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="doorlooptijdType">
+    <restriction base="positiveInteger">
+      <totalDigits value="3"/>
+    </restriction>
+  </simpleType>
+  <element name="Document_met_zaak" type="tns:document_met_zaak"/>
+  <element name="Document_zonder_zaak" type="tns:document_zonder_zaak"/>
+  <complexType name="document_zonder_zaak">
+    <sequence>
+      <element name="Webplus_zaakcode">
+        <simpleType>
+          <restriction base="string">
+            <maxLength value="100"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="Document_gegevens" type="tns:document"/>
+    </sequence>
+  </complexType>
+  <complexType name="document_met_zaak">
+    <sequence>
+      <element name="Zaakidentificatie">
+        <simpleType>
+          <restriction base="string">
+            <minLength value="1"/>
+            <maxLength value="100"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="Webplus_zaakcode">
+        <simpleType>
+          <restriction base="string">
+            <maxLength value="100"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="Document_gegevens" type="tns:document"/>
+    </sequence>
+  </complexType>
+  <complexType name="adresType">
+    <sequence>
+      <element minOccurs="0" name="adresBuitenland1" type="string"/>
+      <element minOccurs="0" name="adresBuitenland2" type="string"/>
+      <element minOccurs="0" name="adresBuitenland3" type="string"/>
+      <element minOccurs="0" name="landcode" type="int"/>
+      <element minOccurs="0" name="landnaam" type="string"/>
+      <element minOccurs="0" name="straatnaam" type="string"/>
+      <element minOccurs="0" name="huisnummer" type="int"/>
+      <element minOccurs="0" name="huisletter" type="string"/>
+      <element minOccurs="0" name="huisnummertoevoeging" type="string"/>
+      <element minOccurs="0" name="aanduidingBijHuisnummer" type="string"/>
+      <element minOccurs="0" name="locatieomschrijving" type="string"/>
+      <element minOccurs="0" name="postcode" type="string"/>
+      <element minOccurs="0" name="woonplaatsnaam" type="string"/>
+      <element minOccurs="0" name="postbusnummer" type="int"/>
+      <element minOccurs="0" name="antwoordnummer" type="int"/>
+      <element minOccurs="0" name="locatieadresnummer" type="int"/>
+      <element minOccurs="0" name="gemeentecode" type="int"/>
+    </sequence>
+  </complexType>
+  <complexType name="kadastraalObjectType">
+    <sequence>
+      <element minOccurs="0" name="kadastraleGemeentecode" type="string"/>
+      <element minOccurs="0" name="kadastraleSectie" type="string"/>
+      <element minOccurs="0" name="kadastraalPerceelnummer" type="int"/>
+      <element minOccurs="0" name="kadastraalObjectIndexLetter" type="string"/>
+      <element minOccurs="0" name="kadastraalObjectIndexNummer" type="int"/>
+    </sequence>
+  </complexType>
+  <complexType name="verblijfsobjectType">
+    <sequence>
+      <element minOccurs="0" name="bouwjaar" type="int"/>
+      <element minOccurs="0" name="verblijfsobjectnummer" type="int"/>
+      <element minOccurs="0" name="verblijfsobjecttype" type="int"/>
+      <element minOccurs="0" name="heeft" type="tns:adresType"/>
+    </sequence>
+  </complexType>
+  <complexType name="adresQueryType">
+    <sequence>
+      <element minOccurs="0" name="adresBuitenland1" type="string"/>
+      <element minOccurs="0" name="adresBuitenland2" type="string"/>
+      <element minOccurs="0" name="adresBuitenland3" type="string"/>
+      <element minOccurs="0" name="landcode" type="int"/>
+      <element minOccurs="0" name="landnaam" type="string"/>
+      <element minOccurs="0" name="straatnaam" type="string"/>
+      <element minOccurs="0" name="huisnummer" type="int"/>
+      <element minOccurs="0" name="huisletter" type="string"/>
+      <element minOccurs="0" name="huisnummertoevoeging" type="string"/>
+      <element minOccurs="0" name="aanduidingBijHuisnummer" type="string"/>
+      <element minOccurs="0" name="locatieomschrijving" type="string"/>
+      <element minOccurs="0" name="postcode" type="string"/>
+      <element minOccurs="0" name="woonplaatsnaam" type="string"/>
+      <element minOccurs="0" name="postbusnummer" type="int"/>
+      <element minOccurs="0" name="antwoordnummer" type="int"/>
+      <element minOccurs="0" name="locatieadresnummer" type="int"/>
+      <element minOccurs="0" name="gemeentecode" type="int"/>
+    </sequence>
+  </complexType>
+  <complexType name="kadastraalObjectQueryType">
+    <sequence>
+      <element minOccurs="0" name="kadastraleGemeentecode" type="string"/>
+      <element minOccurs="0" name="kadastraleSectie" type="string"/>
+      <element minOccurs="0" name="kadastraalPerceelnummer" type="int"/>
+      <element minOccurs="0" name="kadastraalObjectIndexLetter" type="string"/>
+      <element minOccurs="0" name="kadastraalObjectIndexNummer" type="int"/>
+    </sequence>
+  </complexType>
+  <complexType name="verblijfsobjectQueryType">
+    <sequence>
+      <element minOccurs="0" name="bouwjaar" type="int"/>
+      <element minOccurs="0" name="verblijfsobjectnummer" type="int"/>
+      <element minOccurs="0" name="verblijfsobjecttype" type="int"/>
+      <element minOccurs="0" name="heeft" type="tns:adresType"/>
+    </sequence>
+  </complexType>
+  <complexType name="queryString">
+    <simpleContent>
+      <extension base="string">
+        <attribute name="exact" type="boolean" default="true"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <complexType name="codeQueryType">
+    <simpleContent>
+      <extension base="tns:codeType">
+        <attribute name="exact" type="boolean" default="true"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <complexType name="zaakidentificatieQueryType">
+    <simpleContent>
+      <extension base="tns:zaakidentificatieType">
+        <attribute name="exact" type="boolean" default="true"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <complexType name="omschrijvingQueryType">
+    <simpleContent>
+      <extension base="tns:omschrijvingType">
+        <attribute name="exact" type="boolean" default="true"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <complexType name="toelichtingQueryType">
+    <simpleContent>
+      <extension base="tns:toelichtingType">
+        <attribute name="exact" type="boolean" default="true"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <complexType name="verzoekidentificatieQueryType">
+    <simpleContent>
+      <extension base="tns:verzoekidentificatieType">
+        <attribute name="exact" type="boolean" default="true"/>
+      </extension>
+    </simpleContent>
+  </complexType>

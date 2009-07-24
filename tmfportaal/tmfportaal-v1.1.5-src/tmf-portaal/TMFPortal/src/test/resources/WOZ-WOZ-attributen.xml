@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+	<!--
+		- Application context definition for "springapp" DispatcherServlet.
+	-->
+<beans>
+	<bean id="wozwozwoznr"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>WOZNR</value>
+		</property>
+		<property name="naam">
+			<value>WOZ-objectnummer</value>
+		</property>
+	</bean>
+	<bean id="wozwozaova"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>AOVA</value>
+		</property>
+		<property name="naam">
+			<value>Adresseerbaar object voor aanduiding WOZ-object</value>
+		</property>
+	</bean>
+	<bean id="wozwozla"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>LA</value>
+		</property>
+		<property name="naam">
+			<value>Locatieaanduiding</value>
+		</property>
+	</bean>
+	<bean id="wozwozgeo"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>GEO</value>
+		</property>
+		<property name="naam">
+			<value>Geometrie WOZ-object</value>
+		</property>
+	</bean>
+	<bean id="wozwozdbg"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>DBG</value>
+		</property>
+		<property name="naam">
+			<value>Datum begin geldigheid WOZ-objectgegevens</value>
+		</property>
+	</bean>
+	<bean id="wozwozdeg"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>DEG</value>
+		</property>
+		<property name="naam">
+			<value>Datum einde geldigheid WOZ-objectgegevens</value>
+		</property>
+	</bean>
+
+	<bean id="wozwozawaio"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>AWOIO</value>
+		</property>
+		<property name="naam">
+			<value>Aanduiding WOZ-objectgegevens in onderzoek</value>
+		</property>
+	</bean>
+	<bean id="wozwozdrwog"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>DRWOG</value>
+		</property>
+		<property name="naam">
+			<value>Datum van registratie WOZ-object-gegevens </value>
+		</property>
+	</bean>
+	<bean id="wozwozwos"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>DNMP</value>
+		</property>
+		<property name="naam">
+			<value>WOZ-objectstatus</value>
+		</property>
+	</bean>
+		<bean id="wozwozgp"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>GP</value>
+		</property>
+		<property name="naam">
+			<value>Gerelateerde panden</value>
+		</property>
+	</bean>
+		<bean id="wozwozgv"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>GV</value>
+		</property>
+		<property name="naam">
+			<value>Gerelateerde verblijfsobjecten</value>
+		</property>
+	</bean>
+	
+</beans>

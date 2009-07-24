@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body>
+        <kennisgevingsBericht xmlns="http://www.egem.nl/StUF/sector/bg/0204">
+            <stuurgegevens xmlns="http://www.egem.nl/StUF/StUF0204">
+                <berichtsoort>Lk01</berichtsoort>
+                <entiteittype>PRS</entiteittype>
+                <sectormodel>BG</sectormodel>
+                <versieStUF>0204</versieStUF>
+                <versieSectormodel>0204</versieSectormodel>
+                <zender>
+                    <applicatie>PIV</applicatie>
+                    <gebruiker>BATCHGBA</gebruiker>
+                </zender>
+                <ontvanger>
+                    <applicatie>DDS</applicatie>
+                </ontvanger>
+                <referentienummer>2437252</referentienummer>
+                <tijdstipBericht>2009030917473896
+                </tijdstipBericht>
+                <kennisgeving>
+                    <mutatiesoort>T</mutatiesoort>
+                    <indicatorOvername>V</indicatorOvername>
+                    <tijdstipMutatie>2009030917362503
+                    </tijdstipMutatie>
+                </kennisgeving>
+            </stuurgegevens>
+            <body>
+                <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="21316"
+                    d5p1:verwerkingssoort="T"
+                    xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+                    <a-nummer>1028581053</a-nummer>
+                    <bsn-nummer>132801577</bsn-nummer>
+                    <voornamen>Mevlüt</voornamen>
+                    <voorletters>M</voorletters>
+                    <voorvoegselGeslachtsnaam
+                        d5p1:noValue="geenWaarde" xsi:nil="true" />
+                    <geslachtsnaam>Bayrak</geslachtsnaam>
+                    <geboortedatum>19820720</geboortedatum>
+                    <geboorteplaats>599</geboorteplaats>
+                    <codeGeboorteland>6030</codeGeboorteland>
+                    <geslachtsaanduiding>V</geslachtsaanduiding>
+                    <indicatieGeheim>0</indicatieGeheim>
+                    <codeGemeenteVanInschrijving>599</codeGemeenteVanInschrijving>
+                    <datumInschrijvingGemeente>19820720</datumInschrijvingGemeente>
+                    <verblijfstitel d5p1:noValue="geenWaarde"
+                        xsi:nil="true" />
+                    <datumVerkrijgingVerblijfstitel
+                        d5p1:noValue="geenWaarde" xsi:nil="true" />
+                    <datumVerliesVerblijfstitel
+                        d5p1:noValue="geenWaarde" xsi:nil="true" />
+                    <aanduidingNaamgebruik>E</aanduidingNaamgebruik>
+                    <PRSADRINS d5p1:soortEntiteit="R"
+                        d5p1:verwerkingssoort="T">
+                        <tijdvakRelatie>
+                            <d5p1:begindatumRelatie>20040924
+                            </d5p1:begindatumRelatie>
+                            <d5p1:einddatumRelatie
+                                d5p1:noValue="geenWaarde" xsi:nil="true" />
+                        </tijdvakRelatie>
+                        <ADR d5p1:soortEntiteit="F"
+                            d5p1:sleutelVerzendend="48997"
+                            d5p1:verwerkingssoort="I">
+                            <adresBuitenland1
+                                d5p1:noValue="nietOndersteund" xsi:nil="true" />
+                            <adresBuitenland2
+                                d5p1:noValue="nietOndersteund" xsi:nil="true" />
+                            <adresBuitenland3
+                                d5p1:noValue="nietOndersteund" xsi:nil="true" />
+                            <landcode d5p1:noValue="nietOndersteund"
+                                xsi:nil="true" />
+                            <postcode>3072KP</postcode>
+                            <woonplaatsnaam d5p1:noValue="geenWaarde"
+                                xsi:nil="true" />
+                            <postbusnummer d5p1:noValue="nietOndersteund"
+                                xsi:nil="true" />
+                            <antwoordnummer d5p1:noValue="nietOndersteund"
+                                xsi:nil="true" />
+                            <straatnaam>Parallelweg</straatnaam>
+                            <huisnummer>109</huisnummer>
+                            <huisletter d5p1:noValue="geenWaarde"
+                                xsi:nil="true" />
+                            <huisnummertoevoeging
+                                d5p1:noValue="geenWaarde" xsi:nil="true" />
+                            <aanduidingBijHuisnummer
+                                d5p1:noValue="geenWaarde" xsi:nil="true" />
+                            <locatieomschrijving
+                                d5p1:noValue="geenWaarde" xsi:nil="true" />
+                            <locatieadresnummer
+                                d5p1:noValue="nietOndersteund" xsi:nil="true" />
+                            <gemeentecode>599</gemeentecode>
+                        </ADR>
+                    </PRSADRINS>
+                    <PRSADRVBL d5p1:soortEntiteit="R"
+                        d5p1:verwerkingssoort="T">
+                        <tijdvakRelatie>
+                            <d5p1:begindatumRelatie>20040924
+                            </d5p1:begindatumRelatie>
+                            <d5p1:einddatumRelatie
+                                d5p1:noValue="geenWaarde" xsi:nil="true" />
+                        </tijdvakRelatie>
+                        <ADR d5p1:soortEntiteit="F"
+                            d5p1:sleutelVerzendend="48997"
+                            d5p1:verwerkingssoort="I">
+                            <adresBuitenland1
+                                d5p1:noValue="nietOndersteund" xsi:nil="true" />
+                            <adresBuitenland2
+                                d5p1:noValue="nietOndersteund" xsi:nil="true" />
+                            <adresBuitenland3
+                                d5p1:noValue="nietOndersteund" xsi:nil="true" />
+                            <landcode d5p1:noValue="nietOndersteund"
+                                xsi:nil="true" />
+                            <postcode>3072KP</postcode>
+                            <woonplaatsnaam d5p1:noValue="geenWaarde"
+                                xsi:nil="true" />
+                            <postbusnummer d5p1:noValue="nietOndersteund"
+                                xsi:nil="true" />
+                            <antwoordnummer d5p1:noValue="nietOndersteund"
+                                xsi:nil="true" />
+                            <straatnaam>Parallelweg</straatnaam>
+                            <huisnummer>109</huisnummer>
+                            <huisletter d5p1:noValue="geenWaarde"
+                                xsi:nil="true" />
+                            <huisnummertoevoeging
+                                d5p1:noValue="geenWaarde" xsi:nil="true" />
+                            <aanduidingBijHuisnummer
+                                d5p1:noValue="geenWaarde" xsi:nil="true" />
+                            <locatieomschrijving
+                                d5p1:noValue="geenWaarde" xsi:nil="true" />
+                            <locatieadresnummer
+                                d5p1:noValue="nietOndersteund" xsi:nil="true" />
+                            <gemeentecode>599</gemeentecode>
+                        </ADR>
+                    </PRSADRVBL>
+                    <PRSIDB d5p1:soortEntiteit="R"
+                        d5p1:verwerkingssoort="T">
+                        <nummerIdentiteitsbewijs>NM05334F7</nummerIdentiteitsbewijs>
+                        <SIB d5p1:soortEntiteit="T"
+                            d5p1:verwerkingssoort="I">
+                            <soort>1</soort>
+                            <omschrijving d5p1:noValue="nietOndersteund"
+                                xsi:nil="true" />
+                        </SIB>
+                    </PRSIDB>
+                    <PRSNAT d5p1:soortEntiteit="R"
+                        d5p1:verwerkingssoort="T">
+                        <datumVerkrijging>20020118</datumVerkrijging>
+                        <datumVerlies d5p1:noValue="geenWaarde"
+                            xsi:nil="true" />
+                        <NAT d5p1:soortEntiteit="T"
+                            d5p1:verwerkingssoort="I">
+                            <code>1</code>
+                            <omschrijving d5p1:noValue="nietOndersteund"
+                                xsi:nil="true" />
+                            <datumVerkrijging
+                                d5p1:noValue="nietOndersteund" xsi:nil="true" />
+                            <datumVerlies d5p1:noValue="nietOndersteund"
+                                xsi:nil="true" />
+                        </NAT>
+                    </PRSNAT>
+                    <PRSNAT d5p1:soortEntiteit="R"
+                        d5p1:verwerkingssoort="T">
+                        <datumVerkrijging>0</datumVerkrijging>
+                        <datumVerlies d5p1:noValue="geenWaarde"
+                            xsi:nil="true" />
+                        <NAT d5p1:soortEntiteit="T"
+                            d5p1:verwerkingssoort="I">
+                            <code>339</code>
+                            <omschrijving d5p1:noValue="nietOndersteund"
+                                xsi:nil="true" />
+                            <datumVerkrijging
+                                d5p1:noValue="nietOndersteund" xsi:nil="true" />
+                            <datumVerlies d5p1:noValue="nietOndersteund"
+                                xsi:nil="true" />
+                        </NAT>
+                    </PRSNAT>
+                    <PRSPRSOUD d5p1:soortEntiteit="R"
+                        d5p1:verwerkingssoort="T">
+                        <ingangsdatum>0</ingangsdatum>
+                        <PRS d5p1:soortEntiteit="F"
+                            d5p1:sleutelVerzendend="1345777"
+                            d5p1:verwerkingssoort="I">
+                            <a-nummer>5745932398</a-nummer>
+                            <bsn-nummer>132801139</bsn-nummer>
+                            <voornamen>Ayşe</voornamen>
+                            <voorletters>A</voorletters>
+                            <voorvoegselGeslachtsnaam
+                                d5p1:noValue="geenWaarde" xsi:nil="true" />
+                            <geslachtsnaam>Gümüş</geslachtsnaam>
+                            <geboortedatum>19540607</geboortedatum>
+                            <geslachtsaanduiding>V</geslachtsaanduiding>
+                            <PRSADRVBL d5p1:soortEntiteit="R"
+                                d5p1:verwerkingssoort="I">
+                                <tijdvakRelatie>
+                                    <d5p1:begindatumRelatie>19851120
+                                    </d5p1:begindatumRelatie>
+                                    <d5p1:einddatumRelatie
+                                        d5p1:noValue="geenWaarde"
+                                        xsi:nil="true" />
+                                </tijdvakRelatie>
+                                <ADR d5p1:soortEntiteit="F"
+                                    d5p1:sleutelVerzendend="301292"
+                                    d5p1:verwerkingssoort="I">
+                                    <adresBuitenland1
+                                        d5p1:noValue="nietOndersteund"
+                                        xsi:nil="true" />
+                                    <adresBuitenland2
+                                        d5p1:noValue="nietOndersteund"
+                                        xsi:nil="true" />
+                                    <adresBuitenland3
+                                        d5p1:noValue="nietOndersteund"
+                                        xsi:nil="true" />
+                                    <landcode d5p1:noValue="nietOndersteund"
+                                        xsi:nil="true" />
+                                    <postcode>3071EK</postcode>
+                                    <woonplaatsnaam
+                                        d5p1:noValue="geenWaarde"
+                                        xsi:nil="true" />
+                                    <postbusnummer
+                                        d5p1:noValue="nietOndersteund"
+                                        xsi:nil="true" />
+                                    <antwoordnummer
+                                        d5p1:noValue="nietOndersteund"
+                                        xsi:nil="true" />
+                                    <straatnaam>Persoonsstraat</straatnaam>
+                                    <huisnummer>82</huisnummer>
+                                    <huisletter d5p1:noValue="geenWaarde"
+                                        xsi:nil="true" />
+                                    <huisnummertoevoeging
+                                        d5p1:noValue="geenWaarde"
+                                        xsi:nil="true" />
+                                    <aanduidingBijHuisnummer
+                                        d5p1:noValue="geenWaarde"
+                                        xsi:nil="true" />
+                                    <locatieomschrijving
+                                        d5p1:noValue="geenWaarde"
+                                        xsi:nil="true" />
+                                    <locatieadresnummer
+                                        d5p1:noValue="nietOndersteund"
+                                        xsi:nil="true" />
+                                    <gemeentecode>599</gemeentecode>
+                                </ADR>
+                            </PRSADRVBL>
+                        </PRS>
+                    </PRSPRSOUD>
+                    <PRSPRSOUD d5p1:soortEntiteit="R"
+                        d5p1:verwerkingssoort="T">
+                        <ingangsdatum>0</ingangsdatum>
+                        <PRS d5p1:soortEntiteit="F"
+                            d5p1:sleutelVerzendend="609550"
+                            d5p1:verwerkingssoort="I">
+                            <a-nummer>6535459756</a-nummer>
+                            <bsn-nummer>97051238</bsn-nummer>
+                            <voornamen>Raşit</voornamen>
+                            <voorletters>R</voorletters>
+                            <voorvoegselGeslachtsnaam
+                                d5p1:noValue="geenWaarde" xsi:nil="true" />
+                            <geslachtsnaam>Gümüş</geslachtsnaam>
+                            <geboortedatum>19510214</geboortedatum>
+                            <geslachtsaanduiding>M</geslachtsaanduiding>
+                            <PRSADRVBL d5p1:soortEntiteit="R"
+                                d5p1:verwerkingssoort="I">
+                                <tijdvakRelatie>
+                                    <d5p1:begindatumRelatie>19851120
+                                    </d5p1:begindatumRelatie>
+                                    <d5p1:einddatumRelatie
+                                        d5p1:noValue="geenWaarde"
+                                        xsi:nil="true" />
+                                </tijdvakRelatie>
+                                <ADR d5p1:soortEntiteit="F"
+                                    d5p1:sleutelVerzendend="301292"
+                                    d5p1:verwerkingssoort="I">
+                                    <adresBuitenland1
+                                        d5p1:noValue="nietOndersteund"
+                                        xsi:nil="true" />
+                                    <adresBuitenland2
+                                        d5p1:noValue="nietOndersteund"
+                                        xsi:nil="true" />
+                                    <adresBuitenland3
+                                        d5p1:noValue="nietOndersteund"
+                                        xsi:nil="true" />
+                                    <landcode d5p1:noValue="nietOndersteund"
+                                        xsi:nil="true" />
+                                    <postcode>3071EK</postcode>
+                                    <woonplaatsnaam
+                                        d5p1:noValue="geenWaarde"
+                                        xsi:nil="true" />
+                                    <postbusnummer
+                                        d5p1:noValue="nietOndersteund"
+                                        xsi:nil="true" />
+                                    <antwoordnummer
+                                        d5p1:noValue="nietOndersteund"
+                                        xsi:nil="true" />
+                                    <straatnaam>Persoonsstraat</straatnaam>
+                                    <huisnummer>82</huisnummer>
+                                    <huisletter d5p1:noValue="geenWaarde"
+                                        xsi:nil="true" />
+                                    <huisnummertoevoeging
+                                        d5p1:noValue="geenWaarde"
+                                        xsi:nil="true" />
+                                    <aanduidingBijHuisnummer
+                                        d5p1:noValue="geenWaarde"
+                                        xsi:nil="true" />
+                                    <locatieomschrijving
+                                        d5p1:noValue="geenWaarde"
+                                        xsi:nil="true" />
+                                    <locatieadresnummer
+                                        d5p1:noValue="nietOndersteund"
+                                        xsi:nil="true" />
+                                    <gemeentecode>599</gemeentecode>
+                                </ADR>
+                            </PRSADRVBL>
+                        </PRS>
+                    </PRSPRSOUD>
+                </PRS>
+            </body>
+        </kennisgevingsBericht>
+    </soap:Body>
+</soap:Envelope>

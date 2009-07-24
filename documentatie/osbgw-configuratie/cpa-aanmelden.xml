@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?><tns:CollaborationProtocolAgreement xmlns:axsl="http://www.w3.org/1999/XSL/TransformAlias" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:functx="http://www.functx.com" xmlns:tns="http://www.oasis-open.org/committees/ebxml-cppa/schema/cpp-cpa-2_0.xsd" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://www.oasis-open.org/committees/ebxml-cppa/schema/cpp-cpa-2_0.xsd                  http://www.oasis-open.org/committees/ebxml-cppa/schema/cpp-cpa-2_0.xsd" tns:cpaid="CPAID_ICTUTMFAanmeldenPoC_SP-SR_04ad3ac0-d5bb-11de-9e4c-005056863202" tns:version="1.0">
+   <tns:Status tns:value="agreed"/>
+   <tns:Start>2009-11-20T00:00:00Z</tns:Start>
+   <tns:End>2010-11-19T00:00:00Z</tns:End>
+   <tns:PartyInfo tns:partyName="ICTU" tns:defaultMshChannelId="SP_defaultDeliveryChannel_GBOProfileReliableMessaging" tns:defaultMshPackageId="defaultPackage_GBOProfile">
+      <tns:PartyId tns:type="urn:osb:oin">00000003271987420000</tns:PartyId>
+      <tns:PartyRef xlink:href="http://www.tmf.overheid.nl"/>
+      <tns:CollaborationRole>
+         <tns:ProcessSpecification tns:name="aanmelden" tns:version="0.1" xlink:href="http://www.gbo.nl" tns:uuid="http://www.gbo.nl/"/>
+         <tns:Role tns:name="SP" xlink:href="http://www.gbo.nl"/>
+         <tns:ServiceBinding>
+            <tns:Service tns:type="urn:osb:services">tmf:aanmelden</tns:Service>
+            <tns:CanReceive>
+               <tns:ThisPartyActionBinding tns:id="SP_R_Terugmelding" tns:action="terugmelding" tns:packageId="defaultPackage_GBOProfile">
+                  <tns:BusinessTransactionCharacteristics tns:isAuthenticated="transient" tns:isAuthorizationRequired="true" tns:isConfidential="transient" tns:isIntelligibleCheckRequired="false" tns:isNonRepudiationReceiptRequired="false" tns:isNonRepudiationRequired="false" tns:isTamperProof="transient" tns:timeToPerform="P2D"/>
+                  <tns:ChannelId>SP_defaultDeliveryChannel_GBOProfileReliableMessaging</tns:ChannelId>
+               </tns:ThisPartyActionBinding>
+               <tns:OtherPartyActionBinding>SR_S_Terugmelding</tns:OtherPartyActionBinding>
+            </tns:CanReceive>
+            <tns:CanReceive>
+               <tns:ThisPartyActionBinding tns:id="SP_R_Intrekking" tns:action="intrekking" tns:packageId="defaultPackage_GBOProfile">
+                  <tns:BusinessTransactionCharacteristics tns:isAuthenticated="transient" tns:isAuthorizationRequired="true" tns:isConfidential="transient" tns:isIntelligibleCheckRequired="false" tns:isNonRepudiationReceiptRequired="false" tns:isNonRepudiationRequired="false" tns:isTamperProof="transient" tns:timeToPerform="P2D"/>
+                  <tns:ChannelId>SP_defaultDeliveryChannel_GBOProfileReliableMessaging</tns:ChannelId>
+               </tns:ThisPartyActionBinding>
+               <tns:OtherPartyActionBinding>SR_S_Intrekking</tns:OtherPartyActionBinding>
+            </tns:CanReceive>
+         </tns:ServiceBinding>
+      </tns:CollaborationRole>
+      <tns:Certificate tns:certId="SP_ServerCert">
+<KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <KeyValue>
+      <RSAKeyValue>
+        <Modulus>
+          03Vg7qgMT6XRMCQ9B3P9Bm+lW9xy/M+cVlt38hvikVrTPI1bFc0A/wJh8tmrRlChXt
+          6tUVID1tikkm1+s/h0ob4Ia/GacpDihdZcaV8VV6QHOATw/ksjiLjdc0JjGfIqkOfn
+          ZqScSD8FMYJ1/C3D1BJgGbNDKb7J7CGOsbCtDqM=
+        </Modulus>
+        <Exponent>AQAB</Exponent>
+      </RSAKeyValue>
+    </KeyValue>
+    <X509Data>
+      <X509IssuerSerial>
+        <X509IssuerName>CN=TEST OSB CSP CA,O=OSB,C=NL</X509IssuerName>
+        <X509SerialNumber>19791228183673</X509SerialNumber>
+      </X509IssuerSerial>
+      <X509SKI>JlOjJT/QTJKnu9gH6qQgAuGj</X509SKI>
+      <X509SubjectName>CN=s794.nxs.nl,serialNumber=00000003271987420000,O=ICTU,C=NL</X509SubjectName>
+      <X509Certificate>
+MIIEaTCCA1GgAwIBAgIGEgABICR5MA0GCSqGSIb3DQEBBQUAMDUxCzAJBgNVBAYTAk5MMQwwCgYD
+VQQKEwNPU0IxGDAWBgNVBAMTD1RFU1QgT1NCIENTUCBDQTAeFw0wOTExMTMxMDQxMjVaFw0zNzAz
+MjkxMDQxMjVaMFExCzAJBgNVBAYTAk5MMQ0wCwYDVQQKEwRJQ1RVMR0wGwYDVQQFExQwMDAwMDAw
+MzI3MTk4NzQyMDAwMDEUMBIGA1UEAxMLczc5NC5ueHMubmwwgZ8wDQYJKoZIhvcNAQEBBQADgY0A
+MIGJAoGBANN1YO6oDE+l0TAkPQdz/QZvpVvccvzPnFZbd/Ib4pFa0zyNWxXNAP8CYfLZq0ZQoV7e
+rVFSA9bYpJJtfrP4dKG+CGvxmnKQ4oXWXGlfFVekBzgE8P5LI4i43XNCYxnyKpDn52aknEg/BTGC
+dfwtw9QSYBmzQym+yewhjrGwrQ6jAgMBAAGjggHlMIIB4TAMBgNVHRMBAf8EAjAAMB0GA1UdDgQW
+BBQMbCZToyU/0EySp7vYB+qkIALhozAfBgNVHSMEGDAWgBTv0336HhH+0NSJYQlib2dS5GYfLDAO
+BgNVHQ8BAf8EBAMCBaAwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0cDovL2NybC5vdmVyaGVpZHNzZXJ2
+aWNlYnVzLm5sL0RvbUNTUExhdGVzdENSTC5jcmwwgfIGA1UdIASB6jCB5zCB5AYKYIQQAYdrAQIC
+BjCB1TCBnwYIKwYBBQUHAgIwgZIagY9UaGUgZ2VuZXJhbCB0ZXJtcyBhbmQgY29uZGl0aW9ucyBh
+cyBtZW50aW9uZWQgb24gb3VyIHdlYnNpdGUgKHd3dy5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5sL2Nw
+cyksIGFyZSBhcHBsaWNhYmxlIHRvIGFsbCBvdXIgcHJvZHVjdHMgYW5kIHNlcnZpY2VzLjAxBggr
+BgEFBQcCARYlaHR0cDovL3d3dy5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5sL2NwczAJBgNVHREEAjAA
+MDkGCCsGAQUFBwEBBC0wKzApBggrBgEFBQcwAYYdaHR0cDovL3ZhbGlkYXRpb24ucHJvdmlkZXIu
+bmwwDQYJKoZIhvcNAQEFBQADggEBAIgMirI/GQGY6TbHUEcydFQ5ejPqFimK9pc4xs7pp7UKzELU
+/Uav/nzlPcuonR2eHACTMpOJzUfgyb38vJlISY5/k0Q4/FPrTU/yee5hi/R+ogB4ShmiNpqIIx0I
+o9DZUxFyCnSO6y5/kDR22pmCN5XOHav9wJwBZxHCaGiLdmO4gGfLLDTRWS/sPS7z0byujWXcJUEf
+p8lFEB4ZHiT5ljVg2HheouGIm4IL4hXc1gSQ9HFf70Aqvy7uMRriFeoFzcWLaR4fQSV6935EzFTM
+WJqDSw8t9c+4yM/FHOLWzsMno85EQPspOlos/uZFnZ/txWWH3+6+gGI2wKdxfi2XcWk=
+      </X509Certificate>
+    </X509Data>
+  </KeyInfo>
+        </tns:Certificate>
+      <tns:Certificate tns:certId="SP_ClientCert">
+<KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <KeyValue>
+      <RSAKeyValue>
+        <Modulus>
+          03Vg7qgMT6XRMCQ9B3P9Bm+lW9xy/M+cVlt38hvikVrTPI1bFc0A/wJh8tmrRlChXt
+          6tUVID1tikkm1+s/h0ob4Ia/GacpDihdZcaV8VV6QHOATw/ksjiLjdc0JjGfIqkOfn
+          ZqScSD8FMYJ1/C3D1BJgGbNDKb7J7CGOsbCtDqM=
+        </Modulus>
+        <Exponent>AQAB</Exponent>
+      </RSAKeyValue>
+    </KeyValue>
+    <X509Data>
+      <X509IssuerSerial>
+        <X509IssuerName>CN=TEST OSB CSP CA,O=OSB,C=NL</X509IssuerName>
+        <X509SerialNumber>19791228183673</X509SerialNumber>
+      </X509IssuerSerial>
+      <X509SKI>JlOjJT/QTJKnu9gH6qQgAuGj</X509SKI>
+      <X509SubjectName>CN=s794.nxs.nl,serialNumber=00000003271987420000,O=ICTU,C=NL</X509SubjectName>
+      <X509Certificate>
+MIIEaTCCA1GgAwIBAgIGEgABICR5MA0GCSqGSIb3DQEBBQUAMDUxCzAJBgNVBAYTAk5MMQwwCgYD
+VQQKEwNPU0IxGDAWBgNVBAMTD1RFU1QgT1NCIENTUCBDQTAeFw0wOTExMTMxMDQxMjVaFw0zNzAz
+MjkxMDQxMjVaMFExCzAJBgNVBAYTAk5MMQ0wCwYDVQQKEwRJQ1RVMR0wGwYDVQQFExQwMDAwMDAw
+MzI3MTk4NzQyMDAwMDEUMBIGA1UEAxMLczc5NC5ueHMubmwwgZ8wDQYJKoZIhvcNAQEBBQADgY0A
+MIGJAoGBANN1YO6oDE+l0TAkPQdz/QZvpVvccvzPnFZbd/Ib4pFa0zyNWxXNAP8CYfLZq0ZQoV7e
+rVFSA9bYpJJtfrP4dKG+CGvxmnKQ4oXWXGlfFVekBzgE8P5LI4i43XNCYxnyKpDn52aknEg/BTGC
+dfwtw9QSYBmzQym+yewhjrGwrQ6jAgMBAAGjggHlMIIB4TAMBgNVHRMBAf8EAjAAMB0GA1UdDgQW
+BBQMbCZToyU/0EySp7vYB+qkIALhozAfBgNVHSMEGDAWgBTv0336HhH+0NSJYQlib2dS5GYfLDAO
+BgNVHQ8BAf8EBAMCBaAwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0cDovL2NybC5vdmVyaGVpZHNzZXJ2
+aWNlYnVzLm5sL0RvbUNTUExhdGVzdENSTC5jcmwwgfIGA1UdIASB6jCB5zCB5AYKYIQQAYdrAQIC
+BjCB1TCBnwYIKwYBBQUHAgIwgZIagY9UaGUgZ2VuZXJhbCB0ZXJtcyBhbmQgY29uZGl0aW9ucyBh
+cyBtZW50aW9uZWQgb24gb3VyIHdlYnNpdGUgKHd3dy5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5sL2Nw
+cyksIGFyZSBhcHBsaWNhYmxlIHRvIGFsbCBvdXIgcHJvZHVjdHMgYW5kIHNlcnZpY2VzLjAxBggr
+BgEFBQcCARYlaHR0cDovL3d3dy5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5sL2NwczAJBgNVHREEAjAA
+MDkGCCsGAQUFBwEBBC0wKzApBggrBgEFBQcwAYYdaHR0cDovL3ZhbGlkYXRpb24ucHJvdmlkZXIu
+bmwwDQYJKoZIhvcNAQEFBQADggEBAIgMirI/GQGY6TbHUEcydFQ5ejPqFimK9pc4xs7pp7UKzELU
+/Uav/nzlPcuonR2eHACTMpOJzUfgyb38vJlISY5/k0Q4/FPrTU/yee5hi/R+ogB4ShmiNpqIIx0I
+o9DZUxFyCnSO6y5/kDR22pmCN5XOHav9wJwBZxHCaGiLdmO4gGfLLDTRWS/sPS7z0byujWXcJUEf
+p8lFEB4ZHiT5ljVg2HheouGIm4IL4hXc1gSQ9HFf70Aqvy7uMRriFeoFzcWLaR4fQSV6935EzFTM
+WJqDSw8t9c+4yM/FHOLWzsMno85EQPspOlos/uZFnZ/txWWH3+6+gGI2wKdxfi2XcWk=
+      </X509Certificate>
+    </X509Data>
+  </KeyInfo>
+        </tns:Certificate>
+      <tns:SecurityDetails tns:securityId="SP_TransportSecurity">
+         <tns:TrustAnchors>
+            <tns:AnchorCertificateRef tns:certId="SP_ServerCert"/>
+            <tns:AnchorCertificateRef tns:certId="SP_ClientCert"/>
+         </tns:TrustAnchors>
+      </tns:SecurityDetails>
+      <tns:DeliveryChannel tns:channelId="SP_defaultDeliveryChannel_GBOProfileBestEffort" tns:docExchangeId="SP_BASIS_BestEffort" tns:transportId="SP_transport_HTTPS">
+         <tns:MessagingCharacteristics tns:syncReplyMode="none" tns:ackRequested="never" tns:actor="urn:oasis:names:tc:ebxml-msg:actor:toPartyMSH" tns:ackSignatureRequested="never" tns:duplicateElimination="never"/>
+      </tns:DeliveryChannel>
+      <tns:DeliveryChannel tns:channelId="SP_defaultDeliveryChannel_GBOProfileReliableMessaging" tns:docExchangeId="SP_BASIS_ReliableMessaging" tns:transportId="SP_transport_HTTPS">
+         <tns:MessagingCharacteristics tns:syncReplyMode="none" tns:ackRequested="always" tns:actor="urn:oasis:names:tc:ebxml-msg:actor:toPartyMSH" tns:ackSignatureRequested="never" tns:duplicateElimination="always"/>
+      </tns:DeliveryChannel>
+      <tns:Transport tns:transportId="SP_transport_HTTPS">
+         <tns:TransportSender>
+            <tns:TransportProtocol tns:version="1.1">HTTP</tns:TransportProtocol>
+            <tns:TransportClientSecurity>
+               <tns:TransportSecurityProtocol tns:version="3.0">SSL</tns:TransportSecurityProtocol>
+               <tns:ClientCertificateRef tns:certId="SP_ClientCert"/>
+               <tns:ServerSecurityDetailsRef tns:securityId="SP_TransportSecurity"/>
+            </tns:TransportClientSecurity>
+         </tns:TransportSender>
+         <tns:TransportReceiver>
+            <tns:TransportProtocol tns:version="1.1">HTTP</tns:TransportProtocol>
+            <tns:Endpoint tns:uri="https://s794.nxs.nl/corvus/httpd/ebms/inbound" tns:type="allPurpose"/>
+            <tns:TransportServerSecurity>
+               <tns:TransportSecurityProtocol tns:version="3.0">SSL</tns:TransportSecurityProtocol>
+               <tns:ServerCertificateRef tns:certId="SP_ServerCert"/>
+               <tns:ClientSecurityDetailsRef tns:securityId="SP_TransportSecurity"/>
+            </tns:TransportServerSecurity>
+         </tns:TransportReceiver>
+      </tns:Transport>
+      <tns:DocExchange tns:docExchangeId="SP_BASIS_BestEffort">
+         <tns:ebXMLSenderBinding tns:version="2.0"/>
+         <tns:ebXMLReceiverBinding tns:version="2.0"/>
+      </tns:DocExchange>
+      <tns:DocExchange tns:docExchangeId="SP_BASIS_ReliableMessaging">
+         <tns:ebXMLSenderBinding tns:version="2.0">
+            <tns:ReliableMessaging>
+               <tns:Retries>8</tns:Retries>
+               <tns:RetryInterval>PT3H</tns:RetryInterval>
+               <tns:MessageOrderSemantics>NotGuaranteed</tns:MessageOrderSemantics>
+            </tns:ReliableMessaging>
+            <tns:PersistDuration>P1D</tns:PersistDuration>
+         </tns:ebXMLSenderBinding>
+         <tns:ebXMLReceiverBinding tns:version="2.0">
+            <tns:ReliableMessaging>
+               <tns:Retries>8</tns:Retries>
+               <tns:RetryInterval>PT3H</tns:RetryInterval>
+               <tns:MessageOrderSemantics>NotGuaranteed</tns:MessageOrderSemantics>
+            </tns:ReliableMessaging>
+            <tns:PersistDuration>P1D</tns:PersistDuration>
+         </tns:ebXMLReceiverBinding>
+      </tns:DocExchange>
+   </tns:PartyInfo>
+   <tns:PartyInfo tns:partyName="Gemeente Rotterdam" tns:defaultMshChannelId="SR_defaultDeliveryChannel_GBOProfileReliableMessaging" tns:defaultMshPackageId="defaultPackage_GBOProfile">
+      <tns:PartyId tns:type="urn:osb:oin">00000001001876387000</tns:PartyId>
+      <tns:PartyRef xlink:href="http://www.tmf.overheid.nl"/>
+      <tns:CollaborationRole>
+         <tns:ProcessSpecification tns:name="aanmelden" tns:version="0.1" xlink:href="http://www.gbo.nl" tns:uuid="http://www.gbo.nl/"/>
+         <tns:Role tns:name="SR" xlink:href="http://www.gbo.nl"/>
+         <tns:ServiceBinding>
+            <tns:Service tns:type="urn:osb:services">tmf:aanmelden</tns:Service>
+            <tns:CanSend>
+               <tns:ThisPartyActionBinding tns:id="SR_S_Terugmelding" tns:action="terugmelding" tns:packageId="defaultPackage_GBOProfile">
+                  <tns:BusinessTransactionCharacteristics tns:isAuthenticated="transient" tns:isAuthorizationRequired="true" tns:isConfidential="transient" tns:isIntelligibleCheckRequired="false" tns:isNonRepudiationReceiptRequired="false" tns:isNonRepudiationRequired="false" tns:isTamperProof="transient" tns:timeToPerform="P2D"/>
+                  <tns:ChannelId>SR_defaultDeliveryChannel_GBOProfileReliableMessaging</tns:ChannelId>
+               </tns:ThisPartyActionBinding>
+               <tns:OtherPartyActionBinding>SP_R_Terugmelding</tns:OtherPartyActionBinding>
+            </tns:CanSend>
+            <tns:CanSend>
+               <tns:ThisPartyActionBinding tns:id="SR_S_Intrekking" tns:action="intrekking" tns:packageId="defaultPackage_GBOProfile">
+                  <tns:BusinessTransactionCharacteristics tns:isAuthenticated="transient" tns:isAuthorizationRequired="true" tns:isConfidential="transient" tns:isIntelligibleCheckRequired="false" tns:isNonRepudiationReceiptRequired="false" tns:isNonRepudiationRequired="false" tns:isTamperProof="transient" tns:timeToPerform="P2D"/>
+                  <tns:ChannelId>SR_defaultDeliveryChannel_GBOProfileReliableMessaging</tns:ChannelId>
+               </tns:ThisPartyActionBinding>
+               <tns:OtherPartyActionBinding>SP_R_Intrekking</tns:OtherPartyActionBinding>
+            </tns:CanSend>
+         </tns:ServiceBinding>
+      </tns:CollaborationRole>
+      <tns:Certificate tns:certId="SR_ServerCert">
+        <!--
+            <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+				<KeyValue>
+				  <RSAKeyValue>
+					<Modulus>
+					  wOzkPUNkEzAZMs1whnIw5C1DNjjKZms8S5hOGPvc/6tPrv7AHUIXQrTxBEG2wVrGKf
+					  IDIVkBndYdPD1NCCiOdJowHfP7vOPBEEo03ydcDRS6sp6W7npCjpUQXrWXTxJdBO2u
+					  rDGgTssqqsJ30/c2YMtUGpm4Pc19tGf09ciuGA8=
+					</Modulus>
+					<Exponent>AQAB</Exponent>
+				  </RSAKeyValue>
+				</KeyValue>
+				<X509Data>
+				  <X509IssuerSerial>
+					<X509IssuerName>CN=TEST OSB CSP CA,O=OSB,C=NL</X509IssuerName>
+					<X509SerialNumber>19791228183506</X509SerialNumber>
+				  </X509IssuerSerial>
+				  <X509SKI>ahFeg06B+hMpk/5jVXXaI9nG</X509SKI>
+				  <X509SubjectName>CN=S794.nxs.nl,serialNumber=00000003271987420000,O=ICTU,C=NL</X509SubjectName>
+				  <X509Certificate>
+			MIIEaTCCA1GgAwIBAgIGEgABICPSMA0GCSqGSIb3DQEBBQUAMDUxCzAJBgNVBAYTAk5MMQwwCgYD
+			VQQKEwNPU0IxGDAWBgNVBAMTD1RFU1QgT1NCIENTUCBDQTAeFw0wOTAyMDQwNzMwNDNaFw0xMjAy
+			MDkwNzMwNDNaMFExCzAJBgNVBAYTAk5MMQ0wCwYDVQQKEwRJQ1RVMR0wGwYDVQQFExQwMDAwMDAw
+			MzI3MTk4NzQyMDAwMDEUMBIGA1UEAxMLUzc5NC5ueHMubmwwgZ8wDQYJKoZIhvcNAQEBBQADgY0A
+			MIGJAoGBAMDs5D1DZBMwGTLNcIZyMOQtQzY4ymZrPEuYThj73P+rT67+wB1CF0K08QRBtsFaxiny
+			AyFZAZ3WHTw9TQgojnSaMB3z+7zjwRBKNN8nXA0UurKelu56Qo6VEF61l08SXQTtrqwxoE7LKqrC
+			d9P3NmDLVBqZuD3NfbRn9PXIrhgPAgMBAAGjggHlMIIB4TAMBgNVHRMBAf8EAjAAMB0GA1UdDgQW
+			BBTQgmoRXoNOgfoTKZP+Y1V12iPZxjAfBgNVHSMEGDAWgBRlX2LrabjM8vYCAQZitPgYJ5PmrjAO
+			BgNVHQ8BAf8EBAMCBaAwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0cDovL2NybC5vdmVyaGVpZHNzZXJ2
+			aWNlYnVzLm5sL0RvbUNTUExhdGVzdENSTC5jcmwwgfIGA1UdIASB6jCB5zCB5AYKYIQQAYdrAQIC
+			BjCB1TCBnwYIKwYBBQUHAgIwgZIagY9UaGUgZ2VuZXJhbCB0ZXJtcyBhbmQgY29uZGl0aW9ucyBh
+			cyBtZW50aW9uZWQgb24gb3VyIHdlYnNpdGUgKHd3dy5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5sL2Nw
+			cyksIGFyZSBhcHBsaWNhYmxlIHRvIGFsbCBvdXIgcHJvZHVjdHMgYW5kIHNlcnZpY2VzLjAxBggr
+			BgEFBQcCARYlaHR0cDovL3d3dy5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5sL2NwczAJBgNVHREEAjAA
+			MDkGCCsGAQUFBwEBBC0wKzApBggrBgEFBQcwAYYdaHR0cDovL3ZhbGlkYXRpb24ucHJvdmlkZXIu
+			bmwwDQYJKoZIhvcNAQEFBQADggEBACY40ICyV0Ifg7HDOcfVL5F/DyDi4CWmfRTJ0BQjHI980W0m
+			Kw9HHFtJzXrZC5c/hBfSESLZFJjQD5ze35uP13dmf8BRR/HYch40cDfoyGMtz8klvMzYyzIByRhH
+			GsA8AbvyBTg/T7Yiabi3JNvDjV+LOF22gi3M1tsnVnjf6+6tXHsKTaNR+LxQ/rbhWOI5v3BVJt7S
+			xt4DtmT0Vz/tlPQ0mebK33VfeAmAN0MoTpp9zFR8owCqpQT26+Gw8ddxNodGr2ZezwF0pHjlK8ad
+			WEYa6MIbWpSwNAXedszqW+CtrTj5D9VLUFisdmwdZio9IN414zjfpgrJ4YCgfJcJs8A=
+				  </X509Certificate>
+				</X509Data>
+			</KeyInfo>
+			
+			-->
+<KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://wus.tmf.gbo.overheid.nl/wsdl/aanmeldService-V0.1.xsd">
+    <KeyValue>
+      <RSAKeyValue>
+        <Modulus>
+          5rCp0ShD1y8k5w1LxIMoIV0zQibqbouZwQf0KkHLvVv7vjqbbaskyCApj3yAR4fHz7
+          FFJpZCc7o6CnGthJzSjSSks8d7Ifltx2Ky1VfJPo6l1T1dPJ1l//Ykeq95wuXYGcMz
+          U6yOgbWL9llm351biGELbMrL4WQriL0dMlKJMG0=
+        </Modulus>
+        <Exponent>AQAB</Exponent>
+      </RSAKeyValue>
+    </KeyValue>
+    <X509Data>
+      <X509IssuerSerial>
+        <X509IssuerName>CN=TEST OSB CSP CA,O=OSB,C=NL</X509IssuerName>
+        <X509SerialNumber>19791228183662</X509SerialNumber>
+      </X509IssuerSerial>
+      <X509SKI>BMEmmVVsLycaPVMb+TA10bQx</X509SKI>
+      <X509SubjectName>CN=osbtestgemro,serialNumber=00000001001876387000,O=Gemeente Rotterdam,C=NL</X509SubjectName>
+      <X509Certificate>
+MIIEeDCCA2CgAwIBAgIGEgABICRuMA0GCSqGSIb3DQEBBQUAMDUxCzAJBgNVBAYTAk5MMQwwCgYD
+VQQKEwNPU0IxGDAWBgNVBAMTD1RFU1QgT1NCIENTUCBDQTAeFw0wOTExMTMwNzQ1MjhaFw0zNzAz
+MjkwNzQ1MjhaMGAxCzAJBgNVBAYTAk5MMRswGQYDVQQKExJHZW1lZW50ZSBSb3R0ZXJkYW0xHTAb
+BgNVBAUTFDAwMDAwMDAxMDAxODc2Mzg3MDAwMRUwEwYDVQQDEwxvc2J0ZXN0Z2Vtcm8wgZ8wDQYJ
+KoZIhvcNAQEBBQADgY0AMIGJAoGBAOawqdEoQ9cvJOcNS8SDKCFdM0Im6m6LmcEH9CpBy71b+746
+m22rJMggKY98gEeHx8+xRSaWQnO6OgpxrYSc0o0kpLPHeyH5bcdistVXyT6OpdU9XTydZf/2JHqv
+ecLl2BnDM1OsjoG1i/ZZZt+dW4hhC2zKy+FkK4i9HTJSiTBtAgMBAAGjggHlMIIB4TAMBgNVHRMB
+Af8EAjAAMB0GA1UdDgQWBBSMiATBJplVbC8nGj1TG/kwNdG0MTAfBgNVHSMEGDAWgBTv0336HhH+
+0NSJYQlib2dS5GYfLDAOBgNVHQ8BAf8EBAMCBaAwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0cDovL2Ny
+bC5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5sL0RvbUNTUExhdGVzdENSTC5jcmwwgfIGA1UdIASB6jCB
+5zCB5AYKYIQQAYdrAQICBjCB1TCBnwYIKwYBBQUHAgIwgZIagY9UaGUgZ2VuZXJhbCB0ZXJtcyBh
+bmQgY29uZGl0aW9ucyBhcyBtZW50aW9uZWQgb24gb3VyIHdlYnNpdGUgKHd3dy5vdmVyaGVpZHNz
+ZXJ2aWNlYnVzLm5sL2NwcyksIGFyZSBhcHBsaWNhYmxlIHRvIGFsbCBvdXIgcHJvZHVjdHMgYW5k
+IHNlcnZpY2VzLjAxBggrBgEFBQcCARYlaHR0cDovL3d3dy5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5s
+L2NwczAJBgNVHREEAjAAMDkGCCsGAQUFBwEBBC0wKzApBggrBgEFBQcwAYYdaHR0cDovL3ZhbGlk
+YXRpb24ucHJvdmlkZXIubmwwDQYJKoZIhvcNAQEFBQADggEBAHXQe2HhTaoe+AASjEONG7ztn7NW
+zbm1j7KwOK3eL1ORGXzHd95fRIc8Snwy2FTZiTLbTfGZWfFJ7ac/IjO1mhi8TZbb1JSBIWsuEEUR
+m815ggIoWKPZ3w0TzSIcmiLHgLT4c5Gv/4fqpGHNZTIUWwhBiilFTmrbPnzs9KAdyT8IQo/kghhH
+UTUWhbN/N9eScalqtJtseXQYlVO/KV+MHdd19aJMd6XwNSEXVLB7QmDUY5szATGDt8h3ccvoMUFT
+G7Fb8tlA+XGqkycBWIibATOQv+I6amAgbiL3zfuz08yf5a8SWmhlbrk7thQj7K9Iy7699U7S9/eA
+yTgDdNzrphg=
+      </X509Certificate>
+    </X509Data>
+  </KeyInfo>
+          </tns:Certificate>
+      <tns:Certificate tns:certId="SR_ClientCert">
+        <!--
+            <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+				<KeyValue>
+				  <RSAKeyValue>
+					<Modulus>
+					  wOzkPUNkEzAZMs1whnIw5C1DNjjKZms8S5hOGPvc/6tPrv7AHUIXQrTxBEG2wVrGKf
+					  IDIVkBndYdPD1NCCiOdJowHfP7vOPBEEo03ydcDRS6sp6W7npCjpUQXrWXTxJdBO2u
+					  rDGgTssqqsJ30/c2YMtUGpm4Pc19tGf09ciuGA8=
+					</Modulus>
+					<Exponent>AQAB</Exponent>
+				  </RSAKeyValue>
+				</KeyValue>
+				<X509Data>
+				  <X509IssuerSerial>
+					<X509IssuerName>CN=TEST OSB CSP CA,O=OSB,C=NL</X509IssuerName>
+					<X509SerialNumber>19791228183506</X509SerialNumber>
+				  </X509IssuerSerial>
+				  <X509SKI>ahFeg06B+hMpk/5jVXXaI9nG</X509SKI>
+				  <X509SubjectName>CN=S794.nxs.nl,serialNumber=00000003271987420000,O=ICTU,C=NL</X509SubjectName>
+				  <X509Certificate>
+			MIIEaTCCA1GgAwIBAgIGEgABICPSMA0GCSqGSIb3DQEBBQUAMDUxCzAJBgNVBAYTAk5MMQwwCgYD
+			VQQKEwNPU0IxGDAWBgNVBAMTD1RFU1QgT1NCIENTUCBDQTAeFw0wOTAyMDQwNzMwNDNaFw0xMjAy
+			MDkwNzMwNDNaMFExCzAJBgNVBAYTAk5MMQ0wCwYDVQQKEwRJQ1RVMR0wGwYDVQQFExQwMDAwMDAw
+			MzI3MTk4NzQyMDAwMDEUMBIGA1UEAxMLUzc5NC5ueHMubmwwgZ8wDQYJKoZIhvcNAQEBBQADgY0A
+			MIGJAoGBAMDs5D1DZBMwGTLNcIZyMOQtQzY4ymZrPEuYThj73P+rT67+wB1CF0K08QRBtsFaxiny
+			AyFZAZ3WHTw9TQgojnSaMB3z+7zjwRBKNN8nXA0UurKelu56Qo6VEF61l08SXQTtrqwxoE7LKqrC
+			d9P3NmDLVBqZuD3NfbRn9PXIrhgPAgMBAAGjggHlMIIB4TAMBgNVHRMBAf8EAjAAMB0GA1UdDgQW
+			BBTQgmoRXoNOgfoTKZP+Y1V12iPZxjAfBgNVHSMEGDAWgBRlX2LrabjM8vYCAQZitPgYJ5PmrjAO
+			BgNVHQ8BAf8EBAMCBaAwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0cDovL2NybC5vdmVyaGVpZHNzZXJ2
+			aWNlYnVzLm5sL0RvbUNTUExhdGVzdENSTC5jcmwwgfIGA1UdIASB6jCB5zCB5AYKYIQQAYdrAQIC
+			BjCB1TCBnwYIKwYBBQUHAgIwgZIagY9UaGUgZ2VuZXJhbCB0ZXJtcyBhbmQgY29uZGl0aW9ucyBh
+			cyBtZW50aW9uZWQgb24gb3VyIHdlYnNpdGUgKHd3dy5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5sL2Nw
+			cyksIGFyZSBhcHBsaWNhYmxlIHRvIGFsbCBvdXIgcHJvZHVjdHMgYW5kIHNlcnZpY2VzLjAxBggr
+			BgEFBQcCARYlaHR0cDovL3d3dy5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5sL2NwczAJBgNVHREEAjAA
+			MDkGCCsGAQUFBwEBBC0wKzApBggrBgEFBQcwAYYdaHR0cDovL3ZhbGlkYXRpb24ucHJvdmlkZXIu
+			bmwwDQYJKoZIhvcNAQEFBQADggEBACY40ICyV0Ifg7HDOcfVL5F/DyDi4CWmfRTJ0BQjHI980W0m
+			Kw9HHFtJzXrZC5c/hBfSESLZFJjQD5ze35uP13dmf8BRR/HYch40cDfoyGMtz8klvMzYyzIByRhH
+			GsA8AbvyBTg/T7Yiabi3JNvDjV+LOF22gi3M1tsnVnjf6+6tXHsKTaNR+LxQ/rbhWOI5v3BVJt7S
+			xt4DtmT0Vz/tlPQ0mebK33VfeAmAN0MoTpp9zFR8owCqpQT26+Gw8ddxNodGr2ZezwF0pHjlK8ad
+			WEYa6MIbWpSwNAXedszqW+CtrTj5D9VLUFisdmwdZio9IN414zjfpgrJ4YCgfJcJs8A=
+				  </X509Certificate>
+				</X509Data>
+			</KeyInfo>
+			-->
+<KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://wus.tmf.gbo.overheid.nl/wsdl/aanmeldService-V0.1.xsd">
+    <KeyValue>
+      <RSAKeyValue>
+        <Modulus>
+          5rCp0ShD1y8k5w1LxIMoIV0zQibqbouZwQf0KkHLvVv7vjqbbaskyCApj3yAR4fHz7
+          FFJpZCc7o6CnGthJzSjSSks8d7Ifltx2Ky1VfJPo6l1T1dPJ1l//Ykeq95wuXYGcMz
+          U6yOgbWL9llm351biGELbMrL4WQriL0dMlKJMG0=
+        </Modulus>
+        <Exponent>AQAB</Exponent>
+      </RSAKeyValue>
+    </KeyValue>
+    <X509Data>
+      <X509IssuerSerial>
+        <X509IssuerName>CN=TEST OSB CSP CA,O=OSB,C=NL</X509IssuerName>
+        <X509SerialNumber>19791228183662</X509SerialNumber>
+      </X509IssuerSerial>
+      <X509SKI>BMEmmVVsLycaPVMb+TA10bQx</X509SKI>
+      <X509SubjectName>CN=osbtestgemro,serialNumber=00000001001876387000,O=Gemeente Rotterdam,C=NL</X509SubjectName>
+      <X509Certificate>
+MIIEeDCCA2CgAwIBAgIGEgABICRuMA0GCSqGSIb3DQEBBQUAMDUxCzAJBgNVBAYTAk5MMQwwCgYD
+VQQKEwNPU0IxGDAWBgNVBAMTD1RFU1QgT1NCIENTUCBDQTAeFw0wOTExMTMwNzQ1MjhaFw0zNzAz
+MjkwNzQ1MjhaMGAxCzAJBgNVBAYTAk5MMRswGQYDVQQKExJHZW1lZW50ZSBSb3R0ZXJkYW0xHTAb
+BgNVBAUTFDAwMDAwMDAxMDAxODc2Mzg3MDAwMRUwEwYDVQQDEwxvc2J0ZXN0Z2Vtcm8wgZ8wDQYJ
+KoZIhvcNAQEBBQADgY0AMIGJAoGBAOawqdEoQ9cvJOcNS8SDKCFdM0Im6m6LmcEH9CpBy71b+746
+m22rJMggKY98gEeHx8+xRSaWQnO6OgpxrYSc0o0kpLPHeyH5bcdistVXyT6OpdU9XTydZf/2JHqv
+ecLl2BnDM1OsjoG1i/ZZZt+dW4hhC2zKy+FkK4i9HTJSiTBtAgMBAAGjggHlMIIB4TAMBgNVHRMB
+Af8EAjAAMB0GA1UdDgQWBBSMiATBJplVbC8nGj1TG/kwNdG0MTAfBgNVHSMEGDAWgBTv0336HhH+
+0NSJYQlib2dS5GYfLDAOBgNVHQ8BAf8EBAMCBaAwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0cDovL2Ny
+bC5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5sL0RvbUNTUExhdGVzdENSTC5jcmwwgfIGA1UdIASB6jCB
+5zCB5AYKYIQQAYdrAQICBjCB1TCBnwYIKwYBBQUHAgIwgZIagY9UaGUgZ2VuZXJhbCB0ZXJtcyBh
+bmQgY29uZGl0aW9ucyBhcyBtZW50aW9uZWQgb24gb3VyIHdlYnNpdGUgKHd3dy5vdmVyaGVpZHNz
+ZXJ2aWNlYnVzLm5sL2NwcyksIGFyZSBhcHBsaWNhYmxlIHRvIGFsbCBvdXIgcHJvZHVjdHMgYW5k
+IHNlcnZpY2VzLjAxBggrBgEFBQcCARYlaHR0cDovL3d3dy5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5s
+L2NwczAJBgNVHREEAjAAMDkGCCsGAQUFBwEBBC0wKzApBggrBgEFBQcwAYYdaHR0cDovL3ZhbGlk
+YXRpb24ucHJvdmlkZXIubmwwDQYJKoZIhvcNAQEFBQADggEBAHXQe2HhTaoe+AASjEONG7ztn7NW
+zbm1j7KwOK3eL1ORGXzHd95fRIc8Snwy2FTZiTLbTfGZWfFJ7ac/IjO1mhi8TZbb1JSBIWsuEEUR
+m815ggIoWKPZ3w0TzSIcmiLHgLT4c5Gv/4fqpGHNZTIUWwhBiilFTmrbPnzs9KAdyT8IQo/kghhH
+UTUWhbN/N9eScalqtJtseXQYlVO/KV+MHdd19aJMd6XwNSEXVLB7QmDUY5szATGDt8h3ccvoMUFT
+G7Fb8tlA+XGqkycBWIibATOQv+I6amAgbiL3zfuz08yf5a8SWmhlbrk7thQj7K9Iy7699U7S9/eA
+yTgDdNzrphg=
+      </X509Certificate>
+    </X509Data>
+  </KeyInfo>
+          </tns:Certificate>
+      <tns:SecurityDetails tns:securityId="SR_TransportSecurity">
+         <tns:TrustAnchors>
+            <tns:AnchorCertificateRef tns:certId="SR_ServerCert"/>
+            <tns:AnchorCertificateRef tns:certId="SR_ClientCert"/>
+         </tns:TrustAnchors>
+      </tns:SecurityDetails>
+      <tns:DeliveryChannel tns:channelId="SR_defaultDeliveryChannel_GBOProfileBestEffort" tns:docExchangeId="SR_BASIS_BestEffort" tns:transportId="SR_transport_HTTPS">
+         <tns:MessagingCharacteristics tns:syncReplyMode="none" tns:ackRequested="never" tns:actor="urn:oasis:names:tc:ebxml-msg:actor:toPartyMSH" tns:ackSignatureRequested="never" tns:duplicateElimination="never"/>
+      </tns:DeliveryChannel>
+      <tns:DeliveryChannel tns:channelId="SR_defaultDeliveryChannel_GBOProfileReliableMessaging" tns:docExchangeId="SR_BASIS_ReliableMessaging" tns:transportId="SR_transport_HTTPS">
+         <tns:MessagingCharacteristics tns:syncReplyMode="none" tns:ackRequested="always" tns:actor="urn:oasis:names:tc:ebxml-msg:actor:toPartyMSH" tns:ackSignatureRequested="never" tns:duplicateElimination="always"/>
+      </tns:DeliveryChannel>
+      <tns:Transport tns:transportId="SR_transport_HTTPS">
+         <tns:TransportSender>
+            <tns:TransportProtocol tns:version="1.1">HTTP</tns:TransportProtocol>
+            <tns:TransportClientSecurity>
+               <tns:TransportSecurityProtocol tns:version="3.0">SSL</tns:TransportSecurityProtocol>
+               <tns:ClientCertificateRef tns:certId="SR_ClientCert"/>
+               <tns:ServerSecurityDetailsRef tns:securityId="SR_TransportSecurity"/>
+            </tns:TransportClientSecurity>
+         </tns:TransportSender>
+         <tns:TransportReceiver>
+            <tns:TransportProtocol tns:version="1.1">HTTP</tns:TransportProtocol>
+            <tns:Endpoint tns:uri="https://osb-gateway.ontw3.ta-twd.rotterdam.nl/corvus/httpd/ebms/inbound" tns:type="allPurpose"/>
+            <tns:TransportServerSecurity>
+               <tns:TransportSecurityProtocol tns:version="3.0">SSL</tns:TransportSecurityProtocol>
+               <tns:ServerCertificateRef tns:certId="SR_ServerCert"/>
+               <tns:ClientSecurityDetailsRef tns:securityId="SR_TransportSecurity"/>
+            </tns:TransportServerSecurity>
+         </tns:TransportReceiver>
+      </tns:Transport>
+      <tns:DocExchange tns:docExchangeId="SR_BASIS_BestEffort">
+         <tns:ebXMLSenderBinding tns:version="2.0"/>
+         <tns:ebXMLReceiverBinding tns:version="2.0"/>
+      </tns:DocExchange>
+      <tns:DocExchange tns:docExchangeId="SR_BASIS_ReliableMessaging">
+         <tns:ebXMLSenderBinding tns:version="2.0">
+            <tns:ReliableMessaging>
+               <tns:Retries>8</tns:Retries>
+               <tns:RetryInterval>PT3H</tns:RetryInterval>
+               <tns:MessageOrderSemantics>NotGuaranteed</tns:MessageOrderSemantics>
+            </tns:ReliableMessaging>
+            <tns:PersistDuration>P1D</tns:PersistDuration>
+         </tns:ebXMLSenderBinding>
+         <tns:ebXMLReceiverBinding tns:version="2.0">
+            <tns:ReliableMessaging>
+               <tns:Retries>8</tns:Retries>
+               <tns:RetryInterval>PT3H</tns:RetryInterval>
+               <tns:MessageOrderSemantics>NotGuaranteed</tns:MessageOrderSemantics>
+            </tns:ReliableMessaging>
+            <tns:PersistDuration>P1D</tns:PersistDuration>
+         </tns:ebXMLReceiverBinding>
+      </tns:DocExchange>
+   </tns:PartyInfo>
+   <tns:SimplePart tns:id="DefaultSimplePart" tns:mimetype="application/xml"/>
+   <tns:Packaging tns:id="defaultPackage_GBOProfile">
+      <tns:ProcessingCapabilities tns:parse="true" tns:generate="true"/>
+      <tns:CompositeList>
+         <tns:Composite tns:id="DefaultComposite" tns:mimetype="type=text/xml">
+            <tns:Constituent tns:idref="DefaultSimplePart"/>
+         </tns:Composite>
+      </tns:CompositeList>
+   </tns:Packaging>
+</tns:CollaborationProtocolAgreement>

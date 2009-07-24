@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<kennisgevingsBericht xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.egem.nl/StUF/sector/bg/0204">
+  <stuurgegevens xmlns="http://www.egem.nl/StUF/StUF0204">
+    <berichtsoort>Lk01</berichtsoort>
+    <entiteittype>PRS</entiteittype>
+    <sectormodel>BG</sectormodel>
+    <versieStUF>0204</versieStUF>
+    <versieSectormodel>0204</versieSectormodel>
+    <zender>
+      <applicatie>PIV</applicatie>
+      <gebruiker>BATCHGBA</gebruiker>
+    </zender>
+    <ontvanger>
+      <applicatie>DDS</applicatie>
+    </ontvanger>
+    <referentienummer>2442537_07003a</referentienummer>
+    <tijdstipBericht>2009031000213952</tijdstipBericht>
+    <kennisgeving>
+      <mutatiesoort>C</mutatiesoort>
+      <indicatorOvername>V</indicatorOvername>
+      <tijdstipMutatie>2009031000090008</tijdstipMutatie>
+    </kennisgeving>
+  </stuurgegevens>
+  <body>
+    <PRS d3p1:soortEntiteit="F" d3p1:sleutelVerzendend="28219" d3p1:verwerkingssoort="W" xmlns:d3p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer d3p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+      <bsn-nummer d3p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+      <datumOpschortingBijhouding d3p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+      <omschrijvingRedenOpschortingBijhouding d3p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+      <indicatieGeheim d3p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" /> 
+      <codeGemeenteVanInschrijving d3p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+      <datumInschrijvingGemeente d3p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+      <codeLandImmigratie d3p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+      <datumVestigingInNederland d3p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+      <indicatieCuratelestelling d3p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+      <verblijfstitel d3p1:noValue="geenWaarde" xsi:nil="true" /> 
+      <datumVerkrijgingVerblijfstitel d3p1:noValue="geenWaarde" xsi:nil="true" /> 
+      <datumVerliesVerblijfstitel d3p1:noValue="geenWaarde" xsi:nil="true" /> 
+      <extraElementen>
+        <d3p1:extraElement d3p1:noValue="geenWaarde" naam="Aanduidinguitsluitingkiesrecht" />
+      </extraElementen>
+    </PRS>
+    <PRS d3p1:soortEntiteit="F" d3p1:sleutelVerzendend="28219" d3p1:verwerkingssoort="W" xmlns:d3p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer>1217416164</a-nummer>
+      <bsn-nummer>125704197</bsn-nummer>
+      <datumOpschortingBijhouding>20061019</datumOpschortingBijhouding> 
+      <omschrijvingRedenOpschortingBijhouding>E</omschrijvingRedenOpschortingBijhouding> 
+      <indicatieGeheim>0</indicatieGeheim> 
+      <codeGemeenteVanInschrijving>599</codeGemeenteVanInschrijving> 
+      <datumInschrijvingGemeente>20000101</datumInschrijvingGemeente> 
+      <codeLandImmigratie>7077</codeLandImmigratie>
+      <datumVestigingInNederland>20000101</datumVestigingInNederland>
+      <indicatieCuratelestelling>1</indicatieCuratelestelling> 
+      <verblijfstitel>12</verblijfstitel> 
+      <datumVerkrijgingVerblijfstitel>20080808</datumVerkrijgingVerblijfstitel> 
+      <datumVerliesVerblijfstitel d3p1:noValue="geenWaarde" xsi:nil="true" /> 
+      <extraElementen>
+        <d3p1:extraElement naam="Aanduidinguitsluitingkiesrecht">A</d3p1:extraElement> 
+      </extraElementen>
+    </PRS>
+  </body>
+</kennisgevingsBericht>

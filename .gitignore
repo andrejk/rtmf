@@ -1,0 +1,9 @@
+target/
+tmfportaal/oldTMF/
+.settings/
+*.classpath
+*.project
+*.db
+*.war
+*~
+*.log

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<kennisgevingsBericht xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.egem.nl/StUF/sector/bg/0204">
+  <stuurgegevens xmlns="http://www.egem.nl/StUF/StUF0204">
+    <berichtsoort>Lk01</berichtsoort>
+    <entiteittype>PRS</entiteittype>
+    <sectormodel>BG</sectormodel>
+    <versieStUF>0204</versieStUF>
+    <versieSectormodel>0204</versieSectormodel>
+    <zender>
+      <applicatie>DDS</applicatie>
+      <gebruiker>PRODPIV</gebruiker>
+    </zender>
+    <ontvanger>
+      <applicatie>DDS</applicatie>
+    </ontvanger>
+    <referentienummer>2532280_02004a</referentienummer>
+    <tijdstipBericht>2009031200371903</tijdstipBericht>
+    <kennisgeving>
+      <mutatiesoort>W</mutatiesoort>
+      <indicatorOvername>V</indicatorOvername>
+      <tijdstipMutatie>2009050505050503</tijdstipMutatie>
+    </kennisgeving>
+  </stuurgegevens>
+  <body>
+    <PRS d3p1:soortEntiteit="F" d3p1:sleutelVerzendend="1673476" d3p1:verwerkingssoort="W" xmlns:d3p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer d3p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+      <bsn-nummer d3p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+      <PRSPRSOUD d3p1:soortEntiteit="R" d3p1:verwerkingssoort="T" d3p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+      <PRSPRSOUD d3p1:soortEntiteit="R" d3p1:verwerkingssoort="T" d3p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+    </PRS>
+    <PRS d3p1:soortEntiteit="F" d3p1:sleutelVerzendend="1673476" d3p1:verwerkingssoort="W" xmlns:d3p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer>1070973179</a-nummer>
+      <bsn-nummer>399909643</bsn-nummer>
+      <PRSPRSOUD d3p1:soortEntiteit="R" d3p1:verwerkingssoort="T">
+        <ingangsdatum>0</ingangsdatum> 
+        <PRS d3p1:soortEntiteit="F" d3p1:verwerkingssoort="I">
+          <a-nummer d3p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <bsn-nummer d3p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <voornamen>Mary Del Socorro</voornamen> 
+          <voorletters>MDS</voorletters> 
+          <voorvoegselGeslachtsnaam d3p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <geslachtsnaam>Bermudez Montoya</geslachtsnaam> 
+          <geboortedatum>19680713</geboortedatum> 
+          <geslachtsaanduiding>V</geslachtsaanduiding> 
+          <PRSADRVBL d3p1:soortEntiteit="R" d3p1:verwerkingssoort="I" d3p1:noValue="waardeOnbekend" xsi:nil="true" /> 
+        </PRS>
+      </PRSPRSOUD>
+      <PRSPRSOUD d3p1:soortEntiteit="R" d3p1:verwerkingssoort="T">
+        <ingangsdatum>0</ingangsdatum> 
+        <PRS d3p1:soortEntiteit="F" d3p1:verwerkingssoort="I">
+          <a-nummer d3p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <bsn-nummer d3p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <voornamen d3p1:noValue="waardeOnbekend" xsi:nil="true" /> 
+          <voorletters d3p1:noValue="waardeOnbekend" xsi:nil="true" /> 
+          <voorvoegselGeslachtsnaam d3p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <geslachtsnaam>.</geslachtsnaam> 
+          <geboortedatum d3p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <geslachtsaanduiding d3p1:noValue="waardeOnbekend" xsi:nil="true" /> 
+          <PRSADRVBL d3p1:soortEntiteit="R" d3p1:verwerkingssoort="I" d3p1:noValue="waardeOnbekend" xsi:nil="true" /> 
+        </PRS>
+      </PRSPRSOUD>
+    </PRS>
+  </body>
+</kennisgevingsBericht>

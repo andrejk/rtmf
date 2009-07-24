@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<kennisgevingsBericht xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.egem.nl/StUF/sector/bg/0204">
+  <stuurgegevens xmlns="http://www.egem.nl/StUF/StUF0204">
+    <berichtsoort>Lk01</berichtsoort>
+    <entiteittype>PRS</entiteittype>
+    <sectormodel>BG</sectormodel>
+    <versieStUF>0204</versieStUF>
+    <versieSectormodel>0204</versieSectormodel>
+    <zender>
+      <applicatie>DDS</applicatie>
+      <gebruiker>PRODPIV</gebruiker>
+    </zender>
+    <ontvanger>
+      <applicatie>DDS</applicatie>
+    </ontvanger>
+    <referentienummer>2441734_07001a</referentienummer>
+    <tijdstipBericht>2009032514384259</tijdstipBericht>
+    <kennisgeving>
+      <mutatiesoort>W</mutatiesoort>
+      <indicatorOvername>V</indicatorOvername>
+      <tijdstipMutatie>2009032514302800</tijdstipMutatie>
+    </kennisgeving>
+  </stuurgegevens>
+  <body>
+    <PRS d3p1:soortEntiteit="F" d3p1:sleutelVerzendend="26917" d3p1:verwerkingssoort="W" xmlns:d3p1="http://www.egem.nl/StUF/StUF0204">
+      <datumOpschortingBijhouding>19970826</datumOpschortingBijhouding>
+      <omschrijvingRedenOpschortingBijhouding>O</omschrijvingRedenOpschortingBijhouding>
+      <indicatieGeheim>0</indicatieGeheim> 
+      <codeGemeenteVanInschrijving>599</codeGemeenteVanInschrijving> 
+      <datumInschrijvingGemeente>19470926</datumInschrijvingGemeente> 
+      <codeLandImmigratie>5002</codeLandImmigratie> 
+      <datumVestigingInNederland>19470926</datumVestigingInNederland> 
+      <indicatieCuratelestelling d3p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+      <verblijfstitel>25</verblijfstitel> 
+      <datumVerkrijgingVerblijfstitel>19941209</datumVerkrijgingVerblijfstitel> 
+      <datumVerliesVerblijfstitel d3p1:noValue="geenWaarde" xsi:nil="true" /> 
+      <extraElementen>
+        <d3p1:extraElement d3p1:noValue="geenWaarde" naam="Aanduidinguitsluitingkiesrecht" />
+      </extraElementen>
+    </PRS>
+    <PRS d3p1:soortEntiteit="F" d3p1:sleutelVerzendend="26917" d3p1:verwerkingssoort="W" xmlns:d3p1="http://www.egem.nl/StUF/StUF0204">
+      <datumOpschortingBijhouding>19970826</datumOpschortingBijhouding> 
+      <omschrijvingRedenOpschortingBijhouding>E</omschrijvingRedenOpschortingBijhouding> 
+      <indicatieGeheim>1</indicatieGeheim> 
+      <codeGemeenteVanInschrijving>599</codeGemeenteVanInschrijving> 
+      <datumInschrijvingGemeente>19400828</datumInschrijvingGemeente> 
+      <codeLandImmigratie>5002</codeLandImmigratie> 
+      <datumVestigingInNederland>19480828</datumVestigingInNederland> 
+      <indicatieCuratelestelling>1</indicatieCuratelestelling> 
+      <verblijfstitel>91</verblijfstitel> 
+      <datumVerkrijgingVerblijfstitel>20020202</datumVerkrijgingVerblijfstitel> 
+      <datumVerliesVerblijfstitel d3p1:noValue="geenWaarde" xsi:nil="true" /> 
+      <extraElementen>
+        <d3p1:extraElement naam="Aanduidinguitsluitingkiesrecht">A</d3p1:extraElement> 
+      </extraElementen>
+    </PRS>
+  </body>
+</kennisgevingsBericht>

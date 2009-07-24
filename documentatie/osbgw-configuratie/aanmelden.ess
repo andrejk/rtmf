@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osb-ebms-service-specificatie xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ns1="http://wus.tmf.gbo.overheid.nl/wsdl/aanmeldService-V0.1.xsd">
+    <messageTypes>
+        <xsd:schema elementFormDefault="qualified">
+            <xsd:import namespace="http://wus.tmf.gbo.overheid.nl/wsdl/aanmeldService-V0.1.xsd"
+                schemalocation="aanmeldService.xsd"/>
+        </xsd:schema>
+    </messageTypes>
+
+    <messages process="aanmelden" service="tmf:aanmelden">
+        <message from="SR" to="SP" profile="osb-rm" element="ns1:terugmelding">terugmelding</message>
+        <message from="SR" to="SP" profile="osb-rm" element="ns1:intrekking">intrekking</message>
+    </messages>
+
+    <params>
+        <partner name="SP">
+            <parameter name="PartyName" required="true"/>
+            <parameter name="PartyId" required="true"/>
+            <parameter name="PartyRef" required="false">http://www.tmf.overheid.nl</parameter>
+            <parameter name="EndpointUri" required="true"/>
+            <parameter name="ClientCert" required="true"/>
+            <parameter name="ServerCert" required="true"/>
+        </partner>
+        <partner name="SR">
+            <parameter name="PartyName" required="true"/>
+            <parameter name="PartyId" required="true"/>
+            <parameter name="PartyRef" required="false">http://www.tmf.overheid.nl</parameter>
+            <parameter name="EndpointUri" required="true"/>
+            <parameter name="ClientCert" required="true"/>
+            <parameter name="ServerCert" required="true"/>
+        </partner>
+    </params>
+
+    <!-- De gegevens van de TMF in de rol van SP (als Publisher). -->
+    <parameters name="SP">
+        <!--
+            Voeg hier de gegevens in zoals die ook in de consumerspecificatie staan van TMF !!!
+            Even opletten welk deel je kopieert.
+        -->
+        <parameter name="PartyName">Gemeente Rotterdam</parameter>
+        <parameter name="PartyId">00000001001876387000</parameter>
+        <parameter name="EndpointUri">https://osb-gateway.ontw3.ta-twd.rotterdam.nl/corvus/httpd/ebms/inbound</parameter>
+		<!-- Servercertificaat gebruikt hier als clientcertificaat -->
+        <parameter name="ClientCert">
+        <!--
+            <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+				<KeyValue>
+				  <RSAKeyValue>
+					<Modulus>
+					  wOzkPUNkEzAZMs1whnIw5C1DNjjKZms8S5hOGPvc/6tPrv7AHUIXQrTxBEG2wVrGKf
+					  IDIVkBndYdPD1NCCiOdJowHfP7vOPBEEo03ydcDRS6sp6W7npCjpUQXrWXTxJdBO2u
+					  rDGgTssqqsJ30/c2YMtUGpm4Pc19tGf09ciuGA8=
+					</Modulus>
+					<Exponent>AQAB</Exponent>
+				  </RSAKeyValue>
+				</KeyValue>
+				<X509Data>
+				  <X509IssuerSerial>
+					<X509IssuerName>CN=TEST OSB CSP CA,O=OSB,C=NL</X509IssuerName>
+					<X509SerialNumber>19791228183506</X509SerialNumber>
+				  </X509IssuerSerial>
+				  <X509SKI>ahFeg06B+hMpk/5jVXXaI9nG</X509SKI>
+				  <X509SubjectName>CN=S794.nxs.nl,serialNumber=00000003271987420000,O=ICTU,C=NL</X509SubjectName>
+				  <X509Certificate>
+			MIIEaTCCA1GgAwIBAgIGEgABICPSMA0GCSqGSIb3DQEBBQUAMDUxCzAJBgNVBAYTAk5MMQwwCgYD
+			VQQKEwNPU0IxGDAWBgNVBAMTD1RFU1QgT1NCIENTUCBDQTAeFw0wOTAyMDQwNzMwNDNaFw0xMjAy
+			MDkwNzMwNDNaMFExCzAJBgNVBAYTAk5MMQ0wCwYDVQQKEwRJQ1RVMR0wGwYDVQQFExQwMDAwMDAw
+			MzI3MTk4NzQyMDAwMDEUMBIGA1UEAxMLUzc5NC5ueHMubmwwgZ8wDQYJKoZIhvcNAQEBBQADgY0A
+			MIGJAoGBAMDs5D1DZBMwGTLNcIZyMOQtQzY4ymZrPEuYThj73P+rT67+wB1CF0K08QRBtsFaxiny
+			AyFZAZ3WHTw9TQgojnSaMB3z+7zjwRBKNN8nXA0UurKelu56Qo6VEF61l08SXQTtrqwxoE7LKqrC
+			d9P3NmDLVBqZuD3NfbRn9PXIrhgPAgMBAAGjggHlMIIB4TAMBgNVHRMBAf8EAjAAMB0GA1UdDgQW
+			BBTQgmoRXoNOgfoTKZP+Y1V12iPZxjAfBgNVHSMEGDAWgBRlX2LrabjM8vYCAQZitPgYJ5PmrjAO
+			BgNVHQ8BAf8EBAMCBaAwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0cDovL2NybC5vdmVyaGVpZHNzZXJ2
+			aWNlYnVzLm5sL0RvbUNTUExhdGVzdENSTC5jcmwwgfIGA1UdIASB6jCB5zCB5AYKYIQQAYdrAQIC
+			BjCB1TCBnwYIKwYBBQUHAgIwgZIagY9UaGUgZ2VuZXJhbCB0ZXJtcyBhbmQgY29uZGl0aW9ucyBh
+			cyBtZW50aW9uZWQgb24gb3VyIHdlYnNpdGUgKHd3dy5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5sL2Nw
+			cyksIGFyZSBhcHBsaWNhYmxlIHRvIGFsbCBvdXIgcHJvZHVjdHMgYW5kIHNlcnZpY2VzLjAxBggr
+			BgEFBQcCARYlaHR0cDovL3d3dy5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5sL2NwczAJBgNVHREEAjAA
+			MDkGCCsGAQUFBwEBBC0wKzApBggrBgEFBQcwAYYdaHR0cDovL3ZhbGlkYXRpb24ucHJvdmlkZXIu
+			bmwwDQYJKoZIhvcNAQEFBQADggEBACY40ICyV0Ifg7HDOcfVL5F/DyDi4CWmfRTJ0BQjHI980W0m
+			Kw9HHFtJzXrZC5c/hBfSESLZFJjQD5ze35uP13dmf8BRR/HYch40cDfoyGMtz8klvMzYyzIByRhH
+			GsA8AbvyBTg/T7Yiabi3JNvDjV+LOF22gi3M1tsnVnjf6+6tXHsKTaNR+LxQ/rbhWOI5v3BVJt7S
+			xt4DtmT0Vz/tlPQ0mebK33VfeAmAN0MoTpp9zFR8owCqpQT26+Gw8ddxNodGr2ZezwF0pHjlK8ad
+			WEYa6MIbWpSwNAXedszqW+CtrTj5D9VLUFisdmwdZio9IN414zjfpgrJ4YCgfJcJs8A=
+				  </X509Certificate>
+				</X509Data>
+			</KeyInfo>
+			-->
+<KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+    <KeyValue>
+      <RSAKeyValue>
+        <Modulus>
+          5rCp0ShD1y8k5w1LxIMoIV0zQibqbouZwQf0KkHLvVv7vjqbbaskyCApj3yAR4fHz7
+          FFJpZCc7o6CnGthJzSjSSks8d7Ifltx2Ky1VfJPo6l1T1dPJ1l//Ykeq95wuXYGcMz
+          U6yOgbWL9llm351biGELbMrL4WQriL0dMlKJMG0=
+        </Modulus>
+        <Exponent>AQAB</Exponent>
+      </RSAKeyValue>
+    </KeyValue>
+    <X509Data>
+      <X509IssuerSerial>
+        <X509IssuerName>CN=TEST OSB CSP CA,O=OSB,C=NL</X509IssuerName>
+        <X509SerialNumber>19791228183662</X509SerialNumber>
+      </X509IssuerSerial>
+      <X509SKI>BMEmmVVsLycaPVMb+TA10bQx</X509SKI>
+      <X509SubjectName>CN=osbtestgemro,serialNumber=00000001001876387000,O=Gemeente Rotterdam,C=NL</X509SubjectName>
+      <X509Certificate>
+MIIEeDCCA2CgAwIBAgIGEgABICRuMA0GCSqGSIb3DQEBBQUAMDUxCzAJBgNVBAYTAk5MMQwwCgYD
+VQQKEwNPU0IxGDAWBgNVBAMTD1RFU1QgT1NCIENTUCBDQTAeFw0wOTExMTMwNzQ1MjhaFw0zNzAz
+MjkwNzQ1MjhaMGAxCzAJBgNVBAYTAk5MMRswGQYDVQQKExJHZW1lZW50ZSBSb3R0ZXJkYW0xHTAb
+BgNVBAUTFDAwMDAwMDAxMDAxODc2Mzg3MDAwMRUwEwYDVQQDEwxvc2J0ZXN0Z2Vtcm8wgZ8wDQYJ
+KoZIhvcNAQEBBQADgY0AMIGJAoGBAOawqdEoQ9cvJOcNS8SDKCFdM0Im6m6LmcEH9CpBy71b+746
+m22rJMggKY98gEeHx8+xRSaWQnO6OgpxrYSc0o0kpLPHeyH5bcdistVXyT6OpdU9XTydZf/2JHqv
+ecLl2BnDM1OsjoG1i/ZZZt+dW4hhC2zKy+FkK4i9HTJSiTBtAgMBAAGjggHlMIIB4TAMBgNVHRMB
+Af8EAjAAMB0GA1UdDgQWBBSMiATBJplVbC8nGj1TG/kwNdG0MTAfBgNVHSMEGDAWgBTv0336HhH+
+0NSJYQlib2dS5GYfLDAOBgNVHQ8BAf8EBAMCBaAwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0cDovL2Ny
+bC5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5sL0RvbUNTUExhdGVzdENSTC5jcmwwgfIGA1UdIASB6jCB
+5zCB5AYKYIQQAYdrAQICBjCB1TCBnwYIKwYBBQUHAgIwgZIagY9UaGUgZ2VuZXJhbCB0ZXJtcyBh
+bmQgY29uZGl0aW9ucyBhcyBtZW50aW9uZWQgb24gb3VyIHdlYnNpdGUgKHd3dy5vdmVyaGVpZHNz
+ZXJ2aWNlYnVzLm5sL2NwcyksIGFyZSBhcHBsaWNhYmxlIHRvIGFsbCBvdXIgcHJvZHVjdHMgYW5k
+IHNlcnZpY2VzLjAxBggrBgEFBQcCARYlaHR0cDovL3d3dy5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5s
+L2NwczAJBgNVHREEAjAAMDkGCCsGAQUFBwEBBC0wKzApBggrBgEFBQcwAYYdaHR0cDovL3ZhbGlk
+YXRpb24ucHJvdmlkZXIubmwwDQYJKoZIhvcNAQEFBQADggEBAHXQe2HhTaoe+AASjEONG7ztn7NW
+zbm1j7KwOK3eL1ORGXzHd95fRIc8Snwy2FTZiTLbTfGZWfFJ7ac/IjO1mhi8TZbb1JSBIWsuEEUR
+m815ggIoWKPZ3w0TzSIcmiLHgLT4c5Gv/4fqpGHNZTIUWwhBiilFTmrbPnzs9KAdyT8IQo/kghhH
+UTUWhbN/N9eScalqtJtseXQYlVO/KV+MHdd19aJMd6XwNSEXVLB7QmDUY5szATGDt8h3ccvoMUFT
+G7Fb8tlA+XGqkycBWIibATOQv+I6amAgbiL3zfuz08yf5a8SWmhlbrk7thQj7K9Iy7699U7S9/eA
+yTgDdNzrphg=
+      </X509Certificate>
+    </X509Data>
+  </KeyInfo>
+          </parameter>
+
+		<!-- Servercertificaat gebruikt hier als servercertificaat -->
+        <parameter name="ServerCert">
+        <!--
+            <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+				<KeyValue>
+				  <RSAKeyValue>
+					<Modulus>
+					  wOzkPUNkEzAZMs1whnIw5C1DNjjKZms8S5hOGPvc/6tPrv7AHUIXQrTxBEG2wVrGKf
+					  IDIVkBndYdPD1NCCiOdJowHfP7vOPBEEo03ydcDRS6sp6W7npCjpUQXrWXTxJdBO2u
+					  rDGgTssqqsJ30/c2YMtUGpm4Pc19tGf09ciuGA8=
+					</Modulus>
+					<Exponent>AQAB</Exponent>
+				  </RSAKeyValue>
+				</KeyValue>
+				<X509Data>
+				  <X509IssuerSerial>
+					<X509IssuerName>CN=TEST OSB CSP CA,O=OSB,C=NL</X509IssuerName>
+					<X509SerialNumber>19791228183506</X509SerialNumber>
+				  </X509IssuerSerial>
+				  <X509SKI>ahFeg06B+hMpk/5jVXXaI9nG</X509SKI>
+				  <X509SubjectName>CN=S794.nxs.nl,serialNumber=00000003271987420000,O=ICTU,C=NL</X509SubjectName>
+				  <X509Certificate>
+			MIIEaTCCA1GgAwIBAgIGEgABICPSMA0GCSqGSIb3DQEBBQUAMDUxCzAJBgNVBAYTAk5MMQwwCgYD
+			VQQKEwNPU0IxGDAWBgNVBAMTD1RFU1QgT1NCIENTUCBDQTAeFw0wOTAyMDQwNzMwNDNaFw0xMjAy
+			MDkwNzMwNDNaMFExCzAJBgNVBAYTAk5MMQ0wCwYDVQQKEwRJQ1RVMR0wGwYDVQQFExQwMDAwMDAw
+			MzI3MTk4NzQyMDAwMDEUMBIGA1UEAxMLUzc5NC5ueHMubmwwgZ8wDQYJKoZIhvcNAQEBBQADgY0A
+			MIGJAoGBAMDs5D1DZBMwGTLNcIZyMOQtQzY4ymZrPEuYThj73P+rT67+wB1CF0K08QRBtsFaxiny
+			AyFZAZ3WHTw9TQgojnSaMB3z+7zjwRBKNN8nXA0UurKelu56Qo6VEF61l08SXQTtrqwxoE7LKqrC
+			d9P3NmDLVBqZuD3NfbRn9PXIrhgPAgMBAAGjggHlMIIB4TAMBgNVHRMBAf8EAjAAMB0GA1UdDgQW
+			BBTQgmoRXoNOgfoTKZP+Y1V12iPZxjAfBgNVHSMEGDAWgBRlX2LrabjM8vYCAQZitPgYJ5PmrjAO
+			BgNVHQ8BAf8EBAMCBaAwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0cDovL2NybC5vdmVyaGVpZHNzZXJ2
+			aWNlYnVzLm5sL0RvbUNTUExhdGVzdENSTC5jcmwwgfIGA1UdIASB6jCB5zCB5AYKYIQQAYdrAQIC
+			BjCB1TCBnwYIKwYBBQUHAgIwgZIagY9UaGUgZ2VuZXJhbCB0ZXJtcyBhbmQgY29uZGl0aW9ucyBh
+			cyBtZW50aW9uZWQgb24gb3VyIHdlYnNpdGUgKHd3dy5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5sL2Nw
+			cyksIGFyZSBhcHBsaWNhYmxlIHRvIGFsbCBvdXIgcHJvZHVjdHMgYW5kIHNlcnZpY2VzLjAxBggr
+			BgEFBQcCARYlaHR0cDovL3d3dy5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5sL2NwczAJBgNVHREEAjAA
+			MDkGCCsGAQUFBwEBBC0wKzApBggrBgEFBQcwAYYdaHR0cDovL3ZhbGlkYXRpb24ucHJvdmlkZXIu
+			bmwwDQYJKoZIhvcNAQEFBQADggEBACY40ICyV0Ifg7HDOcfVL5F/DyDi4CWmfRTJ0BQjHI980W0m
+			Kw9HHFtJzXrZC5c/hBfSESLZFJjQD5ze35uP13dmf8BRR/HYch40cDfoyGMtz8klvMzYyzIByRhH
+			GsA8AbvyBTg/T7Yiabi3JNvDjV+LOF22gi3M1tsnVnjf6+6tXHsKTaNR+LxQ/rbhWOI5v3BVJt7S
+			xt4DtmT0Vz/tlPQ0mebK33VfeAmAN0MoTpp9zFR8owCqpQT26+Gw8ddxNodGr2ZezwF0pHjlK8ad
+			WEYa6MIbWpSwNAXedszqW+CtrTj5D9VLUFisdmwdZio9IN414zjfpgrJ4YCgfJcJs8A=
+				  </X509Certificate>
+				</X509Data>
+			</KeyInfo>
+			
+			-->
+<KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+    <KeyValue>
+      <RSAKeyValue>
+        <Modulus>
+          5rCp0ShD1y8k5w1LxIMoIV0zQibqbouZwQf0KkHLvVv7vjqbbaskyCApj3yAR4fHz7
+          FFJpZCc7o6CnGthJzSjSSks8d7Ifltx2Ky1VfJPo6l1T1dPJ1l//Ykeq95wuXYGcMz
+          U6yOgbWL9llm351biGELbMrL4WQriL0dMlKJMG0=
+        </Modulus>
+        <Exponent>AQAB</Exponent>
+      </RSAKeyValue>
+    </KeyValue>
+    <X509Data>
+      <X509IssuerSerial>
+        <X509IssuerName>CN=TEST OSB CSP CA,O=OSB,C=NL</X509IssuerName>
+        <X509SerialNumber>19791228183662</X509SerialNumber>
+      </X509IssuerSerial>
+      <X509SKI>BMEmmVVsLycaPVMb+TA10bQx</X509SKI>
+      <X509SubjectName>CN=osbtestgemro,serialNumber=00000001001876387000,O=Gemeente Rotterdam,C=NL</X509SubjectName>
+      <X509Certificate>
+MIIEeDCCA2CgAwIBAgIGEgABICRuMA0GCSqGSIb3DQEBBQUAMDUxCzAJBgNVBAYTAk5MMQwwCgYD
+VQQKEwNPU0IxGDAWBgNVBAMTD1RFU1QgT1NCIENTUCBDQTAeFw0wOTExMTMwNzQ1MjhaFw0zNzAz
+MjkwNzQ1MjhaMGAxCzAJBgNVBAYTAk5MMRswGQYDVQQKExJHZW1lZW50ZSBSb3R0ZXJkYW0xHTAb
+BgNVBAUTFDAwMDAwMDAxMDAxODc2Mzg3MDAwMRUwEwYDVQQDEwxvc2J0ZXN0Z2Vtcm8wgZ8wDQYJ
+KoZIhvcNAQEBBQADgY0AMIGJAoGBAOawqdEoQ9cvJOcNS8SDKCFdM0Im6m6LmcEH9CpBy71b+746
+m22rJMggKY98gEeHx8+xRSaWQnO6OgpxrYSc0o0kpLPHeyH5bcdistVXyT6OpdU9XTydZf/2JHqv
+ecLl2BnDM1OsjoG1i/ZZZt+dW4hhC2zKy+FkK4i9HTJSiTBtAgMBAAGjggHlMIIB4TAMBgNVHRMB
+Af8EAjAAMB0GA1UdDgQWBBSMiATBJplVbC8nGj1TG/kwNdG0MTAfBgNVHSMEGDAWgBTv0336HhH+
+0NSJYQlib2dS5GYfLDAOBgNVHQ8BAf8EBAMCBaAwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0cDovL2Ny
+bC5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5sL0RvbUNTUExhdGVzdENSTC5jcmwwgfIGA1UdIASB6jCB
+5zCB5AYKYIQQAYdrAQICBjCB1TCBnwYIKwYBBQUHAgIwgZIagY9UaGUgZ2VuZXJhbCB0ZXJtcyBh
+bmQgY29uZGl0aW9ucyBhcyBtZW50aW9uZWQgb24gb3VyIHdlYnNpdGUgKHd3dy5vdmVyaGVpZHNz
+ZXJ2aWNlYnVzLm5sL2NwcyksIGFyZSBhcHBsaWNhYmxlIHRvIGFsbCBvdXIgcHJvZHVjdHMgYW5k
+IHNlcnZpY2VzLjAxBggrBgEFBQcCARYlaHR0cDovL3d3dy5vdmVyaGVpZHNzZXJ2aWNlYnVzLm5s
+L2NwczAJBgNVHREEAjAAMDkGCCsGAQUFBwEBBC0wKzApBggrBgEFBQcwAYYdaHR0cDovL3ZhbGlk
+YXRpb24ucHJvdmlkZXIubmwwDQYJKoZIhvcNAQEFBQADggEBAHXQe2HhTaoe+AASjEONG7ztn7NW
+zbm1j7KwOK3eL1ORGXzHd95fRIc8Snwy2FTZiTLbTfGZWfFJ7ac/IjO1mhi8TZbb1JSBIWsuEEUR
+m815ggIoWKPZ3w0TzSIcmiLHgLT4c5Gv/4fqpGHNZTIUWwhBiilFTmrbPnzs9KAdyT8IQo/kghhH
+UTUWhbN/N9eScalqtJtseXQYlVO/KV+MHdd19aJMd6XwNSEXVLB7QmDUY5szATGDt8h3ccvoMUFT
+G7Fb8tlA+XGqkycBWIibATOQv+I6amAgbiL3zfuz08yf5a8SWmhlbrk7thQj7K9Iy7699U7S9/eA
+yTgDdNzrphg=
+      </X509Certificate>
+    </X509Data>
+  </KeyInfo>
+          </parameter>
+
+    </parameters>
+
+</osb-ebms-service-specificatie>

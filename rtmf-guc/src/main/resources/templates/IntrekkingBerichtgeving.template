@@ -1,0 +1,48 @@
+LS,
+
+Onderstaand een bericht van een intrekking van een Terugmelding vanuit de centrale Terugmeldfaciliteit van de gemeente Rotterdam.
+Dit bericht betreft een intrekking van een eerdere terugmelding op een kerngegeven en is afkomstig van uw eigen dienst of een collega-dienst.
+
+
+Doorgegeven wordt:
+- Algemene informatie om de terugmelding die ingetrokken is uniek te identificeren.
+- De velden waarop de terugmelding betrekking heeft.
+- Contactgegevens van de persoon die de oorspronkelijke terugmelding heeft gedaan.
+
+De intrekking luidt als volgt:
+
+Meldingkenmerk intrekking       : ${meldingKenmerkZaak}
+Toelichting                     : ${toelichtingZaak}
+
+De terugmelding luidt als volgt:
+
+Zaakkenmerk                     : ${Zaakidentificatie}
+Meldingkenmerk                  : ${meldingKenmerk}
+
+Tijdstempel aanlevering         : ${Begindatum}
+
+
+Basisregistratie                : ${basisRegistratie}
+Object tag                      : ${objectTag}
+Object naam                     : ${objectNaam}
+Object identificatie            : ${objectIdentificatie}
+
+Toelichting                     : ${toelichting}
+
+
+Attributen<% attributen.each{ attribuut-> %>
+Attribuut identificatie (ID)    : ${attribuut.tag}
+Betwijfelde waarde              : ${attribuut.betwijfeldeWaarde}
+Voorstel                        : ${attribuut.voorstel}
+<%}%>
+
+Contact informatie terugmelder:
+
+Naam                            : ${contactPersoonNaam}
+Telefoon                        : ${contactPersoonTelefoon}
+E-mail                          : ${contactPersoonEmail}
+
+Klik op de volgende link om direct naar de zaak te gaan: ${zmwebPrefix}?wicket:bookmarkablePage=:nl.rotterdam.rtmf.DetailScherm&zaakId=${Zaakidentificatie}
+
+PS:
+Op ${adresMeerInfo} vindt u contactinformatie m.b.t. het beheer van de Terugmeldfaciliteit van de gemeente.

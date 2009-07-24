@@ -1,0 +1,107 @@
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/"
+	xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+	xmlns:sb-sbw="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1"
+	targetNamespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1"
+	name="stelselBevragen-servicebinding.wsdl">
+
+	<!-- wsdl:import
+		namespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.2"
+		location="../stelselCatalogus/wsdl/stelselBevragen-abstract-definition.wsdl" /-->
+	<wsdl:import
+		namespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1"
+		location="stelselBevragen-abstract-definition.wsdl" />
+		
+	<wsdl:binding name="stelselBevragenBinding"
+		type="sb-sbw:StelselBevragen">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+			
+		<wsaw:UsingAddressing wsdl:required="true" />
+
+		<wsdl:operation name="getObjectInfo">
+			<soap:operation
+				soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="getObjectInfoAndValues">
+			<soap:operation
+				soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="bevragen">
+			<soap:operation
+				soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="getObjectTypeList">
+			<soap:operation
+				soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="getBasisregistratieList">
+			<soap:operation
+				soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+	</wsdl:binding>
+
+	<wsdl:service name="stelselBevragenService">
+		<wsdl:documentation>
+			<wsi:Claim conformsTo="http://ws-i.org/profiles/basic/1.1" />
+		</wsdl:documentation>
+		<wsdl:port name="stelselBevragenSOAP"
+			binding="sb-sbw:stelselBevragenBinding">
+			<soap:address
+				location="https://wus.tmf.gbo.overheid.nl/gob/StelselBevragenBean" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>

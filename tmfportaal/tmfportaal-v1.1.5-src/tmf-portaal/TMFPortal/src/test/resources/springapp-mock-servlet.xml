@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- 
+	=== START: TMFCore ===
+	 -->
+	<bean id="tmfCore"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.impl.TMFCoreManagerImpl">
+		<property name="intrekInvoker">
+			<ref bean="mockIntrekInvoker" />
+		</property>
+
+		<property name="opvraagInvoker">
+			<ref bean="mockOpvraagInvoker" />
+		</property>
+
+		<property name="terugmeldInvoker">
+			<ref bean="mockTerugmeldInvoker" />
+		</property>
+	</bean>
+
+	<bean id="mockIntrekInvoker"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.impl.mock.MockIntrekInvokerImpl">
+	</bean>
+
+	<!--
+		Alleen de opvraaginvoker heeft waardes bij de start. De andere
+		managers wijzigigen die collectie.
+	-->
+	<bean id="mockOpvraagInvoker"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.impl.mock.MockOpvraagInvokerImpl">
+		<constructor-arg>
+			<value>terugmelding-compleet.xml</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="mockTerugmeldInvoker"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.impl.mock.MockTerugmeldInvokerImpl">
+	</bean>
+	<!-- 
+	=== EINDE: TMFCore ===
+	-->
+
+	<!-- 
+	=== START: StelselCatalogus ===
+	 -->
+
+	<bean id="stelselCatalogus"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.impl.StelselCatalogusManagerImpl">
+		<property name="basisRegistratieInvoker">
+			<ref bean="mockBrInv" />
+		</property>
+		<property name="objectInvoker">
+			<ref bean="mockObjInv" />
+		</property>
+		<property name="attribuutInvoker">
+			<ref bean="mockAttrInv" />
+		</property>
+	</bean>
+
+	<bean id="mockAttrInv" singleton="false"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.impl.mock.MockAttribuutInvokerImpl">
+	</bean>
+
+	<bean id="mockObjInv" singleton="false"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.impl.springconfig.SpringObjectInvokerImpl">
+	</bean>
+
+	<bean id="mockBrInv"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.impl.springconfig.SpringBasisRegistratieInvokerImpl">
+		<constructor-arg>
+			<value>basisregistraties.xml</value>
+		</constructor-arg>
+	</bean>
+	<!-- 
+	=== EINDE: StelselCatalogus ===
+	 -->
+	<bean id="terugmeldInvoker"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.impl.ebms.wuslite.EWLTerugmeldInvokerImpl">
+		<property name="endpointAddress">
+			<value>http://192.168.21.1:80/services</value>
+		</property>
+	</bean>
+	<bean id="terugmeldInvokerMallFormedURL"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.impl.ebms.wuslite.EWLTerugmeldInvokerImpl">
+		<property name="endpointAddress">
+			<value>malformed_url</value>
+		</property>
+	</bean>
+	<bean id="opvraagInvoker"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.impl.wus.wuslite.WWLOpvraagInvokerImpl">
+		<property name="endpointAddress">
+			<value>http://192.168.21.1:80/services</value>
+		</property>
+	</bean>
+	<bean id="opvraagInvokerMallFormedURL"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.impl.wus.wuslite.WWLOpvraagInvokerImpl">
+		<property name="endpointAddress">
+			<value>MallFormedURL</value>
+		</property>
+	</bean>
+	
+	<bean id="attrInv"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.impl.wus.wuslite.WWLAttribuutInvokerImpl">
+		<property name="endpointAddress">
+			<value>http://192.168.21.1:80/services</value>
+		</property>
+	</bean>
+	<bean id="attrInvMallFormedURL"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.impl.wus.wuslite.WWLAttribuutInvokerImpl">
+		<property name="endpointAddress">
+			<value>malformed_url</value>
+		</property>
+	</bean>
+	<bean id="intrekInvoker"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.impl.ebms.wuslite.EWLIntrekInvokerImpl">
+		<property name="endpointAddress">
+			<value>http://192.168.21.1:80/services</value>
+		</property>
+	</bean>
+	<bean id="intrekInvokerMallFormedURL"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.impl.ebms.wuslite.EWLIntrekInvokerImpl">
+		<property name="endpointAddress">
+			<value>MallFormedURL</value>
+		</property>
+	</bean>
+	<bean id="brInv"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.impl.wus.wuslite.WWLBasisregistratieInvokerImpl">
+		<property name="endpointAddress">
+			<value>http://192.168.21.1:80/services</value>
+		</property>
+	</bean>
+	<bean id="brInvMallFormedURL"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.impl.wus.wuslite.WWLBasisregistratieInvokerImpl">
+		<property name="endpointAddress">
+			<value>malformed_url</value>
+		</property>
+	</bean>
+		<bean id="objInv"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.impl.wus.wuslite.WWLObjectInvokerImpl">
+		<property name="endpointAddress">
+			<value>http://192.168.21.1:80/services</value>
+		</property>
+	</bean>
+	<bean id="objInvMallFormedURL"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.impl.wus.wuslite.WWLObjectInvokerImpl">
+		<property name="endpointAddress">
+			<value>malformed_url</value>
+		</property>
+	</bean>
+</beans>        

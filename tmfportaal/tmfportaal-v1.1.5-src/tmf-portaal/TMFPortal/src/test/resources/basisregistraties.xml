@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+	<!--
+		- Application context definition for "springapp" DispatcherServlet.
+	-->
+<beans>
+	<bean id="BRA"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BasisRegistratie">
+		<property name="tag">
+			<value>BRA</value>
+		</property>
+		<property name="naam">
+			<value>Basis Registratie Adressen</value>
+		</property>
+	</bean>
+	<bean id="BGR"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BasisRegistratie">
+		<property name="tag">
+			<value>BGR</value>
+		</property>
+		<property name="naam">
+			<value>Basis Gebouwen Registratie</value>
+		</property>
+	</bean>
+	<bean id="WOZ"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BasisRegistratie">
+		<property name="tag">
+			<value>WOZ</value>
+		</property>
+		<property name="naam">
+			<value>Basisregistratie WOZ</value>
+		</property>
+	</bean>
+	<bean id="BRK"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BasisRegistratie">
+		<property name="tag">
+			<value>BRK</value>
+		</property>
+		<property name="naam">
+			<value>Basisregistratie Kadaster</value>
+		</property>
+	</bean>
+</beans>        

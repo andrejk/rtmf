@@ -1,0 +1,29 @@
+POST /services HTTP/1.1
+Content-type: text/xml;charset="utf-8"
+X-MULE_CORRELATION_ID: c51b8d3a-85b7-11de-a884-e53af7138924
+X-MULE_ENCODING: UTF-8
+X-MULE_ENDPOINT: http://twd720.resource.ta-twd.rotterdam.nl:10080/services
+X-MULE_ORIGINATING_ENDPOINT: endpoint.http.localhost.63081.ophaalService
+X-MULE_REMOTE_CLIENT_ADDRESS: /127.0.0.1:36447
+X-MULE_REMOTE_SYNC: true
+Soapaction: "http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingStatusRequest/ophaalService"
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: twd720.resource.ta-twd.rotterdam.nl:10080
+Content-Length: 818
+
+<?xml version="1.0" ?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Header><To xmlns="http://www.w3.org/2005/08/addressing">http://localhost:63081/ophaalService</To><Action xmlns="http://www.w3.org/2005/08/addressing">http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingStatusRequest/ophaalService</Action><ReplyTo xmlns="http://www.w3.org/2005/08/addressing">
+    <Address>http://www.w3.org/2005/08/addressing/anonymous</Address>
+</ReplyTo><MessageID xmlns="http://www.w3.org/2005/08/addressing">uuid:e71a5650-a7de-4900-835e-27ad2e07dc9b</MessageID></S:Header><S:Body><ophalenMeldingStatus xmlns="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd"><meldingStatusRequest></meldingStatusRequest><meldingKenmerk>qwe</meldingKenmerk></ophalenMeldingStatus></S:Body></S:Envelope>
+
+
+HTTP/1.1 200 OK
+Content-Type: text/plain
+Date: Mon, 10 Aug 2009 04:11:55 CEST
+Server: Mule Core/1.4.3
+Expires: Mon, 10 Aug 2009 04:11:55 CEST
+MULE_CORRELATION_ID: c51b8d3a-85b7-11de-a884-e53af7138924
+MULE_CORRELATION_GROUP_SIZE: -1
+MULE_CORRELATION_SEQUENCE: -1
+Content-Length: 686
+
+<soapenv:Envelope xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header><wsa:To>http://www.w3.org/2005/08/addressing/anonymous</wsa:To><wsa:MessageID>uuid:725764f1-bee0-4d6d-9fce-aedfcc814877</wsa:MessageID><wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingStatusResponse</wsa:Action><wsa:RelatesTo>uuid:e71a5650-a7de-4900-835e-27ad2e07dc9b</wsa:RelatesTo></soapenv:Header><soapenv:Body><ophalenMeldingStatusResponse xmlns="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd"><statusResponseList></statusResponseList></ophalenMeldingStatusResponse></soapenv:Body></soapenv:Envelope>

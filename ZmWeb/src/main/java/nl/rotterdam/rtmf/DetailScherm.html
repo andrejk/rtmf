@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="nl" xmlns:wicket="http://wicket.apache.org/">
+  <body>
+    <wicket:extend>
+        <div id="welkomBalk">
+          <span>Terugmelding details</span>
+        </div>
+        <div wicket:id="feedback" class="feedback"/>
+                <h2>Contactgegevens</h2>
+                <div class="line">
+                    <label>Naam</label>
+                    <span class="value" wicket:id="contactNaam">Enno Buis&nbsp;</span>
+                    <label>Telefoonnummer</label>
+                    <span class="value" wicket:id="contactTelefoon">&nbsp;</span>
+                    <label>Email</label>
+                    <span class="value" wicket:id="contactEmail">Enno.Buis@rotterdam.org&nbsp;</span>
+                </div>
+        
+                <h2>Terugmelding gegevens</h2>
+                <div class="line">
+                    <label>Meldingskenmerk</label>
+                    <span class="value" wicket:id="meldingskenmerk">123(m) - (K:TMD.09.10.00001)&nbsp;</span>
+                    <label>Zaaknummer</label>
+                    <span class="value" wicket:id="zaaknummer">TMD.09.10.00001&nbsp;</span>
+                    <label>Toelichting</label>
+                    <span class="value" wicket:id="toelichting">ZM test&nbsp;</span>
+                    <label>Datum aanlevering</label>
+                    <span class="value" wicket:id="datumAanlevering">ZM test&nbsp;</span>
+                </div>
+            
+                <h2>Huidige status</h2>
+                <div class="line">
+                    <label>Status</label>
+                    <span class="value" wicket:id="status">gemeld&nbsp;</span>
+                    <label>Toelichting status</label>
+                    <span class="value" wicket:id="statusToelichting">&nbsp;</span>
+                    <label>Laatste moment van wijziging</label>
+                    <span class="value" wicket:id="laatsteMomentWijziging">&nbsp;</span>
+                </div>
+ 
+                <h2>Kernregistratie &amp; Registratieobject</h2>
+                <div class="line">
+                    <label>Kernregistratie</label>
+                    <span class="value" wicket:id="kernregistratie">BRA&nbsp;</span>
+                    <label>Object</label>
+                    <span class="value" wicket:id="object">01&nbsp;</span>
+                    <label>Objectidentificatie</label>
+                    <span class="value" wicket:id="objectIdentificatie">126946036&nbsp;</span>
+                </div>
+                <h2>Attribuutlijst</h2>
+                <div class="line">
+
+                <table class="attribuuts">
+                    <tr>
+                        <th>AttribuutID</th>
+                        <th>Waarde basisregistratie</th>
+                        <th>Zelf waargenomen waarde</th>
+                    </tr>
+                    <tr wicket:id="attribuutRegel">
+						<td wicket:id="id">01.86.11</td>
+						<td wicket:id="betwijfeldeWaarde">Beppie</td>
+						<td wicket:id="voorstel">Bepster</td>
+					</tr>
+                </table>
+                </div>
+                <form wicket:id="bijwerkenForm"> 
+                    <h2 wicket:id="nieuweStatusHeader">Invoer nieuwe status</h2>
+                    <div class="statusBlock">
+                        <table>
+	                        <tr>
+		                        <td><label wicket:id="statusLabel">Status terugmelding *</label></td>
+		                        <td>
+		                              <select wicket:id="statusTerugmelding" class="value">
+			                             <option>iets</option>
+			                             <option>iets anders</option>
+		                              </select>
+		                        </td>
+	                        </tr>
+	                        <tr>
+		                        <td><label wicket:id="toelichtingLabel">Status toelichting *</label></td>
+		                        <td><span><textarea wicket:id="toelichting" class="value"></textarea></span></td>
+	                        </tr>
+                        </table>
+                        <div class="buttons">
+	                        <input wicket:id="vorigeButton" type="button" class="btn" value="Vorige" onclick="history.back()" >       
+	                        <input wicket:id="submitButton" type="submit" class="btn" value="Bijwerken status">
+                        </div>
+                    </div>
+                </form>
+      </wicket:extend>
+  </body>
+</html>

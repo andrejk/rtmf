@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<kennisgevingsBericht xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.egem.nl/StUF/sector/bg/0204">
+  <stuurgegevens xmlns="http://www.egem.nl/StUF/StUF0204">
+    <berichtsoort>Lk01</berichtsoort>
+    <entiteittype>PRS</entiteittype>
+    <sectormodel>BG</sectormodel>
+    <versieStUF>0204</versieStUF>
+    <versieSectormodel>0204</versieSectormodel>
+    <zender>
+      <applicatie>DDS</applicatie>
+      <gebruiker>PRODPIV</gebruiker>
+    </zender>
+    <ontvanger>
+      <applicatie>DDS</applicatie>
+    </ontvanger>
+    <referentienummer>2451687_05008d</referentienummer>
+    <tijdstipBericht>2009032514384259</tijdstipBericht>
+    <kennisgeving>
+      <mutatiesoort>C</mutatiesoort>
+      <indicatorOvername>V</indicatorOvername>
+      <tijdstipMutatie>2009050505050500</tijdstipMutatie>
+    </kennisgeving>
+  </stuurgegevens>
+  <body>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="41373" d5p1:verwerkingssoort="I" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer>1407548951</a-nummer> 
+      <bsn-nummer>59231269</bsn-nummer> 
+      <PRSPRSHUW d5p1:soortEntiteit="R" d5p1:verwerkingssoort="T" d5p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+    </PRS>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="41373" d5p1:verwerkingssoort="I" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer>1407548951</a-nummer> 
+      <bsn-nummer>59231269</bsn-nummer> 
+      <PRSPRSHUW d5p1:soortEntiteit="R" d5p1:verwerkingssoort="T">
+        <datumSluiting>19710213</datumSluiting> 
+        <plaatsSluiting>518</plaatsSluiting> 
+        <landSluiting>6030</landSluiting> 
+        <soortVerbintenis>H</soortVerbintenis> 
+        <datumOntbinding>19731210</datumOntbinding> 
+        <plaatsOntbinding>518</plaatsOntbinding> 
+        <landOntbinding>6030</landOntbinding> 
+        <redenOntbinding>S</redenOntbinding> 
+        <PRS d5p1:soortEntiteit="F" d5p1:verwerkingssoort="I">
+          <a-nummer d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <bsn-nummer d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <voornamen>Maria Elisabeth</voornamen> 
+          <voorletters>ME</voorletters> 
+          <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <geslachtsnaam>Mastenbroek</geslachtsnaam> 
+          <geboortedatum>19391213</geboortedatum> 
+          <geslachtsaanduiding>V</geslachtsaanduiding> 
+          <PRSADRVBL d5p1:soortEntiteit="R" d5p1:verwerkingssoort="I" d5p1:noValue="waardeOnbekend" xsi:nil="true" /> 
+        </PRS>
+      </PRSPRSHUW>
+    </PRS>
+  </body>
+</kennisgevingsBericht>

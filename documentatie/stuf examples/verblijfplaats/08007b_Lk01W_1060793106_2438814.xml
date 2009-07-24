@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<kennisgevingsBericht xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.egem.nl/StUF/sector/bg/0204">
+  <stuurgegevens xmlns="http://www.egem.nl/StUF/StUF0204">
+    <berichtsoort>Lk01</berichtsoort>
+    <entiteittype>PRS</entiteittype>
+    <sectormodel>BG</sectormodel>
+    <versieStUF>0204</versieStUF>
+    <versieSectormodel>0204</versieSectormodel>
+    <zender>
+      <applicatie>DDS</applicatie>
+      <gebruiker>PRODPIV</gebruiker>
+    </zender>
+    <ontvanger>
+      <applicatie>DDS</applicatie>
+    </ontvanger>
+    <referentienummer>2438814_08007b</referentienummer>
+    <tijdstipBericht>2009031119031517</tijdstipBericht>
+    <kennisgeving>
+      <mutatiesoort>W</mutatiesoort>
+      <indicatorOvername>V</indicatorOvername>
+      <tijdstipMutatie>2009031119012527</tijdstipMutatie>
+    </kennisgeving>
+  </stuurgegevens>
+  <body>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="23838" d5p1:verwerkingssoort="W" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer>1060793106</a-nummer>
+      <bsn-nummer>98555339</bsn-nummer>
+      <voornamen>Marlene Yvonne</voornamen>
+      <voorletters>MY</voorletters>
+      <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true" />
+      <geslachtsnaam>Bueno de Mesquita</geslachtsnaam>
+      <geboortedatum>19561004</geboortedatum>
+      <geboorteplaats>Paramaribo</geboorteplaats>
+      <codeGeboorteland>5007</codeGeboorteland>
+      <geslachtsaanduiding>V</geslachtsaanduiding>
+      <indicatieGeheim>0</indicatieGeheim>
+      <codeGemeenteVanInschrijving>599</codeGemeenteVanInschrijving>
+      <datumInschrijvingGemeente>19660622</datumInschrijvingGemeente>
+      <codeLandImmigratie>5007</codeLandImmigratie>
+      <datumVestigingInNederland>19660609</datumVestigingInNederland>
+      <aanduidingNaamgebruik>V</aanduidingNaamgebruik>
+      <PRSADRVBL d5p1:soortEntiteit="R" d5p1:verwerkingssoort="W">
+         <tijdvakRelatie>
+           <d5p1:begindatumRelatie>19820121</d5p1:begindatumRelatie>
+           <d5p1:einddatumRelatie d5p1:noValue="geenWaarde" xsi:nil="true" />
+         </tijdvakRelatie>
+         <ADR d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="237686" d5p1:verwerkingssoort="W">
+           <adresBuitenland1 d5p1:noValue="nietOndersteund" xsi:nil="true" />
+           <adresBuitenland2 d5p1:noValue="nietOndersteund" xsi:nil="true" />
+           <adresBuitenland3 d5p1:noValue="nietOndersteund" xsi:nil="true" />
+           <landcode d5p1:noValue="nietOndersteund" xsi:nil="true" />
+           <postcode>3089ST</postcode>
+           <woonplaatsnaam d5p1:noValue="geenWaarde" xsi:nil="true" />
+           <postbusnummer d5p1:noValue="nietOndersteund" xsi:nil="true" />
+           <antwoordnummer d5p1:noValue="nietOndersteund" xsi:nil="true" />
+           <straatnaam>Huispadstraat</straatnaam>
+           <huisnummer>59</huisnummer>
+           <huisletter d5p1:noValue="geenWaarde" xsi:nil="true" />
+           <huisnummertoevoeging d5p1:noValue="geenWaarde" xsi:nil="true" />
+           <aanduidingBijHuisnummer d5p1:noValue="geenWaarde" xsi:nil="true" />
+           <locatieomschrijving d5p1:noValue="geenWaarde" xsi:nil="true" />
+           <locatieadresnummer d5p1:noValue="nietOndersteund" xsi:nil="true" />
+           <gemeentecode>599</gemeentecode>
+         </ADR>
+       </PRSADRVBL>
+    </PRS>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="23838" d5p1:verwerkingssoort="W" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer>1060793106</a-nummer>
+      <bsn-nummer>98555339</bsn-nummer>
+      <voornamen>Marlene Yvonne</voornamen>
+      <voorletters>MY</voorletters>
+      <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true" />
+      <geslachtsnaam>Bueno de Mesquita</geslachtsnaam>
+      <geboortedatum>19561004</geboortedatum>
+      <geboorteplaats>Paramaribo</geboorteplaats>
+      <codeGeboorteland>5007</codeGeboorteland>
+      <geslachtsaanduiding>V</geslachtsaanduiding>
+      <indicatieGeheim>0</indicatieGeheim>
+      <codeGemeenteVanInschrijving>599</codeGemeenteVanInschrijving>
+      <datumInschrijvingGemeente>19660622</datumInschrijvingGemeente>
+      <codeLandImmigratie>5007</codeLandImmigratie>
+      <datumVestigingInNederland>19660609</datumVestigingInNederland>
+      <aanduidingNaamgebruik>V</aanduidingNaamgebruik>
+      <PRSADRVBL d5p1:soortEntiteit="R" d5p1:verwerkingssoort="W">
+         <tijdvakRelatie>
+           <d5p1:begindatumRelatie>20001205</d5p1:begindatumRelatie>
+           <d5p1:einddatumRelatie d5p1:noValue="geenWaarde" xsi:nil="true" />
+         </tijdvakRelatie>
+         <ADR d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="237687" d5p1:verwerkingssoort="W">
+           <adresBuitenland1 d5p1:noValue="nietOndersteund" xsi:nil="true" />
+           <adresBuitenland2 d5p1:noValue="nietOndersteund" xsi:nil="true" />
+           <adresBuitenland3 d5p1:noValue="nietOndersteund" xsi:nil="true" />
+           <landcode d5p1:noValue="nietOndersteund" xsi:nil="true" />
+           <postcode>3050AA</postcode>
+           <woonplaatsnaam d5p1:noValue="geenWaarde" xsi:nil="true" />
+           <postbusnummer d5p1:noValue="nietOndersteund" xsi:nil="true" />
+           <antwoordnummer d5p1:noValue="nietOndersteund" xsi:nil="true" />
+           <straatnaam>Nieuwestraat</straatnaam>
+           <huisnummer>1</huisnummer>
+           <huisletter d5p1:noValue="geenWaarde" xsi:nil="true" />
+           <huisnummertoevoeging d5p1:noValue="geenWaarde" xsi:nil="true" />
+           <aanduidingBijHuisnummer d5p1:noValue="geenWaarde" xsi:nil="true" />
+           <locatieomschrijving d5p1:noValue="geenWaarde" xsi:nil="true" />
+           <locatieadresnummer d5p1:noValue="nietOndersteund" xsi:nil="true" />
+           <gemeentecode>599</gemeentecode>
+         </ADR>
+       </PRSADRVBL>
+    </PRS>
+  </body>
+</kennisgevingsBericht>

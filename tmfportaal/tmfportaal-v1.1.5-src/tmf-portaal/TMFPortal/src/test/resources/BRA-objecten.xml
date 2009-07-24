@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+	<!--
+		- Application context definition for "springapp" DispatcherServlet.
+	-->
+<beans>
+	<bean id="braopr"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObject">
+		<property name="tag">
+			<value>OPR</value>
+		</property>
+		<property name="naam">
+			<value>Openbare Ruimte</value>
+		</property>
+	</bean>
+	<bean id="branum"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObject">
+		<property name="tag">
+			<value>NUM</value>
+		</property>
+		<property name="naam">
+			<value>Nummeraanduiding</value>
+		</property>
+	</bean>
+	<bean id="brawpl"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObject">
+		<property name="tag">
+			<value>WPL</value>
+		</property>
+		<property name="naam">
+			<value>Woonplaats</value>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<synchroonAntwoordBericht xmlns="http://www.egem.nl/StUF/sector/bg/0204">
+    <stuurgegevens xmlns="http://www.egem.nl/StUF/StUF0204">
+        <berichtsoort>La01</berichtsoort>
+        <entiteittype>PRS</entiteittype>
+        <sectormodel>BG</sectormodel>
+        <versieStUF>0204</versieStUF>
+        <versieSectormodel>0204</versieSectormodel>
+        <zender>
+            <applicatie>DDS</applicatie>
+            <gebruiker>PRODDDS</gebruiker>
+        </zender>
+        <ontvanger>
+            <applicatie>SOC</applicatie>
+        </ontvanger>
+        <referentienummer>14878185</referentienummer>
+        <tijdstipBericht>2009091709373599</tijdstipBericht>
+        <antwoord>
+            <crossRefNummer>7000</crossRefNummer>
+        </antwoord>
+    </stuurgegevens>
+    <body>
+        <PRS d5p1:sleutelVerzendend="2205095" soortEntiteit="F"
+                xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+            <a-nummer>7278461054</a-nummer>
+            <bsn-nummer>680478103</bsn-nummer>
+            <voornamen>Kristiina</voornamen>
+            <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <geslachtsnaam>Veinberg</geslachtsnaam>
+            <geboortedatum>19910322</geboortedatum>
+            <geboorteplaats>Tallinn</geboorteplaats>
+            <codeGeboorteland>7065</codeGeboorteland>
+            <geslachtsaanduiding>V</geslachtsaanduiding>
+            <datumOverlijden d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <indicatieGeheim d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <codeGemeenteVanInschrijving>599</codeGemeenteVanInschrijving>
+            <datumInschrijvingGemeente>20080811</datumInschrijvingGemeente>
+            <codeLandEmigratie d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <datumVertrekUitNederland d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <verblijfstitel>30</verblijfstitel>
+            <datumVerkrijgingVerblijfstitel>20080825</datumVerkrijgingVerblijfstitel>
+            <datumVerliesVerblijfstitel d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <aanduidingNaamgebruik>E</aanduidingNaamgebruik>
+            <PRSADRCOR soortEntiteit="R">
+                <ADR d5p1:noValue="geenWaarde" soortEntiteit="F" xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            </PRSADRCOR>
+            <PRSADRINS soortEntiteit="R">
+                <tijdvakRelatie>
+                    <d5p1:begindatumRelatie>20080811</d5p1:begindatumRelatie>
+                    <d5p1:einddatumRelatie d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                </tijdvakRelatie>
+                <ADR d5p1:sleutelVerzendend="17007" soortEntiteit="F">
+                    <adresBuitenland1 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <adresBuitenland2 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <adresBuitenland3 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <landcode d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <postcode>3068MA</postcode>
+                    <woonplaatsnaam>Rotterdam</woonplaatsnaam>
+                    <straatnaam>Andoorn</straatnaam>
+                    <huisnummer>27</huisnummer>
+                    <huisletter d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <huisnummertoevoeging d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <locatieomschrijving d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <ingangsdatum d5p1:noValue="waardeOnbekend" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <gemeentecode>599</gemeentecode>
+                </ADR>
+            </PRSADRINS>
+            <PRSADRVBL soortEntiteit="R">
+                <tijdvakRelatie>
+                    <d5p1:begindatumRelatie>20080811</d5p1:begindatumRelatie>
+                    <d5p1:einddatumRelatie d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                </tijdvakRelatie>
+                <ADR d5p1:sleutelVerzendend="17007" soortEntiteit="F">
+                    <adresBuitenland1 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <adresBuitenland2 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <adresBuitenland3 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <landcode d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <postcode>3068MA</postcode>
+                    <woonplaatsnaam>Rotterdam</woonplaatsnaam>
+                    <straatnaam>Andoorn</straatnaam>
+                    <huisnummer>27</huisnummer>
+                    <huisletter d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <huisnummertoevoeging d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <locatieomschrijving d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <ingangsdatum d5p1:noValue="waardeOnbekend" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <gemeentecode>599</gemeentecode>
+                </ADR>
+            </PRSADRVBL>
+            <PRSNAT soortEntiteit="R">
+                <datumVerkrijging d5p1:noValue="waardeOnbekend" xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                <datumVerlies d5p1:noValue="geenWaarde" xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                <NAT soortEntiteit="T">
+                    <code>45</code>
+                </NAT>
+            </PRSNAT>
+            <PRSPRSHUW soortEntiteit="R">
+                <PRS d5p1:noValue="geenWaarde" soortEntiteit="F" xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            </PRSPRSHUW>
+            <PRSPRSOUD soortEntiteit="R">
+                <PRS d5p1:sleutelVerzendend="2205097" soortEntiteit="F">
+                    <a-nummer d5p1:noValue="waardeOnbekend" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <bsn-nummer d5p1:noValue="waardeOnbekend" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <voornamen>Enno-Evald</voornamen>
+                    <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <geslachtsnaam>Veinberg</geslachtsnaam>
+                    <geboortedatum d5p1:noValue="waardeOnbekend" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <geslachtsaanduiding>M</geslachtsaanduiding>
+                </PRS>
+            </PRSPRSOUD>
+            <PRSPRSOUD soortEntiteit="R">
+                <PRS d5p1:sleutelVerzendend="2205096" soortEntiteit="F">
+                    <a-nummer d5p1:noValue="waardeOnbekend" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <bsn-nummer d5p1:noValue="waardeOnbekend" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <voornamen>Janika</voornamen>
+                    <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <geslachtsnaam>Nuuter</geslachtsnaam>
+                    <geboortedatum d5p1:noValue="waardeOnbekend" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <geslachtsaanduiding>V</geslachtsaanduiding>
+                </PRS>
+            </PRSPRSOUD>
+        </PRS>
+        <PRS d5p1:sleutelVerzendend="68848" soortEntiteit="F"
+                xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+            <a-nummer>6039535706</a-nummer>
+            <bsn-nummer>75777162</bsn-nummer>
+            <voornamen>Juliana Anna Maria</voornamen>
+            <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <geslachtsnaam>Steeman</geslachtsnaam>
+            <geboortedatum>19530726</geboortedatum>
+            <geboorteplaats>599</geboorteplaats>
+            <codeGeboorteland>6030</codeGeboorteland>
+            <geslachtsaanduiding>V</geslachtsaanduiding>
+            <datumOverlijden d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <indicatieGeheim>0</indicatieGeheim>
+            <codeGemeenteVanInschrijving>599</codeGemeenteVanInschrijving>
+            <datumInschrijvingGemeente>19750610</datumInschrijvingGemeente>
+            <codeLandEmigratie d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <datumVertrekUitNederland d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <verblijfstitel d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <datumVerkrijgingVerblijfstitel d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <datumVerliesVerblijfstitel d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <aanduidingNaamgebruik>E</aanduidingNaamgebruik>
+            <PRSADRCOR soortEntiteit="R">
+                <ADR d5p1:noValue="geenWaarde" soortEntiteit="F" xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            </PRSADRCOR>
+            <PRSADRINS soortEntiteit="R">
+                <tijdvakRelatie>
+                    <d5p1:begindatumRelatie>19860220</d5p1:begindatumRelatie>
+                    <d5p1:einddatumRelatie d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                </tijdvakRelatie>
+                <ADR d5p1:sleutelVerzendend="17007" soortEntiteit="F">
+                    <adresBuitenland1 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <adresBuitenland2 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <adresBuitenland3 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <landcode d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <postcode>3068MA</postcode>
+                    <woonplaatsnaam>Rotterdam</woonplaatsnaam>
+                    <straatnaam>Andoorn</straatnaam>
+                    <huisnummer>27</huisnummer>
+                    <huisletter d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <huisnummertoevoeging d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <locatieomschrijving d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <ingangsdatum d5p1:noValue="waardeOnbekend" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <gemeentecode>599</gemeentecode>
+                </ADR>
+            </PRSADRINS>
+            <PRSADRVBL soortEntiteit="R">
+                <tijdvakRelatie>
+                    <d5p1:begindatumRelatie>19860220</d5p1:begindatumRelatie>
+                    <d5p1:einddatumRelatie d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                </tijdvakRelatie>
+                <ADR d5p1:sleutelVerzendend="17007" soortEntiteit="F">
+                    <adresBuitenland1 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <adresBuitenland2 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <adresBuitenland3 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <landcode d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <postcode>3068MA</postcode>
+                    <woonplaatsnaam>Rotterdam</woonplaatsnaam>
+                    <straatnaam>Andoorn</straatnaam>
+                    <huisnummer>27</huisnummer>
+                    <huisletter d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <huisnummertoevoeging d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <locatieomschrijving d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <ingangsdatum d5p1:noValue="waardeOnbekend" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <gemeentecode>599</gemeentecode>
+                </ADR>
+            </PRSADRVBL>
+            <PRSNAT soortEntiteit="R">
+                <datumVerkrijging d5p1:noValue="waardeOnbekend" xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                <datumVerlies d5p1:noValue="geenWaarde" xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                <NAT soortEntiteit="T">
+                    <code>1</code>
+                </NAT>
+            </PRSNAT>
+            <PRSPRSHUW soortEntiteit="R">
+                <datumSluiting>19810619</datumSluiting>
+                <soortVerbintenis>H</soortVerbintenis>
+                <datumOntbinding>20050624</datumOntbinding>
+                <PRS d5p1:sleutelVerzendend="68849" soortEntiteit="F">
+                    <a-nummer>7858787682</a-nummer>
+                    <bsn-nummer>87930882</bsn-nummer>
+                    <voornamen>Mattheus Evert</voornamen>
+                    <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <geslachtsnaam>Knoop</geslachtsnaam>
+                    <geboortedatum>19491118</geboortedatum>
+                    <geboorteplaats>599</geboorteplaats>
+                    <codeGeboorteland>6030</codeGeboorteland>
+                    <geslachtsaanduiding>M</geslachtsaanduiding>
+                </PRS>
+            </PRSPRSHUW>
+            <PRSPRSKND soortEntiteit="R">
+                <PRS d5p1:sleutelVerzendend="68847" soortEntiteit="F">
+                    <a-nummer>1401950805</a-nummer>
+                    <bsn-nummer>124781834</bsn-nummer>
+                    <voornamen>Menno Evert Julius</voornamen>
+                    <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <geslachtsnaam>Knoop</geslachtsnaam>
+                    <geboortedatum>19870727</geboortedatum>
+                    <geslachtsaanduiding>M</geslachtsaanduiding>
+                </PRS>
+            </PRSPRSKND>
+            <PRSPRSKND soortEntiteit="R">
+                <PRS d5p1:sleutelVerzendend="198001" soortEntiteit="F">
+                    <a-nummer>2028404724</a-nummer>
+                    <bsn-nummer>134136330</bsn-nummer>
+                    <voornamen>Eelco Mattheus Anthonius</voornamen>
+                    <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <geslachtsnaam>Knoop</geslachtsnaam>
+                    <geboortedatum>19820917</geboortedatum>
+                    <geslachtsaanduiding>M</geslachtsaanduiding>
+                </PRS>
+            </PRSPRSKND>
+            <PRSPRSKND soortEntiteit="R">
+                <PRS d5p1:sleutelVerzendend="734960" soortEntiteit="F">
+                    <a-nummer>9637939875</a-nummer>
+                    <bsn-nummer>135035247</bsn-nummer>
+                    <voornamen>Marla Louisa Wilhelmina</voornamen>
+                    <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <geslachtsnaam>Knoop</geslachtsnaam>
+                    <geboortedatum>19850115</geboortedatum>
+                    <geslachtsaanduiding>V</geslachtsaanduiding>
+                </PRS>
+            </PRSPRSKND>
+            <PRSPRSOUD soortEntiteit="R">
+                <PRS d5p1:sleutelVerzendend="734959" soortEntiteit="F">
+                    <a-nummer>4708730168</a-nummer>
+                    <bsn-nummer d5p1:noValue="waardeOnbekend" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <voornamen>Anthonius Maria</voornamen>
+                    <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <geslachtsnaam>Steeman</geslachtsnaam>
+                    <geboortedatum>19171106</geboortedatum>
+                    <geslachtsaanduiding>M</geslachtsaanduiding>
+                </PRS>
+            </PRSPRSOUD>
+            <PRSPRSOUD soortEntiteit="R">
+                <PRS d5p1:sleutelVerzendend="734958" soortEntiteit="F">
+                    <a-nummer>5393282651</a-nummer>
+                    <bsn-nummer d5p1:noValue="waardeOnbekend" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <voornamen>Louisa</voornamen>
+                    <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <geslachtsnaam>Cramer</geslachtsnaam>
+                    <geboortedatum>19161218</geboortedatum>
+                    <geslachtsaanduiding>V</geslachtsaanduiding>
+                </PRS>
+            </PRSPRSOUD>
+        </PRS>
+        <PRS d5p1:sleutelVerzendend="68847" soortEntiteit="F"
+                xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+            <a-nummer>1401950805</a-nummer>
+            <bsn-nummer>124781834</bsn-nummer>
+            <voornamen>Menno Evert Julius</voornamen>
+            <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <geslachtsnaam>Knoop</geslachtsnaam>
+            <geboortedatum>19870727</geboortedatum>
+            <geboorteplaats>599</geboorteplaats>
+            <codeGeboorteland>6030</codeGeboorteland>
+            <geslachtsaanduiding>M</geslachtsaanduiding>
+            <datumOverlijden d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <indicatieGeheim>0</indicatieGeheim>
+            <codeGemeenteVanInschrijving>599</codeGemeenteVanInschrijving>
+            <datumInschrijvingGemeente>19870727</datumInschrijvingGemeente>
+            <codeLandEmigratie d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <datumVertrekUitNederland d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <verblijfstitel d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <datumVerkrijgingVerblijfstitel d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <datumVerliesVerblijfstitel d5p1:noValue="geenWaarde" xsi:nil="true"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <aanduidingNaamgebruik>E</aanduidingNaamgebruik>
+            <PRSADRCOR soortEntiteit="R">
+                <ADR d5p1:noValue="geenWaarde" soortEntiteit="F" xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            </PRSADRCOR>
+            <PRSADRINS soortEntiteit="R">
+                <tijdvakRelatie>
+                    <d5p1:begindatumRelatie>19870727</d5p1:begindatumRelatie>
+                    <d5p1:einddatumRelatie d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                </tijdvakRelatie>
+                <ADR d5p1:sleutelVerzendend="17007" soortEntiteit="F">
+                    <adresBuitenland1 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <adresBuitenland2 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <adresBuitenland3 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <landcode d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <postcode>3068MA</postcode>
+                    <woonplaatsnaam>Rotterdam</woonplaatsnaam>
+                    <straatnaam>Andoorn</straatnaam>
+                    <huisnummer>27</huisnummer>
+                    <huisletter d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <huisnummertoevoeging d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <locatieomschrijving d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <ingangsdatum d5p1:noValue="waardeOnbekend" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <gemeentecode>599</gemeentecode>
+                </ADR>
+            </PRSADRINS>
+            <PRSADRVBL soortEntiteit="R">
+                <tijdvakRelatie>
+                    <d5p1:begindatumRelatie>19870727</d5p1:begindatumRelatie>
+                    <d5p1:einddatumRelatie d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                </tijdvakRelatie>
+                <ADR d5p1:sleutelVerzendend="17007" soortEntiteit="F">
+                    <adresBuitenland1 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <adresBuitenland2 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <adresBuitenland3 d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <landcode d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <postcode>3068MA</postcode>
+                    <woonplaatsnaam>Rotterdam</woonplaatsnaam>
+                    <straatnaam>Andoorn</straatnaam>
+                    <huisnummer>27</huisnummer>
+                    <huisletter d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <huisnummertoevoeging d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <locatieomschrijving d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <ingangsdatum d5p1:noValue="waardeOnbekend" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <gemeentecode>599</gemeentecode>
+                </ADR>
+            </PRSADRVBL>
+            <PRSNAT soortEntiteit="R">
+                <datumVerkrijging d5p1:noValue="waardeOnbekend" xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                <datumVerlies d5p1:noValue="geenWaarde" xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                <NAT soortEntiteit="T">
+                    <code>1</code>
+                </NAT>
+            </PRSNAT>
+            <PRSPRSHUW soortEntiteit="R">
+                <PRS d5p1:noValue="geenWaarde" soortEntiteit="F" xsi:nil="true"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            </PRSPRSHUW>
+            <PRSPRSOUD soortEntiteit="R">
+                <PRS d5p1:sleutelVerzendend="68849" soortEntiteit="F">
+                    <a-nummer>7858787682</a-nummer>
+                    <bsn-nummer>87930882</bsn-nummer>
+                    <voornamen>Mattheus Evert</voornamen>
+                    <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <geslachtsnaam>Knoop</geslachtsnaam>
+                    <geboortedatum>19491118</geboortedatum>
+                    <geslachtsaanduiding>M</geslachtsaanduiding>
+                </PRS>
+            </PRSPRSOUD>
+            <PRSPRSOUD soortEntiteit="R">
+                <PRS d5p1:sleutelVerzendend="68848" soortEntiteit="F">
+                    <a-nummer>6039535706</a-nummer>
+                    <bsn-nummer>75777162</bsn-nummer>
+                    <voornamen>Juliana Anna Maria</voornamen>
+                    <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <geslachtsnaam>Steeman</geslachtsnaam>
+                    <geboortedatum>19530726</geboortedatum>
+                    <geslachtsaanduiding>V</geslachtsaanduiding>
+                </PRS>
+            </PRSPRSOUD>
+        </PRS>
+    </body>
+</synchroonAntwoordBericht>

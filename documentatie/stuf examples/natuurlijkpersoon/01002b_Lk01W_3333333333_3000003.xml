@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<kennisgevingsBericht xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.egem.nl/StUF/sector/bg/0204">
+  <stuurgegevens xmlns="http://www.egem.nl/StUF/StUF0204">
+    <berichtsoort>Lk01</berichtsoort>
+    <entiteittype>PRS</entiteittype>
+    <sectormodel>BG</sectormodel>
+    <versieStUF>0204</versieStUF>
+    <versieSectormodel>0204</versieSectormodel>
+    <zender>
+      <applicatie>DDS</applicatie>
+      <gebruiker>PRODPIV</gebruiker>
+    </zender>
+    <ontvanger>
+      <applicatie>DDS</applicatie>
+    </ontvanger>
+    <referentienummer>3000003_01002b</referentienummer>
+    <tijdstipBericht>2009031300371903</tijdstipBericht>
+    <kennisgeving>
+      <mutatiesoort>W</mutatiesoort>
+      <indicatorOvername>V</indicatorOvername>
+      <tijdstipMutatie>2009032313131303</tijdstipMutatie>
+    </kennisgeving>
+  </stuurgegevens>
+  <body>
+    <PRS d3p1:soortEntiteit="F" d3p1:sleutelVerzendend="333333333333" d3p1:verwerkingssoort="W" xmlns:d3p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer d3p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+      <voornamen d3p1:noValue="waardeOnbekend" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+      <voorletters xmlns="http://www.egem.nl/StUF/sector/bg/0204">S</voorletters>
+      <voorvoegselGeslachtsnaam xmlns="http://www.egem.nl/StUF/sector/bg/0204">de</voorvoegselGeslachtsnaam>
+      <geslachtsnaam xmlns="http://www.egem.nl/StUF/sector/bg/0204">Schildpad</geslachtsnaam>
+      <geboortedatum>18901212</geboortedatum>
+      <geboorteplaats>Madrid</geboorteplaats>
+      <codeGeboorteland>Spanje</codeGeboorteland>
+      <geslachtsaanduiding xmlns="http://www.egem.nl/StUF/sector/bg/0204">V</geslachtsaanduiding>
+      <adellijkeTitelPredikaat xmlns="http://www.egem.nl/StUF/sector/bg/0204">waardeOnbekend</adellijkeTitelPredikaat>
+      <burgerlijkeStaat>1</burgerlijkeStaat>
+      <aanduidingNaamgebruik>N</aanduidingNaamgebruik>
+    </PRS>
+    <PRS d3p1:soortEntiteit="F" d3p1:sleutelVerzendend="333333333333" d3p1:verwerkingssoort="W" xmlns:d3p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer xmlns="http://www.egem.nl/StUF/sector/bg/0204">3333333333</a-nummer>
+      <voornamen xmlns="http://www.egem.nl/StUF/sector/bg/0204">Stoffel</voornamen>
+      <voorletters xmlns="http://www.egem.nl/StUF/sector/bg/0204">S</voorletters>
+      <voorvoegselGeslachtsnaam xmlns="http://www.egem.nl/StUF/sector/bg/0204">de</voorvoegselGeslachtsnaam>
+      <geslachtsnaam xmlns="http://www.egem.nl/StUF/sector/bg/0204">Schildpad</geslachtsnaam>
+      <geboortedatum>20090909</geboortedatum>
+      <geboorteplaats>Madrid</geboorteplaats>
+      <codeGeboorteland>6037</codeGeboorteland>
+      <geslachtsaanduiding xmlns="http://www.egem.nl/StUF/sector/bg/0204">M</geslachtsaanduiding>
+      <adellijkeTitelPredikaat xmlns="http://www.egem.nl/StUF/sector/bg/0204">H</adellijkeTitelPredikaat>
+      <burgerlijkeStaat>7</burgerlijkeStaat>
+      <aanduidingNaamgebruik>E</aanduidingNaamgebruik>
+    </PRS>
+  </body>
+</kennisgevingsBericht>

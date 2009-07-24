@@ -1,0 +1,14 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stat="http://www.interaccess.nl/webplus/statuswfm_v2">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stat:Stap>
+         <stat:Zaakidentificatie>${Zaakidentificatie}</stat:Zaakidentificatie>
+         <stat:Geen_stap_uitvoerder>true</stat:Geen_stap_uitvoerder>
+         <stat:Geen_stap_verantwoordelijke>true</stat:Geen_stap_verantwoordelijke>
+         <stat:Begindatum>${Begindatum}</stat:Begindatum>
+         <stat:Stapomschrijving>${Stapomschrijving}</stat:Stapomschrijving>
+         <stat:Staptypecode>${Staptypecode}</stat:Staptypecode>
+         <stat:Oge_id>0</stat:Oge_id>
+      </stat:Stap>
+   </soapenv:Body>
+</soapenv:Envelope>

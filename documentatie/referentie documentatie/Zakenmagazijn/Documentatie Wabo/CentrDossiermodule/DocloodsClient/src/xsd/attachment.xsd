@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio - FREE Community Edition 7.0.5.906 (http://www.liquid-technologies.com)-->
+<xs:schema xmlns:tns="http://ebus.onefox.nl/2009/3/20/attachment"
+           elementFormDefault="qualified"
+           targetNamespace="http://ebus.onefox.nl/2009/3/20/attachment"
+           xmlns:q1="http://ebus.onefox.nl/2009/3/20/data"
+           xmlns:q2="http://ebus.onefox.nl/2009/3/20/data"
+           xmlns:q3="http://ebus.onefox.nl/2009/3/20/data"
+           xmlns:q6="http://ebus.onefox.nl/2009/3/20/data"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="data.xsd"
+             namespace="http://ebus.onefox.nl/2009/3/20/data"/>
+  <xs:import schemaLocation="message.xsd"
+             namespace="http://schemas.microsoft.com/Message"/>
+  <xs:complexType name="ReadDocumentMsg">
+    <xs:sequence>
+      <xs:element name="DocNumber" type="xs:int"/>
+      <xs:element minOccurs="0" name="Version" type="xs:int"/>
+      <xs:element name="Form" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Checkout" type="xs:boolean"/>
+      <xs:element xmlns:q1="http://ebus.onefox.nl/2009/3/20/data" minOccurs="0"
+                  name="ReturnFields" nillable="true" type="q1:ReturnFields"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReadDocumentMsg" nillable="true"
+              type="tns:ReadDocumentMsg"/>
+  <xs:element xmlns:q2="http://schemas.microsoft.com/Message"
+              name="ReadDocumentContent" type="q2:StreamBody"/>
+  <xs:complexType name="ReadDocumentResultMsg">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://ebus.onefox.nl/2009/3/20/data"
+                    base="q3:Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DocNumber" type="xs:int"/>
+          <xs:element minOccurs="0" name="Version" type="xs:int"/>
+          <xs:element minOccurs="0" name="Fields" nillable="true"
+                      type="q3:Fields"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReadDocumentResultMsg" nillable="true"
+              type="tns:ReadDocumentResultMsg"/>
+  <xs:element xmlns:q4="http://schemas.microsoft.com/Message"
+              name="WriteDocument" type="q4:StreamBody"/>
+  <xs:complexType name="WriteDocumentMsg">
+    <xs:sequence>
+      <xs:element name="DocNumber" type="xs:int"/>
+      <xs:element minOccurs="0" name="Version" type="xs:int"/>
+      <xs:element name="Form" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Checkin" type="xs:boolean"/>
+      <xs:element xmlns:q5="http://ebus.onefox.nl/2009/3/20/data" minOccurs="0"
+                  name="ReturnFields" nillable="true" type="q5:ReturnFields"/>
+      <xs:element minOccurs="0" name="CreateNewVersion" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WriteDocumentMsg" nillable="true"
+              type="tns:WriteDocumentMsg"/>
+  <xs:complexType name="WriteDocumentResultMsg">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://ebus.onefox.nl/2009/3/20/data"
+                    base="q6:Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DocNumber" type="xs:int"/>
+          <xs:element minOccurs="0" name="Version" type="xs:int"/>
+          <xs:element minOccurs="0" name="Fields" nillable="true"
+                      type="q6:Fields"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WriteDocumentResultMsg" nillable="true"
+              type="tns:WriteDocumentResultMsg"/>
+</xs:schema>

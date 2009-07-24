@@ -1,0 +1,23 @@
+POST /services HTTP/1.1
+Content-type: text/xml;charset="utf-8"
+X-MULE_CORRELATION_ID: ebe18bf3-85b7-11de-a884-e53af7138924
+X-MULE_ENCODING: UTF-8
+X-MULE_ENDPOINT: http://twd720.resource.ta-twd.rotterdam.nl:10080/services
+X-MULE_ORIGINATING_ENDPOINT: endpoint.http.localhost.63081.terugmeldService
+X-MULE_REMOTE_CLIENT_ADDRESS: /127.0.0.1:36450
+X-MULE_REMOTE_SYNC: true
+Soapaction: "terugmeldingtmf-aanmelden-12345678001"
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: twd720.resource.ta-twd.rotterdam.nl:10080
+Content-Length: 1587
+
+<?xml version="1.0" ?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Header><To xmlns="http://www.w3.org/2005/08/addressing">http://localhost:63081/terugmeldService</To><Action xmlns="http://www.w3.org/2005/08/addressing">terugmeldingtmf-aanmelden-12345678001</Action><ReplyTo xmlns="http://www.w3.org/2005/08/addressing">
+    <Address>http://www.w3.org/2005/08/addressing/anonymous</Address>
+</ReplyTo><MessageID xmlns="http://www.w3.org/2005/08/addressing">uuid:9573820a-0c3f-486a-9ce8-bb89139a52ba</MessageID></S:Header><S:Body><ns2:terugmelding xmlns:ns2="http://wus.tmf.gbo.overheid.nl/wsdl/aanmeldService-V1.1.xsd" xmlns:ns3="http://tmfportal.ovsoftware.com/services" xmlns:ns4="http://tmfportal.ovsoftware.com/services/defaultreply.xsd"><ns2:meldingKenmerk>qwe</ns2:meldingKenmerk><ns2:tijdstempelAanlevering>2009-08-10T16:13:05.054+02:00</ns2:tijdstempelAanlevering><ns2:basisRegistratie>GBA</ns2:basisRegistratie><ns2:objectTag>01</ns2:objectTag><ns2:objectIdentificatie>123456789</ns2:objectIdentificatie><ns2:toelichting>qwqwe</ns2:toelichting><ns2:attributen><ns2:attribuutIdentificatie>01.02.10</ns2:attribuutIdentificatie><ns2:betwijfeldeWaarde></ns2:betwijfeldeWaarde><ns2:voorstel>andrej</ns2:voorstel></ns2:attributen><ns2:attributen><ns2:attribuutIdentificatie>01.02.40</ns2:attribuutIdentificatie><ns2:betwijfeldeWaarde></ns2:betwijfeldeWaarde><ns2:voorstel>koelewijn</ns2:voorstel></ns2:attributen><ns2:contactInfo><ns2:naam></ns2:naam><ns2:telefoon></ns2:telefoon><ns2:email></ns2:email></ns2:contactInfo></ns2:terugmelding></S:Body></S:Envelope>
+
+
+HTTP/1.1 500 WUS Processing error (AdapterException): translation record with action [terugmeldingtmf-aanmelden-12345678001] doesn't exist
+Content-Type: text/plain
+Content-Length: 0
+
+

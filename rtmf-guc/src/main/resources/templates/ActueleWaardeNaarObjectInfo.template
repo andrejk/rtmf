@@ -1,0 +1,13 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header xmlns:wsa="http://www.w3.org/2005/08/addressing">
+   	<wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/bevragenRequest/stelselBevragenService</wsa:Action>
+   	<wsa:MessageID>${messageId}</wsa:MessageID>
+   	<wsa:To>http://localhost:63081/rtmfguc/actueleWaardenService</wsa:To>
+   </soapenv:Header>
+   <soapenv:Body>
+      <stelgm:getObjectInfo xmlns:stelgm="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+         <stelgm:BRTag>${brTag}</stelgm:BRTag>
+         <stelgm:ObjectTag>${objectTag}</stelgm:ObjectTag>
+      </stelgm:getObjectInfo>
+   </soapenv:Body>
+</soapenv:Envelope>

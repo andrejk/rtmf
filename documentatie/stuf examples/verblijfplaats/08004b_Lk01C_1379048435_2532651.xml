@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<kennisgevingsBericht xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.egem.nl/StUF/sector/bg/0204">
+  <stuurgegevens xmlns="http://www.egem.nl/StUF/StUF0204">
+    <berichtsoort>Lk01</berichtsoort>
+    <entiteittype>PRS</entiteittype>
+    <sectormodel>BG</sectormodel>
+    <versieStUF>0204</versieStUF>
+    <versieSectormodel>0204</versieSectormodel>
+    <zender>
+      <applicatie>DDS</applicatie>
+      <gebruiker>PRODPIV</gebruiker>
+    </zender>
+    <ontvanger>
+      <applicatie>DDS</applicatie>
+    </ontvanger>
+    <referentienummer>2532651_08004b</referentienummer>
+    <tijdstipBericht>2009032514384259</tijdstipBericht>
+    <kennisgeving>
+      <mutatiesoort>C</mutatiesoort>
+      <indicatorOvername>V</indicatorOvername>
+      <tijdstipMutatie>2009050505050500</tijdstipMutatie>
+    </kennisgeving>
+  </stuurgegevens>
+  <body>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="1679987" d5p1:verwerkingssoort="W" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer>1379048435</a-nummer> 
+      <bsn-nummer>652193031</bsn-nummer> 
+      <voornamen>Julia Maria</voornamen> 
+      <voorletters>JM</voorletters> 
+      <voorvoegselGeslachtsnaam>dos</voorvoegselGeslachtsnaam> 
+      <geslachtsnaam>Reis Silva Andre</geslachtsnaam> 
+      <geboortedatum>19640525</geboortedatum> 
+      <geboorteplaats>0000</geboorteplaats> 
+      <codeGeboorteland>8041</codeGeboorteland> 
+      <geslachtsaanduiding>V</geslachtsaanduiding> 
+      <codeLandEmigratie>7051</codeLandEmigratie>
+      <PRSADRCOR d5p1:soortEntiteit="R" d5p1:verwerkingssoort="W">
+        <ADR d5p1:soortEntiteit="F" d5p1:verwerkingssoort="I">
+          <adresBuitenland1>Rua Latino Coelho Nr 20 2e-ESQ,</adresBuitenland1> 
+          <adresBuitenland2>Venda Nova - Amadora</adresBuitenland2> 
+          <adresBuitenland3 d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <landcode>7051</landcode> 
+          <postcode d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <woonplaatsnaam d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <postbusnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <antwoordnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <straatnaam d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <huisnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <huisletter d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <huisnummertoevoeging d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <aanduidingBijHuisnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <locatieomschrijving d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <locatieadresnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <gemeentecode d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+        </ADR>
+      </PRSADRCOR>
+    </PRS>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="1679987" d5p1:verwerkingssoort="W" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer>1379048435</a-nummer> 
+      <bsn-nummer>652193031</bsn-nummer> 
+      <voornamen>Julia Maria</voornamen> 
+      <voorletters>JM</voorletters> 
+      <voorvoegselGeslachtsnaam>dos</voorvoegselGeslachtsnaam> 
+      <geslachtsnaam>Reis Silva Andre</geslachtsnaam> 
+      <geboortedatum>19640525</geboortedatum> 
+      <geboorteplaats>0000</geboorteplaats> 
+      <codeGeboorteland>8041</codeGeboorteland> 
+      <geslachtsaanduiding>V</geslachtsaanduiding> 
+      <codeLandEmigratie>7050</codeLandEmigratie>
+      <PRSADRCOR d5p1:soortEntiteit="R" d5p1:verwerkingssoort="W">
+        <ADR d5p1:soortEntiteit="F" d5p1:verwerkingssoort="I">
+          <adresBuitenland1>Rua Latino Coelho Nr 20 2e-ESQ,</adresBuitenland1> 
+          <adresBuitenland2>Venda Nova - Amadora</adresBuitenland2> 
+          <adresBuitenland3 d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <landcode>7050</landcode> 
+          <postcode d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <woonplaatsnaam d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <postbusnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <antwoordnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <straatnaam d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <huisnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <huisletter d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <huisnummertoevoeging d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <aanduidingBijHuisnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <locatieomschrijving d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <locatieadresnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <gemeentecode d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+        </ADR>
+      </PRSADRCOR>
+    </PRS>
+  </body>
+</kennisgevingsBericht>

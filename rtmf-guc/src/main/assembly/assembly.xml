@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<assembly>
+    <id>bin</id>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>        
+        <fileSet>
+            <directory>../documentatie</directory>
+            <outputDirectory>/01.Documentatie</outputDirectory>
+            <includes>
+                <include>ontwerp documentatie\Koppeling Gegevensmagazijn/*</include>
+                <include>ontwerp documentatie\Koppeling Zakenmagazijn/*</include>
+                <include>osbgw-configuratie/*</include>
+                <include>referentie documentatie/*</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>../documentatie</directory>
+            <outputDirectory>/02.Planning</outputDirectory>
+            <includes>
+                <include>niets.niets</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>../documentatie/ontwerp documentatie\PSA en Offerte</directory>
+            <outputDirectory>/03.Ontwerp</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>target</directory>
+            <outputDirectory>/04.Deployment</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>src\main\resources</directory>
+            <outputDirectory>/04.Deployment</outputDirectory>
+            <includes>
+                <include>mule-config.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>../documentatie/installatie</directory>
+            <outputDirectory>/04.Deployment</outputDirectory>
+            <includes>
+                <include>Installatiehandleiding.doc</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>../documentatie/test documentatie</directory>
+            <outputDirectory>/05.Test</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>src</directory>
+            <outputDirectory>/07.Sources</outputDirectory>
+        </fileSet>
+    </fileSets>
+</assembly>

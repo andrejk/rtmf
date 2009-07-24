@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<!--  - Application context definition for "springapp" DispatcherServlet.  -->
+<beans>
+	<bean id="brod" class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectData">
+		<property name="broaLijst">
+			<list>
+				<bean id="brkpervn" class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+					<property name="tag"><value>VN</value></property>
+					<property name="naam"><value>Voornaam</value></property>
+					<property name="waarde"><value>Peter</value></property>
+				</bean>
+				<bean id="brkperan" class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+					<property name="tag"><value>AN</value></property>
+					<property name="naam"><value>Achternaam</value></property>
+					<property name="waarde"><value>Boevink</value></property>
+				</bean>
+			</list>
+		</property>
+		<property name="bevraagbaar">
+			<value>true</value>
+		</property>
+		<property name="instructie">
+			<value>Instructie voor deze Persoon</value>
+		</property>
+		<property name="naam">
+			<value>Persoon</value>
+		</property>
+		<property name="tag">
+			<value>PER</value>
+		</property>
+	</bean>
+</beans>

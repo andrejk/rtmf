@@ -1,0 +1,1104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by M. van den Broek (messageDesign) -->
+<schema xmlns:StUF="http://www.egem.nl/StUF/StUF0300" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.egem.nl/StUF/StUF0300" elementFormDefault="qualified" attributeFormDefault="unqualified" version="030001ka">
+	<annotation>
+		<documentation xml:lang="nl">
+               Dit schema  correspondeert met StUF 03.00 (Kandidaat aanbeveling)
+               Wijzigingen t.o.v. 030000:
+               simpleType Dienstnaam hernoemd naar Functie
+               simpleType Mutatiesoort gedefinieerd als restriction op simpleType Functie
+               element stuurgegevens verwijderd
+               ParametersKennisgeving vervangen door ParametersLk01, ParametersLk02, ParametersLk03, ParametersLk04, ParametersSx01
+               ParametersAntwoord vervangen door ParametersLa01 en ParametersLa02
+               ParametersVraag vervangen door ParametersLv01 en ParametersLv02
+               ParametersLk0nTinSa0n en ParametersLk0nWInSa0n toegevoegd
+               attribute toegevoegd in de attribute groups entiteit en entiteitZonderSleutels
+         </documentation>
+	</annotation>
+	<!--Definitie van complexTypes die gekopieerd kunnen worden naar een target namespace ten behoeve van restricties
+		 Na het kopieren dient in het gekopieerde complexType de namespace nog vervangen te worden door de namespace van het sectormodel -->
+	<complexType name="StUFBericht">
+		<sequence>
+			<element name="stuurgegevens" type="StUF:Stuurgegevens"/>
+			<element name="body" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="VraagberichtBody">
+		<sequence>
+			<element name="gelijk" type="StUF:AnytypeTargetMetEntiteittype" minOccurs="0"/>
+			<sequence minOccurs="0">
+				<element name="vanaf" type="StUF:AnytypeTargetMetEntiteittype"/>
+				<element name="totEnMet" type="StUF:AnytypeTargetMetEntiteittype"/>
+			</sequence>
+			<element name="scope" type="StUF:AnytypeTargetMetEntiteittype" minOccurs="0"/>
+			<element name="start" type="StUF:AnytypeTargetMetEntiteittype" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="VrijberichtBody">
+		<sequence>
+			<element name="parameters" type="StUF:AnytypeTarget" minOccurs="0"/>
+			<element name="melding" type="StUF:Melding" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="vraag" type="StUF:VrijberichtVraag" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="update" type="StUF:VrijberichtUpdate" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="zaakInfo" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="VrijberichtUpdate">
+		<sequence>
+			<element name="parametersKennisgeving" type="StUF:ParametersKennisgeving" minOccurs="0"/>
+			<element name="parameters" type="StUF:AnytypeTarget" minOccurs="0"/>
+			<element name="object" type="StUF:AnytypeKennisgeving" maxOccurs="2"/>
+		</sequence>
+	</complexType>
+	<complexType name="VrijberichtVraag">
+		<sequence>
+			<element name="parametersVraag" type="StUF:ParametersVraag" minOccurs="0"/>
+			<element name="parameters" type="StUF:AnytypeTarget" minOccurs="0"/>
+			<element name="gelijk" type="StUF:AnytypeTargetMetEntiteittype" minOccurs="0"/>
+			<sequence minOccurs="0">
+				<element name="vanaf" type="StUF:AnytypeTargetMetEntiteittype"/>
+				<element name="totEnMet" type="StUF:AnytypeTargetMetEntiteittype"/>
+			</sequence>
+			<element name="scope" type="StUF:AnytypeTargetMetEntiteittype" minOccurs="0"/>
+			<element name="start" type="StUF:AnytypeTargetMetEntiteittype" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!--Definitie van complexTypes ten behoeve van Stuurgegevens -->
+	<complexType name="ParametersLa01">
+		<sequence>
+			<element name="indicatorVervolgvraag" type="boolean"/>
+			<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+			<element name="aantalVoorkomens" type="StUF:AantalVoorkomens" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="ParametersLa02">
+		<sequence>
+			<element name="indicatorVervolgvraag" type="boolean"/>
+			<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+			<element name="sequenceNumber" type="StUF:SequenceNumber"/>
+			<element name="indicatorLaatsteBericht" type="boolean" default="false" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="ParametersKennisgeving">
+		<sequence>
+			<element name="mutatiesoort" type="StUF:Mutatiesoort" minOccurs="0"/>
+			<element name="eventcode" type="StUF:Eventcode" minOccurs="0"/>
+			<element name="indicatorOvername" type="StUF:IndicatorOvername" default="V" minOccurs="0"/>
+			<element name="tijdstipMutatie" type="StUF:Tijdstip" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="ParametersLk01">
+		<complexContent>
+			<restriction base="StUF:ParametersKennisgeving">
+				<sequence>
+					<element name="mutatiesoort" type="StUF:Mutatiesoort"/>
+					<element name="eventcode" type="StUF:Eventcode" minOccurs="0"/>
+					<element name="indicatorOvername" type="StUF:IndicatorOvername" default="V"/>
+					<element name="tijdstipMutatie" type="StUF:Tijdstip" minOccurs="0"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ParametersLk01TInSx01">
+		<complexContent>
+			<restriction base="StUF:ParametersKennisgeving">
+				<sequence>
+					<element name="mutatiesoort" type="StUF:Mutatiesoort" fixed="T"/>
+					<element name="indicatorOvername" type="StUF:IndicatorOvername" fixed="V"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ParametersLk01WInSx01">
+		<complexContent>
+			<restriction base="StUF:ParametersKennisgeving">
+				<sequence>
+					<element name="mutatiesoort" type="StUF:Mutatiesoort" fixed="W"/>
+					<element name="indicatorOvername" type="StUF:IndicatorOvername" fixed="V"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ParametersLk02">
+		<complexContent>
+			<restriction base="StUF:ParametersKennisgeving">
+				<sequence>
+					<element name="mutatiesoort" type="StUF:Mutatiesoort"/>
+					<element name="eventcode" type="StUF:Eventcode" minOccurs="0"/>
+					<element name="tijdstipMutatie" type="StUF:Tijdstip" minOccurs="0"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ParametersLk02TInSx02">
+		<complexContent>
+			<restriction base="StUF:ParametersKennisgeving">
+				<sequence>
+					<element name="mutatiesoort" type="StUF:Mutatiesoort" fixed="T"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ParametersLk02WInSx02">
+		<complexContent>
+			<restriction base="StUF:ParametersKennisgeving">
+				<sequence>
+					<element name="mutatiesoort" type="StUF:Mutatiesoort" fixed="W"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ParametersLk03">
+		<complexContent>
+			<restriction base="StUF:ParametersKennisgeving">
+				<sequence>
+					<element name="eventcode" type="StUF:Eventcode" minOccurs="0"/>
+					<element name="indicatorOvername" type="StUF:IndicatorOvername" default="V"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ParametersLk04">
+		<complexContent>
+			<restriction base="StUF:ParametersKennisgeving">
+				<sequence>
+					<element name="eventcode" type="StUF:Eventcode" minOccurs="0"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ParametersSx01">
+		<complexContent>
+			<restriction base="StUF:ParametersKennisgeving">
+				<sequence>
+					<element name="indicatorOvername" type="StUF:IndicatorOvername" default="V"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ParametersLv01">
+		<complexContent>
+			<restriction base="StUF:ParametersVraag">
+				<sequence>
+					<element name="sortering" type="StUF:Sortering"/>
+					<element name="indicatorVervolgvraag" type="boolean"/>
+					<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+					<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+					<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+					<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ParametersLv02">
+		<complexContent>
+			<restriction base="StUF:ParametersVraag">
+				<sequence>
+					<element name="sortering" type="StUF:Sortering"/>
+					<element name="indicatorVervolgvraag" type="boolean"/>
+					<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+					<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+					<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ParametersVraag">
+		<sequence>
+			<element name="sortering" type="StUF:Sortering" minOccurs="0"/>
+			<element name="indicatorVervolgvraag" type="boolean" minOccurs="0"/>
+			<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+			<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+			<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+			<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="Stuurgegevens">
+		<sequence>
+			<element name="versieStUF" type="StUF:Versienr" fixed="0300"/>
+			<element name="sectormodel" type="string" minOccurs="0"/>
+			<element name="versieSectormodel" type="StUF:Versienr" minOccurs="0"/>
+			<element name="berichtcode" type="StUF:Berichtcode"/>
+			<element name="zender" type="StUF:Systeem"/>
+			<element name="ontvanger" type="StUF:Systeem"/>
+			<element name="referentienummer" type="StUF:Refnummer"/>
+			<element name="tijdstipBericht" type="StUF:Tijdstip"/>
+			<element name="crossRefnummer" type="StUF:Refnummer" minOccurs="0"/>
+			<element name="entiteittype" type="StUF:Entiteittype" minOccurs="0"/>
+			<element name="functie" type="StUF:Functie" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<!--definitie van elementen voor door StUF gedefinieerde berichten-->
+	<element name="Fo01Bericht">
+		<complexType>
+			<sequence>
+				<element name="stuurgegevens">
+					<complexType>
+						<complexContent>
+							<restriction base="StUF:Stuurgegevens">
+								<sequence>
+									<element name="versieStUF" type="StUF:Versienr" fixed="0300"/>
+									<element name="sectormodel" type="string"/>
+									<element name="versieSectormodel" type="StUF:Versienr"/>
+									<element name="berichtcode" type="StUF:Berichtcode" fixed="Fo01"/>
+									<element name="zender" type="StUF:Systeem"/>
+									<element name="ontvanger" type="StUF:Systeem"/>
+									<element name="referentienummer" type="StUF:Refnummer"/>
+									<element name="tijdstipBericht" type="StUF:Tijdstip"/>
+									<element name="crossRefnummer" type="StUF:Refnummer"/>
+								</sequence>
+							</restriction>
+						</complexContent>
+					</complexType>
+				</element>
+				<element name="body" type="StUF:Foutbericht"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="Fo02Bericht">
+		<complexType>
+			<sequence>
+				<element name="stuurgegevens">
+					<complexType>
+						<complexContent>
+							<restriction base="StUF:Stuurgegevens">
+								<sequence>
+									<element name="versieStUF" type="StUF:Versienr" fixed="0300"/>
+									<element name="sectormodel" type="string"/>
+									<element name="versieSectormodel" type="StUF:Versienr"/>
+									<element name="berichtcode" type="StUF:Berichtcode" fixed="Fo02"/>
+									<element name="zender" type="StUF:Systeem"/>
+									<element name="ontvanger" type="StUF:Systeem"/>
+									<element name="referentienummer" type="StUF:Refnummer"/>
+									<element name="tijdstipBericht" type="StUF:Tijdstip"/>
+									<element name="crossRefnummer" type="StUF:Refnummer"/>
+								</sequence>
+							</restriction>
+						</complexContent>
+					</complexType>
+				</element>
+				<element name="body" type="StUF:Foutbericht"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="Fo03Bericht">
+		<complexType>
+			<sequence>
+				<element name="stuurgegevens">
+					<complexType>
+						<complexContent>
+							<restriction base="StUF:Stuurgegevens">
+								<sequence>
+									<element name="versieStUF" type="StUF:Versienr" fixed="0300"/>
+									<element name="sectormodel" type="string"/>
+									<element name="versieSectormodel" type="StUF:Versienr"/>
+									<element name="berichtcode" type="StUF:Berichtcode" fixed="Fo03"/>
+									<element name="zender" type="StUF:Systeem"/>
+									<element name="ontvanger" type="StUF:Systeem"/>
+									<element name="referentienummer" type="StUF:Refnummer"/>
+									<element name="tijdstipBericht" type="StUF:Tijdstip"/>
+									<element name="crossRefnummer" type="StUF:Refnummer"/>
+								</sequence>
+							</restriction>
+						</complexContent>
+					</complexType>
+				</element>
+				<element name="body" type="StUF:Foutbericht"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="Fo04Bericht">
+		<complexType>
+			<sequence>
+				<element name="stuurgegevens">
+					<complexType>
+						<complexContent>
+							<restriction base="StUF:Stuurgegevens">
+								<sequence>
+									<element name="versieStUF" type="StUF:Versienr" fixed="0300"/>
+									<element name="berichtcode" type="StUF:Berichtcode" fixed="Fo04"/>
+									<element name="zender" type="StUF:Systeem"/>
+									<element name="ontvanger" type="StUF:Systeem"/>
+									<element name="referentienummer" type="StUF:Refnummer"/>
+									<element name="tijdstipBericht" type="StUF:Tijdstip"/>
+									<element name="crossRefnummer" type="StUF:Refnummer"/>
+								</sequence>
+							</restriction>
+						</complexContent>
+					</complexType>
+				</element>
+				<element name="body" type="StUF:Foutbericht"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="Bv01Bericht">
+		<complexType>
+			<sequence>
+				<element name="stuurgegevens">
+					<complexType>
+						<complexContent>
+							<restriction base="StUF:Stuurgegevens">
+								<sequence>
+									<element name="versieStUF" type="StUF:Versienr" fixed="0300"/>
+									<element name="sectormodel" type="string"/>
+									<element name="versieSectormodel" type="StUF:Versienr"/>
+									<element name="berichtcode" type="StUF:Berichtcode" fixed="Bv01"/>
+									<element name="zender" type="StUF:Systeem"/>
+									<element name="ontvanger" type="StUF:Systeem"/>
+									<element name="referentienummer" type="StUF:Refnummer"/>
+									<element name="tijdstipBericht" type="StUF:Tijdstip"/>
+									<element name="crossRefnummer" type="StUF:Refnummer"/>
+								</sequence>
+							</restriction>
+						</complexContent>
+					</complexType>
+				</element>
+				<element name="body" type="StUF:Bevestigingsbericht"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="Bv02Bericht">
+		<complexType>
+			<sequence>
+				<element name="stuurgegevens">
+					<complexType>
+						<complexContent>
+							<restriction base="StUF:Stuurgegevens">
+								<sequence>
+									<element name="versieStUF" type="StUF:Versienr" fixed="0300"/>
+									<element name="sectormodel" type="string"/>
+									<element name="versieSectormodel" type="StUF:Versienr"/>
+									<element name="berichtcode" type="StUF:Berichtcode" fixed="Bv02"/>
+									<element name="zender" type="StUF:Systeem"/>
+									<element name="ontvanger" type="StUF:Systeem"/>
+									<element name="referentienummer" type="StUF:Refnummer"/>
+									<element name="tijdstipBericht" type="StUF:Tijdstip"/>
+									<element name="crossRefnummer" type="StUF:Refnummer"/>
+								</sequence>
+							</restriction>
+						</complexContent>
+					</complexType>
+				</element>
+				<element name="body" type="StUF:Bevestigingsbericht"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="Bv03Bericht">
+		<complexType>
+			<sequence>
+				<element name="stuurgegevens">
+					<complexType>
+						<complexContent>
+							<restriction base="StUF:Stuurgegevens">
+								<sequence>
+									<element name="versieStUF" type="StUF:Versienr" fixed="0300"/>
+									<element name="sectormodel" type="string"/>
+									<element name="versieSectormodel" type="StUF:Versienr"/>
+									<element name="berichtcode" type="StUF:Berichtcode" fixed="Bv03"/>
+									<element name="zender" type="StUF:Systeem"/>
+									<element name="ontvanger" type="StUF:Systeem"/>
+									<element name="referentienummer" type="StUF:Refnummer"/>
+									<element name="tijdstipBericht" type="StUF:Tijdstip"/>
+									<element name="crossRefnummer" type="StUF:Refnummer"/>
+								</sequence>
+							</restriction>
+						</complexContent>
+					</complexType>
+				</element>
+				<element name="body">
+					<complexType>
+						<complexContent>
+							<restriction base="StUF:Bevestigingsbericht"/>
+						</complexContent>
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="Bv04Bericht">
+		<complexType>
+			<sequence>
+				<element name="stuurgegevens">
+					<complexType>
+						<complexContent>
+							<restriction base="StUF:Stuurgegevens">
+								<sequence>
+									<element name="versieStUF" type="StUF:Versienr" fixed="0300"/>
+									<element name="sectormodel" type="string"/>
+									<element name="versieSectormodel" type="StUF:Versienr"/>
+									<element name="berichtcode" type="StUF:Berichtcode" fixed="Bv04"/>
+									<element name="zender" type="StUF:Systeem"/>
+									<element name="ontvanger" type="StUF:Systeem"/>
+									<element name="referentienummer" type="StUF:Refnummer"/>
+									<element name="tijdstipBericht" type="StUF:Tijdstip"/>
+									<element name="crossRefnummer" type="StUF:Refnummer"/>
+								</sequence>
+							</restriction>
+						</complexContent>
+					</complexType>
+				</element>
+				<element name="body">
+					<complexType>
+						<complexContent>
+							<restriction base="StUF:Bevestigingsbericht"/>
+						</complexContent>
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="Bv05Bericht">
+		<complexType>
+			<sequence>
+				<element name="stuurgegevens">
+					<complexType>
+						<complexContent>
+							<restriction base="StUF:Stuurgegevens">
+								<sequence>
+									<element name="versieStUF" type="StUF:Versienr" fixed="0300"/>
+									<element name="berichtcode" type="StUF:Berichtcode" fixed="Bv05"/>
+									<element name="zender" type="StUF:Systeem"/>
+									<element name="ontvanger" type="StUF:Systeem"/>
+									<element name="referentienummer" type="StUF:Refnummer"/>
+									<element name="tijdstipBericht" type="StUF:Tijdstip"/>
+									<element name="crossRefnummer" type="StUF:Refnummer"/>
+								</sequence>
+							</restriction>
+						</complexContent>
+					</complexType>
+				</element>
+				<element name="body">
+					<complexType>
+						<complexContent>
+							<restriction base="StUF:Bevestigingsbericht"/>
+						</complexContent>
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="Tr01Bericht">
+		<complexType>
+			<sequence>
+				<element name="stuurgegevens">
+					<complexType>
+						<complexContent>
+							<restriction base="StUF:Stuurgegevens">
+								<sequence>
+									<element name="versieStUF" type="StUF:Versienr" fixed="0300"/>
+									<element name="berichtcode" type="StUF:Berichtcode" fixed="Tr01"/>
+									<element name="zender" type="StUF:Systeem"/>
+									<element name="ontvanger" type="StUF:Systeem"/>
+									<element name="referentienummer" type="StUF:Refnummer"/>
+									<element name="tijdstipBericht" type="StUF:Tijdstip"/>
+								</sequence>
+							</restriction>
+						</complexContent>
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+	<!--definitie van het omhullende element voor uitwisseling via een bestand -->
+	<element name="StUF-berichtenSet">
+		<annotation>
+			<documentation xml:lang="nl">In het schema van de StUF-standaard kan dit element slechts gedefinieerd worden met als types anyType voor de
+				elementen die voor kunnen komen in een berichtenbestand. De verschillende sectormodellen definieren deze 
+				elementen in meer detail. Een correcte validatie is mogelijk door in het bericht expliciet het sectormodel te specificeren
+				waartegen het bericht gevalideerd dient te worden.
+			</documentation>
+		</annotation>
+		<complexType>
+			<choice minOccurs="0" maxOccurs="unbounded">
+				<element name="bericht" type="StUF:StUFBericht"/>
+			</choice>
+		</complexType>
+	</element>
+	<!--definitie van het transmissionError element tbv WSDL beschrijvingen -->
+	<element name="extraElement" nillable="true">
+		<complexType>
+			<simpleContent>
+				<extension base="string">
+					<attributeGroup ref="StUF:element"/>
+					<attribute name="naam" type="string" use="required"/>
+				</extension>
+			</simpleContent>
+		</complexType>
+	</element>
+	<!--attribute groups met de attributen van een entiteit en een element-->
+	<attributeGroup name="entiteit">
+		<attribute ref="StUF:sleutelVerzendend"/>
+		<attribute ref="StUF:sleutelOntvangend"/>
+		<attribute ref="StUF:sleutelGegevensbeheer"/>
+		<attribute ref="StUF:noValue"/>
+		<attribute ref="StUF:scope"/>
+		<attribute ref="StUF:verwerkingssoort"/>
+	</attributeGroup>
+	<attributeGroup name="entiteitZonderSleutels">
+		<attribute ref="StUF:noValue"/>
+		<attribute ref="StUF:scope"/>
+		<attribute ref="StUF:verwerkingssoort"/>
+	</attributeGroup>
+	<attributeGroup name="element">
+		<attribute ref="StUF:noValue"/>
+		<attribute ref="StUF:exact"/>
+	</attributeGroup>
+	<!--definitie van de verschillende attributes-->
+	<attribute name="entiteittype" type="StUF:Entiteittype"/>
+	<attribute name="sleutelVerzendend" type="StUF:Sleutel"/>
+	<attribute name="sleutelOntvangend" type="StUF:Sleutel"/>
+	<attribute name="sleutelGegevensbeheer" type="StUF:Sleutel"/>
+	<attribute name="verwerkingssoort" type="StUF:Verwerkingssoort"/>
+	<attribute name="indOnvolledigeDatum" type="StUF:IndOnvolledigeDatum" default="V"/>
+	<attribute name="noValue" type="StUF:NoValue"/>
+	<attribute name="exact" type="boolean" default="true"/>
+	<attribute name="scope">
+		<simpleType>
+			<restriction base="string">
+				<enumeration value="alles"/>
+				<enumeration value="kerngegevens"/>
+			</restriction>
+		</simpleType>
+	</attribute>
+	<!--definitie complexTypes -->
+	<complexType name="AnytypeKennisgeving">
+		<sequence>
+			<any namespace="##targetNamespace" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute ref="StUF:entiteittype" use="required"/>
+		<attributeGroup ref="StUF:entiteit"/>
+	</complexType>
+	<complexType name="AnytypeOther">
+		<sequence>
+			<any namespace="##other" processContents="lax" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="AnytypeTarget">
+		<sequence>
+			<any namespace="##targetNamespace" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="AnytypeTargetMetEntiteittype">
+		<sequence>
+			<any namespace="##targetNamespace" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute ref="StUF:entiteittype" use="required"/>
+	</complexType>
+	<complexType name="Bevestigingsbericht">
+		<sequence>
+			<element name="melding" type="StUF:Melding" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="Datum-e">
+		<simpleContent>
+			<extension base="StUF:Datum">
+				<attributeGroup ref="StUF:element"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="DatumMetIndicator">
+		<simpleContent>
+			<extension base="StUF:Datum-e">
+				<attribute ref="StUF:indOnvolledigeDatum"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="ExtraElementen">
+		<sequence maxOccurs="unbounded">
+			<element ref="StUF:extraElement" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="Foutbericht">
+		<sequence>
+			<element name="code" type="StUF:Foutcode"/>
+			<element name="plek" type="StUF:Foutplek"/>
+			<element name="omschrijving" type="StUF:Foutomschrijving"/>
+			<element name="details" type="StUF:Foutdetails" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="Systeem">
+		<sequence>
+			<element name="organisatie" minOccurs="0">
+				<simpleType>
+					<restriction base="string">
+						<maxLength value="200"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="applicatie">
+				<simpleType>
+					<restriction base="string">
+						<minLength value="3"/>
+						<maxLength value="50"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="administratie" minOccurs="0">
+				<simpleType>
+					<restriction base="string">
+						<maxLength value="50"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="gebruiker" minOccurs="0">
+				<simpleType>
+					<restriction base="string">
+						<maxLength value="100"/>
+					</restriction>
+				</simpleType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="Tijdstip-e">
+		<simpleContent>
+			<extension base="StUF:Tijdstip">
+				<attributeGroup ref="StUF:element"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TijdstipMetIndicator">
+		<simpleContent>
+			<extension base="StUF:Tijdstip-e">
+				<attribute ref="StUF:indOnvolledigeDatum"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="TijdvakGeldigheid">
+		<sequence>
+			<element name="beginGeldigheid" type="StUF:TijdstipMetIndicator" nillable="true"/>
+			<element name="eindGeldigheid" type="StUF:TijdstipMetIndicator" nillable="true"/>
+		</sequence>
+	</complexType>
+	<complexType name="TijdvakObject">
+		<sequence>
+			<element name="beginObject" type="StUF:DatumMetIndicator" nillable="true"/>
+			<element name="eindObject" type="StUF:DatumMetIndicator" nillable="true"/>
+		</sequence>
+	</complexType>
+	<complexType name="TijdvakRelatie">
+		<sequence>
+			<element name="beginRelatie" type="StUF:TijdstipMetIndicator" nillable="true"/>
+			<element name="eindRelatie" type="StUF:TijdstipMetIndicator" nillable="true"/>
+		</sequence>
+	</complexType>
+	<!--definitie simpleTypes-->
+	<simpleType name="AantalVoorkomens">
+		<restriction base="nonNegativeInteger">
+			<maxInclusive value="999999999"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Berichtcode">
+		<restriction base="string">
+			<enumeration value="Bv01">
+				<annotation>
+					<documentation>
+						Bevestigingsbericht dat als functionele respons kan worden verstuurd op een asynchroon bericht
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Bv02">
+				<annotation>
+					<documentation>
+						Bevestigingsbericht dat als functionele respons kan worden verstuurd op een synchroon bericht
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Bv03">
+				<annotation>
+					<documentation>
+						Bevestigingsbericht dat als synchrone respons wordt verstuurd op een asynchroon bericht, indien het ontvangende systeem het bericht op basis van de berichtstuurgegevens heeft gecheckt op verwerkbaarheid
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Bv04">
+				<annotation>
+					<documentation>
+						Bevestigingsbericht dat als respons wordt verstuurd op een asynchroon bericht, dat slechts de aflevering naar de uiteindelijke ontvanger kan garanderen, maar de verwerking niet heeft gecheckt op basis van de berichtstuurgegevens
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Bv05">
+				<annotation>
+					<documentation>
+						Bevestigingsbericht dat als respons wordt verstuurd op een triggerbericht
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Di01">
+				<annotation>
+					<documentation>
+						Asynchroon vrij bericht dat geen respons is op een eerder verzonden vrij bericht. Het kan bijvoorbeeld gaan om een notificatie of het verzoek deel van een aysnchroon verzoek/respons patroon. De 'i' in Di01 staat daarom voor inkomend.
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Di02">
+				<annotation>
+					<documentation>
+						Synchroon vrij bericht waarop een respons wordt verwacht.
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Du01">
+				<annotation>
+					<documentation>
+						Asynchroon vrij bericht dat een respons is op een eerder verzonden vrij bericht met berichtsoort Di01.
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Du02">
+				<annotation>
+					<documentation>
+						Synchrone respons op een inkomend vrij bericht met berichtsoort Di02
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Fo01">
+				<annotation>
+					<documentation>
+						Foutbericht dat als functionele respons kan worden verstuurd op een asynchroon bericht
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Fo02">
+				<annotation>
+					<documentation>
+						Foutbericht dat als functionele respons kan worden verstuurd op een synchroon bericht
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Fo03">
+				<annotation>
+					<documentation>
+						Foutbericht dat als synchrone respons wordt verstuurd op een asynchroon bericht
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Fo04">
+				<annotation>
+					<documentation>
+						Foutbericht dat als respons wordt verstuurd op een triggerbericht
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="La01">
+				<annotation>
+					<documentation>
+						Antwoordbericht als respons op een synchroon vraagbericht (Lv01)
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="La02">
+				<annotation>
+					<documentation>
+						Asynchroon antwoordbericht als respons op een asynchroon vraagbericht (Lv02)
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Lk01">
+				<annotation>
+					<documentation>
+						Asynchroon atomair kennisgevingbericht
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Lk02">
+				<annotation>
+					<documentation>
+						Synchroon atomair kennisgevingbericht
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Lk03">
+				<annotation>
+					<documentation>
+						Asynchroon samengesteld kennisgevingbericht of transactie
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Lk04">
+				<annotation>
+					<documentation>
+						Synchroon samengesteld kennisgevingbericht of transactie
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Lv01">
+				<annotation>
+					<documentation>
+						Synchroon vraagbericht
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Lv02">
+				<annotation>
+					<documentation>
+						Asynchroon vraagbericht
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Sa01">
+				<annotation>
+					<documentation>
+						Asynchroon synchronisatiebericht voor actuele gegevens
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Sh01">
+				<annotation>
+					<documentation>
+						Asynchroon synchronisatiebericht voor actuele en historische gegevens
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Sa02">
+				<annotation>
+					<documentation>
+						Synchroon synchronisatiebericht voor actuele gegevens
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Sh02">
+				<annotation>
+					<documentation>
+						Synchroon synchronisatiebericht voor actuele en historische gegevens
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Tr01">
+				<annotation>
+					<documentation>
+						Triggerbericht
+					</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="Datum">
+		<annotation>
+			<documentation>Er is niet aangesloten bij date, omdat hier allerlei opmaak in zit</documentation>
+		</annotation>
+		<restriction base="decimal">
+			<totalDigits value="8"/>
+			<fractionDigits value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Functie">
+		<restriction base="string">
+			<maxLength value="30"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Entiteittype">
+		<restriction base="string">
+			<maxLength value="30"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Eventcode">
+		<restriction base="string">
+			<maxLength value="7"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Foutcode">
+		<restriction base="string">
+			<maxLength value="7"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Melding">
+		<restriction base="string">
+			<maxLength value="250"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Foutplek">
+		<restriction base="string">
+			<enumeration value="client"/>
+			<enumeration value="server"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Foutomschrijving">
+		<restriction base="string">
+			<maxLength value="200"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Foutdetails">
+		<restriction base="string">
+			<maxLength value="1000"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="IndicatorHistorisch">
+		<restriction base="string">
+			<enumeration value="E">
+				<annotation>
+					<documentation xml:lang="nl">
+						Historie op entiteitsniveau
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="G">
+				<annotation>
+					<documentation xml:lang="nl">
+						Historie op groepsniveau
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="N">
+				<annotation>
+					<documentation xml:lang="nl">
+						Geen historie: alleen actuele gegevens
+					</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="IndicatorOvername">
+		<restriction base="string">
+			<enumeration value="I">
+				<annotation>
+					<documentation xml:lang="nl">Informatief</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="V">
+				<annotation>
+					<documentation xml:lang="nl">Verplicht</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="IndOnvolledigeDatum">
+		<restriction base="string">
+			<enumeration value="J">
+				<annotation>
+					<documentation xml:lang="nl">de datum heeft een waarde maar jaar, maand en dag zijn onbekend</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="M">
+				<annotation>
+					<documentation xml:lang="nl">de datum heeft een waarde maar maand en dag zijn onbekend</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="D">
+				<annotation>
+					<documentation xml:lang="nl">de datum heeft een waarde maar de dag is onbekend</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="V">
+				<annotation>
+					<documentation xml:lang="nl">datum is volledig</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="MaximumAantal">
+		<restriction base="nonNegativeInteger">
+			<totalDigits value="8"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Mutatiesoort">
+		<restriction base="StUF:Functie">
+			<enumeration value="T">
+				<annotation>
+					<documentation xml:lang="nl">Toevoeging</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="W">
+				<annotation>
+					<documentation xml:lang="nl">Wijziging</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="V">
+				<annotation>
+					<documentation xml:lang="nl">Verwijdering</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="C">
+				<annotation>
+					<documentation xml:lang="nl">Correctie</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="NoValue">
+		<restriction base="string">
+			<enumeration value="nietOndersteund"/>
+			<enumeration value="nietGeautoriseerd"/>
+			<enumeration value="geenWaarde"/>
+			<enumeration value="waardeOnbekend"/>
+			<enumeration value="vastgesteldOnbekend"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Refnummer">
+		<restriction base="string">
+			<maxLength value="12"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SequenceNumber">
+		<restriction base="positiveInteger">
+			<maxInclusive value="99999999"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Sleutel">
+		<restriction base="string">
+			<maxLength value="40"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Sortering">
+		<restriction base="nonNegativeInteger">
+			<totalDigits value="2"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Tijdstip">
+		<restriction base="string">
+			<pattern value="[0-9]{8,17}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Versienr">
+		<restriction base="string">
+			<minLength value="4"/>
+			<maxLength value="4"/>
+			<pattern value="[0-9]{4}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Verwerkingssoort">
+		<restriction base="string">
+			<maxLength value="1"/>
+			<enumeration value="T">
+				<annotation>
+					<documentation xml:lang="nl">Toevoeging</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="W">
+				<annotation>
+					<documentation xml:lang="nl">Wijziging of correctie</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="V">
+				<annotation>
+					<documentation xml:lang="nl">Verwijdering</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="E">
+				<annotation>
+					<documentation xml:lang="nl"> Een relatie entiteit wordt beeindigd.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="I">
+				<annotation>
+					<documentation xml:lang="nl">Entiteit bevat alleen identificerende gegevens.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="R">
+				<annotation>
+					<documentation xml:lang="nl">Een relatie entiteit wordt vervangen door een nieuwe relatie entiteit.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="S">
+				<annotation>
+					<documentation xml:lang="nl"> De sleutel van een entiteit wordt gewijzigd.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="O">
+				<annotation>
+					<documentation xml:lang="nl"> Het object in de oude entiteit wordt in het kader van een ontdubbeling samengevoegd met het object in de nieuwe entiteit. Het object in de oude entiteit komt niet voor in het zendende systeem. Objecten in een systeem worden veelal ontdubbeld als blijkt dat ze verwijzen naar hetzelfde object in de werkelijkheid.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+</schema>

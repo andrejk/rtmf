@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<kennisgevingsBericht xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.egem.nl/StUF/sector/bg/0204">
+  <stuurgegevens xmlns="http://www.egem.nl/StUF/StUF0204">
+    <berichtsoort>Lk01</berichtsoort>
+    <entiteittype>PRS</entiteittype>
+    <sectormodel>BG</sectormodel>
+    <versieStUF>0204</versieStUF>
+    <versieSectormodel>0204</versieSectormodel>
+    <zender>
+      <applicatie>DDS</applicatie>
+      <gebruiker>PRODPIV</gebruiker>
+    </zender>
+    <ontvanger>
+      <applicatie>DDS</applicatie>
+    </ontvanger>
+    <referentienummer>2451201_02006b</referentienummer>
+    <tijdstipBericht>2009032514384259</tijdstipBericht>
+    <kennisgeving>
+      <mutatiesoort>W</mutatiesoort>
+      <indicatorOvername>V</indicatorOvername>
+      <tijdstipMutatie>2009030303030300</tijdstipMutatie>
+    </kennisgeving>
+  </stuurgegevens>
+  <body>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="40589" d5p1:verwerkingssoort="I" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer>1396343249</a-nummer> 
+      <bsn-nummer>135516031</bsn-nummer> 
+      <PRSPRSOUD d5p1:soortEntiteit="R" d5p1:verwerkingssoort="W">
+        <ingangsdatum>0</ingangsdatum> 
+        <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="768930" d5p1:verwerkingssoort="I">
+          <a-nummer>8173868248</a-nummer> 
+          <bsn-nummer>88888940</bsn-nummer> 
+          <voornamen>Aleida Diderica</voornamen> 
+          <voorletters>AD</voorletters> 
+          <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <geslachtsnaam>Westhof</geslachtsnaam> 
+          <geboortedatum>19420502</geboortedatum> 
+          <geslachtsaanduiding>V</geslachtsaanduiding> 
+        </PRS>
+      </PRSPRSOUD>
+      <PRSPRSOUD d5p1:soortEntiteit="R" d5p1:verwerkingssoort="E">
+        <ingangsdatum>0</ingangsdatum> 
+        <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="987654321" d5p1:verwerkingssoort="I">
+          <a-nummer>0207020702</a-nummer> 
+          <bsn-nummer d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <voornamen>Winny</voornamen> 
+          <voorletters>W</voorletters> 
+          <voorvoegselGeslachtsnaam>de</voorvoegselGeslachtsnaam> 
+          <geslachtsnaam>Pooh</geslachtsnaam> 
+          <geboortedatum>19410113</geboortedatum> 
+          <geslachtsaanduiding>M</geslachtsaanduiding> 
+          <PRSADRVBL d5p1:soortEntiteit="R" d5p1:verwerkingssoort="I" d5p1:noValue="waardeOnbekend" xsi:nil="true" /> 
+        </PRS>
+      </PRSPRSOUD>
+    </PRS>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="40589" d5p1:verwerkingssoort="I" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer>1396343249</a-nummer> 
+      <bsn-nummer>135516031</bsn-nummer> 
+      <PRSPRSOUD d5p1:soortEntiteit="R" d5p1:verwerkingssoort="W">
+        <ingangsdatum>0</ingangsdatum> 
+        <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="768930" d5p1:verwerkingssoort="I">
+          <a-nummer>8173868248</a-nummer> 
+          <bsn-nummer>88888940</bsn-nummer> 
+          <voornamen>Aleida Diderica</voornamen> 
+          <voorletters>AD</voorletters> 
+          <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <geslachtsnaam>Westhof</geslachtsnaam> 
+          <geboortedatum>19420502</geboortedatum> 
+          <geslachtsaanduiding>V</geslachtsaanduiding> 
+        </PRS>
+      </PRSPRSOUD>
+      <PRSPRSOUD d5p1:soortEntiteit="R" d5p1:verwerkingssoort="E" d5p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+    </PRS>
+  </body>
+</kennisgevingsBericht>

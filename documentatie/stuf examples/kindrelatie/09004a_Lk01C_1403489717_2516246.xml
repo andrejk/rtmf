@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<kennisgevingsBericht xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.egem.nl/StUF/sector/bg/0204">
+  <stuurgegevens xmlns="http://www.egem.nl/StUF/StUF0204">
+    <berichtsoort>Lk01</berichtsoort>
+    <entiteittype>PRS</entiteittype>
+    <sectormodel>BG</sectormodel>
+    <versieStUF>0204</versieStUF>
+    <versieSectormodel>0204</versieSectormodel>
+    <zender>
+      <applicatie>DDS</applicatie>
+      <gebruiker>PRODPIV</gebruiker>
+    </zender>
+    <ontvanger>
+      <applicatie>DDS</applicatie>
+    </ontvanger>
+    <referentienummer>2516246_09004a</referentienummer>
+    <tijdstipBericht>2009032514384259</tijdstipBericht>
+    <kennisgeving>
+      <mutatiesoort>C</mutatiesoort>
+      <indicatorOvername>V</indicatorOvername>
+      <tijdstipMutatie>2009040404040400</tijdstipMutatie>
+    </kennisgeving>
+  </stuurgegevens>
+  <body>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="1327034" d5p1:verwerkingssoort="W" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer>1403489717</a-nummer> 
+      <bsn-nummer>132681183</bsn-nummer> 
+      <PRSPRSKND d5p1:soortEntiteit="R" d5p1:verwerkingssoort="T" d5p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />    </PRS>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="1327034" d5p1:verwerkingssoort="W" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer>1403489717</a-nummer> 
+      <bsn-nummer>132681183</bsn-nummer> 
+      <PRSPRSKND d5p1:soortEntiteit="R" d5p1:verwerkingssoort="T">
+        <ingangsdatum d5p1:noValue="waardeOnbekend" xsi:nil="true" /> 
+        <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="1683317" d5p1:verwerkingssoort="I">
+          <a-nummer>4527371960</a-nummer> 
+          <bsn-nummer>542403389</bsn-nummer> 
+          <voornamen>Seth Frans</voornamen> 
+          <voorletters>SF</voorletters> 
+          <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <geslachtsnaam>Verhoeven</geslachtsnaam> 
+          <geboortedatum>20081206</geboortedatum> 
+          <geslachtsaanduiding>M</geslachtsaanduiding> 
+          <PRSADRVBL d5p1:soortEntiteit="R" d5p1:verwerkingssoort="I">
+            <tijdvakRelatie>
+              <d5p1:begindatumRelatie>20081206</d5p1:begindatumRelatie> 
+              <d5p1:einddatumRelatie d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+            </tijdvakRelatie>
+            <ADR d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="302926" d5p1:verwerkingssoort="I">
+              <adresBuitenland1 d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+              <adresBuitenland2 d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+              <adresBuitenland3 d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+              <landcode d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+              <postcode>3039NG</postcode> 
+              <woonplaatsnaam d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+              <postbusnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+              <antwoordnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+              <straatnaam>Schepenstraat</straatnaam> 
+              <huisnummer>12</huisnummer> 
+              <huisletter>C</huisletter> 
+              <huisnummertoevoeging d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+              <aanduidingBijHuisnummer d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+              <locatieomschrijving d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+              <locatieadresnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+              <gemeentecode>599</gemeentecode> 
+            </ADR>
+          </PRSADRVBL>
+        </PRS>
+      </PRSPRSKND>
+    </PRS>
+  </body>
+</kennisgevingsBericht>

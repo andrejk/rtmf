@@ -1,0 +1,789 @@
+Berichten van en naar de stelselcatalogus:
+
+================================================================================
+request getBasisregistratieList:
+================================================================================
+POST http://twd720.resource.ta-twd.rotterdam.nl:10080/services HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Type: text/xml;charset=UTF-8
+SOAPAction: "http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getBasisregistratieListRequest/stelselBevragenService"
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: twd720.resource.ta-twd.rotterdam.nl:10080
+Content-Length: 607
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header xmlns:wsa="http://www.w3.org/2005/08/addressing"><wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getBasisregistratieListRequest/stelselBevragenService</wsa:Action><wsa:MessageID>uuid:84b42edc-6715-48c2-9b93-680c5a55c080</wsa:MessageID><wsa:To>http://twd720.resource.ta-twd.rotterdam.nl:10080/services</wsa:To></soapenv:Header>
+   <soapenv:Body>
+      <stel:getBasisregistratieList xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd"/>
+   </soapenv:Body>
+</soapenv:Envelope>
+================================================================================
+response getBasisregistratieList
+================================================================================
+<soapenv:Envelope xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header>
+      <wsa:To>http://www.w3.org/2005/08/addressing/anonymous</wsa:To>
+      <wsa:MessageID>uuid:3241f323-09cf-4e7c-b9e8-29cf3966cf06</wsa:MessageID>
+      <wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getBasisregistratieListResponse</wsa:Action>
+      <wsa:RelatesTo>uuid:84b42edc-6715-48c2-9b93-680c5a55c080</wsa:RelatesTo>
+   </soapenv:Header>
+   <soapenv:Body>
+      <getBasisregistratieListResponse xmlns="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+         <basisregistratieList>
+            <tag>BRI</tag>
+            <naam>Basis Registratie Inkomen</naam>
+         </basisregistratieList>
+         <basisregistratieList>
+            <tag>BR1</tag>
+            <naam>Basisregistratie - TMF Test</naam>
+         </basisregistratieList>
+         <basisregistratieList>
+            <tag>GBA</tag>
+            <naam>Gemeentelijke Basisregistratie Persoonsgegevens</naam>
+         </basisregistratieList>
+         <basisregistratieList>
+            <tag>BRA</tag>
+            <naam>Basis Registratie Adressen</naam>
+         </basisregistratieList>
+         <basisregistratieList>
+            <tag>BGR</tag>
+            <naam>Basis Gebouwen Registratie</naam>
+         </basisregistratieList>
+         <basisregistratieList>
+            <tag>WOZ</tag>
+            <naam>Basisregistratie WOZ</naam>
+         </basisregistratieList>
+         <basisregistratieList>
+            <tag>BRK</tag>
+            <naam>Basisregistratie Kadaster</naam>
+         </basisregistratieList>
+      </getBasisregistratieListResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
+================================================================================
+request getObjectTypeList GBA
+================================================================================
+POST http://twd720.resource.ta-twd.rotterdam.nl:10080/services HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Type: text/xml;charset=UTF-8
+SOAPAction: "http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListRequest/stelselBevragenService"
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: twd720.resource.ta-twd.rotterdam.nl:10080
+Content-Length: 664
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header xmlns:wsa="http://www.w3.org/2005/08/addressing"><wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListRequest/stelselBevragenService</wsa:Action><wsa:MessageID>uuid:d18209b8-817c-4700-a7a0-b7ade665058c</wsa:MessageID><wsa:To>http://twd720.resource.ta-twd.rotterdam.nl:10080/services</wsa:To></soapenv:Header>
+   <soapenv:Body>
+      <stel:getObjectTypeList xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+         <stel:BRTag>GBA</stel:BRTag>
+      </stel:getObjectTypeList>
+   </soapenv:Body>
+</soapenv:Envelope>
+================================================================================
+response getObjectTypeList GBA
+================================================================================
+<soapenv:Envelope xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header>
+      <wsa:To>http://www.w3.org/2005/08/addressing/anonymous</wsa:To>
+      <wsa:MessageID>uuid:294b88c3-ade5-4087-838c-d57cc0d6aede</wsa:MessageID>
+      <wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListResponse</wsa:Action>
+      <wsa:RelatesTo>uuid:d18209b8-817c-4700-a7a0-b7ade665058c</wsa:RelatesTo>
+   </soapenv:Header>
+   <soapenv:Body>
+      <getObjectTypeListResponse xmlns="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+         <objectTypeList>
+            <tag>01</tag>
+            <naam>Natuurlijk Persoon</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+         <objectTypeList>
+            <tag>06</tag>
+            <naam>Overlijden</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+         <objectTypeList>
+            <tag>07</tag>
+            <naam>Inschrijving</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+         <objectTypeList>
+            <tag>08</tag>
+            <naam>Verblijfplaats</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+         <objectTypeList>
+            <tag>10</tag>
+            <naam>Verblijfstitel</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+         <objectTypeList>
+            <tag>11</tag>
+            <naam>Gezag</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+         <objectTypeList>
+            <tag>13</tag>
+            <naam>Kiesrecht</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+         <objectTypeList>
+            <tag>05</tag>
+            <naam>Verbintenis persoon</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+         <objectTypeList>
+            <tag>02</tag>
+            <naam>Ouderschapsrelatie 1</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+         <objectTypeList>
+            <tag>09</tag>
+            <naam>Kindrelatie</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+         <objectTypeList>
+            <tag>03</tag>
+            <naam>Ouderschapsrelatie 2</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+         <objectTypeList>
+            <tag>04</tag>
+            <naam>Nationaliteit</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+         <objectTypeList>
+            <tag>12</tag>
+            <naam>Reisdocument</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+      </getObjectTypeListResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
+================================================================================
+request getObjectInfo GBA 01 Natuurlijk persoon
+================================================================================
+POST http://twd720.resource.ta-twd.rotterdam.nl:10080/services HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Type: text/xml;charset=UTF-8
+SOAPAction: "http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoRequest/stelselBevragenService"
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: twd720.resource.ta-twd.rotterdam.nl:10080
+Content-Length: 697
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header xmlns:wsa="http://www.w3.org/2005/08/addressing"><wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoRequest/stelselBevragenService</wsa:Action><wsa:MessageID>uuid:81fd9e08-9827-406d-8b38-b661f783cda7</wsa:MessageID><wsa:To>http://twd720.resource.ta-twd.rotterdam.nl:10080/services</wsa:To></soapenv:Header>
+   <soapenv:Body>
+      <stel:getObjectInfo xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+         <stel:BRTag>GBA</stel:BRTag>
+         <stel:ObjectTag>01</stel:ObjectTag>
+      </stel:getObjectInfo>
+   </soapenv:Body>
+</soapenv:Envelope>
+================================================================================
+response getObjectInfo GBA 01 Natuurlijk persoon
+================================================================================
+<soapenv:Envelope xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header>
+      <wsa:To>http://www.w3.org/2005/08/addressing/anonymous</wsa:To>
+      <wsa:MessageID>uuid:256361d5-aba0-4768-a6ce-d2d27713b4f2</wsa:MessageID>
+      <wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoResponse</wsa:Action>
+      <wsa:RelatesTo>uuid:81fd9e08-9827-406d-8b38-b661f783cda7</wsa:RelatesTo>
+   </soapenv:Header>
+   <soapenv:Body>
+      <getObjectInfoResponse xmlns="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+         <objectInfo>
+            <ObjectHeaderInfo>
+               <tag>01</tag>
+               <naam>Natuurlijk Persoon</naam>
+               <bevraagbaar>false</bevraagbaar>
+               <instructie/>
+            </ObjectHeaderInfo>
+            <attributen>
+               <code>01.01.10</code>
+               <naam>A-nummer persoon</naam>
+            </attributen>
+            <attributen>
+               <code>01.01.20</code>
+               <naam>Burgerservicenummer persoon</naam>
+            </attributen>
+            <attributen>
+               <code>01.02.10</code>
+               <naam>Voornamen persoon</naam>
+            </attributen>
+            <attributen>
+               <code>01.02.20</code>
+               <naam>Adellijke titel/predikaat pers</naam>
+            </attributen>
+            <attributen>
+               <code>01.02.30</code>
+               <naam>Voorvoegsel geslachtsnaam pers</naam>
+            </attributen>
+            <attributen>
+               <code>01.02.40</code>
+               <naam>Geslachtsnaam persoon</naam>
+            </attributen>
+            <attributen>
+               <code>01.03.10</code>
+               <naam>Geboortedatum persoon</naam>
+            </attributen>
+            <attributen>
+               <code>01.03.20</code>
+               <naam>Geboorteplaats persoon</naam>
+            </attributen>
+            <attributen>
+               <code>01.03.30</code>
+               <naam>Geboorteland persoon</naam>
+            </attributen>
+            <attributen>
+               <code>01.04.10</code>
+               <naam>Geslachtsaanduiding</naam>
+            </attributen>
+            <attributen>
+               <code>01.20.10</code>
+               <naam>Vorig A-nummer</naam>
+            </attributen>
+            <attributen>
+               <code>01.20.20</code>
+               <naam>Volgend A-nummer</naam>
+            </attributen>
+            <attributen>
+               <code>01.61.10</code>
+               <naam>Aanduiding naamgebruik</naam>
+            </attributen>
+            <attributen>
+               <code>01.81.10</code>
+               <naam>Registergemeente akte waaraan</naam>
+            </attributen>
+            <attributen>
+               <code>01.81.20</code>
+               <naam>Aktenummer van de akte waaraan</naam>
+            </attributen>
+            <attributen>
+               <code>01.82.10</code>
+               <naam>Gemeente waar de gegevens over</naam>
+            </attributen>
+            <attributen>
+               <code>01.82.20</code>
+               <naam>Datum van de ontlening van de</naam>
+            </attributen>
+            <attributen>
+               <code>01.82.30</code>
+               <naam>Beschrijving van het document</naam>
+            </attributen>
+            <attributen>
+               <code>01.83.10</code>
+               <naam>Aanduiding gegevens in onderzo</naam>
+            </attributen>
+            <attributen>
+               <code>01.83.20</code>
+               <naam>Datum ingang onderzoek</naam>
+            </attributen>
+            <attributen>
+               <code>01.83.30</code>
+               <naam>Datum einde onderzoek</naam>
+            </attributen>
+            <attributen>
+               <code>01.84.10</code>
+               <naam>Indicatie onjuist dan wel stri</naam>
+            </attributen>
+            <attributen>
+               <code>01.85.10</code>
+               <naam>Ingangsdatum geldigheid met be</naam>
+            </attributen>
+            <attributen>
+               <code>01.86.10</code>
+               <naam>Datum van opneming met betrekk</naam>
+            </attributen>
+         </objectInfo>
+      </getObjectInfoResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
+================================================================================
+request getObjectTypeList BRA
+================================================================================
+POST http://twd720.resource.ta-twd.rotterdam.nl:10080/services HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Type: text/xml;charset=UTF-8
+SOAPAction: "http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListRequest/stelselBevragenService"
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: twd720.resource.ta-twd.rotterdam.nl:10080
+Content-Length: 664
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header xmlns:wsa="http://www.w3.org/2005/08/addressing"><wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListRequest/stelselBevragenService</wsa:Action><wsa:MessageID>uuid:6462e99a-9e28-47e0-aae3-feef7172b8e5</wsa:MessageID><wsa:To>http://twd720.resource.ta-twd.rotterdam.nl:10080/services</wsa:To></soapenv:Header>
+   <soapenv:Body>
+      <stel:getObjectTypeList xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+         <stel:BRTag>BRA</stel:BRTag>
+      </stel:getObjectTypeList>
+   </soapenv:Body>
+</soapenv:Envelope>
+================================================================================
+response getObjectTypeList BRA
+================================================================================
+<soapenv:Envelope xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header>
+      <wsa:To>http://www.w3.org/2005/08/addressing/anonymous</wsa:To>
+      <wsa:MessageID>uuid:53bbba12-857d-482d-93fd-ef9b6a13c606</wsa:MessageID>
+      <wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListResponse</wsa:Action>
+      <wsa:RelatesTo>uuid:6462e99a-9e28-47e0-aae3-feef7172b8e5</wsa:RelatesTo>
+   </soapenv:Header>
+   <soapenv:Body>
+      <getObjectTypeListResponse xmlns="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+         <objectTypeList>
+            <tag>OPR</tag>
+            <naam>Openbare Ruimte</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+         <objectTypeList>
+            <tag>NUM</tag>
+            <naam>Nummeraanduiding</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+         <objectTypeList>
+            <tag>WPL</tag>
+            <naam>Woonplaats</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+      </getObjectTypeListResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
+================================================================================
+request getObjectInfo BRA OPR Openbare Ruimte
+================================================================================
+POST http://twd720.resource.ta-twd.rotterdam.nl:10080/services HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Type: text/xml;charset=UTF-8
+SOAPAction: "http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoRequest/stelselBevragenService"
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: twd720.resource.ta-twd.rotterdam.nl:10080
+Content-Length: 698
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header xmlns:wsa="http://www.w3.org/2005/08/addressing"><wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoRequest/stelselBevragenService</wsa:Action><wsa:MessageID>uuid:b70175a5-2b42-4fc6-8b70-2eae5f3fdac8</wsa:MessageID><wsa:To>http://twd720.resource.ta-twd.rotterdam.nl:10080/services</wsa:To></soapenv:Header>
+   <soapenv:Body>
+      <stel:getObjectInfo xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+         <stel:BRTag>BRA</stel:BRTag>
+         <stel:ObjectTag>OPR</stel:ObjectTag>
+      </stel:getObjectInfo>
+   </soapenv:Body>
+</soapenv:Envelope>
+================================================================================
+response getObjectInfo BRA OPR Openbare Ruimte
+================================================================================
+<soapenv:Envelope xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header>
+      <wsa:To>http://www.w3.org/2005/08/addressing/anonymous</wsa:To>
+      <wsa:MessageID>uuid:c0893896-b93e-4adf-935d-a0022a2871c3</wsa:MessageID>
+      <wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoResponse</wsa:Action>
+      <wsa:RelatesTo>uuid:b70175a5-2b42-4fc6-8b70-2eae5f3fdac8</wsa:RelatesTo>
+   </soapenv:Header>
+   <soapenv:Body>
+      <getObjectInfoResponse xmlns="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+         <objectInfo>
+            <ObjectHeaderInfo>
+               <tag>OPR</tag>
+               <naam>Openbare Ruimte</naam>
+               <bevraagbaar>false</bevraagbaar>
+               <instructie/>
+            </ObjectHeaderInfo>
+            <attributen>
+               <code>11.01</code>
+               <naam>Identificatiecode openbare ruimte</naam>
+            </attributen>
+            <attributen>
+               <code>11.10</code>
+               <naam>Naam openbare ruimte</naam>
+            </attributen>
+            <attributen>
+               <code>11.11</code>
+               <naam>Indicatie geconstateerde openbare ruimte</naam>
+            </attributen>
+            <attributen>
+               <code>11.12</code>
+               <naam>Datum begin geldigheid gegevens openbare ruimte</naam>
+            </attributen>
+            <attributen>
+               <code>11.13</code>
+               <naam>Datum einde geldigheid gegevens openbare ruimte</naam>
+            </attributen>
+            <attributen>
+               <code>11.15</code>
+               <naam>Identificatiecode bijbehorende woonplaats</naam>
+            </attributen>
+            <attributen>
+               <code>11.16</code>
+               <naam>Type openbare ruimte</naam>
+            </attributen>
+            <attributen>
+               <code>11.17</code>
+               <naam>Documentdatum mutatie openbare ruimte</naam>
+            </attributen>
+            <attributen>
+               <code>11.18</code>
+               <naam>Documentnummer mutatie openbare ruimte</naam>
+            </attributen>
+            <attributen>
+               <code>11.19</code>
+               <naam>Status openbare ruimte (levenscyclus)</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie0</code>
+               <naam>testdata00</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie1</code>
+               <naam>testdata01</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie2</code>
+               <naam>testdata02</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie3</code>
+               <naam>testdata03</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie4</code>
+               <naam>testdata04</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie5</code>
+               <naam>testdata05</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie6</code>
+               <naam>testdata06</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie7</code>
+               <naam>testdata07</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie8</code>
+               <naam>testdata08</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie9</code>
+               <naam>testdata09</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie10</code>
+               <naam>testdata10</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie11</code>
+               <naam>testdata11</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie12</code>
+               <naam>testdata12</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie13</code>
+               <naam>testdata13</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie14</code>
+               <naam>testdata14</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie15</code>
+               <naam>testdata15</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie16</code>
+               <naam>testdata16</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie17</code>
+               <naam>testdata17</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie18</code>
+               <naam>testdata18</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie19</code>
+               <naam>testdata19</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie20</code>
+               <naam>testdata20</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie21</code>
+               <naam>testdata21</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie22</code>
+               <naam>testdata22</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie23</code>
+               <naam>testdata23</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie24</code>
+               <naam>testdata24</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie25</code>
+               <naam>testdata25</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie26</code>
+               <naam>testdata26</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie27</code>
+               <naam>testdata27</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie28</code>
+               <naam>testdata28</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie29</code>
+               <naam>testdata29</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie30</code>
+               <naam>testdata30</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie31</code>
+               <naam>testdata31</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie32</code>
+               <naam>testdata32</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie33</code>
+               <naam>testdata33</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie34</code>
+               <naam>testdata34</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie35</code>
+               <naam>testdata35</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie36</code>
+               <naam>testdata36</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie37</code>
+               <naam>testdata37</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie38</code>
+               <naam>testdata38</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie39</code>
+               <naam>testdata39</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie40</code>
+               <naam>testdata40</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie41</code>
+               <naam>testdata41</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie42</code>
+               <naam>testdata42</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie43</code>
+               <naam>testdata43</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie44</code>
+               <naam>testdata44</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie45</code>
+               <naam>testdata45</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie46</code>
+               <naam>testdata46</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie47</code>
+               <naam>testdata47</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie48</code>
+               <naam>testdata48</naam>
+            </attributen>
+            <attributen>
+               <code>attribuutIdentificatie49</code>
+               <naam>testdata49</naam>
+            </attributen>
+         </objectInfo>
+      </getObjectInfoResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
+================================================================================
+request getObjectInfo BGR
+================================================================================
+POST http://twd720.resource.ta-twd.rotterdam.nl:10080/services HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Type: text/xml;charset=UTF-8
+SOAPAction: "http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListRequest/stelselBevragenService"
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: twd720.resource.ta-twd.rotterdam.nl:10080
+Content-Length: 664
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header xmlns:wsa="http://www.w3.org/2005/08/addressing"><wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListRequest/stelselBevragenService</wsa:Action><wsa:MessageID>uuid:7803127d-d1c1-49cb-b100-7a1f8d172425</wsa:MessageID><wsa:To>http://twd720.resource.ta-twd.rotterdam.nl:10080/services</wsa:To></soapenv:Header>
+   <soapenv:Body>
+      <stel:getObjectTypeList xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+         <stel:BRTag>BGR</stel:BRTag>
+      </stel:getObjectTypeList>
+   </soapenv:Body>
+</soapenv:Envelope>
+================================================================================
+response getObjectInfo BGR
+================================================================================
+<soapenv:Envelope xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header>
+      <wsa:To>http://www.w3.org/2005/08/addressing/anonymous</wsa:To>
+      <wsa:MessageID>uuid:ab8e34d5-9a86-469d-af11-508f8ed05743</wsa:MessageID>
+      <wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListResponse</wsa:Action>
+      <wsa:RelatesTo>uuid:7803127d-d1c1-49cb-b100-7a1f8d172425</wsa:RelatesTo>
+   </soapenv:Header>
+   <soapenv:Body>
+      <getObjectTypeListResponse xmlns="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+         <objectTypeList>
+            <tag>PND</tag>
+            <naam>Pand</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+         <objectTypeList>
+            <tag>VBO</tag>
+            <naam>Verblijfsobject</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+         <objectTypeList>
+            <tag>STA</tag>
+            <naam>Staanplaats</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+         <objectTypeList>
+            <tag>LIG</tag>
+            <naam>Ligplaats</naam>
+            <bevraagbaar>false</bevraagbaar>
+            <instructie/>
+         </objectTypeList>
+      </getObjectTypeListResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
+================================================================================
+request getObjectInfo BGR PND Pand
+================================================================================
+POST http://twd720.resource.ta-twd.rotterdam.nl:10080/services HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Type: text/xml;charset=UTF-8
+SOAPAction: "http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoRequest/stelselBevragenService"
+User-Agent: Jakarta Commons-HttpClient/3.1
+Host: twd720.resource.ta-twd.rotterdam.nl:10080
+Content-Length: 698
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header xmlns:wsa="http://www.w3.org/2005/08/addressing"><wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoRequest/stelselBevragenService</wsa:Action><wsa:MessageID>uuid:240be490-5623-49e1-8405-5760ed02855e</wsa:MessageID><wsa:To>http://twd720.resource.ta-twd.rotterdam.nl:10080/services</wsa:To></soapenv:Header>
+   <soapenv:Body>
+      <stel:getObjectInfo xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+         <stel:BRTag>BGR</stel:BRTag>
+         <stel:ObjectTag>PND</stel:ObjectTag>
+      </stel:getObjectInfo>
+   </soapenv:Body>
+</soapenv:Envelope>
+================================================================================
+response getObjectInfo BGR PND Pand
+================================================================================
+<soapenv:Envelope xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header>
+      <wsa:To>http://www.w3.org/2005/08/addressing/anonymous</wsa:To>
+      <wsa:MessageID>uuid:6c77dbd8-fa6f-434a-b108-b461cb5d3d0e</wsa:MessageID>
+      <wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoResponse</wsa:Action>
+      <wsa:RelatesTo>uuid:240be490-5623-49e1-8405-5760ed02855e</wsa:RelatesTo>
+   </soapenv:Header>
+   <soapenv:Body>
+      <getObjectInfoResponse xmlns="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+         <objectInfo>
+            <ObjectHeaderInfo>
+               <tag>PND</tag>
+               <naam>Pand</naam>
+               <bevraagbaar>false</bevraagbaar>
+               <instructie/>
+            </ObjectHeaderInfo>
+            <attributen>
+               <code>55.01</code>
+               <naam>Pandidentificatie</naam>
+            </attributen>
+            <attributen>
+               <code>55.02</code>
+               <naam>Indicatie geconstateerd pand</naam>
+            </attributen>
+            <attributen>
+               <code>55.20</code>
+               <naam>Pandgeometrie</naam>
+            </attributen>
+            <attributen>
+               <code>55.30</code>
+               <naam>Oorspronkelijk bouwjaar pand</naam>
+            </attributen>
+            <attributen>
+               <code>55.31</code>
+               <naam>Pandstatus</naam>
+            </attributen>
+            <attributen>
+               <code>55.91</code>
+               <naam>Datum begin geldigheid pandgegevens</naam>
+            </attributen>
+            <attributen>
+               <code>55.92</code>
+               <naam>Datum einde geldigheid pandgegevens</naam>
+            </attributen>
+            <attributen>
+               <code>55.93</code>
+               <naam>Aanduiding pandgegevens in onderzoek</naam>
+            </attributen>
+            <attributen>
+               <code>55.97</code>
+               <naam>Documentdatum mutatie pand</naam>
+            </attributen>
+            <attributen>
+               <code>55.98</code>
+               <naam>Documentnummer mutatie pand</naam>
+            </attributen>
+         </objectInfo>
+      </getObjectInfoResponse>
+   </soapenv:Body>
+</soapenv:Envelope>

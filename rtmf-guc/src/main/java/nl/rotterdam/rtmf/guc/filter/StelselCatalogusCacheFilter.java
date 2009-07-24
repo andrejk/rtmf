@@ -1,0 +1,45 @@
+package nl.rotterdam.rtmf.guc.filter;
+
+import nl.rotterdam.rtmf.guc.exceptions.RtmfGucException;
+
+import org.apache.log4j.Logger;
+import org.mule.api.MuleMessage;
+
+/**
+ * StelselCatalogusCacheFilter kijkt in de payload of er basisregistratie tag
+ * en/of object tag aanwezig is. Deze tag zal worden vergeleken met de opgegeven
+ * tag in 'expectedService'. Indien de tags overeenkomen zal 'true' teruggegeven
+ * worden.
+ * 
+ */
+public class StelselCatalogusCacheFilter extends CacheFilterBase {
+
+	Logger logger = Logger.getLogger(StelselCatalogusCacheFilter.class.getName());
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * nl.rotterdam.rtmf.guc.filter.CacheFilterBase#accept(org.mule.api.MuleMessage
+	 * )
+	 */
+	@Override
+	public boolean accept(MuleMessage message) {
+		boolean result = false;
+		String payloadAsString;
+
+		try {
+			payloadAsString = message.getPayloadAsString();
+		} catch (Exception cause) {
+			throw new RtmfGucException("Message payload could not be transformed to a String", cause);
+		}
+		
+		String targetServiceCalls = cache
+				.determineServiceCallsForMessage(payloadAsString);
+		logger.debug("StelselCatalogusCacheFilter: targetServiceCalls.equals(expectedService): "
+		     + targetServiceCalls + ".equals(" + expectedService + ")");
+		result = targetServiceCalls.equals(expectedService);
+		return result;
+	}
+
+}

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<kennisgevingsBericht xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.egem.nl/StUF/sector/bg/0204">
+  <stuurgegevens xmlns="http://www.egem.nl/StUF/StUF0204">
+    <berichtsoort>Lk01</berichtsoort>
+    <entiteittype>PRS</entiteittype>
+    <sectormodel>BG</sectormodel>
+    <versieStUF>0204</versieStUF>
+    <versieSectormodel>0204</versieSectormodel>
+    <zender>
+      <applicatie>DDS</applicatie>
+      <gebruiker>PRODPIV</gebruiker>
+    </zender>
+    <ontvanger>
+      <applicatie>DDS</applicatie>
+    </ontvanger>
+    <referentienummer>2442299_05001a</referentienummer>
+    <tijdstipBericht>2009032514384259</tijdstipBericht>
+    <kennisgeving>
+      <mutatiesoort>W</mutatiesoort>
+      <indicatorOvername>V</indicatorOvername>
+      <tijdstipMutatie>2009032514384200</tijdstipMutatie>
+    </kennisgeving>
+  </stuurgegevens>
+  <body>
+    <PRS d3p1:soortEntiteit="F" d3p1:sleutelVerzendend="27826" d3p1:verwerkingssoort="W" xmlns:d3p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer xmlns="http://www.egem.nl/StUF/sector/bg/0204">1213152576</a-nummer>
+      <bsn-nummer xmlns="http://www.egem.nl/StUF/sector/bg/0204">134075055</bsn-nummer>
+      <PRSPRSHUW d3p1:soortEntiteit="R" d3p1:verwerkingssoort="T" d3p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+    </PRS>
+    <PRS d3p1:soortEntiteit="F" d3p1:sleutelVerzendend="27826" d3p1:verwerkingssoort="W" xmlns:d3p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer xmlns="http://www.egem.nl/StUF/sector/bg/0204">1213152576</a-nummer>
+      <bsn-nummer xmlns="http://www.egem.nl/StUF/sector/bg/0204">134075055</bsn-nummer>    
+      <PRSPRSHUW d5p1:soortEntiteit="R" d5p1:verwerkingssoort="T" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+        <datumSluiting d5p1:indOnvolledigeDatum="M">20030101</datumSluiting> 
+        <plaatsSluiting>599</plaatsSluiting> 
+        <landSluiting>6030</landSluiting> 
+        <soortVerbintenis>H</soortVerbintenis> 
+        <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="1667342" d5p1:verwerkingssoort="I" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+          <a-nummer>6842121695</a-nummer> 
+          <bsn-nummer>82390678</bsn-nummer> 
+          <voornamen>Robertus Ferdinand</voornamen> 
+          <voorletters>RF</voorletters> 
+          <voorvoegselGeslachtsnaam>van</voorvoegselGeslachtsnaam> 
+          <geslachtsnaam>Lindt</geslachtsnaam> 
+          <geboortedatum>19550422</geboortedatum> 
+          <geslachtsaanduiding>M</geslachtsaanduiding> 
+          <PRSADRVBL d5p1:soortEntiteit="R" d5p1:verwerkingssoort="I" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+            <tijdvakRelatie>
+              <d5p1:begindatumRelatie>20011115</d5p1:begindatumRelatie> 
+              <d5p1:einddatumRelatie d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+            </tijdvakRelatie>
+            <ADR d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="347905" d5p1:verwerkingssoort="I" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+              <adresBuitenland1 d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+              <adresBuitenland2 d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+              <adresBuitenland3 d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+              <landcode d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+              <postcode>3011BT</postcode> 
+              <woonplaatsnaam d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+              <postbusnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+              <antwoordnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+              <straatnaam>Gedempte Zalmhaven</straatnaam> 
+              <huisnummer>157</huisnummer> 
+              <huisletter d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+              <huisnummertoevoeging d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+              <aanduidingBijHuisnummer d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+              <locatieomschrijving d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+              <locatieadresnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+              <gemeentecode>599</gemeentecode> 
+            </ADR>
+          </PRSADRVBL>
+        </PRS>
+      </PRSPRSHUW>
+    </PRS>
+  </body>
+</kennisgevingsBericht>

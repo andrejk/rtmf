@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio - FREE Community Edition 7.0.5.906 (http://www.liquid-technologies.com)-->
+<xs:schema xmlns:tns="http://ebus.onefox.nl/2009/3/20/data"
+           elementFormDefault="qualified"
+           targetNamespace="http://ebus.onefox.nl/2009/3/20/data"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ReturnFields">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReturnField"
+                  nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReturnFields" nillable="true" type="tns:ReturnFields"/>
+  <xs:complexType name="Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrCode" type="xs:int"/>
+      <xs:element minOccurs="0" name="ErrDescription" nillable="true"
+                  type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Result" nillable="true" type="tns:Result"/>
+  <xs:complexType name="Fields">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Field"
+                  nillable="true" type="tns:Field"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Fields" nillable="true" type="tns:Fields"/>
+  <xs:complexType name="Field">
+    <xs:sequence>
+      <xs:element name="Name" nillable="true" type="xs:string"/>
+      <xs:element name="Value" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Field" nillable="true" type="tns:Field"/>
+  <xs:complexType name="SearchCriteria">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SearchCriterium"
+                  nillable="true" type="tns:Field"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchCriteria" nillable="true" type="tns:SearchCriteria"/>
+  <xs:complexType name="SortFields">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SortField"
+                  nillable="true" type="tns:SortField"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SortFields" nillable="true" type="tns:SortFields"/>
+  <xs:complexType name="SortField">
+    <xs:sequence>
+      <xs:element name="Name" nillable="true" type="xs:string"/>
+      <xs:element name="Ascending" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SortField" nillable="true" type="tns:SortField"/>
+  <xs:complexType name="LookupItems">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LookupItem"
+                  nillable="true" type="tns:LookupItem"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LookupItems" nillable="true" type="tns:LookupItems"/>
+  <xs:complexType name="LookupItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LookupFields" nillable="true"
+                  type="tns:LookupFields"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LookupItem" nillable="true" type="tns:LookupItem"/>
+  <xs:complexType name="LookupFields">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LookupField"
+                  nillable="true" type="tns:LookupField"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LookupFields" nillable="true" type="tns:LookupFields"/>
+  <xs:complexType name="LookupField">
+    <xs:sequence>
+      <xs:element name="PropertyName" nillable="true" type="xs:string"/>
+      <xs:element name="Title" nillable="true" type="xs:string"/>
+      <xs:element name="Visible" type="xs:boolean"/>
+      <xs:element name="Data" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LookupField" nillable="true" type="tns:LookupField"/>
+  <xs:complexType name="SearchItems">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SearchItem"
+                  nillable="true" type="tns:SearchItem"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchItems" nillable="true" type="tns:SearchItems"/>
+  <xs:complexType name="SearchItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Fields" nillable="true"
+                  type="tns:Fields"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchItem" nillable="true" type="tns:SearchItem"/>
+  <xs:complexType name="Trustees">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Trustee"
+                  nillable="true" type="tns:Trustee"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Trustees" nillable="true" type="tns:Trustees"/>
+  <xs:complexType name="Trustee">
+    <xs:sequence>
+      <xs:element name="Name" nillable="true" type="xs:string"/>
+      <xs:element name="Flag" type="xs:int"/>
+      <xs:element name="Rights" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Trustee" nillable="true" type="tns:Trustee"/>
+  <xs:complexType name="Versions">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Version"
+                  nillable="true" type="tns:Version"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Versions" nillable="true" type="tns:Versions"/>
+  <xs:complexType name="Version">
+    <xs:sequence>
+      <xs:element name="VersionId" type="xs:int"/>
+      <xs:element name="Version" type="xs:int"/>
+      <xs:element name="VersionLabel" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Version" nillable="true" type="tns:Version"/>
+</xs:schema>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<!--  - Application context definition for "springapp" DispatcherServlet.  -->
+<beans>
+	<bean id="brkpervn" class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag"><value>VN</value></property>
+		<property name="naam"><value>Voornaam</value></property>
+	</bean>
+	<bean id="brkperan" class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag"><value>AN</value></property>
+		<property name="naam"><value>Achternaam</value></property>
+	</bean>
+</beans>

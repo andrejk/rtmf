@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio - FREE Community Edition 7.0.5.906 (http://www.liquid-technologies.com)-->
+<xs:schema xmlns:tns="http://ebus.onefox.nl/2009/3/20/profile"
+           elementFormDefault="qualified"
+           targetNamespace="http://ebus.onefox.nl/2009/3/20/profile"
+           xmlns:q3="http://ebus.onefox.nl/2009/3/20/data" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="data.xsd"
+             namespace="http://ebus.onefox.nl/2009/3/20/data"/>
+  <xs:complexType name="CreateProfileMsg">
+    <xs:sequence>
+      <xs:element name="Form" nillable="true" type="xs:string"/>
+      <xs:element xmlns:q1="http://ebus.onefox.nl/2009/3/20/data" name="Fields"
+                  nillable="true" type="q1:Fields"/>
+      <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string"/>
+      <xs:element xmlns:q2="http://ebus.onefox.nl/2009/3/20/data" minOccurs="0"
+                  name="ReturnFields" nillable="true" type="q2:ReturnFields"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreateProfileMsg" nillable="true"
+              type="tns:CreateProfileMsg"/>
+  <xs:complexType name="ResultMsg">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://ebus.onefox.nl/2009/3/20/data"
+                    base="q3:Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DocNumber" type="xs:int"/>
+          <xs:element minOccurs="0" name="Version" type="xs:int"/>
+          <xs:element minOccurs="0" name="Fields" nillable="true"
+                      type="q3:Fields"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ResultMsg" nillable="true" type="tns:ResultMsg"/>
+  <xs:complexType name="GetProfileMsg">
+    <xs:sequence>
+      <xs:element name="DocNumber" type="xs:int"/>
+      <xs:element name="Form" nillable="true" type="xs:string"/>
+      <xs:element xmlns:q4="http://ebus.onefox.nl/2009/3/20/data" minOccurs="0"
+                  name="ReturnFields" nillable="true" type="q4:ReturnFields"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetProfileMsg" nillable="true" type="tns:GetProfileMsg"/>
+  <xs:complexType name="EditProfileMsg">
+    <xs:sequence>
+      <xs:element name="DocNumber" type="xs:int"/>
+      <xs:element name="Form" nillable="true" type="xs:string"/>
+      <xs:element xmlns:q5="http://ebus.onefox.nl/2009/3/20/data" name="Fields"
+                  nillable="true" type="q5:Fields"/>
+      <xs:element xmlns:q6="http://ebus.onefox.nl/2009/3/20/data" minOccurs="0"
+                  name="ReturnFields" nillable="true" type="q6:ReturnFields"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EditProfileMsg" nillable="true" type="tns:EditProfileMsg"/>
+  <xs:complexType name="QueueForDeleteProfileMsg">
+    <xs:sequence>
+      <xs:element name="DocNumber" type="xs:int"/>
+      <xs:element name="Form" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueueForDeleteProfileMsg" nillable="true"
+              type="tns:QueueForDeleteProfileMsg"/>
+  <xs:complexType name="QueueForDeleteProfileResultMsg">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://ebus.onefox.nl/2009/3/20/data"
+                    base="q7:Result">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QueueForDeleteProfileResultMsg" nillable="true"
+              type="tns:QueueForDeleteProfileResultMsg"/>
+</xs:schema>

@@ -1,0 +1,1056 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:StUF="http://www.egem.nl/StUF/StUF0300" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.egem.nl/StUF/StUF0300" elementFormDefault="qualified" attributeFormDefault="unqualified" version="030000ka">
+	<include schemaLocation="stuf0300.xsd"/>
+<complexType name="ADR-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: postcode, huisnummer, huisletter
+								Sortering 2: straatnaam, huisnummer, huisletter 
+								Sortering 3: gemeentecode, straatnaam, huisnummer, huisletter
+								Sortering 4: locatieomschrijving, woonplaatsnaam
+								Sortering 5: gemeentecode, locatieomschrijving, woonplaatsnaam
+								Sortering 6: woonplaatsnaam, straatnaam, huisnummer, huisletter
+								Sortering 7: gemeentecode, wijkcode, buurtcode, straatnaam, huisnummer, huisletter
+								Sortering 8: landcode, adresBuitenland3, adresBuitenland2, adresBuitenland1
+								Sortering 9: postcode, postbusnummer
+								Sortering 10: woonplaatsnaam, postbusnummer
+								Sortering 11: postcode, antwoordnummer
+								Sortering 12: woonplaatsnaam, antwoordnummer
+								Sortering 13: landcode, woonplaatsnaam/adresBuitenland3, straatnaam/postbus/antwoordnummer/adresBuitenland2, huisnummer/postbusnummer/antwoordnummer/adresBuitenland1, huisletter
+								Als om sortering 01 t/m 07 wordt gevraagd, dan worden alleen locatieadressen teruggegeven.
+								Als om sortering 08 wordt gevraagd, dan worden alleen buitenlandse adressen teruggegeven.
+								Als om sortering 09 of 10 wordt gevraagd, dan worden alleen postbusadressen teruggegeven.
+								Als om sortering 11 of 12 wordt gevraagd, dan worden alleen antwoordnummer adressen teruggegeven.
+								Als om sortering 13 wordt gevraagd, dan worden alle adressen teruggegeven. Afhankelijk van het type adres wordt een van de velden gescheiden door een '/' gebruikt.
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="13"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="BSG-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: naamBestemmingsplan, omschrijvingBestemmingsgebied
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="1"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="HHD-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: WOZ.WOZADRHFD.ADR.postcode, WOZ.WOZADRHFD.ADR.huisnummer, WOZ.WOZADRHFD.ADR.huisletter
+								Sortering 2: WOZ.WOZADRHFD.ADR.straatnaam, WOZ.WOZADRHFD.ADR.huisnummer, WOZ.WOZADRHFD.ADR.huisletter
+								Sortering 3: WOZ.WOZADRHFD.ADR.gemeentecode, WOZ.WOZADRHFD.ADR.wijkcode, WOZ.WOZADRHFD.ADR.buurtcode, WOZ.WOZADRHFD.ADR.straatnaam, WOZ.WOZADRHFD.ADR.huisnummer, WOZ.WOZADRHFD.ADR.huisletter
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="KDO-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: kadastraleGemeentecode, kadastraleSectie, kadastraalPerceelnummer, kadastraalObjectIndexLetter, kadastraalObjectIndexNummer
+								Sortering 2: KDOADR.ADR.postcode, KDOADR.ADR.huisnummer, KDOADR.ADR.huisletter, kadastraleGemeentecode, kadastraleSectie, kadastraalPerceelnummer, kadastraalObjectIndexLetter, kadastraalObjectIndexNummer
+								Sortering 3: KDOADR.ADR.straatnaam, KDOADR.ADR.huisnummer, KDOADR.ADR.huisletter, kadastraleGemeentecode, kadastraleSectie, kadastraalPerceelnummer, kadastraalObjectIndexLetter, kadastraalObjectIndexNummer
+								Bij de sortering op adres worden per adres alle kadastrale objecten gegeven die dat adres als een van hun adressen hebben. Omdat een kadastraal object meerdere adressen kan hebben, kan een kadastraal object bij een sortering op adres meerdere keren in het antwoord voorkomen.
+								Sortering 4: KDOSUBVZG.PRS.geslachtsnaam, KDOSUBVZG.PRS.voorvoegselsGeslachtsnaam, KDOSUBVZG.PRS.voorletters, kadastraleGemeentecode, kadastraleSectie, kadastraalPerceelnummer, kadastraalObjectIndexLetter, kadastraalObjectIndexNummer
+								Sortering 5: KDOSUBVZG.NNP.zaaknaam, kadastraleGemeentecode, kadastraleSectie, kadastraalPerceelnummer, kadastraalObjectIndexLetter, kadastraalObjectIndexNummer
+								Sortering 6: KDOSUBVZG.NNP.handelsnaam, kadastraleGemeentecode, kadastraleSectie, kadastraalPerceelnummer, kadastraalObjectIndexLetter, kadastraalObjectIndexNummer
+								Sortering 7: KDOSUBVZG.NNP.staturaireNaam, kadastraleGemeentecode, kadastraleSectie, kadastraalPerceelnummer, kadastraalObjectIndexLetter, kadastraalObjectIndexNummer
+								De sorteringen 4 t/m 7 zijn bedoeld om bij een voornaamste zakelijk gerechtigde al zijn kadastrale objecten te kunnen opvragen. Het is niet mogelijk om bij een sortering op voornaamste zakelijk gerechtigde door elkaar heen natuurlijke personen en niet-natuurlijke personen te krijgen.
+								Sortering 8: KDOBSG.BSG.naamBestemmingsplan, kadastraleGemeentecode, kadastraleSectie, kadastraalPerceelnummer, kadastraalObjectIndexLetter, kadastraalObjectIndexNummer
+								De sortering 8 is bedoeld om alle kadastrale objecten betrokken in een bestemmingsgebied te kunnen opvragen. Omdat een kadastraal object bij meerdere bestemmingsgebieden kan zijn betrokken, kan een kadastraal object bij sortering op bestemmingsgebied meerdere keren in het bericht voorkomen.
+								Sortering 9: KDOPRB.PRB.codePubliekrechtelijkeBeperking, KDOPRB.PRB.vindplaatsDocument, kadastraleGemeentecode, kadastraleSectie, kadastraalPerceelnummer, kadastraalObjectIndexLetter, kadastraalObjectIndexNummer
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="9"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="NNP-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: zaaknaam
+								Sortering 2: handelsnaam
+								Sortering 3: statutaireNaam
+								Sortering 4: soFi-Nummer
+								Sortering 5: subjectnummerAKR
+								Omdat een niet-natuurlijk persoon meerdere subjectnummers AKR kan hebben kan bij deze sortering een niet-natuurlijk persoon meerdere keren in een bericht voorkomen.
+								Sortering 6: handelsregisternummer
+								Sortering 7: NNPADRVBL.ADR.postcode, NNPADRVBL.ADR.huisnummer, NNPADRVBL.ADR.huisletter
+								Sortering 8: NNPADRVBL.ADR.straatnaam, NNPADRVBL.ADR.huisnummer, NNPADRVBL.ADR.huisletter
+								Sortering 9: rechtsvorm, zaaknaam
+								Sortering 10: hoofdactiviteit, zaaknaam
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="10"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="OBW-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: overigBouwwerkNummer
+								Sortering 2: OBWADR.ADR.postcode, OBWADR.ADR.huisnummer, OBWADR.ADR.huisletter
+								Sortering 3: OBWADR.ADR.straatnaam, OBWADR.ADR.huisnummer, OBWADR.ADR.huisletter
+								Omdat het overig bouwwerk meerdere adressen kan hebben, kan een overig bouwwerk bij een sortering op adres meerdere keren in het antwoordbericht voorkomen.
+								Sortering 4: typeOverigBouwwerk, omschrijvingOverigBouwwerk
+								Sortering 5: OBWBSG.BSG.naamBestemmingsplan, OBWBSG.BSG.omschrijvingBestemmingsgebied, typeOverigBouwwerk, omschrijvingOverigBouwwerk
+								Deze sortering is bedoeld om alle overige bouwwerken in een bepaald bestemmingsgebied te kunnen opvragen.
+								Sortering 6: OBWKDO.KDO.kadastraleGemeentecode, OBWKDO.KDO.kadastraleSectie, OBWKDO.KDO.kadastraalPerceelnummer, OBWKDO.KDO.kadastraalObjectIndexLetter, OBWKDO.KDO.kadastraalObjectIndexNummer
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="6"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="PRB-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: codePubliekRechtlijkeBeperking, vindplaatsDocument
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="1"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="PRS-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: geslachtsnaam, voorvoegselsGeslachtsnaam, voorletters
+								Sortering 2: PRSADRVBL.ADR.postcode, PRSADRVBL.ADR.huisnummer, PRSADRVBL.ADR.huisletter
+								Sortering 3: PRSADRVBL.ADR.straatnaam, PRSADRVBL.ADR.huisnummer, PRSADRVBL.ADR.huisletter
+								Sortering 4: PRSADRINS.ADR.postcode, PRSADRINS.ADR.huisnummer, PRSADRINS.ADR.huisletter
+								Sortering 5: PRSADRINS.ADR.straatnaam, PRSADRINS.ADR.huisnummer, PRSADRINS.ADR.huisletter
+								Sortering 6: geboortedatum, geslachtsnaam, voorvoegselsGeslachtsnaam, voorletters
+								Sortering 7: bsn
+								Sortering 8: a-nummer
+								Sortering 9: subjectnummerAKR
+								Omdat een persoon meerdere subjectnummers AKR kan hebben kan een persoon bij deze sortering meerdere keren in het bericht voorkomen.
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="9"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="VBO-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: verblijfsobjectnummer
+								Sortering 2: VBOADR.ADR.postcode, VBOADR.ADR.huisnummer, VBOADR.ADR.huisletter
+								Sortering 3: VBOADR.ADR.straatnaam, VBOADR.ADR.huisnummer, VBOADR.ADR.huisletter
+								Sortering 4: verblijfsobjecttype, VBOADR.ADR.straatnaam, VBOADR.ADR.huisnummer, VBOADR.ADR.huisletter
+								Sortering 5: VBOBSG.BSG.naamBestemmingsplan, VBOBSG.BSG.omschrijvingBestemmingsgebied, verblijfsobjecttype
+								Sortering 6: VBOKDO.KDO.kadastraleGemeentecode, VBOKDO.KDO.kadastraleSectie, VBOKDO.KDO.kadastraalPerceelnummer, VBOKDO.KDO.kadastraalObjectIndexLetter, VBOKDO.KDO.kadastraalObjectIndexNummer, VBOADR.ADR.straatnaam, VBOADR.ADR.huisnummer, VBOADR.ADR.huisletter
+								Sortering 7: VBOSUBGBR.PRS.bsn, VBOADR.ADR.straatnaam, VBOADR.ADR.huisnummer, VBOADR.ADR.huisletter
+								Sortering 8: VBOSUBGBR.NNP.zaaknaam, VBOADR.ADR.straatnaam, VBOADR.ADR.huisnummer, VBOADR.ADR.huisletter
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="8"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="WOZ-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: wozObjectnummer
+								Sortering 2: WOZADRHFD.ADR.postcode, WOZADRHFD.ADR.huisnummer, WOZADRHFD.ADR.huisletter
+								Sortering 3: WOZADRHFD.ADR.straatnaam, WOZADRHFD.ADR.huisnummer, WOZADRHFD.ADR.huisletter
+								Sortering 4: WOZSUBEIG.PRS.geslachtsnaam, WOZSUBEIG.PRS.voorvoegselsGeslachtsnaam, WOZSUBEIG.PRS.voorletters
+								Sortering 5: WOZSUBGBR.PRS.geslachtsnaam, WOZSUBGBR.PRS.voorvoegselsGeslachtsnaam, WOZSUBGBR.PRS.voorletters
+								Sortering 6: WOZSUBEIG.NNP.zaaknaam
+								Sortering 7: WOZSUBGBR.NNP.zaaknaam
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="7"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="ACD-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: code
+								Sortering 2: omschrijving
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="2"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="ADL-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: code
+								Sortering 2: omschrijving
+								Sortering 3: soort, code
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="BGB-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: code, ingangsdatum (aflopend)
+								Sortering 2: omschrijving, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), code
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="BHV-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: code, ingangsdatum (aflopend)
+								Sortering 2: omschrijving, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), code
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="BRT-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: gemeentecode, wijkcode, buurtcode, ingangsdatum (aflopend)
+								Sortering 2: omschrijving, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), gemeentecode, wijkcode, buurtcode
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="BTK-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: code, ingangsdatum (aflopend)
+								Sortering 2: omschrijving, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), code
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="DGM-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: deelgemeentecode, ingangsdatum (aflopend)
+								Sortering 2: deelgemeentenaam, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), deelgemeentecode
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="GEM-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: gemeentecode, ingangsdatum (aflopend)
+								Sortering 2: gemeentenaam, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), gemeentecode
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="KGM-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: kadastraleGemeentecode, ingangsdatum (aflopend)
+								Sortering 2: kadastraleGemeentenaam, ingangsdatum (aflopend)
+								Sortering 3: gemeentecode, kadastraleGemeentecode
+								Sortering 4: ingangsdatum (aflopend), gemeentecode
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="4"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="LFT-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: code, ingangsdatum (aflopend)
+								Sortering 2: omschrijving, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), code
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="LND-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: landcode, ingangsdatum (aflopend)
+								Sortering 2: landnaam, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), landcode
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="MNA-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: code, ingangsdatum (aflopend)
+								Sortering 2: omschrijving, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), code
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="NAT-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: code, ingangsdatum (aflopend)
+								Sortering 2: omschrijving, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), code
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="OHT-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: code, ingangsdatum (aflopend)
+								Sortering 2: omschrijving, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), code
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="RTB-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: code, ingangsdatum (aflopend)
+								Sortering 2: omschrijving, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), code
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="SBI-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: code
+								Sortering 2: omschrijving
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="2"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="SIB-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: soort
+								Sortering 2: omschrijving
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="2"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="SPB-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: code
+								Sortering 2: omschrijving
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="2"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="SRV-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: code
+								Sortering 2: omschrijving
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="2"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="STT-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: gemeentecode, woonplaatscode, straatcode, ingangsdatum (aflopend)
+								Sortering 2: straatnaam, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), gemeentecode, woonplaatscode, straatcode
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="SZR-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: code
+								Sortering 2: omschrijving
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="2"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="VBT-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: code, ingangsdatum (aflopend)
+								Sortering 2: omschrijving, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), code
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="VOT-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: code, ingangsdatum (aflopend)
+								Sortering 2: omschrijving, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), code
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="WOS-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: code, ingangsdatum (aflopend)
+								Sortering 2: omschrijving, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), code
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="WPL-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: gemeentecode, woonplaatscode, ingangsdatum (aflopend)
+								Sortering 2: woonplaatsnaam, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), gemeentecode, woonplaatscode
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+<complexType name="WYK-parametersVraag">
+	<complexContent>
+		<restriction base="StUF:ParametersVraag">
+			<sequence>
+				<element name="sortering">
+					<annotation>
+						<documentation>
+								Sortering 1: gemeentecode, wijkcode, ingangsdatum (aflopend)
+								Sortering 2: wijknaam, ingangsdatum (aflopend)
+								Sortering 3: ingangsdatum (aflopend), gemeentecode, wijkcode
+							</documentation>
+					</annotation>
+					<simpleType>
+						<restriction base="StUF:Sortering">
+							<minInclusive value="0"/>
+							<maxInclusive value="3"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="indicatorVervolgvraag" type="boolean" default="false"/>
+				<element name="maximumAantal" type="StUF:MaximumAantal" default="15" minOccurs="0"/>
+				<element name="indicatorHistorisch" type="StUF:IndicatorHistorisch" minOccurs="0"/>
+				<element name="indicatorAfnemerIndicatie" type="boolean" default="false" minOccurs="0"/>
+				<element name="indicatorAantal" type="boolean" default="false" minOccurs="0"/>
+			</sequence>
+		</restriction>
+	</complexContent>
+</complexType>
+</schema>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="settings" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<!-- SOAPAction instellingen -->
+				<entry key="nieuwe_melding.action_new">
+					<value>A04000000000046-tmf-aanmelden-terugmelding-https---s794.nxs.nl-corvus-httpd-ebms-inbound</value>
+				</entry>
+				<entry key="intrekking.action_new">
+					<value>A04000000000046-tmf-aanmelden-intrekking-https---s794.nxs.nl-corvus-httpd-ebms-inbound</value>
+				</entry>
+				<entry key="ophalen_melding.action_new">
+					<value>https://s794a.nxs.nl/tmfCore/OphaalServiceBean:http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingStatusRequest</value>
+				</entry>
+				<entry key="ophalen_details.action_new">
+					<value>https://s794a.nxs.nl/tmfCore/OphaalServiceBean:http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingKenmerkRequest</value>
+				</entry>
+				<entry key="attributen.action_new">
+					<value>https://s794a.nxs.nl/gob/StelselBevragenBean:http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoRequest</value>
+				</entry>
+				<entry key="attributen_waardes.action_new">
+					<value>https://s794a.nxs.nl/gob/StelselBevragenBean:http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/bevragenRequest</value>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+</beans>

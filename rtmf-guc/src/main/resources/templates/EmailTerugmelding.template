@@ -1,0 +1,43 @@
+LS,
+
+Onderstaand een Terugmelding vanuit de centrale Terugmeldfaciliteit van de gemeente Rotterdam.
+Deze terugmelding betreft een kerngegeven en is afkomstig van uw eigen dienst of een collega-dienst.
+
+ 
+Doorgegeven wordt:
+- Algemene informatie om de terugmelding uniek te identificeren.
+- De velden waarop de terugmelding betrekking heeft.
+- Een eventuele bijlage die is bijgesloten.
+
+De terugmelding luidt als volgt:
+
+Zaakkenmerk                     : ${Zaakidentificatie} (t.b.v. wijzigen status van de terugmelding)
+Meldingkenmerk                  : ${meldingKenmerk}
+
+Tijdstempel aanlevering         : ${tijdstempelAanlevering}
+
+
+Basisregistratie                : ${basisregistratie.tag}
+Object tag                      : ${basisregistratie.objectTag}
+Object naam                     : ${basisregistratie.objectNaam}
+Object identificatie            : ${basisregistratie.objectId}
+
+Toelichting                     : ${basisregistratie.toelichting}
+
+
+Attributen<% attributen.each{ attribuut-> %>
+Attribuut identificatie (ID)    : ${attribuut.tag}
+Betwijfelde waarde              : ${attribuut.betwijfeldeWaarde}
+Voorstel                        : ${attribuut.voorstel}
+<%}%>
+
+Contact informatie terugmelder:
+
+Naam                            : ${contact.naam}
+Telefoon                        : ${contact.telefoon}
+E-mail                          : ${contact.email}
+
+Klik op de volgende link om direct naar de zaak te gaan: ${zmwebPrefix}?wicket:bookmarkablePage=:nl.rotterdam.rtmf.DetailScherm&zaakId=${Zaakidentificatie}
+
+PS:
+Op ${adresMeerInfo} vindt u contactinformatie m.b.t. het beheer van de Terugmeldfaciliteit van de gemeente.

@@ -1,0 +1,152 @@
+<BG:prsLa01 xmlns:StUF="http://www.egem.nl/StUF/StUF0300" xmlns:BG="http://www.egem.nl/StUF/sector/bg/0300" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <BG:stuurgegevens>
+      <BG:versieStUF>0300</BG:versieStUF>
+      <BG:sectormodel>BG</BG:sectormodel>
+      <BG:versieSectormodel>0300</BG:versieSectormodel>
+      <BG:berichtcode>La01</BG:berichtcode>
+      <BG:zender>
+         <StUF:organisatie>Belasting</StUF:organisatie>
+         <StUF:applicatie>AAA</StUF:applicatie>
+         <StUF:administratie>a</StUF:administratie>
+         <StUF:gebruiker>ONTWDDS</StUF:gebruiker>
+      </BG:zender>
+      <BG:ontvanger>
+         <StUF:organisatie>Belasting</StUF:organisatie>
+         <StUF:applicatie>AAA</StUF:applicatie>
+         <StUF:administratie>a</StUF:administratie>
+      </BG:ontvanger>
+      <BG:referentienummer>10552170</BG:referentienummer>
+      <BG:tijdstipBericht>2008082609544458</BG:tijdstipBericht>
+      <BG:crossRefnummer>7000</BG:crossRefnummer>
+      <BG:entiteittype>PRS</BG:entiteittype>
+   </BG:stuurgegevens>
+   <BG:body>
+      <BG:parametersAntwoord>
+         <StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+         <StUF:indicatorAfnemerIndicatie>false</StUF:indicatorAfnemerIndicatie>
+      </BG:parametersAntwoord>
+      <BG:object StUF:entiteittype="PRS" StUF:sleutelVerzendend="2150848">
+         <BG:a-nummer>2063193504</BG:a-nummer>
+         <BG:bsn>199040382</BG:bsn>
+         <BG:naamPrsGrp>
+            <BG:voornamen>Mohamed</BG:voornamen>
+            <BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde" />
+            <BG:geslachtsnaam>Boufarra</BG:geslachtsnaam>
+         </BG:naamPrsGrp>
+         <BG:geboortedatum>19860720</BG:geboortedatum>
+         <BG:geboorteplaatsGrp>
+            <BG:geboorteplaats>546</BG:geboorteplaats>
+            <BG:codeGeboorteland>6030</BG:codeGeboorteland>
+         </BG:geboorteplaatsGrp>
+         <BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+         <BG:datumOverlijden xsi:nil="true" StUF:noValue="geenWaarde" />
+         <BG:indicatieGeheim>0</BG:indicatieGeheim>
+         <BG:codeGemeenteVanInschrijving>599</BG:codeGemeenteVanInschrijving>
+         <BG:datumInschrijvingGemeente>20080508</BG:datumInschrijvingGemeente>
+         <BG:codeLandEmigratie xsi:nil="true" StUF:noValue="geenWaarde" />
+         <BG:datumVertrekUitNederland xsi:nil="true" StUF:noValue="geenWaarde" />
+         <BG:verblijfstitelGrp>
+            <BG:verblijfstitel xsi:nil="true" StUF:noValue="geenWaarde" />
+            <BG:datumVerkrijgingVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde" />
+            <BG:datumVerliesVerblijfstitel xsi:nil="true" StUF:noValue="geenWaarde" />
+         </BG:verblijfstitelGrp>
+         <BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+         <BG:heeftAlsCorrespondentieAdres StUF:entiteittype="PRSADRCOR">
+            <BG:gerelateerde StUF:entiteittype="ADR" StUF:noValue="geenWaarde" />
+         </BG:heeftAlsCorrespondentieAdres>
+         <BG:heeftAlsInschrijvingsAdres StUF:entiteittype="PRSADRINS">
+            <BG:gerelateerde StUF:entiteittype="ADR" StUF:sleutelVerzendend="15453">
+               <BG:adresBuitenlandGrp>
+                  <BG:adresBuitenland1 xsi:nil="true" StUF:noValue="geenWaarde" />
+                  <BG:adresBuitenland2 xsi:nil="true" StUF:noValue="geenWaarde" />
+                  <BG:adresBuitenland3 xsi:nil="true" StUF:noValue="geenWaarde" />
+                  <BG:landcode xsi:nil="true" StUF:noValue="geenWaarde" />
+               </BG:adresBuitenlandGrp>
+               <BG:straatHuisnummerGrp>
+                  <BG:straatnaam>Alverstraat</BG:straatnaam>
+                  <BG:huisnummer>131</BG:huisnummer>
+                  <BG:huisletter xsi:nil="true" StUF:noValue="geenWaarde" />
+                  <BG:huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde" />
+                  <BG:locatieomschrijving xsi:nil="true" StUF:noValue="geenWaarde" />
+               </BG:straatHuisnummerGrp>
+               <BG:postcode>3192TM</BG:postcode>
+               <BG:woonplaatsnaam>Hoogvliet Rotterdam</BG:woonplaatsnaam>
+               <BG:ingangsdatum xsi:nil="true" StUF:noValue="waardeOnbekend" />
+               <BG:gemeentecode>599</BG:gemeentecode>
+            </BG:gerelateerde>
+            <BG:tijdvakRelatie>
+               <StUF:beginRelatie>20080508</StUF:beginRelatie>
+               <StUF:eindRelatie xsi:nil="true" StUF:noValue="geenWaarde" />
+            </BG:tijdvakRelatie>
+         </BG:heeftAlsInschrijvingsAdres>
+         <BG:heeftAlsVerblijfsAdres StUF:entiteittype="PRSADRVBL">
+            <BG:gerelateerde StUF:entiteittype="ADR" StUF:sleutelVerzendend="15453">
+               <BG:adresBuitenlandGrp>
+                  <BG:adresBuitenland1 xsi:nil="true" StUF:noValue="geenWaarde" />
+                  <BG:adresBuitenland2 xsi:nil="true" StUF:noValue="geenWaarde" />
+                  <BG:adresBuitenland3 xsi:nil="true" StUF:noValue="geenWaarde" />
+                  <BG:landcode xsi:nil="true" StUF:noValue="geenWaarde" />
+               </BG:adresBuitenlandGrp>
+               <BG:straatHuisnummerGrp>
+                  <BG:straatnaam>Alverstraat</BG:straatnaam>
+                  <BG:huisnummer>131</BG:huisnummer>
+                  <BG:huisletter xsi:nil="true" StUF:noValue="geenWaarde" />
+                  <BG:huisnummertoevoeging xsi:nil="true" StUF:noValue="geenWaarde" />
+                  <BG:locatieomschrijving xsi:nil="true" StUF:noValue="geenWaarde" />
+               </BG:straatHuisnummerGrp>
+               <BG:postcode>3192TM</BG:postcode>
+               <BG:woonplaatsnaam>Hoogvliet Rotterdam</BG:woonplaatsnaam>
+               <BG:ingangsdatum xsi:nil="true" StUF:noValue="waardeOnbekend" />
+               <BG:gemeentecode>599</BG:gemeentecode>
+            </BG:gerelateerde>
+            <BG:tijdvakRelatie>
+               <StUF:beginRelatie>20080508</StUF:beginRelatie>
+               <StUF:eindRelatie xsi:nil="true" StUF:noValue="geenWaarde" />
+            </BG:tijdvakRelatie>
+         </BG:heeftAlsVerblijfsAdres>
+         <BG:heeftAlsNationaliteit StUF:entiteittype="PRSNAT">
+            <BG:gerelateerde StUF:entiteittype="NAT">
+               <BG:code>131</BG:code>
+            </BG:gerelateerde>
+            <BG:datumVerkrijging xsi:nil="true" StUF:noValue="waardeOnbekend" />
+            <BG:datumVerlies xsi:nil="true" StUF:noValue="geenWaarde" />
+         </BG:heeftAlsNationaliteit>
+         <BG:heeftAlsNationaliteit StUF:entiteittype="PRSNAT">
+            <BG:gerelateerde StUF:entiteittype="NAT">
+               <BG:code>1</BG:code>
+            </BG:gerelateerde>
+            <BG:datumVerkrijging xsi:nil="true" StUF:noValue="waardeOnbekend" />
+            <BG:datumVerlies xsi:nil="true" StUF:noValue="geenWaarde" />
+         </BG:heeftAlsNationaliteit>
+         <BG:isGetrouwdGeregistreerdPartnerMet StUF:entiteittype="PRSPRSHUW">
+            <BG:gerelateerde StUF:entiteittype="PRS" StUF:noValue="geenWaarde" />
+         </BG:isGetrouwdGeregistreerdPartnerMet>
+         <BG:heeftAlsOuders StUF:entiteittype="PRSPRSOUD">
+            <BG:gerelateerde StUF:entiteittype="PRS" StUF:sleutelVerzendend="1844783">
+               <BG:a-nummer>5784806368</BG:a-nummer>
+               <BG:bsn>22497432</BG:bsn>
+               <BG:naamPrsGrp>
+                  <BG:voornamen>Aârab Mhamed</BG:voornamen>
+                  <BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde" />
+                  <BG:geslachtsnaam>Boufarra</BG:geslachtsnaam>
+               </BG:naamPrsGrp>
+               <BG:geboortedatum StUF:indOnvolledigeDatum="M">19470101</BG:geboortedatum>
+               <BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+            </BG:gerelateerde>
+         </BG:heeftAlsOuders>
+         <BG:heeftAlsOuders StUF:entiteittype="PRSPRSOUD">
+            <BG:gerelateerde StUF:entiteittype="PRS" StUF:sleutelVerzendend="1844782">
+               <BG:a-nummer>2850124317</BG:a-nummer>
+               <BG:bsn>175653197</BG:bsn>
+               <BG:naamPrsGrp>
+                  <BG:voornamen>Malika</BG:voornamen>
+                  <BG:voorvoegselGeslachtsnaam xsi:nil="true" StUF:noValue="geenWaarde" />
+                  <BG:geslachtsnaam>Rrhioua</BG:geslachtsnaam>
+               </BG:naamPrsGrp>
+               <BG:geboortedatum StUF:indOnvolledigeDatum="M">19570101</BG:geboortedatum>
+               <BG:geslachtsaanduiding>V</BG:geslachtsaanduiding>
+            </BG:gerelateerde>
+         </BG:heeftAlsOuders>
+      </BG:object>
+   </BG:body>
+</BG:prsLa01>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<kennisgevingsBericht xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.egem.nl/StUF/sector/bg/0204">
+  <stuurgegevens xmlns="http://www.egem.nl/StUF/StUF0204">
+    <berichtsoort>Lk01</berichtsoort>
+    <entiteittype>PRS</entiteittype>
+    <sectormodel>BG</sectormodel>
+    <versieStUF>0204</versieStUF>
+    <versieSectormodel>0204</versieSectormodel>
+    <zender>
+      <applicatie>DDS</applicatie>
+      <gebruiker>PRODPIV</gebruiker>
+    </zender>
+    <ontvanger>
+      <applicatie>DDS</applicatie>
+    </ontvanger>
+    <referentienummer>2444484_05007a</referentienummer>
+    <tijdstipBericht>2009032514384259</tijdstipBericht>
+    <kennisgeving>
+      <mutatiesoort>C</mutatiesoort>
+      <indicatorOvername>V</indicatorOvername>
+      <tijdstipMutatie>2009030101010100</tijdstipMutatie>
+    </kennisgeving>
+  </stuurgegevens>
+  <body>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="31384" d5p1:verwerkingssoort="I" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <PRSPRSHUW d5p1:soortEntiteit="R" d5p1:verwerkingssoort="W">
+        <soortVerbintenis>H</soortVerbintenis> 
+        <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="676537" d5p1:verwerkingssoort="I">
+          <a-nummer>7315217160</a-nummer> 
+          <bsn-nummer>58068508</bsn-nummer> 
+          <voornamen>Arie</voornamen> 
+          <voorletters>A</voorletters> 
+          <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <geslachtsnaam>Bosselaar</geslachtsnaam> 
+          <geboortedatum>19360214</geboortedatum> 
+          <geslachtsaanduiding>M</geslachtsaanduiding> 
+        </PRS>
+      </PRSPRSHUW>
+    </PRS>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="31384" d5p1:verwerkingssoort="I" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <PRSPRSHUW d5p1:soortEntiteit="R" d5p1:verwerkingssoort="W">
+        <soortVerbintenis>P</soortVerbintenis> 
+        <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="676537" d5p1:verwerkingssoort="I">
+          <a-nummer>7315217160</a-nummer> 
+          <bsn-nummer>58068508</bsn-nummer> 
+          <voornamen>Arie</voornamen> 
+          <voorletters>A</voorletters> 
+          <voorvoegselGeslachtsnaam d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <geslachtsnaam>Bosselaar</geslachtsnaam> 
+          <geboortedatum>19360214</geboortedatum> 
+          <geslachtsaanduiding>M</geslachtsaanduiding> 
+        </PRS>
+      </PRSPRSHUW>      
+    </PRS>
+  </body>
+</kennisgevingsBericht>

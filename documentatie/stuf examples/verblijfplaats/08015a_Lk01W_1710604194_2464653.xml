@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<kennisgevingsBericht xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.egem.nl/StUF/sector/bg/0204">
+  <stuurgegevens xmlns="http://www.egem.nl/StUF/StUF0204">
+    <berichtsoort>Lk01</berichtsoort>
+    <entiteittype>PRS</entiteittype>
+    <sectormodel>BG</sectormodel>
+    <versieStUF>0204</versieStUF>
+    <versieSectormodel>0204</versieSectormodel>
+    <zender>
+      <applicatie>PIV</applicatie>
+      <gebruiker>BATCHGBA</gebruiker>
+    </zender>
+    <ontvanger>
+      <applicatie>DDS</applicatie>
+    </ontvanger>
+    <referentienummer>2464653_08015a</referentienummer>
+    <tijdstipBericht>2009031018400341</tijdstipBericht>
+    <kennisgeving>
+      <mutatiesoort>W</mutatiesoort>
+      <indicatorOvername>V</indicatorOvername>
+      <tijdstipMutatie>2009031111111111</tijdstipMutatie>
+    </kennisgeving>
+  </stuurgegevens>
+  <body>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="101911" d5p1:verwerkingssoort="W" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer>1710604194</a-nummer> 
+      <bsn-nummer>61062662</bsn-nummer> 
+      <PRSADRCOR d5p1:soortEntiteit="R" d5p1:verwerkingssoort="R">
+        <tijdvakRelatie>
+          <d5p1:begindatumRelatie>19990611</d5p1:begindatumRelatie> 
+          <d5p1:einddatumRelatie>20080611</d5p1:einddatumRelatie> 
+        </tijdvakRelatie>
+        <ADR d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="132090" d5p1:verwerkingssoort="I">
+          <adresBuitenland1 d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <adresBuitenland2 d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <adresBuitenland3 d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <landcode d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <postcode>3086EX</postcode> 
+          <woonplaatsnaam d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <postbusnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <antwoordnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <straatnaam>Slinge</straatnaam> 
+          <huisnummer>584</huisnummer> 
+          <huisletter d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <huisnummertoevoeging d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <aanduidingBijHuisnummer d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <locatieomschrijving d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <locatieadresnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <gemeentecode>599</gemeentecode> 
+        </ADR>
+      </PRSADRCOR>
+      <PRSADRINS d5p1:soortEntiteit="R" d5p1:verwerkingssoort="E">
+        <tijdvakRelatie>
+          <d5p1:begindatumRelatie>19990611</d5p1:begindatumRelatie> 
+          <d5p1:einddatumRelatie>20080611</d5p1:einddatumRelatie> 
+        </tijdvakRelatie>
+        <ADR d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="132090" d5p1:verwerkingssoort="I">
+          <adresBuitenland1 d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <adresBuitenland2 d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <adresBuitenland3 d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <landcode d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <postcode>3086EX</postcode> 
+          <woonplaatsnaam d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <postbusnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <antwoordnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <straatnaam>Slinge</straatnaam> 
+          <huisnummer>584</huisnummer> 
+          <huisletter d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <huisnummertoevoeging d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <aanduidingBijHuisnummer d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <locatieomschrijving d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+          <locatieadresnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <gemeentecode>599</gemeentecode>
+        </ADR>
+      </PRSADRINS>
+    </PRS>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="101911" d5p1:verwerkingssoort="W" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer>1710604194</a-nummer> 
+      <bsn-nummer>61062662</bsn-nummer> 
+      <PRSADRCOR d5p1:soortEntiteit="R" d5p1:verwerkingssoort="R">
+        <tijdvakRelatie>
+          <d5p1:begindatumRelatie>20080611</d5p1:begindatumRelatie> 
+          <d5p1:einddatumRelatie d5p1:noValue="geenWaarde" xsi:nil="true" /> 
+        </tijdvakRelatie>
+        <ADR d5p1:soortEntiteit="F" d5p1:verwerkingssoort="I">
+          <adresBuitenland1>Avendia del Alay 1</adresBuitenland1> 
+          <adresBuitenland2>29630 Benalmadena</adresBuitenland2> 
+          <adresBuitenland3>Costa</adresBuitenland3>
+          <landcode>6037</landcode> 
+          <postcode d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <woonplaatsnaam d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <postbusnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <antwoordnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <straatnaam d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <huisnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <huisletter d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <huisnummertoevoeging d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <aanduidingBijHuisnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <locatieomschrijving d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <locatieadresnummer d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <gemeentecode d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+        </ADR>
+      </PRSADRCOR>
+      <PRSADRINS d5p1:soortEntiteit="R" d5p1:verwerkingssoort="E" d5p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+    </PRS>
+  </body>
+</kennisgevingsBericht>

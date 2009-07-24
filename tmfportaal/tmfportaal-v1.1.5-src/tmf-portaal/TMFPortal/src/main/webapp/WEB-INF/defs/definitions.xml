@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+
+
+	<!-- DEFAULT MAIN TEMPLATE -->
+	<definition name="TMFPortalWeb" template="/WEB-INF/jsp/main.jsp">
+	</definition>
+	
+	<definition name="TMBR" template="/WEB-INF/jsp/tiles/tmbr.jsp">
+		<put-attribute name="state" value="0" />
+	</definition>
+	
+	<definition name="TMOBJ" template="/WEB-INF/jsp/tiles/tmobj.jsp">
+		<put-attribute name="state" value="0" />
+	</definition>
+	
+	<definition name="TMATTR" template="/WEB-INF/jsp/tiles/tmattr.jsp">
+		<put-attribute name="state" value="0" />
+	</definition>
+	
+	<definition name="TMVERI" template="/WEB-INF/jsp/tiles/tmveri.jsp">
+		<put-attribute name="state" value="0" />
+	</definition>
+	
+	<definition name="ERROR" template="/WEB-INF/jsp/tiles/error.jsp">
+		<put-attribute name="code" value="0"/>
+	</definition>
+	
+	<definition name="SUCCESS" template="/WEB-INF/jsp/tiles/success.jsp">
+		<put-attribute name="code" value="0"/>
+	</definition>
+	
+	<definition name="INTREK" template="/WEB-INF/jsp/tiles/intrek.jsp">
+	</definition>
+	
+	<definition name="menu" template="/WEB-INF/jsp/tiles/menu.jsp">
+		<put-attribute name="step" value="0"/>
+	</definition>
+	
+	<definition name="footer" template="/WEB-INF/jsp/tiles/footer.jsp">
+	</definition>
+	
+	<definition name="head" template="/WEB-INF/jsp/tiles/head.jsp">
+	</definition>
+	
+	<definition name="terugmeldingProgress" template="/WEB-INF/jsp/tiles/terugmelding_Progress.jsp">
+		<put-attribute name="progress" value ="0"/> 
+	</definition>
+	
+</tiles-definitions>

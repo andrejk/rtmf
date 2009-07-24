@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+	<!--
+		- Application context definition for "springapp" DispatcherServlet.
+	-->
+<beans>
+	<bean id="prgpnd"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObject">
+		<property name="tag">
+			<value>PND</value>
+		</property>
+		<property name="naam">
+			<value>Pand</value>
+		</property>
+	</bean>
+	<bean id="prgvbo"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObject">
+		<property name="tag">
+			<value>VBO</value>
+		</property>
+		<property name="naam">
+			<value>Verblijfsobject</value>
+		</property>
+	</bean>
+	<bean id="prgsta"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObject">
+		<property name="tag">
+			<value>STA</value>
+		</property>
+		<property name="naam">
+			<value>Staanplaats</value>
+		</property>
+	</bean>
+	<bean id="prglig"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObject">
+		<property name="tag">
+			<value>LIG</value>
+		</property>
+		<property name="naam">
+			<value>Ligplaats</value>
+		</property>
+	</bean>
+</beans>

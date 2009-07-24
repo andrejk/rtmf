@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.2.xsd"
+	elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:sb-xsd="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd"
+	xmlns:sb-xsd-1_2="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.2.xsd">
+ 	
+	<xsd:import namespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd"
+		schemaLocation="stelselBevragen.xsd"></xsd:import>
+	
+	<!-- Start getObjectAndValuesInfo -->
+	<xsd:element name="getObjectInfoAndValues" type="sb-xsd:ObjectInfoRequestType"> </xsd:element>
+	<xsd:element name="getObjectInfoAndValuesResponse"
+		type="sb-xsd-1_2:ObjectInfoAndValuesResponseType"/>
+	<xsd:complexType name="ObjectInfoAndValuesResponseType">
+		<xsd:sequence>
+			<xsd:element name="objectInfo" type="sb-xsd-1_2:ObjectWithAttributeValuesType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Einde getObjectAndValuesInfo -->
+
+	<xsd:complexType name="ObjectWithAttributeValuesType">
+		<xsd:sequence>
+			<xsd:element name="ObjectHeaderInfo" type="sb-xsd:ObjectHeaderType"> </xsd:element>
+			<xsd:element name="attributen" type="sb-xsd-1_2:AttribuutAndValuesType"
+				maxOccurs="unbounded" minOccurs="0"> </xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AttribuutAndValuesType">
+		<xsd:sequence>
+			<xsd:element name="code" type="xsd:string"/>
+			<xsd:element name="naam" type="xsd:string"/>
+			<xsd:element name="lengte" type="xsd:int" minOccurs="0"/>
+			<xsd:element name="toelichting" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="reguliereexpressie" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="attribuutwaarden" type="sb-xsd-1_2:AttribuutValuesValueType"
+				minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AttribuutValuesValueType">
+		<xsd:sequence>
+			<xsd:element name="code" type="xsd:string"/>
+			<xsd:element name="waarde" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

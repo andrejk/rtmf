@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<kennisgevingsBericht xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.egem.nl/StUF/sector/bg/0204">
+  <stuurgegevens xmlns="http://www.egem.nl/StUF/StUF0204">
+    <berichtsoort>Lk01</berichtsoort>
+    <entiteittype>PRS</entiteittype>
+    <sectormodel>BG</sectormodel>
+    <versieStUF>0204</versieStUF>
+    <versieSectormodel>0204</versieSectormodel>
+    <zender>
+      <applicatie>DDS</applicatie>
+      <gebruiker>PRODPIV</gebruiker>
+    </zender>
+    <ontvanger>
+      <applicatie>DDS</applicatie>
+    </ontvanger>
+    <referentienummer>2506960_04007a</referentienummer>
+    <tijdstipBericht>2009032615151559</tijdstipBericht>
+    <kennisgeving>
+      <mutatiesoort>W</mutatiesoort>
+      <indicatorOvername>V</indicatorOvername>
+      <tijdstipMutatie>2009010101010100</tijdstipMutatie>
+    </kennisgeving>
+  </stuurgegevens>
+  <body>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="1146243" d5p1:verwerkingssoort="W" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer d5p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+      <bsn-nummer d5p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+      <PRSNAT d5p1:soortEntiteit="R" d5p1:verwerkingssoort="T" d5p1:noValue="geenWaarde" xmlns="http://www.egem.nl/StUF/sector/bg/0204" />
+    </PRS>
+    <PRS d5p1:soortEntiteit="F" d5p1:sleutelVerzendend="1146243" d5p1:verwerkingssoort="W" xmlns:d5p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer>1405409046</a-nummer>
+      <bsn-nummer>213426845</bsn-nummer>
+      <PRSNAT d5p1:soortEntiteit="R" d5p1:verwerkingssoort="T">
+        <datumVerkrijging>20090101</datumVerkrijging> 
+        <datumVerlies>geenWaarde</datumVerlies>
+        <NAT d5p1:soortEntiteit="T" d5p1:verwerkingssoort="I">
+          <code>2</code> 
+          <omschrijving d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <datumVerkrijging d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+          <datumVerlies d5p1:noValue="nietOndersteund" xsi:nil="true" /> 
+        </NAT>
+      </PRSNAT>
+    </PRS>
+  </body>
+</kennisgevingsBericht>

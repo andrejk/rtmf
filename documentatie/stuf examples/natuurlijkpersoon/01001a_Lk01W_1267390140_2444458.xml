@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<kennisgevingsBericht xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.egem.nl/StUF/sector/bg/0204">
+  <stuurgegevens xmlns="http://www.egem.nl/StUF/StUF0204">
+    <berichtsoort>Lk01</berichtsoort>
+    <entiteittype>PRS</entiteittype>
+    <sectormodel>BG</sectormodel>
+    <versieStUF>0204</versieStUF>
+    <versieSectormodel>0204</versieSectormodel>
+    <zender>
+      <applicatie>DDS</applicatie>
+      <gebruiker>PRODPIV</gebruiker>
+    </zender>
+    <ontvanger>
+      <applicatie>DDS</applicatie>
+    </ontvanger>
+    <referentienummer>2444458_01001a</referentienummer>
+    <tijdstipBericht>2009031200371903</tijdstipBericht>
+    <kennisgeving>
+      <mutatiesoort>W</mutatiesoort>
+      <indicatorOvername>V</indicatorOvername>
+      <tijdstipMutatie>2009031200371903</tijdstipMutatie>
+    </kennisgeving>
+  </stuurgegevens>
+  <body>
+    <PRS d3p1:soortEntiteit="F" d3p1:sleutelVerzendend="31348" d3p1:verwerkingssoort="W" xmlns:d3p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer xmlns="http://www.egem.nl/StUF/sector/bg/0204">1267390140</a-nummer>
+      <bsn-nummer xmlns="http://www.egem.nl/StUF/sector/bg/0204">57861481</bsn-nummer>
+      <voornamen xmlns="http://www.egem.nl/StUF/sector/bg/0204">Jacob Christiaan</voornamen>
+      <voorletters xmlns="http://www.egem.nl/StUF/sector/bg/0204">JC</voorletters>
+      <voorvoegselGeslachtsnaam xmlns="http://www.egem.nl/StUF/sector/bg/0204">de</voorvoegselGeslachtsnaam>
+      <geslachtsnaam xmlns="http://www.egem.nl/StUF/sector/bg/0204">Bruijn</geslachtsnaam>
+      <geboortedatum>19420413</geboortedatum>
+      <geboorteplaats>599</geboorteplaats> 
+      <geslachtsaanduiding>M</geslachtsaanduiding>
+      <adellijkeTitelPredikaat>geenWaarde</adellijkeTitelPredikaat>
+      <burgerlijkeStaat>0</burgerlijkeStaat>
+      <aanduidingNaamgebruik>E</aanduidingNaamgebruik>
+      <extraElementen>
+        <d3p1:extraElement d3p1:noValue="geenWaarde" naam="Datumeindeonderzoekpersoon" /> 
+        <d3p1:extraElement d3p1:noValue="geenWaarde" naam="Datumingangonderzoekpersoon" /> 
+        <d3p1:extraElement d3p1:noValue="geenWaarde" naam="Aanduidingonderzoekpersoon" /> 
+        <d3p1:extraElement d3p1:noValue="geenWaarde" naam="Datumeindeonderzoeknationaliteit" /> 
+        <d3p1:extraElement d3p1:noValue="geenWaarde" naam="Datumingangonderzoeknationaliteit" /> 
+        <d3p1:extraElement d3p1:noValue="geenWaarde" naam="Aanduidingonderzoeknationaliteit" /> 
+        <d3p1:extraElement d3p1:noValue="geenWaarde" naam="Datumeindeonderzoekoverlijden" /> 
+        <d3p1:extraElement d3p1:noValue="geenWaarde" naam="Datumingangonderzoekoverlijden" /> 
+        <d3p1:extraElement d3p1:noValue="geenWaarde" naam="Aanduidingonderzoekoverlijden" /> 
+      </extraElementen>
+    </PRS>
+    <PRS d3p1:soortEntiteit="F" d3p1:sleutelVerzendend="31348" d3p1:verwerkingssoort="W" xmlns:d3p1="http://www.egem.nl/StUF/StUF0204">
+      <a-nummer xmlns="http://www.egem.nl/StUF/sector/bg/0204">1267390140</a-nummer>
+      <bsn-nummer xmlns="http://www.egem.nl/StUF/sector/bg/0204">222222222</bsn-nummer>
+      <voornamen xmlns="http://www.egem.nl/StUF/sector/bg/0204">Olivier Berendinus</voornamen>
+      <voorletters xmlns="http://www.egem.nl/StUF/sector/bg/0204">OB</voorletters>
+      <voorvoegselGeslachtsnaam xmlns="http://www.egem.nl/StUF/sector/bg/0204">de</voorvoegselGeslachtsnaam>
+      <geslachtsnaam xmlns="http://www.egem.nl/StUF/sector/bg/0204">Bommel</geslachtsnaam>
+      <geboortedatum>19000101</geboortedatum>
+      <geboorteplaats>Parijs</geboorteplaats>
+      <geslachtsaanduiding>waardeOnbekend</geslachtsaanduiding>
+      <adellijkeTitelPredikaat>B</adellijkeTitelPredikaat>
+      <burgerlijkeStaat>5</burgerlijkeStaat>
+      <aanduidingNaamgebruik>V</aanduidingNaamgebruik>
+      <extraElementen>
+        <d3p1:extraElement d3p1:noValue="geenWaarde" naam="Datumeindeonderzoekpersoon" /> 
+        <d3p1:extraElement naam="Datumingangonderzoekpersoon">20090101</d3p1:extraElement> 
+        <d3p1:extraElement naam="Aanduidingonderzoekpersoon">010000</d3p1:extraElement> 
+        <d3p1:extraElement d3p1:noValue="geenWaarde" naam="Datumeindeonderzoeknationaliteit" /> 
+        <d3p1:extraElement naam="Datumingangonderzoeknationaliteit">20090404</d3p1:extraElement> 
+        <d3p1:extraElement naam="Aanduidingonderzoeknationaliteit">040000</d3p1:extraElement> 
+        <d3p1:extraElement d3p1:noValue="geenWaarde" naam="Datumeindeonderzoekoverlijden" /> 
+        <d3p1:extraElement naam="Datumingangonderzoekoverlijden">20090606</d3p1:extraElement> 
+        <d3p1:extraElement naam="Aanduidingonderzoekoverlijden">060000</d3p1:extraElement> 
+      </extraElementen>
+    </PRS>
+  </body>
+</kennisgevingsBericht>
