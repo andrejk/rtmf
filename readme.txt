@@ -47,5 +47,3 @@ MULE_HOME=/home/akoelewijn/programs/mule-standalone-2.2.1/ ./runMule.sh
 Opleveren
 =========
 
-
-=======
