@@ -7,3 +7,7 @@ tmfportaal/oldTMF/
 *.war
 *~
 *.log
+/guc-generic/.settings/
+/guc-generic/target/
+.classpath
+.project
