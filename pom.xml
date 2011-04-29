@@ -37,6 +37,7 @@
         <system>GitHub Issues</system>
         <url>https://github.com/rotterdam/rtmf/issues</url>
     </issueManagement>
+    <!--
     <ciManagement>
         <system>hudson</system>
         <url>http://twd729.resource.ta-twd.rotterdam.nl:8080/</url>
@@ -53,7 +54,7 @@
             </notifier> 
         </notifiers> 		
     </ciManagement>
-
+-->
     <developers>
         <developer>
             <name>John Copier</name>
@@ -103,9 +104,9 @@
     </organization>
     <modules>
         <module>guc-generic</module>
-<!--
         <module>rtmf-guc-mocks</module>
         <module>rtmf-guc</module>
+<!--
         <module>rtmf-guc-db</module>
         <module>ZmWeb</module>
         <module>rtmf-package</module>
