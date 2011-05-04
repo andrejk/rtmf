@@ -46,5 +46,12 @@ Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
 SQL> @rtmfguc_deploy_all.sql
 ```
 
+Configuratie
+------------
 
+RTMF maakt gebruik van een aantal configuratie bestanden:
+* rtmfguc_env.properties - configuratie voor RTMF Mule applicatie
+* tmfportal.properties - configuratie voor TMF Portal (Digimelding)
+
+Voorbeelden van deze bestanden zijn te vinden in rtmf-guc/src/test/resources. Voor ontwikkeldoeleinden kan het best gebruik gemaakt worden van een configuratie naar mock services.
 
