@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+	<!--
+		- Application context definition for "springapp" DispatcherServlet.
+	-->
+<beans>
+	<bean id="branumicn"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>ICN</value>
+		</property>
+		<property name="naam">
+			<value>Identificatiecode nummeraanduiding</value>
+		</property>
+	</bean>
+	<bean id="branumhnr"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>HNR</value>
+		</property>
+		<property name="naam">
+			<value>Huisnummer</value>
+		</property>
+	</bean>
+	<bean id="branumign"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>IGN</value>
+		</property>
+		<property name="naam">
+			<value>Indicatie geconstateerde nummeraanduiding</value>
+		</property>
+	</bean>
+	<bean id="branumhl"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>HL</value>
+		</property>
+		<property name="naam">
+			<value>Huisletter</value>
+		</property>
+	</bean>
+	<bean id="branumht"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>HT</value>
+		</property>
+		<property name="naam">
+			<value>Huisnummertoevoeging</value>
+		</property>
+	</bean>
+	<bean id="branumpc"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>PC</value>
+		</property>
+		<property name="naam">
+			<value>Postcode</value>
+		</property>
+	</bean>
+	<bean id="branumibw"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>IBW</value>
+		</property>
+		<property name="naam">
+			<value>Identificatiecode bijbehorende woonplaats</value>
+		</property>
+	</bean>
+	<bean id="branumdbgn"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>DBGN</value>
+		</property>
+		<property name="naam">
+			<value>Datum begin geldigheid nummeraanduidinggegevens</value>
+		</property>
+	</bean>
+	<bean id="branumdegn"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>DEGN</value>
+		</property>
+		<property name="naam">
+			<value>Datum einde geldigheid nummeraanduidinggegevens</value>
+		</property>
+	</bean>
+	<bean id="branumanio"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>ANIO</value>
+		</property>
+		<property name="naam">
+			<value>Aanduiding nummeraanduidinggegevens in onderzoek</value>
+		</property>
+	</bean>
+	<bean id="branumicbor"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>ICBOR</value>
+		</property>
+		<property name="naam">
+			<value>Identificatiecode bijbehorende openbare ruimte</value>
+		</property>
+	</bean>
+	<bean id="branumtao"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>TAO</value>
+		</property>
+		<property name="naam">
+			<value>Type adresseerbaar object</value>
+		</property>
+	</bean>
+	<bean id="branumddmn"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>DDMN</value>
+		</property>
+		<property name="naam">
+			<value>Documentdatum mutatie nummeraanduiding</value>
+		</property>
+	</bean>
+	<bean id="branumdnmn"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>DNMN</value>
+		</property>
+		<property name="naam">
+			<value>Documentnummer mutatie nummeraanduiding</value>
+		</property>
+	</bean>
+	<bean id="branumdas"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>DAS</value>
+		</property>
+		<property name="naam">
+			<value>Nummeraanduidingstatus</value>
+		</property>
+	</bean>
+
+</beans>

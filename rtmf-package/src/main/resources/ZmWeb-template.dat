@@ -1,0 +1,58 @@
+moduleType=ear
+applicationID=ZmWeb
+bindWebApp=default-web-site
+webSiteBindings=
+parent=default
+moduleID=.
+doctype=orion-application
+<?xml version="1.0" encoding="UTF-8"?>
+<orion-application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/orion-application-10_0.xsd" default-data-source="jdbc/OracleDS" deployment-version="10.1.3.4.0" component-classification="external">
+	<web-module path="ZmWeb.war" id="ZmWeb">
+	</web-module>
+	<persistence path="persistence">
+	</persistence>
+	<log>
+		<file path="application.log">
+		</file>
+	</log>
+	<namespace-access>
+		<read-access>
+			<namespace-resource root="">
+				<security-role-mapping name="&lt;jndi-user-role&gt;">
+					<group name="ascontrol_admin">
+					</group>
+					<group name="oc4j-administrators">
+					</group>
+				</security-role-mapping>
+			</namespace-resource>
+		</read-access>
+		<write-access>
+			<namespace-resource root="">
+				<security-role-mapping name="&lt;jndi-user-role&gt;">
+					<group name="ascontrol_admin">
+					</group>
+					<group name="oc4j-administrators">
+					</group>
+				</security-role-mapping>
+			</namespace-resource>
+		</write-access>
+	</namespace-access>
+	<library path="@applicationPropDir@" />
+  <imported-shared-libraries>
+		<import-shared-library name="apache.xml">
+		</import-shared-library>
+		<remove-inherited name="oracle.xml">
+		</remove-inherited>
+	</imported-shared-libraries>
+</orion-application>
+moduleID=data-sources
+doctype=data-sources
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<data-sources/>
+moduleID=ZmWeb-0.9-SNAPSHOT.war
+doctype=orion-web-app
+<?xml version="1.0" encoding="UTF-8"?>
+<orion-web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/orion-web-10_0.xsd" directory-browsing="allow" context-root="ZmWeb">
+	<web-app-class-loader search-local-classes-first="true">
+	</web-app-class-loader>
+</orion-web-app>

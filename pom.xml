@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (c) 2009-2011 Gemeente Rotterdam
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.1 (or any later version).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * European Union Public Licence for more details.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see
+ * http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>nl.rotterdam.rtmf</groupId>
+	<artifactId>rtmf</artifactId>
+
+	<packaging>pom</packaging>
+	<version>1.0.3</version>
+	<name>Rotterdamse terugmeld faciliteit</name>
+	<description>  
+	   In het kader van het programma Data Chain draagt het project Stelsel Basis- en Kernregistraties 
+       zorg voor het realiseren van voorzieningen voor het beschikbaar stellen van basis- en kerngegevens. 
+       Onderdeel van deze voorzieningen is de mogelijkheid van het indienen van terugmeldingen op deze gegevens. 
+       Om naast het gebruik van de landelijke Terugmeldfaciliteit ook aan kerngegevens binnen de 
+       gemeente Rotterdam gelijke kwaliteitseisen te stellen, is het gebruik van een geïntegreerde, 
+       adequate en transparante Terugmeldfaciliteit voor Rotterdam van groot belang. 
+    </description>
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/rotterdam/rtmf/issues</url>
+    </issueManagement>
+    <!--
+    <ciManagement>
+        <system>hudson</system>
+        <url>http://twd729.resource.ta-twd.rotterdam.nl:8080/</url>
+        <notifiers> 
+            <notifier> 
+                <type>mail</type> 
+                <configuration> 
+                    <recipients>andrej@koelewijn.net</recipients> 
+                </configuration> 
+                <sendOnError>true</sendOnError> 
+                <sendOnFailure>true</sendOnFailure> 
+                <sendOnSuccess>true</sendOnSuccess> 
+                <sendOnWarning>true</sendOnWarning> 
+            </notifier> 
+        </notifiers> 		
+    </ciManagement>
+-->
+    <developers>
+        <developer>
+            <name>John Copier</name>
+            <email>john.copier@it-eye.nl</email>
+        </developer>
+        <developer>
+            <id>akoelewijn</id>
+            <name>Andrej Koelewijn</name>
+            <email>andrej@koelewijn.net</email>
+        </developer>
+        <developer>
+            <id>rvweverwijk</id>
+            <name>Ron van Weverwijk</name>
+            <email>ron.van.weverwijk@it-eye.nl</email>
+        </developer>
+        <developer>
+            <id>ppbakker</id>
+            <name>Peter Paul Bakker</name>
+            <email>peter.paul.bakker@stokpop.nl</email>
+        </developer>
+        <developer>
+            <id>ebuis</id>
+            <name>Enno Buis</name>
+            <email>enno.buis@atosorigin.com</email>
+        </developer>
+    </developers>
+    <properties>
+        <mule.version>2.2.1</mule.version>
+        <rtmf.version>0.9</rtmf.version>
+        <tmf.portal.version>1.0-SNAPSHOT</tmf.portal.version>
+        <runtime.library.scope>provided</runtime.library.scope>
+	<!-- om encoding issues te voorkomen met copied files -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- gebruikt door ioo guc componenten -->
+        <commons-lang.version>2.4</commons-lang.version>
+        <easymock.version>2.5</easymock.version>
+        <junit.version>4.5</junit.version>
+        <spring.version>2.5.6</spring.version>
+        <jdom.version>1.1</jdom.version>		
+    </properties>	
+    <scm>
+        <url>https://github.com/rotterdam/rtmf</url>
+    </scm>
+    <organization>
+        <name>Rotterdam</name>
+        <url>www.rotterdam.nl</url>
+    </organization>
+    <modules>
+        <module>guc-generic</module>
+        <module>rtmf-guc-mocks</module>
+        <module>rtmf-guc</module>
+<!--
+        <module>rtmf-guc-db</module>
+        <module>ZmWeb</module>
+        <module>rtmf-package</module>
+-->
+    </modules>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.3.1</version>
+                <configuration>
+                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                    <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <repositories>
+        <repository>
+            <id>muleforge</id>
+            <url>http://repository.muleforge.org</url>
+            <name>MuleForge Repository</name>
+        </repository >
+
+        <repository>
+            <id>mule.dependencies</id>
+            <url>http://dist.codehaus.org/mule/dependencies/maven2/</url>
+            <name>Mule Dependencies Repository</name>
+        </repository >
+
+        <repository>
+            <id>ibiblio-mule-deps</id>
+            <name>Ibiblio mule dependencies</name>
+            <url>http://www.ibiblio.org/maven/mule/dependencies/maven2/</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>java-net</id>
+            <name>Java.net repo</name>
+            <url>http://download.java.net/maven/2/</url>
+            <layout>default</layout>
+        </repository>
+        
+        <repository>
+            <id>servicemix-opensaml</id>
+            <name>servicemix-opensaml</name>
+            <url>http://svn.apache.org/repos/asf/servicemix/m2-repo/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+    <licenses>
+        <license>
+            <name>European Union Public Licence 1.1</name>
+            <url>http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1</url>
+            <comments>Alle broncode van RTMF is beschikbaar on EUPL v1.1</comments>
+        </license>
+    </licenses>
+</project>

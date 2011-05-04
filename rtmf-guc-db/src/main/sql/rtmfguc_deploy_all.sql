@@ -1,0 +1,1 @@
+@@rtmfguc_build_all.sql

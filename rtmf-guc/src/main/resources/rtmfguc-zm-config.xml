@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (c) 2009-2011 Gemeente Rotterdam
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.1 (or any later version).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * European Union Public Licence for more details.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see
+ * http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
+-->
+<mule xmlns="http://www.mulesource.org/schema/mule/core/2.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns:http="http://www.mulesource.org/schema/mule/http/2.2" xmlns:vm="http://www.mulesource.org/schema/mule/vm/2.2"
+	xmlns:xm="http://www.mulesource.org/schema/mule/xml/2.2" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:scripting="http://www.mulesource.org/schema/mule/scripting/2.2"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+
+	xsi:schemaLocation="
+               http://www.mulesource.org/schema/mule/scripting/2.2 http://www.mulesource.org/schema/mule/scripting/2.2/mule-scripting.xsd
+               http://www.mulesource.org/schema/mule/core/2.2 http://www.mulesource.org/schema/mule/core/2.2/mule.xsd
+               http://www.mulesource.org/schema/mule/http/2.2 http://www.mulesource.org/schema/mule/http/2.2/mule-http.xsd
+               http://www.mulesource.org/schema/mule/vm/2.2 http://www.mulesource.org/schema/mule/vm/2.2/mule-vm.xsd
+               http://www.mulesource.org/schema/mule/xml/2.2 http://www.mulesource.org/schema/mule/xml/2.2/mule-xml.xsd
+               http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+               http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+               http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd">
+
+	<model name="zakenmagazijn">
+
+		<service name="NieuwZaaknummerService">
+			<description>
+				Deze service doet een aanroep naar het zakenmagazijn om
+				een nieuw zaaknummer (zaakidentificatie) op te halen.			
+			</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" 
+					path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnNieuwZaaknummerService"
+					synchronous="true"
+					name="rtmfguc.zakenMagazijnService.nieuwZaaknummer.inbound.vm" />
+				<http:inbound-endpoint synchronous="true"
+					host="${rtmf.cfg.rtmfguc.host}" port="${rtmf.cfg.rtmfguc.port}"
+					connector-ref="domein.http.connector"
+					path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnNieuwZaaknummerService"
+					transformer-refs="delete-accept-header add-xml-accept-header byteArrayToString"
+					responseTransformer-refs="delete-content-type-header add-xml-content-type-header"
+					name="rtmfguc.zakenMagazijnService.nieuwZaaknummer.inbound.http">
+				</http:inbound-endpoint>
+			</inbound>
+			<outbound>
+				<pass-through-router>
+					<http:outbound-endpoint host="${rtmf.cfg.zm.host}"
+						port="${rtmf.cfg.zm.port}" path="${rtmf.cfg.zm.nieuwZaaknummer.path}" synchronous="true"
+						name="rtmfguc.zakenMagazijnService.nieuwZaaknummer.proxy.outbound.http" 
+						connector-ref="domein.http.connector"/>
+				</pass-through-router>
+			</outbound>
+		</service>
+		
+		<!--  -->
+		<!-- Zakenmagazijn Create Services -->
+		<!--  -->
+
+		<service name="ZaakCreatieService">
+			<description>
+				Deze service doet een aanroep naar het zakenmagazijn om
+				een nieuwe zaak aan te maken (createZaak).
+			</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" 
+					path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnZaakCreatieService"
+					synchronous="true"
+					name="rtmfguc.zakenMagazijnService.zaakCreatie.inbound.vm" />
+				<http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}"
+					port="${rtmf.cfg.rtmfguc.port}" path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnZaakCreatieService"
+					synchronous="true" connector-ref="domein.http.connector"
+					transformer-refs="delete-accept-header add-xml-accept-header byteArrayToString"
+					responseTransformer-refs="delete-content-type-header add-xml-content-type-header"
+					name="rtmfguc.zakenMagazijnService.zaakCreatie.inbound.http">
+				</http:inbound-endpoint>
+			</inbound>
+			<outbound>
+				<pass-through-router>
+					<http:outbound-endpoint host="${rtmf.cfg.zm.host}"
+					connector-ref="domein.http.connector"
+						port="${rtmf.cfg.zm.port}" path="${rtmf.cfg.zm.manager.path}" synchronous="true"
+						name="rtmfguc.zakenMagazijnService.zaakCreatie.proxy.outbound.http" />
+				</pass-through-router>
+			</outbound>
+		</service>
+
+		<service name="StapCreatieService">
+			<description>
+				Deze service doet een aanroep naar het zakenmagazijn om
+				een nieuwe stap aan te maken (createStap).
+			</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" 
+					path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnStapCreatieService"
+					synchronous="true"
+					name="rtmfguc.zakenMagazijnService.stapCreatie.inbound.vm" />
+				<http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}"
+					port="${rtmf.cfg.rtmfguc.port}" path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnStapCreatieService"
+					synchronous="true" connector-ref="domein.http.connector"
+					transformer-refs="delete-accept-header add-xml-accept-header byteArrayToString"
+					responseTransformer-refs="delete-content-type-header add-xml-content-type-header"
+					name="rtmfguc.zakenMagazijnService.stapCreatie.inbound.http">
+				</http:inbound-endpoint>
+			</inbound>
+			<outbound>
+				<pass-through-router>
+					<http:outbound-endpoint host="${rtmf.cfg.zm.host}" connector-ref="domein.http.connector"
+						port="${rtmf.cfg.zm.port}" path="${rtmf.cfg.zm.manager.path}" synchronous="true"
+						name="rtmfguc.zakenMagazijnService.stapCreatie.proxy.outbound.http" />
+				</pass-through-router>
+			</outbound>
+		</service>
+
+		<service name="StatusCreatieService">
+			<description>
+				Deze service doet een aanroep naar het zakenmagazijn om
+				een nieuwe status aan te maken (createStatus).
+			</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" 
+					path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnStatusCreatieService"
+					synchronous="true"
+					name="rtmfguc.zakenMagazijnService.statusCreatie.inbound.vm" />
+				<http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}"
+					port="${rtmf.cfg.rtmfguc.port}" path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnStatusCreatieService"
+					synchronous="true" connector-ref="domein.http.connector"
+					transformer-refs="delete-accept-header add-xml-accept-header byteArrayToString"
+					responseTransformer-refs="delete-content-type-header add-xml-content-type-header"
+					name="rtmfguc.zakenMagazijnService.statusCreatie.inbound.http">
+				</http:inbound-endpoint>
+			</inbound>
+			<outbound>
+				<pass-through-router>
+					<http:outbound-endpoint host="${rtmf.cfg.zm.host}"
+					    connector-ref="domein.http.connector"
+						port="${rtmf.cfg.zm.port}" path="${rtmf.cfg.zm.manager.path}" synchronous="true"
+						name="rtmfguc.zakenMagazijnService.statusCreatie.proxy.outbound.http" />
+				</pass-through-router>
+			</outbound>
+		</service>
+
+		<!--  -->
+		<!-- Zakenmagazijn Update Services -->
+		<!--  -->
+
+		<service name="ZaakUpdateService">
+			<description>
+				Deze service doet een aanroep naar het zakenmagazijn om
+				een update op een zaak te doen (updateZaak).
+			</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" 
+					path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnZaakUpdateService"
+					synchronous="true"
+					name="rtmfguc.zakenMagazijnService.zaakUpdate.inbound.vm" />
+				<http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}"
+					port="${rtmf.cfg.rtmfguc.port}" path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnZaakUpdateService"
+					synchronous="true" connector-ref="domein.http.connector"
+					transformer-refs="delete-accept-header add-xml-accept-header byteArrayToString"
+					responseTransformer-refs="delete-content-type-header add-xml-content-type-header"
+					name="rtmfguc.zakenMagazijnService.zaakUpdate.inbound.http">
+				</http:inbound-endpoint>
+			</inbound>
+			<outbound>
+				<pass-through-router>
+					<http:outbound-endpoint host="${rtmf.cfg.zm.host}"
+						connector-ref="domein.http.connector"
+						port="${rtmf.cfg.zm.port}" path="${rtmf.cfg.zm.manager.path}" synchronous="true"
+						name="rtmfguc.zakenMagazijnService.zaakUpdate.proxy.outbound.http" />
+				</pass-through-router>
+			</outbound>
+		</service>
+		
+		<service name="StapUpdateService">
+			<description>
+				Deze service doet een aanroep naar het zakenmagazijn om
+				een stap up-to-date te brengen (updateStap).
+			</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" 
+					path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnStapUpdateService"
+					synchronous="true"
+					name="rtmfguc.zakenMagazijnService.stapUpdate.inbound.vm" />
+				<http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}"
+					port="${rtmf.cfg.rtmfguc.port}" path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnStapUpdateService"
+					synchronous="true" connector-ref="domein.http.connector"
+					transformer-refs="delete-accept-header add-xml-accept-header byteArrayToString"
+					responseTransformer-refs="delete-content-type-header add-xml-content-type-header"
+					name="rtmfguc.zakenMagazijnService.stapUpdate.inbound.http">
+				</http:inbound-endpoint>
+			</inbound>
+			<outbound>
+				<pass-through-router>
+					<http:outbound-endpoint host="${rtmf.cfg.zm.host}"
+						connector-ref="domein.http.connector"
+						port="${rtmf.cfg.zm.port}" path="${rtmf.cfg.zm.manager.path}" synchronous="true"
+						name="rtmfguc.zakenMagazijnService.stapUpdate.proxy.outbound.http" />
+				</pass-through-router>
+			</outbound>
+		</service>
+		
+		<service name="ZMManagerService">
+            <description>ZM ManagerService (status terugmelding)</description>
+            <inbound>
+                <vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal"  path="${rtmf.cfg.rtmfguc.app.path}zmManagerServiceIn"
+                    transformer-refs="rtmf.tracing.request.transformer" synchronous="true"
+                    name="rtmfguc.zm.manager.proxy.inbound.vm"
+                    responseTransformer-refs="validateMessage" />
+                <http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}" port="${rtmf.cfg.rtmfguc.port}"
+                    path="${rtmf.cfg.rtmfguc.app.path}zmManagerService" 
+                    connector-ref="domein.http.connector"
+                    transformer-refs="delete-accept-header add-xml-accept-header rtmf.tracing.request.transformer"
+                    responseTransformer-refs="exceptionPayloadTransformer delete-content-type-header add-xml-content-type-header"
+                    synchronous="true" name="rtmfguc.zm.manager.proxy.inbound.http" />
+            </inbound>
+            <outbound>
+                <pass-through-router>
+                    <http:outbound-endpoint host="${rtmf.cfg.zm.host}"
+                        port="${rtmf.cfg.zm.port}" path="${rtmf.cfg.zm.manager.path}"
+                        connector-ref="domein.http.connector"
+                        synchronous="true" transformer-refs="rtmf.tracing.request.transformer"
+                        responseTransformer-refs="validateSOAPMessage"
+                        name="rtmfguc.gm.manager.proxy.outbound.http" />
+                </pass-through-router>
+            </outbound>
+        </service>
+
+	</model>
+
+</mule>
+
+	

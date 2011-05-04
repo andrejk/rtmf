@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (c) 2009-2011 Gemeente Rotterdam
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.1 (or any later version).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * European Union Public Licence for more details.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see
+ * http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
+  -->
+<mule xmlns="http://www.mulesource.org/schema/mule/core/2.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns:http="http://www.mulesource.org/schema/mule/http/2.2" xmlns:vm="http://www.mulesource.org/schema/mule/vm/2.2"
+	xmlns:xm="http://www.mulesource.org/schema/mule/xml/2.2" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:scripting="http://www.mulesource.org/schema/mule/scripting/2.2"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+
+	xsi:schemaLocation="
+               http://www.mulesource.org/schema/mule/scripting/2.2 http://www.mulesource.org/schema/mule/scripting/2.2/mule-scripting.xsd
+               http://www.mulesource.org/schema/mule/core/2.2 http://www.mulesource.org/schema/mule/core/2.2/mule.xsd
+               http://www.mulesource.org/schema/mule/http/2.2 http://www.mulesource.org/schema/mule/http/2.2/mule-http.xsd
+               http://www.mulesource.org/schema/mule/vm/2.2 http://www.mulesource.org/schema/mule/vm/2.2/mule-vm.xsd
+               http://www.mulesource.org/schema/mule/xml/2.2 http://www.mulesource.org/schema/mule/xml/2.2/mule-xml.xsd
+               http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+               http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+               http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd">
+
+	<model name="zakenmagazijn-mocks">
+
+		<!--  -->
+		<!-- Zakenmagazijn nieuw zaaknummer mock service -->
+		<!--  -->
+
+		<service name="nieuwZaaknummerServiceMock">
+			<description>
+				Een mock service om nieuwZaaknummer service na te
+				bootsen.
+			</description>
+			<inbound>
+				<http:inbound-endpoint host="${rtmf.cfg.mock.zm.host}" port="${rtmf.cfg.mock.zm.port}"
+					path="${rtmf.cfg.mock.zm.nieuwZaaknummer.path}" synchronous="true" contentType="text/xml"
+					transformer-refs="byteArrayToObject"  connector-ref="domein.http.connector"
+					responseTransformer-refs="delete-content-type-header add-xml-content-type-header"
+					name="zm.mock.nieuwZaaknummer.inbound.http" />
+			</inbound>
+			<scripting:component>
+				<scripting:script
+					file="groovy-scripts/NieuwZaaknummerResponseMock.groovy" />
+			</scripting:component>
+		</service>
+
+		<!--  -->
+		<!-- Zakenmagazijn creatie mock services -->
+		<!--  -->
+
+		<service name="ZakenmagazijnManagerServiceMock">
+			<description>
+				Een mock service om de ZakenmagazijnManager service na
+				te bootsen. Deze mock service kijkt naar de inhoud van
+				het bericht en haalt daar een kenmerk uit welke de
+				gewenste service identificeert.
+			</description>
+			<inbound>
+				<http:inbound-endpoint host="${rtmf.cfg.mock.zm.host}" port="${rtmf.cfg.mock.zm.port}"
+					path="${rtmf.cfg.mock.zm.manager.path}" synchronous="true" contentType="text/xml"
+					transformer-refs="byteArrayToObject rtmf.tracing.request.transformer"
+					responseTransformer-refs="delete-content-type-header add-xml-content-type-header"
+					name="zm.mock.zakenmagazijnManager.inbound.http"  connector-ref="domein.http.connector" />
+			</inbound>
+			<outbound>
+				<filtering-router>
+					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}zaakCreatieServiceMock"
+						synchronous="true" />
+					<wildcard-filter pattern="*Resultaatcode>ontvangen*" />
+				</filtering-router>
+				<filtering-router>
+					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}stapCreatieServiceMock"
+						synchronous="true" />
+					<wildcard-filter pattern="*Stap>*" />
+				</filtering-router>
+				<filtering-router>
+					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}statusCreatieServiceMock"
+						synchronous="true" />
+					<or-filter>
+					<wildcard-filter pattern="*Statuscode>ON*" />
+					<wildcard-filter pattern="*Statuscode>IB*" />
+					</or-filter>
+				</filtering-router>
+				<filtering-router>
+					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}zaakUpdateServiceMock"
+						synchronous="true" />
+					<wildcard-filter pattern="*ZaakUpdate*" />
+				</filtering-router>
+				<filtering-router>
+					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}stapUpdateServiceMock"
+						synchronous="true" />
+					<wildcard-filter pattern="*StapUpdate>*" />
+				</filtering-router>
+				<filtering-router>
+					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}stapCreatieServiceMock"
+						synchronous="true" />
+					<wildcard-filter pattern="*Staptypecode>BEOORDELEN*" />
+				</filtering-router>
+				<filtering-router>
+                    <vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}${rtmf.cfg.mock.zm.ophalen.path}"
+                        synchronous="true" />
+                    <wildcard-filter pattern="*ZaakDetailRequest*" />
+                </filtering-router>
+                <filtering-router>
+                    <vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}${rtmf.cfg.mock.zm.ophalen.path}"
+                        synchronous="true" />
+                    <wildcard-filter pattern="*ZaakQuery*" />
+                </filtering-router>
+			</outbound>
+
+		</service>
+
+		<service name="zaakCreatieServiceMock">
+			<description>
+				Een mock service om de nieuwe Zaak service na te
+				bootsen.
+			</description>
+			<inbound>
+				<vm:inbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}zaakCreatieServiceMock"
+					synchronous="true" responseTransformer-refs="rtmf.tracing.response.transformer"
+					name="zm.mock.zaakCreatie.inbound.vm" />
+			</inbound>
+			<scripting:component>
+				<scripting:script file="groovy-scripts/ZakenmagazijnResponseOkMock.groovy" >
+					<property key="zervice" value="zaakCreatieServiceMock" />
+				</scripting:script>
+			</scripting:component>
+		</service>
+
+		<service name="stapCreatieServiceMock">
+			<description>
+				Een mock service om de nieuwe Stap service na te
+				bootsen.
+			</description>
+			<inbound>
+				<vm:inbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}stapCreatieServiceMock"
+					synchronous="true" responseTransformer-refs="rtmf.tracing.response.transformer"
+					name="zm.mock.stapCreatie.inbound.vm" />
+			</inbound>
+			<scripting:component>
+				<scripting:script file="groovy-scripts/ZakenmagazijnResponseOkMock.groovy" >
+					<property key="zervice" value="stapCreatieServiceMock" />
+				</scripting:script>
+			</scripting:component>
+		</service>
+
+		<service name="statusCreatieServiceMock">
+			<description>
+				Een mock service om de nieuwe Status service na te
+				bootsen.
+			</description>
+			<inbound>
+				<vm:inbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}statusCreatieServiceMock"
+					synchronous="true" responseTransformer-refs="rtmf.tracing.response.transformer"
+					name="zm.mock.statusCreatie.inbound.vm" />
+			</inbound>
+			<scripting:component>
+				<scripting:script file="groovy-scripts/ZakenmagazijnResponseOkMock.groovy" >
+					<property key="zervice" value="statusCreatieServiceMock" />
+				</scripting:script>
+			</scripting:component>
+		</service>
+
+		<service name="ZakenmagazijnResponseMock">
+			<inbound>
+				<vm:inbound-endpoint path="ZakenmagazijnResponseMockIn"
+					synchronous="true" name="zm.mock.zakenmagazijnResponeTransformer.inbound.vm" />
+			</inbound>
+			<scripting:component>
+				<scripting:script
+					file="groovy-scripts/ZakenmagazijnResponseTransformer.groovy" />
+			</scripting:component>
+		</service>
+
+		<!--  -->
+		<!-- Zakenmagazijn update mock services -->
+		<!--  -->
+
+		<service name="zaakUpdateServiceMock">
+			<description>
+				Een mock service om de update Zaak service na te
+				bootsen.
+			</description>
+			<inbound>
+				<vm:inbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}zaakUpdateServiceMock"
+					synchronous="true" responseTransformer-refs="rtmf.tracing.response.transformer"
+					name="zm.mock.zaakUpdate.inbound.vm" />
+			</inbound>
+			<scripting:component>
+				<scripting:script file="groovy-scripts/ZakenmagazijnResponseOkMock.groovy" >
+					<property key="zervice" value="zaakUpdateServiceMock" />
+				</scripting:script>
+			</scripting:component>
+		</service>
+
+		<service name="stapUpdateServiceMock">
+			<description>
+				Een mock service om de UpdateStap service na te bootsen.
+			</description>
+			<inbound>
+				<vm:inbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}stapUpdateServiceMock"
+					synchronous="true" responseTransformer-refs="rtmf.tracing.response.transformer"
+					name="zm.mock.stapUpdate.inbound.vm" />
+			</inbound>
+			<scripting:component>
+				<scripting:script file="groovy-scripts/ZakenmagazijnResponseOkMock.groovy" >
+					<property key="zervice" value="stapUpdateServiceMock" />
+				</scripting:script>
+			</scripting:component>
+		</service>
+
+		<service name="zmOphalenServiceMock">
+            <description>Een mock service om het ophalen van status van het ZM na te bootsen
+            </description>
+            <inbound>
+                <vm:inbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}${rtmf.cfg.mock.zm.ophalen.path}"
+                    synchronous="true" responseTransformer-refs="byteArrayToObject rtmf.tracing.response.transformer"
+                    name="rtmfguc.mock.zm.ophalen.inbound.vm" />
+            </inbound>
+            <scripting:component>
+                <scripting:script file="groovy-scripts/OphalenZmMockServices.groovy" />
+            </scripting:component>
+        </service>
+        
+	</model>
+
+</mule>

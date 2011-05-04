@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+	<!--
+		- Application context definition for "springapp" DispatcherServlet.
+	-->
+<beans>
+	<bean id="brkoz"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObject">
+		<property name="tag">
+			<value>OZ</value>
+		</property>
+		<property name="naam">
+			<value>OZ Object</value>
+		</property>
+	</bean>
+	<bean id="brkzr"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObject">
+		<property name="tag">
+			<value>ZR</value>
+		</property>
+		<property name="naam">
+			<value>Zakelijk recht</value>
+		</property>
+	</bean>
+	<bean id="brkhyp"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObject">
+		<property name="tag">
+			<value>HYP</value>
+		</property>
+		<property name="naam">
+			<value>Hypotheek</value>
+		</property>
+	</bean>
+	<bean id="brkbs"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObject">
+		<property name="tag">
+			<value>BS</value>
+		</property>
+		<property name="naam">
+			<value>Beslag</value>
+		</property>
+	</bean>
+	<bean id="brkper"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObject">
+		<property name="tag">
+			<value>PER</value>
+		</property>
+		<property name="naam">
+			<value>Persoon</value>
+		</property>
+	</bean>
+	<bean id="brkst"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObject">
+		<property name="tag">
+			<value>ST</value>
+		</property>
+		<property name="naam">
+			<value>Stuk</value>
+		</property>
+	</bean>
+</beans>

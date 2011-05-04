@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (c) 2009-2011 Gemeente Rotterdam
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.1 (or any later version).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * European Union Public Licence for more details.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see
+ * http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
+-->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:osb="http://tmfportal.ovsoftware.com/services"
+	xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/"
+	xmlns:tns="http://tmfportal.ovsoftware.com/services"
+	xmlns:wsa="http://www.w3.org/2005/08/addressing"
+	xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+	targetNamespace="http://tmfportal.ovsoftware.com/services"
+	name="Service.wsdl">
+	<wsdl:import
+		namespace="http://tmfportal.ovsoftware.com/services"
+		location="./Service-Abstract.wsdl" />
+	<wsdl:binding name="tmf-aanmeldenBinding"
+		type="osb:tmf-aanmelden">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsaw:UsingAddressing wsdl:required="true" />
+        
+		<wsdl:operation name="terugmelding">
+			<soap:operation
+				soapAction="A04000000000046-tmf-aanmelden-terugmelding-https---s794.nxs.nl-corvus-httpd-ebms-inbound" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="terugmeldingFault">
+				<soap:fault name="terugmeldingFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+
+		<wsdl:operation name="intrekking">
+			<soap:operation
+				soapAction="A04000000000046-tmf-aanmelden-intrekking-https---s794.nxs.nl-corvus-httpd-ebms-inbound" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="intrekkingFault">
+				<soap:fault name="intrekkingFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+
+	</wsdl:binding>
+	<wsdl:service name="tmf-aanmelden">
+		<wsdl:documentation>
+			<wsi:Claim conformsTo="http://ws-i.org/profiles/basic/1.1" />
+		</wsdl:documentation>
+		<wsdl:port name="tmf-aanmelden"
+			binding="tns:tmf-aanmeldenBinding">
+			<soap:address
+				location="http://tmfportal.ovsoftware.com/services" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

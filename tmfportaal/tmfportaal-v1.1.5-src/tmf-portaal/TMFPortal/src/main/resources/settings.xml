@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+  <bean class='org.springframework.beans.factory.config.PropertyPlaceholderConfigurer'>
+    <property name='location'>
+      <value>file:///${user.home}/tmfportal.properties</value>
+    </property>
+  </bean>
+	<bean id="settings" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<!-- SOAPAction instellingen -->
+				<entry key="nieuwe_melding.action_new">
+					<!--
+						GW1.0 naamgeving
+						<value>tmf-aanmelden-terugmelding</value>
+					-->
+					<!-- GW2.0 naamgeving / geintroduceerd in TMF 1.0-->
+					<value>${terugmelding.action}</value>
+				</entry>
+				<entry key="intrekking.action_new">
+					<!--
+						GW1.0 naamgeving
+						<value>tmf-aanmelden-intrekking</value>
+					-->
+					
+					<!-- GW2.0 naamgeving / geintroduceerd in TMF 1.0-->
+					<value>${intrekking.action}</value>
+				</entry>
+				<entry key="ophalen_melding.action_new">
+					<!--
+						GW1.0 naamgeving
+						<value>tmf-ophalenMeldingStatusRequest</value>
+					-->
+					<!-- GW2.0 naamgeving / geintroduceerd in TMF 1.0-->
+					<value>http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingStatusRequest/ophaalService</value>
+				</entry>
+				<entry key="ophalen_details.action_new">
+					<!--
+						GW1.0 naamgeving
+						<value>tmf-ophalenMeldingKenmerkRequest</value>
+					-->
+					<!-- GW2.0 naamgeving / geintroduceerd in TMF 1.0-->
+					<value>http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingKenmerkRequest/ophaalService</value>
+				</entry>
+				<entry key="attributen.action_new">
+					<!--
+						GW1.0 naamgeving
+						<value>tmf-getObjectInfoRequest</value>
+					-->
+					<!-- GW2.0 naamgeving / geintroduceerd in TMF 1.0-->
+					<value>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoRequest/stelselBevragenService</value>
+				</entry>
+				<entry key="attributen_waardes.action_new">
+					<!--
+						GW1.0 naamgeving
+						<value>tmf-bevragenRequest</value>
+					-->
+					<!-- GW2.0 naamgeving / geintroduceerd in TMF 1.0-->
+					<value>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/bevragenRequest/stelselBevragenService</value>
+				</entry>
+				<entry key="objecttypelist.action_new">
+					<!-- GW2.0 naamgeving / geintroduceerd in TMF 1.1 -->
+					<value>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListRequest/stelselBevragenService</value>
+				</entry>
+				<entry key="basisregistraties.action_new">
+					<!-- GW2.0 naamgeving / geintroduceerd in TMF 1.1 -->
+					<value>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getBasisregistratieListRequest/stelselBevragenService</value>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+</beans>

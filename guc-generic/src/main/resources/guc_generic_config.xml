@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (c) 2009-2011 Gemeente Rotterdam
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.1 (or any later version).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * European Union Public Licence for more details.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see
+ * http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
+  -->
+<mule xmlns="http://www.mulesource.org/schema/mule/core/2.2"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:spring="http://www.springframework.org/schema/beans"
+   xmlns:jmx="http://www.mulesource.org/schema/mule/management/2.2"
+   xmlns:jms="http://www.mulesource.org/schema/mule/jms/2.2" xmlns:http="http://www.mulesource.org/schema/mule/http/2.2"
+   xmlns:jbossts="http://www.mulesource.org/schema/mule/jbossts/2.2"
+   xsi:schemaLocation="
+              http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+              http://www.mulesource.org/schema/mule/scripting/2.2 http://www.mulesource.org/schema/mule/scripting/2.2/mule-scripting.xsd
+              http://www.mulesource.org/schema/mule/core/2.2 http://www.mulesource.org/schema/mule/core/2.2/mule.xsd
+          http://www.mulesource.org/schema/mule/jms/2.2 http://www.mulesource.org/schema/mule/jms/2.2/mule-jms.xsd
+              http://www.mulesource.org/schema/mule/management/2.2 http://www.mulesource.org/schema/mule/management/2.2/mule-management.xsd
+              http://www.mulesource.org/schema/mule/http/2.2 http://www.mulesource.org/schema/mule/http/2.2/mule-http.xsd
+              http://www.mulesource.org/schema/mule/jbossts/2.2 http://www.mulesource.org/schema/mule/jbossts/2.2/mule-jbossts.xsd">
+
+    <description>Standaard TWD Mule Domein configuratie. Deze
+       configuratie
+       wordt beheerd door GW TWD en mag derhalve niet door
+       projecten worden
+       gewijzigd cq opgeleverd.
+    </description>
+
+   <!--
+       Activeren van JMX management, MX4J console en management van log4J via
+       JMX
+   -->
+
+    <jmx:rmi-server serverUri="rmi://localhost:${domein.cfg.jmx.rmi.port}" createRegistry="true"/>
+    <jmx:jmx-server>
+        <jmx:connector-server
+           url="service:jmx:rmi:///jndi/rmi://localhost:${domein.cfg.jmx.rmi.port}/server"
+           rebind="true" />
+        <jmx:credentials>
+            <spring:entry key="${domein.cfg.jmx.user}" value="${domein.cfg.jmx.password}" />
+        </jmx:credentials>
+    </jmx:jmx-server>
+    <jmx:jmx-mx4j-adaptor jmxAdaptorUrl="http://localhost:${domein.cfg.jmx.http.port}"
+       login="${domein.cfg.jmx.user}" password="${domein.cfg.jmx.password}" />
+    <jmx:jmx-log4j />
+
+    <spring:beans>
+       <!--
+           de generieke propertyConfigurer die de configuraties voor het domein
+           + alle applicaties inleest
+       -->
+        <spring:bean id="domein.generiek.propertyConfigurer"
+           class="nl.rotterdam.ioo.guc_algemeen.config.ListablePropertyPlaceholderConfigurer">
+            <spring:property name="locationList" value="${mule.props}" />
+        </spring:bean>
+
+       <!-- functionele ping service bean -->
+        <spring:bean id="domein.generiek.functionalPingService"
+           class="nl.rotterdam.ioo.guc_algemeen.componenten.functional.FunctionalPingService" />
+
+    </spring:beans>
+
+   <!--
+       Standaard HTTP connector. Het is mogelijk deze verder te configureren
+       en bijvoorbeeld timeouts te zetten.
+   -->
+    <http:connector name="domein.http.connector" />
+   <!-- Jboss transactie manager -->
+   <!-- <jbossts:transaction-manager>
+       <property
+           key="com.arjuna.ats.arjuna.recovery.transactionStatusManagerPort"
+           value="${domein.cfg.transactionManager.port}" />
+   </jbossts:transaction-manager>
+-->
+
+    <model name="domein.generiek">
+        <service name="domein.generiek.PingService">
+            <description>Retourneert een tekst die aangeeft of het
+               Mule domein
+               actief is. Aanroeper van deze service is normaliter de
+               load balancer.
+            </description>
+            <inbound>
+                <http:inbound-endpoint address="${domein.cfg.ping.url}"
+                   connector-ref="domein.http.connector" synchronous="true" />
+            </inbound>
+            <component>
+                <singleton-object
+                   class="nl.rotterdam.ioo.guc_algemeen.componenten.ping.PingService" />
+            </component>
+        </service>
+
+        <service name="domein.generiek.StatistiekService">
+            <description>Retourneert een CSV lijst met een aantal
+               Mule
+               statistieken.
+            </description>
+            <inbound>
+                <http:inbound-endpoint address="${domein.cfg.statistiek.url}"
+                   connector-ref="domein.http.connector" synchronous="true" />
+            </inbound>
+            <component>
+                <singleton-object
+                   class="nl.rotterdam.ioo.guc_algemeen.componenten.stats.StatisticsPingService" />
+            </component>
+        </service>
+
+        <service name="domein.generiek.ConfiguratieService">
+            <description>Returns a HTML page with the configuration of
+               the Mule
+               domein.
+            </description>
+            <inbound>
+                <http:inbound-endpoint address="${domein.cfg.configuratie.url}"
+                   connector-ref="domein.http.connector" synchronous="true" />
+            </inbound>
+            <component>
+                <singleton-object
+                   class="nl.rotterdam.ioo.guc_algemeen.componenten.config.ConfigurationPingService">
+                    <property key="address" value="${domein.cfg.configuratie.url}" />
+                </singleton-object>
+            </component>
+        </service>
+
+        <service name="domein.generiek.FunctionalPingService">
+            <description>Returns a HTML page with the functional status
+               collection of the Mule domein.
+            </description>
+            <inbound>
+                <http:inbound-endpoint address="${domein.cfg.functionalPing.url}"
+                   connector-ref="domein.http.connector" synchronous="true" />
+            </inbound>
+            <component>
+                <spring-object bean="domein.generiek.functionalPingService" />
+            </component>
+        </service>
+    </model>
+
+</mule>

@@ -1,0 +1,127 @@
+<wsdl:definitions
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+	xmlns:sb-xsd="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd"
+	xmlns:sb-xsd-1_2="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.2.xsd"
+	xmlns:sb-adw="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1"
+	targetNamespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1"
+	name="stelselBevragen-abstract-definition.wsdl">
+
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified">
+			<xsd:import
+				namespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd"
+				schemaLocation="stelselBevragen.xsd" />
+			<xsd:import
+				namespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.2.xsd"
+				schemaLocation="stelselBevragen-1_2.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="getObjectInfoAndValuesRequest">
+		<wsdl:part name="getObjectInfoAndValues"
+			element="sb-xsd-1_2:getObjectInfoAndValues" />
+	</wsdl:message>
+
+	<wsdl:message name="getObjectInfoAndValuesResponse">
+		<wsdl:part element="sb-xsd-1_2:getObjectInfoAndValuesResponse"
+			name="getObjectInfoAndValuesResponse" />
+	</wsdl:message>
+	
+	<wsdl:message name="getObjectInfoRequest">
+		<wsdl:part name="getObjectInfo"
+			element="sb-xsd:getObjectInfo" />
+	</wsdl:message>
+
+	<wsdl:message name="getObjectInfoResponse">
+		<wsdl:part element="sb-xsd:getObjectInfoResponse"
+			name="getObjectInfoResponse" />
+	</wsdl:message>
+
+	<wsdl:message name="bevragenRequest">
+		<wsdl:part name="bevragen" element="sb-xsd:bevragen"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="bevragenResponse">
+		<wsdl:part name="bevragenResponse"
+			element="sb-xsd:bevragenResponse">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="faultMsg">
+		<wsdl:part name="Fault" element="sb-xsd:gobFault"></wsdl:part>
+	</wsdl:message>
+	
+	<wsdl:message name="getObjectTypeListRequest">
+		<wsdl:part name="getObjectTypeList"
+			element="sb-xsd:getObjectTypeList" />
+	</wsdl:message>
+
+	<wsdl:message name="getObjectTypeListResponse">
+		<wsdl:part element="sb-xsd:getObjectTypeListResponse"
+			name="getObjectTypeListResponse" />
+	</wsdl:message>
+	
+	<wsdl:message name="getBasisregistratieListRequest">
+		<wsdl:part name="getBasisregistratieList"
+			element="sb-xsd:getBasisregistratieList" />
+	</wsdl:message>
+
+	<wsdl:message name="getBasisregistratieListResponse">
+		<wsdl:part element="sb-xsd:getBasisregistratieListResponse"
+			name="getBasisregistratieListResponse" />
+	</wsdl:message>
+
+
+	<wsdl:portType name="StelselBevragen">
+		<wsdl:operation name="getObjectInfo">
+			<wsdl:input message="sb-adw:getObjectInfoRequest"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoRequest" />
+			<wsdl:output message="sb-adw:getObjectInfoResponse"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoResponse" />
+			<wsdl:fault name="fault"
+				message="sb-adw:faultMsg">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="getObjectInfoAndValues">
+			<wsdl:input message="sb-adw:getObjectInfoAndValuesRequest"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoAndValuesRequest" />
+			<wsdl:output message="sb-adw:getObjectInfoAndValuesResponse"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoAndValuesResponse" />
+			<wsdl:fault name="fault"
+				message="sb-adw:faultMsg">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="bevragen">
+			<wsdl:input message="sb-adw:bevragenRequest"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/bevragenRequest" />
+			<wsdl:output message="sb-adw:bevragenResponse"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/bevragenResponse" />
+			<wsdl:fault name="fault" message="sb-adw:faultMsg"></wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="getObjectTypeList">
+			<wsdl:input message="sb-adw:getObjectTypeListRequest"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListRequest" />
+			<wsdl:output message="sb-adw:getObjectTypeListResponse"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListResponse" />
+			<wsdl:fault name="fault"
+				message="sb-adw:faultMsg">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="getBasisregistratieList">
+			<wsdl:input message="sb-adw:getBasisregistratieListRequest"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getBasisregistratieListRequest" />
+			<wsdl:output message="sb-adw:getBasisregistratieListResponse"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getBasisregistratieListResponse" />
+			<wsdl:fault name="fault"
+				message="sb-adw:faultMsg">
+			</wsdl:fault>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+</wsdl:definitions>

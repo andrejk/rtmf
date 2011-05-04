@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+	<!--
+		- Application context definition for "springapp" DispatcherServlet.
+	-->
+<beans>
+	<bean id="braoprior"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>IOR</value>
+		</property>
+		<property name="naam">
+			<value>Identificatiecode openbare ruimte</value>
+		</property>
+	</bean>
+	<bean id="braoprnor"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>NOR</value>
+		</property>
+		<property name="naam">
+			<value>Naam openbare ruimte</value>
+		</property>
+	</bean>
+	<bean id="braoprigor"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>IGOR</value>
+		</property>
+		<property name="naam">
+			<value>Indicatie geconstateerde openbare ruimte</value>
+		</property>
+	</bean>
+	<bean id="braoprdbggor"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>DBGGOR</value>
+		</property>
+		<property name="naam">
+			<value>Datum begin geldigheid gegevens openbare ruimte</value>
+		</property>
+	</bean>
+	<bean id="braoprdeggor"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>DEGGOR</value>
+		</property>
+		<property name="naam">
+			<value>Datum einde geldigheid gegevens openbare ruimte</value>
+		</property>
+	</bean>
+	<bean id="braopragorio"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>AGORIO</value>
+		</property>
+		<property name="naam">
+			<value>Aanduiding gegevens openbare ruimte in onderzoek</value>
+		</property>
+	</bean>
+	<bean id="braopribw"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>IBW</value>
+		</property>
+		<property name="naam">
+			<value>Identificatiecode bijbehorende woonplaats</value>
+		</property>
+	</bean>
+	<bean id="braoprtor"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>TOR</value>
+		</property>
+		<property name="naam">
+			<value>Type openbare ruimte</value>
+		</property>
+	</bean>
+	<bean id="braoprddmor"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>DDMOR</value>
+		</property>
+		<property name="naam">
+			<value>Documentdatum mutatie openbare ruimte</value>
+		</property>
+	</bean>
+	<bean id="braoprdmmor"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>DMMOR</value>
+		</property>
+		<property name="naam">
+			<value>Documentnummer mutatie openbare ruimte</value>
+		</property>
+	</bean>
+	<bean id="braoprsor"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.datatypes.BRObjectAttribuut">
+		<property name="tag">
+			<value>SOR</value>
+		</property>
+		<property name="naam">
+			<value>Status openbare ruimte</value>
+		</property>
+	</bean>
+</beans>

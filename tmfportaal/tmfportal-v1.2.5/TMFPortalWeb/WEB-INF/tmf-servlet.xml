@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean class='org.springframework.beans.factory.config.PropertiesFactoryBean'
+	       name='appProperties'>
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name='locations'>
+		  <list>
+			<value>${tmfportal.props}</value>
+			<value>file:///${user.home}/tmfportal.properties</value>
+		  </list>
+		</property>
+	</bean>
+	<bean class='org.springframework.beans.factory.config.PropertyPlaceholderConfigurer'>
+	  <property name="properties" ref="appProperties"/>
+    </bean>
+	
+	
+	<!-- Het aantal bijlagen velden voor een terugmelding. -->
+	<!-- Houd rekening met de overzichterlijkheid van de terugmelding wanneer u deze waarde aanpast. -->
+	<!-- Voorbeeld: 5 staat voor 5 bijlage velden op de terugmelding pagina. -->
+	<bean id="numberOfAttachments" class="java.lang.Integer">
+		<constructor-arg><value>5</value></constructor-arg>
+	</bean>
+	
+	<!--  Maximale totale bestandsgrootte in bytes. -->
+	<!--  Houd rekening met de overzend tijd wanneer u deze waarde aanpast. -->
+	<!--  Voorbeeld : 1MB staat gelijk aan 1000000 bytes. -->
+	<bean id="maxTotalAttachmentFileSize" class="java.lang.Long">
+		<constructor-arg><value>20000000</value></constructor-arg>
+	</bean>
+
+	
+	<!-- Declaration Stelselcatalogus -->
+	<bean id="stelselCatalogus"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.impl.StelselCatalogusManagerImpl">
+		<property name="basisRegistratieInvoker">
+			<ref bean="BrInv" />
+		</property>
+
+		<property name="objectInvoker">
+			<ref bean="ObjInv" />
+		</property>
+
+		<property name="attribuutInvoker">
+			<ref bean="attrInv" />
+		</property>
+	</bean>
+
+	<!-- >bean id="springBrInv"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.impl.springconfig.SpringBasisRegistratieInvokerImpl">
+		<constructor-arg>
+			<value>basisregistraties.xml</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="springObjInv"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.impl.springconfig.SpringObjectInvokerImpl">
+	</bean -->
+
+	<bean id="BrInv"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.impl.wus.wuslite.WWLBasisregistratieInvokerImpl">
+		<property name="endpointAddress">
+			<value>${sc.basisregistratie.endpoint.url}</value>
+		</property>
+	</bean>
+
+	<bean id="ObjInv"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.impl.wus.wuslite.WWLObjectInvokerImpl">
+		<property name="endpointAddress">
+			<value>${sc.object.endpoint.url}</value>
+		</property>
+	</bean>
+
+	<bean id="attrInv"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.stelselcatalogus.impl.wus.wuslite.WWLAttribuutInvokerImpl">
+		<property name="endpointAddress">
+			<value>${sc.attribuut.endpoint.url}</value>
+		</property>
+	</bean>
+
+	<!--  Declaration TMFCoreManager -->
+	<bean id="tmfCore"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.impl.TMFCoreManagerImpl">
+		<property name="intrekInvoker">
+			<ref bean="intrekInvoker" />
+		</property>
+
+		<property name="opvraagInvoker">
+			<ref bean="opvraagInvoker" />
+		</property>
+
+		<property name="terugmeldInvoker">
+			<ref bean="terugmeldInvoker" />
+		</property>
+	</bean>
+	<!--  declarations -->
+	
+	<!--  Declaration TMFCore depending invokers -->
+	<bean id="intrekInvoker"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.impl.ebms.wuslite.EWLIntrekInvokerImpl">
+		<property name="endpointAddress">
+			<value>${tmfc.intrek.endpoint.url}</value>
+		</property>
+	</bean>
+
+	<bean id="opvraagInvoker"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.impl.wus.wuslite.WWLOpvraagInvokerImpl">
+		<property name="endpointAddress">
+			<value>${tmfc.opvraag.endpoint.url}</value>
+		</property>
+	</bean>
+
+	<bean id="terugmeldInvoker"
+		class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.impl.ebms.wuslite.EWLTerugmeldInvokerImpl">
+		<property name="endpointAddress">
+			<value>${tmfc.terugmeld.endpoint.url}</value>
+		</property>
+	</bean>
+	
+	<!--  Declaration message source -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename">
+			<value>messages</value>
+		</property>
+	</bean>
+
+	<!--  Declaration Mainscreen controller -->
+	<bean id="mainScreenController"
+		class="com.ovsoftware.ictu.osb.tmfportal.web.MainScreenController">
+	</bean>
+
+	<!--  Declaration Terugmelding controllers -->
+	<bean id="terugmeldingBRController"
+		class="com.ovsoftware.ictu.osb.tmfportal.web.terugmelding.BRController">
+		<property name="stelselCatalogus">
+			<ref bean="stelselCatalogus" />
+		</property>
+	</bean>
+
+	<bean id="terugmeldingObjController"
+		class="com.ovsoftware.ictu.osb.tmfportal.web.terugmelding.ObjController">
+		<property name="stelselCatalogus">
+			<ref bean="stelselCatalogus" />
+		</property>
+	</bean>
+
+	<bean id="terugmeldingAttrController"
+		class="com.ovsoftware.ictu.osb.tmfportal.web.terugmelding.AttrController">
+		<property name="stelselCatalogus">
+			<ref bean="stelselCatalogus" />
+		</property>
+	</bean>
+	
+	<bean id="terugmeldingAttrBevrController"
+		class="com.ovsoftware.ictu.osb.tmfportal.web.terugmelding.AttrBevrController">
+		<property name="stelselCatalogus">
+			<ref bean="stelselCatalogus" />
+		</property>
+	</bean>
+
+	<bean id="terugmeldingVerifyController"
+		class="com.ovsoftware.ictu.osb.tmfportal.web.terugmelding.VerifyController">
+		<property name="stelselCatalogus">
+			<ref bean="stelselCatalogus" />
+		</property>
+		<property name="aantalBijlagen"><ref bean="numberOfAttachments" /></property>
+		<property name="totalUploadSize"><ref bean="maxTotalAttachmentFileSize" /></property>
+	</bean>
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize">
+			<ref bean="maxTotalAttachmentFileSize" />
+		</property>
+	</bean>
+	
+	<bean id="terugmeldingPreSendController"
+		class="com.ovsoftware.ictu.osb.tmfportal.web.terugmelding.PreSendController">
+		<property name="stelselCatalogus">
+			<ref bean="stelselCatalogus" />
+		</property>
+		<property name="tmfCore">
+			<ref bean="tmfCore" />
+		</property>
+	</bean>
+	
+	<bean id="terugmeldingSendController"
+		class="com.ovsoftware.ictu.osb.tmfportal.web.terugmelding.SendController">
+		<property name="tmfCore">
+			<ref bean="tmfCore" />
+		</property>
+	</bean>
+
+	<!--  Declaration overzicht controllers -->
+	<bean id="overzichtController"
+		class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.OverzichtController">
+		<property name="tmfCore">
+			<ref bean="tmfCore" />
+		</property>
+	</bean>
+
+	<bean id="overzichtSearchController"
+		class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.SearchController">
+		<property name="tmfCore">
+			<ref bean="tmfCore" />
+		</property>
+	</bean>
+	
+	<bean id="overzichtDetailController"
+		class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.DetailController">
+		<property name="tmfCore">
+			<ref bean="tmfCore" />
+		</property>
+	</bean>
+	<bean id="intrekController"
+		class="com.ovsoftware.ictu.osb.tmfportal.web.intrekken.IntrekController">
+		<property name="formView" value="/WEB-INF/jsp/intrekken.jsp" />
+		<property name="successView" value="/WEB-INF/jsp/pageview.jsp" />
+		<property name="commandClass" value="com.ovsoftware.ictu.osb.tmfportal.web.intrekken.IntrekFormdata" />
+		<property name="validator">
+			<ref bean="intrekValidator" />
+		</property>
+		<property name="tmfCore">
+			<ref bean="tmfCore" />
+		</property>
+	</bean> 
+	
+	<bean name="intrekValidator"
+		class="com.ovsoftware.ictu.osb.tmfportal.web.intrekken.IntrekValidator" />
+
+
+	<bean id="errorController" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>99</value>
+		</property>
+	</bean>
+	<bean id="error400Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>400</value>
+		</property>
+	</bean>
+	<bean id="error401Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>401</value>
+		</property>
+	</bean>
+	<bean id="error402Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>402</value>
+		</property>
+	</bean>
+	<bean id="error403Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>403</value>
+		</property>
+	</bean>
+	<bean id="error404Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>404</value>
+		</property>
+	</bean>
+	<bean id="error405Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>405</value>
+		</property>
+	</bean>
+	<bean id="error406Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>406</value>
+		</property>
+	</bean>
+	<bean id="error407Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>407</value>
+		</property>
+	</bean>
+	<bean id="error408Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>408</value>
+		</property>
+	</bean>
+	<bean id="error409Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>409</value>
+		</property>
+	</bean>
+	<bean id="error410Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>410</value>
+		</property>
+	</bean>
+	<bean id="error411Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>411</value>
+		</property>
+	</bean>
+	<bean id="error412Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>412</value>
+		</property>
+	</bean>
+	<bean id="error413Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>413</value>
+		</property>
+	</bean>
+	<bean id="error414Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>414</value>
+		</property>
+	</bean>
+	<bean id="error415Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>415</value>
+		</property>
+	</bean>
+	<bean id="error500Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>500</value>
+		</property>
+	</bean>
+	<bean id="error501Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>501</value>
+		</property>
+	</bean>
+	<bean id="error502Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>502</value>
+		</property>
+	</bean>
+	<bean id="error503Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>503</value>
+		</property>
+	</bean>
+	<bean id="error504Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>504</value>
+		</property>
+	</bean>
+	<bean id="error505Controller" class="com.ovsoftware.ictu.osb.tmfportal.web.overzicht.ErrorController">
+		<property name="errorCode">
+			<value>505</value>
+		</property>
+	</bean>
+	
+
+
+	<!-- URL mapper -->
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/main.htm">mainScreenController</prop>
+				<prop key="terugmelding_BR.htm">terugmeldingBRController</prop>
+				<prop key="terugmelding_Obj.htm">terugmeldingObjController</prop>
+				<prop key="terugmelding_Attr.htm">terugmeldingAttrController</prop>
+				<prop key="terugmelding_AttrBevr.htm">terugmeldingAttrBevrController</prop>
+				<prop key="terugmelding_Verify.htm">terugmeldingVerifyController</prop>
+				<prop key="terugmelding_PreSend.htm">terugmeldingPreSendController</prop>
+				<prop key="terugmelding_Send.htm">terugmeldingSendController</prop>
+				<prop key="overzicht.htm">overzichtController</prop>
+				<prop key="overzicht_search.htm">overzichtSearchController</prop>	
+				<prop key="overzicht_detail.htm">overzichtDetailController</prop>
+				<prop key="intrekken.htm">intrekController</prop>
+				
+				<prop key="error.htm">errorController</prop>
+				<prop key="error-400.htm">error400Controller</prop>
+				<prop key="error-401.htm">error401Controller</prop>
+				<prop key="error-402.htm">error402Controller</prop>
+				<prop key="error-403.htm">error403Controller</prop>
+				<prop key="error-404.htm">error404Controller</prop>
+				<prop key="error-405.htm">error405Controller</prop>
+				<prop key="error-406.htm">error406Controller</prop>
+				<prop key="error-407.htm">error407Controller</prop>
+				<prop key="error-408.htm">error408Controller</prop>
+				<prop key="error-409.htm">error409Controller</prop>
+				<prop key="error-410.htm">error410Controller</prop>
+				<prop key="error-411.htm">error411Controller</prop>
+				<prop key="error-412.htm">error412Controller</prop>
+				<prop key="error-413.htm">error413Controller</prop>
+				<prop key="error-414.htm">error414Controller</prop>
+				<prop key="error-415.htm">error415Controller</prop>
+				<prop key="error-500.htm">error500Controller</prop>
+				<prop key="error-501.htm">error501Controller</prop>
+				<prop key="error-502.htm">error502Controller</prop>
+				<prop key="error-503.htm">error503Controller</prop>
+				<prop key="error-504.htm">error504Controller</prop>
+				<prop key="error-505.htm">error505Controller</prop>	
+			</props>
+		</property>
+	</bean>
+
+	<!-- Tiles Configurer -->
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/defs/definitions.xml
+				</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>

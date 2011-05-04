@@ -1,0 +1,585 @@
+body {
+    font-family: Arial, Helvetica, sans-serif; 
+    background: #fff;
+    margin: 0;
+    /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+    padding: 0;
+    /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+    color: #444444;
+}
+
+/*/// start container style to center things up! */
+#container {
+    width: 990px;
+    background: #FFFFFF;
+    margin: 0 auto;
+    text-align: left; /* this overrides the text-align: center on the body element. */
+    overflow: hidden;
+}
+
+/*/// end container style*/ /*/// start header style */
+#header {
+    background: #fff;
+    /* this padding matches the left alignment of the elements in the divs that appear beneath it. If an image is used in the #header instead of text, you may want to remove the padding. */
+    height: 99px;
+    float: left;
+    width: 990px;
+    margin: 0 0 20px 0;
+}
+
+#header h1.gemLogo {
+    margin: 0;
+    width: 270px;
+    height: 52px;
+    display: block;
+    background-image: url(../images/gemeente.jpg);
+    float: left;
+    text-indent: -9999px;
+}
+
+#header #smallMenu {
+    margin: 0;
+    width: 270px;
+    height: 24px;
+    display: block;
+    float: right;
+    background: #ededed;
+    padding: 0 0 0 21px;
+    text-align: left;
+}
+
+#header #smallMenu li {
+    float: left;
+    margin: 5px 0 0 0;
+}
+
+#header #smallMenu li a {
+    text-decoration: none;
+    font-weight: normal;
+    color: #444444;
+    padding: 0 5px 0 5px;
+}
+
+#header #smallMenu li.strokeRight a {
+    border-right: 1px #04d072 solid;
+}
+
+#header #smallMenu li a:hover {
+    text-decoration: underline;
+}
+
+#header #smallMenu li.rSelected a {
+    color: #04d072;
+    font-weight: bold;
+}
+
+#header #smallMenu li.rSelected a:hover {
+    text-decoration: none;
+}
+
+
+#header #titleBar {
+    height: 40px;
+    float: none;
+    clear: both;
+    background: #000;
+    padding: 7px 7px 0 21px;
+    text-align: left;
+    color: #FFF;
+}
+
+#header #titleBar #left{
+    text-align: left;
+    font-size: 26px;
+    width:400px;
+    font-weight:bold;
+    float:left;
+}
+#header #titleBar #right{
+    text-align: right;
+    font-size: 12px;
+    width:400px;
+    float:right;
+}
+
+/*/// end header style*/ /*/// start mainContent style  main section of content (consisting of menu, data etc.) */
+#mainContent {
+    background: #FFFFFF;
+    float: left;
+    margin: 0 0 25px 0;
+}
+
+#mainContent #menuBlock {
+    float: left;
+    width: 182px;
+    height: 400px;
+}
+
+#mainContent #menuBlock #extraMenu {
+    margin: 0;
+    width: 182px;
+    height: 24px;
+    float: left;
+    background: #fff;
+    text-align: left;
+    margin: 0 0 13px 0;
+    border-bottom: 1px #f0f0f0 solid;
+    border-top: 1px #f0f0f0 solid;
+    line-height: 23px;
+}
+
+#mainContent #menuBlock #extraMenu li {
+    float: left;
+    padding: 0 7px 0 7px;
+    font-size: 85%;
+}
+
+#mainContent #menuBlock #extraMenu li a {
+    color: #444444;
+    text-decoration: none;
+}
+
+#mainContent #menuBlock #extraMenu li a:hover {
+    text-decoration: underline;
+}
+
+#mainContent #menuBlock #mainMenu {
+    margin: 0;
+    text-align: left;
+    clear: both;
+}
+
+#mainContent #menuBlock #mainMenu li {
+    border-bottom: 1px solid #fff;
+}
+
+#mainContent #menuBlock #mainMenu .bold {
+    font-weight: bold;
+    color: #000;
+}
+
+#mainContent #menuBlock #mainMenu li a {
+    padding: 0 0 0 10px;
+    height: 26px;
+    line-height: 24px;
+    background: #e4e4e4;
+    display: block;
+    text-decoration: none;
+    color: #444444;
+}
+
+#mainContent #menuBlock #mainMenu li a.active {
+    background: #000;
+    color: #FFF;
+}
+
+#mainContent #menuBlock #mainMenu li a:hover .active {
+    background: #000;
+}
+
+#mainContent #menuBlock #mainMenu li a:hover {
+    text-decoration: none;
+    background: #dddddd;
+}
+
+#mainContent #menuBlock #subMenu {
+    padding: 3px 0 10px 0;
+    background: #f5f5f5;
+}
+
+#mainContent #menuBlock #subMenu li {
+    border: 0;
+}
+
+#mainContent #menuBlock #subMenu li a {
+    padding: 0 0 0 22px;
+    height: 20px;
+    line-height: 22px;
+    display: block;
+    background: #f5f5f5;
+}
+
+#mainContent #menuBlock #subMenu li a:hover {
+    text-decoration: underline;
+    background: #f5f5f5;
+}
+
+#mainContent #menuBlock #subMenu li a.active {
+    color: #10a808;
+    font-weight: bold;
+    background: #f5f5f5;
+}
+
+#mainContent #menuBlock #subMenu li a:hover .active {
+    text-decoration: none;
+    background: #f5f5f5;
+}
+
+#mainContent #mainBlock {
+    color: #444444;
+    float: left;
+}
+
+#mainContent #mainBlock .repeating_block li {
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+#mainContent #mainBlock p.introText {
+    float: left;
+    clear: both;
+    margin: 0 0 15px 20px;
+    width: 768px;
+    display: inline;
+}
+
+#mainContent #mainBlock h2.itemTitle {
+    color: #15af0d;
+    font-size: 140%;
+    margin: 1px 0 6px 20px;
+    float: left;
+    width: 700px;
+    display: inline;
+}
+
+#mainContent #mainBlock h3 {
+    font-size: 120%;
+}
+
+#mainContent #mainBlock h3.textTitle {
+    padding: 15px 20px 0 20px;
+    line-height: 20px;
+    font-size: 100%;
+}
+
+#mainContent #mainBlock h3.title {
+    color: #FFF;
+    background: #15af0d;
+    padding: 0 0 0 20px;
+    line-height: 27px;
+    margin: 0 0 10px 0;
+}
+.helpBox {
+    width:384px;
+    float:right;
+    background: #ededed;
+        
+}
+.helpBox .helpBoxContent {
+    padding: 10px;
+}
+
+dl.form {
+    margin-left: 30px;
+    border:0;
+    float: left;
+    overflow: visible;
+    padding-top: 0;
+    margin-bottom: 15px;
+    width: 383px;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+dl.form dt.titleHead, .titleHead {
+    color: #FFF;
+    background: #15af0d;
+    margin-top:0;
+    padding: 0 0 0 20px;
+    line-height: 27px;
+    font-weight: bold;
+}
+
+
+dl.form dt, dl.form dd {
+    background: #ededed;
+    padding:0;
+    margin:0;   
+    padding-left:10px;
+    padding-right:10px;     
+}
+
+dl.form dt {
+    padding-top:10px;
+    margin:0;
+    font-weight: bold;
+}
+
+#mainContent #mainBlock .dataWrap_spl {
+    background: #ededed;
+    float: left;
+    overflow: visible;
+    padding-top: 0;
+    padding-bottom: 15px;
+    width: 383px;
+    margin: 10px 0 10px 20px;
+}
+
+dl.dataWrap_spl {
+    margin-top: 0;
+    padding-top: 0;
+    display: block;
+}
+
+#mainContent #mainBlock .fixheight {
+    height: auto;
+    min-height: 220px;
+}
+
+#mainContent #mainBlock .onmessage {
+    background: #FFF;
+    border: 1px #000000 solid;
+}
+
+#mainContent #mainBlock .noheader {
+    padding: 15px 0 0 0;
+}
+
+#mainContent #mainBlock .dataWrap_spl p {
+    padding: 0 20px 0 20px;
+    line-height: 20px;
+}
+
+#mainContent #mainBlock .dataWrap_spl a {
+    text-decoration: underline;
+    color: #444;
+}
+
+#mainContent #mainBlock .dataWrap_spl span.afzender {
+    padding: 0;
+    margin: 0;
+    color: #999;
+}
+
+#mainContent #mainBlock .dataWrap_spl p.inboxItemText {
+    padding: 20px 20px 0 20px;
+}
+
+#mainContent #mainBlock .dataWrap_spl .data {
+    background: #ededed;
+    border-collapse: collapse;
+    width: 383px;
+}
+
+#mainContent #mainBlock .dataWrap_spl .data td.normal {
+    padding: 0 20px 0 20px;
+    line-height: 22px;
+}
+
+#mainContent #mainBlock .dataWrap_spl td.fill_top {
+    background: #ededed;
+    width: 383px;
+    height: 9px;
+}
+
+#mainContent #mainBlock .dataWrap_spl td.fill_bottom {
+    background: #ededed;
+    width: 383px;
+    height: 9px;
+    border-bottom: 1px #fff solid;
+}
+
+#mainContent #mainBlock .dataWrap_spl .more {
+    background: #f3f3f3;
+    width: 363px;
+    line-height: 28px;
+    padding: 0 0 0 20px;
+}
+
+#mainContent #mainBlock .dataWrap_spl .more a {
+    text-decoration: none;
+    color: #15af0d;
+    font-weight: bold;
+}
+
+#mainContent #mainBlock .entryForm .submit {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 90%;
+    background: #15B00E;  
+    border: #156A0F 1px solid;
+    color: #fff;
+    padding: 2px 15px 2px 15px;
+    cursor: pointer;
+}
+#mainContent #mainBlock .entryForm input.submitDisabled {
+    background-color: #EEEEEE;
+    color:black; 
+    font-weight:normal;
+}
+
+#mainContent #mainBlock .entryForm .textField {
+    border: #9E9E9E 1px solid;
+    width: 200px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+#mainContent #mainBlock .dataWrap {
+    background: #ededed;
+    overflow: visible;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 15px;
+    table-layout: auto;
+    float: left;
+    margin: 10px 0 10px 20px;
+    display: inline;
+    width: 788px;
+}
+
+#mainContent #mainBlock .dataWrap .data {
+    background: #ededed;
+    border-collapse: collapse;
+    width: 788px;
+}
+
+#mainContent #mainBlock .dataWrap .data td.normal {
+    width: 192px;
+    padding: 0 20px 0 20px;
+    line-height: 22px;
+}
+
+#mainContent #mainBlock .dataWrap .fill_top {
+    background: #ededed;
+    height: 9px;
+}
+
+#mainContent #mainBlock .dataWrap .fill_bottom {
+    background: #ededed;
+    height: 9px;
+    border-bottom: 1px #fff solid;
+}
+
+#mainContent #mainBlock .dataWrap .more {
+    background: #ededed;
+    width: 768px;
+    line-height: 28px;
+    padding: 0 0 0 20px;
+}
+
+#mainContent #mainBlock .dataWrap .more a {
+    text-decoration: none;
+    color: #15af0d;
+    font-weight: bold;
+}
+
+#mainContent #mainBlock .messageBox {
+    width: 382px;
+}
+
+/*
+#mainContent #mainBlock .messageBox td.titleHead {
+    color: #FFF;
+    background: #15af0d;
+    padding: 0 0 0 20px;
+    line-height: 27px;
+    font-size: 90%;
+}
+*/
+
+#mainContent #mainBlock .messageBox td.message {
+    width: 60%;
+    padding: 0 10px 0 20px;
+    line-height: 22px;
+    height: 30px;
+    font-size: 90%;
+}
+
+#mainBlock .messageBox td.date {
+    width: 40%;
+    padding: 0 10px 0 20px;
+    line-height: 22px;
+    height: 30px;
+    font-size: 90%;
+}
+
+#mainContent #mainBlock .lopendeZakenBox .odd {
+    background: #white;
+    border-bottom: 1px solid #EDEDED; 
+}
+
+#mainContent #mainBlock .messageBox .odd {
+    background: #f3f3f3;
+}
+
+#mainContent #mainBlock .messageBox,.lopendeZakenBox .even {
+    background: white;
+    border-bottom: 1px solid #EDEDED;
+}
+
+#mainContent #mainBlock .messageBox .selected {
+    background: #000;
+    color: #fff;
+}
+
+#mainContent #mainBlock .messageBox a.new {
+    color: #333333;
+    font-weight: bold;
+}
+
+#mainContent #mainBlock .messageBox,.lopendeZakenBox a {
+    text-decoration: none;
+    color: #444444;
+}
+
+#mainContent #mainBlock .messageBox a:hover {
+    text-decoration: underline;
+}
+
+#mainContent #feedback {
+    padding: 0;
+    margin: 0;
+    float: left;
+    margin: 0 0 10px 20px;
+    padding: 20px 20px 20px 70px;
+    width: 694px;
+}
+
+#mainContent #feedback.feedback-info-container {
+    background: #f5f6f1;
+    border: 2px solid #15B00E;
+}
+
+#mainContent #feedback.feedback-error-container {
+    border: 2px solid #F00;
+    background: #F9EEEF;
+}
+
+.feedback-info {
+    padding: 0 0 0 40px;
+    background: url(../images/ok.jpg) no-repeat;
+}
+
+.feedback-error {
+    padding: 0 0 0 40px;
+    background: url(../images/error.jpg) no-repeat;
+}
+
+/*/// end mainContent style */ /*/// start footer style */
+#footer {
+    padding: 0 0 0 0; /* this padding matches the left alignment of the elements in the divs that appear above it. */
+    background: #fff;
+    float: left;
+    width:100%;
+    clear: both;
+    margin-top:15px;
+    border-top: 1px #9e9e9e solid;
+}
+
+#footer #foList {
+    text-align: center;
+    padding-left: 40%;
+}
+
+#footer #foList li {
+    float: left;
+}
+
+#footer #foList li a {
+    color: #8f8e8e;
+    text-decoration: none;
+    margin-right: 20px;
+}
+/*/// end footer style */

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesource.org/schema/mule/core/2.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns:http="http://www.mulesource.org/schema/mule/http/2.2" xmlns:smtp="http://www.mulesource.org/schema/mule/smtp/2.2"
+	xmlns:vm="http://www.mulesource.org/schema/mule/vm/2.2" xmlns:xm="http://www.mulesource.org/schema/mule/xml/2.2"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:scripting="http://www.mulesource.org/schema/mule/scripting/2.2"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:management="http://www.mulesource.org/schema/mule/management/2.2"
+	xmlns:file="http://www.mulesource.org/schema/mule/file/2.2"
+	xmlns:email="http://www.mulesource.org/schema/mule/email/2.2"
+	xsi:schemaLocation="
+               http://www.mulesource.org/schema/mule/scripting/2.2 http://www.mulesource.org/schema/mule/scripting/2.2/mule-scripting.xsd
+               http://www.mulesource.org/schema/mule/core/2.2 http://www.mulesource.org/schema/mule/core/2.2/mule.xsd
+			   http://www.mulesource.org/schema/mule/smtp/2.2 http://www.mulesource.org/schema/mule/smtp/2.2/mule-smtp.xsd
+			   http://www.mulesource.org/schema/mule/http/2.2 http://www.mulesource.org/schema/mule/http/2.2/mule-http.xsd
+               http://www.mulesource.org/schema/mule/vm/2.2 http://www.mulesource.org/schema/mule/vm/2.2/mule-vm.xsd
+               http://www.mulesource.org/schema/mule/xml/2.2 http://www.mulesource.org/schema/mule/xml/2.2/mule-xml.xsd
+               http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+               http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+               http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd
+               http://www.mulesource.org/schema/mule/management/2.2 http://www.mulesource.org/schema/mule/management/2.2/mule-management.xsd
+               http://www.mulesource.org/schema/mule/file/2.2 http://www.mulesource.org/schema/mule/file/2.2/mule-file.xsd 
+               http://www.mulesource.org/schema/mule/email/2.2 http://www.mulesource.org/schema/mule/email/2.2/mule-email.xsd">
+
+	<context:property-placeholder
+		location="classpath*:rtmf-mailsender-mock.properties" />
+
+    	<!--  Tijdelijke oplossing HSQL cache voor bijhouden van cache. -->
+    	 <spring:bean class="nl.rotterdam.rtmf.guc.cache.StelselCatalogusCacheHSQL"
+			name="stelselCatalogusCacheBean" />
+
+	<spring:beans>
+		<spring:bean
+			class="org.springframework.beans.factory.config.PropertiesFactoryBean"
+			name="bronhouderProperties">
+			<spring:property name="ignoreResourceNotFound" value="true" />
+			<spring:property name="locations">
+				<spring:list>
+					<spring:value>classpath*:rtmf-bronhouder-mock.properties</spring:value>
+					<spring:value>classpath*:rtmfguc_bronhouder.properties</spring:value>
+					<spring:value>file:///${user.home}/rtmfguc_bronhouder.properties
+					</spring:value>
+				</spring:list>
+			</spring:property>
+		</spring:bean>
+
+		<spring:bean
+			class="nl.rotterdam.rtmf.guc.bronhouder.catalogus.BronhouderCatalogus"
+			name="bronhouderCatalogusBean">
+			<spring:property name="properties" ref="bronhouderProperties">
+			</spring:property>
+		</spring:bean>
+
+		<spring:bean
+			class="nl.rotterdam.rtmf.guc.component.TerugmeldingZmMessageEnricher"
+			name="bronhouderMessageEnricher">
+			<spring:property name="bronhouderCatalogus" ref="bronhouderCatalogusBean">
+			</spring:property>
+		</spring:bean>
+
+	</spring:beans>
+
+	<custom-transformer name="traceTransformer"
+		class="nl.rotterdam.rtmf.guc.transformer.TraceTransformer" />
+
+	<scripting:transformer name="zmResponseTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/ZmResponseTransformer.groovy">
+		</scripting:script>
+	</scripting:transformer>
+
+	<scripting:transformer name="prettyEmailTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/PrettyTerugmeldenEmailTransformer.groovy">
+			<property key="emailTemplate" value="templates/EmailTerugmelding.template" />
+			<property key="stelselCatalogusCache" value-ref="stelselCatalogusCacheBean" />
+			<property key="adresMeerInfo" value="rtmf.cfg.mail.terugmelding.adres.meer.info" />
+			<property key="zmwebPrefix" value="${rtmf.cfg.mail.zmweb.adres.prefix}" />
+		</scripting:script>
+	</scripting:transformer>
+
+	<custom-transformer name="addPayloadAsAttachmentTransformer"
+		class="nl.rotterdam.rtmf.guc.transformer.AddPayloadAsAttachmentTransformer" />
+
+	<email:object-to-mime-transformer
+		name="objectToMimeTransformer" />
+
+
+	<file:connector name="zmFileConnector" streaming="false"
+		outputPattern="rtmf-terugmelding-#[function:dateStamp].xml">
+		<file:expression-filename-parser />
+	</file:connector>
+
+	<model name="Component-Test">
+
+		<service name="TestBronhouderMessageEnricher">
+			<description>Deze service stuurt het inkomende bericht naar het
+				TerugmeldingZmMessageEnricher component en daarna weer terug naar de
+				test-case. 
+			</description>
+			<inbound>
+				<vm:inbound-endpoint path="testBronhouderMessageEnricherIn"
+					synchronous="true" transformer-refs="traceTransformer"
+					name="rtmfguc.testBronhouderMessageEnricher.inbound.vm"
+					responseTransformer-refs="zmResponseTransformer" />
+			</inbound>
+
+			<component>
+				<spring-object bean="bronhouderMessageEnricher" />
+			</component>
+
+			<outbound>
+				<custom-outbound-router
+					class="nl.rotterdam.rtmf.guc.routing.outbound.RtmfTemplateEndpointRouter">
+					<!-- De filenaam staat gedefinieerd in de connector defenitie. -->
+					<file:outbound-endpoint address="file://#[header:bronhouder.bereikenAdres]"
+						connector-ref="zmFileConnector" synchronous="true" />
+				</custom-outbound-router>
+			</outbound>
+		</service>
+
+		<service name="TestEmailToZM">
+			<description>Deze service stuurt het inkomende bericht naar een
+				TerugmeldingZmMessageEnricher component en naar een smtp end-point
+			</description>
+			<inbound>
+				<vm:inbound-endpoint path="testEmailToZM"
+					synchronous="true" transformer-refs="traceTransformer "
+					name="rtmfguc.testEmailToZM.inbound.vm"
+					responseTransformer-refs="zmResponseTransformer" />
+			</inbound>
+
+
+			<component>
+				<spring-object bean="bronhouderMessageEnricher" />
+			</component>
+
+			<outbound>
+				<pass-through-router>
+					<!--
+						Het 'TO' veld, wat uit de bronhouder catalogus komt, is reeds door
+						de 'bronhouderMessageEnricher' aan de message toegevoegd
+					-->
+					<smtp:outbound-endpoint synchronous="true"
+						host="${rtmf.cfg.mail.smtp.host}" port="${rtmf.cfg.mail.smtp.port}"
+						from="${rtmf.cfg.mail.address.from}" subject="${rtmf.cfg.mail.subject.terugmelding}" 
+						transformer-refs="addPayloadAsAttachmentTransformer prettyEmailTransformer objectToMimeTransformer" />
+					<!--
+					<smtp:outbound-endpoint synchronous="true"
+						host="localhost" port="18089" from="mailsender" subject="Enno tessie"
+						user="mailsender" password="mailsender" to="muletest@localhost">
+						<transformers>
+							<transformer ref="addPayloadAsAttachmentTransformer" />
+							<transformer ref="prettyEmailTransformer" />
+							<transformer ref="objectToMimeTransformer" />
+						</transformers>
+					</smtp:outbound-endpoint>
+					-->
+				</pass-through-router>
+			</outbound>
+			<default-connector-exception-strategy />
+		</service>
+
+	</model>
+</mule>

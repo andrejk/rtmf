@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:tns="http://tmfportal.ovsoftware.com/services/defaultreply.xsd" 
+targetNamespace="http://tmfportal.ovsoftware.com/services/defaultreply.xsd" >
+	<xs:simpleType name="stringtype">
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+	<xs:complexType name="responsetype">
+		<xs:sequence>
+			<xs:element name="text" type="tns:stringtype" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="response" type="tns:responsetype" />
+</xs:schema>

@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<assembly>
+    <id>bin</id>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>        
+        <fileSet>
+            <directory>../documentatie/Opleverdocumentatie/01. Documentatie</directory>
+            <outputDirectory>/01.Documentatie</outputDirectory>
+            <excludes>
+              <exclude>*.xlsx</exclude>
+              <exclude>*.db</exclude>
+            </excludes>
+        </fileSet>
+        <fileSet>
+            <directory>../documentatie/Opleverdocumentatie/02. Planning</directory>
+            <outputDirectory>/02.Planning</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>../documentatie/Opleverdocumentatie/03. Ontwerp</directory>
+            <outputDirectory>/03.Ontwerp</outputDirectory>
+            <excludes>
+              <exclude>*.db</exclude>
+              <exclude>Beveiliging TMFPortaal.doc</exclude>
+            </excludes>
+        </fileSet>
+        <fileSet>
+            <directory>../rtmf-guc/target/docs/</directory>
+            <outputDirectory>/03.Ontwerp</outputDirectory>
+            <includes>
+                <include>*.pdf</include>
+                <include>*.doc</include>
+            </includes>
+            <excludes>
+              <exclude>*.db</exclude>
+            </excludes>
+        </fileSet> 
+        <!--
+          == RTMF GUC mule deployment files
+          -->       
+        <fileSet>
+            <directory>../rtmf-guc/target</directory>
+            <outputDirectory>/04.Deployment/rtmf-guc/lib</outputDirectory>
+            <includes>
+                <include>rtmf*.jar</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>target</directory>
+            <outputDirectory>/04.Deployment/rtmf-guc/lib</outputDirectory>
+            <includes>
+                <include>hsql*.jar</include>
+                <include>httpc*.jar</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>../rtmf-guc/src/main/resources</directory>
+            <outputDirectory>/04.Deployment/rtmf-guc/conf</outputDirectory>
+            <includes>
+                <include>rtmfguc*.xml</include>
+                <include>rtmfguc*.properties</include>
+                <include>log4j*.properties</include>
+            </includes>
+            <excludes>
+                <exclude>*mocks*</exclude>
+            </excludes>
+        </fileSet>
+        <!--
+          == Mock mule files
+          -->       
+        <fileSet>
+            <directory>../rtmf-guc-mocks/src/main/resources</directory>
+            <outputDirectory>/04.Deployment/rtmf-guc-mocks/conf</outputDirectory>
+            <includes>
+                <include>*.xml</include>
+                <include>*.properties</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>../rtmf-guc-mocks/target</directory>
+            <outputDirectory>/04.Deployment/rtmf-guc-mocks/lib</outputDirectory>
+            <includes>
+                <include>rtmf*.jar</include>
+            </includes>
+        </fileSet>        
+        <!--
+          == RTMF database deployment files
+          -->       
+        <fileSet>
+            <directory>../rtmf-guc-db/src/main/sql</directory>
+            <outputDirectory>/04.Deployment/rtmf-guc-db/sql</outputDirectory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+        </fileSet>      
+        <!--
+          == Oplever documentatie
+          -->
+        <fileSet>
+            <directory>../documentatie/Opleverdocumentatie/04. Deployment</directory>
+            <outputDirectory>/04.Deployment</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>../documentatie/Opleverdocumentatie/05. Test</directory>
+            <outputDirectory>/05.Test</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>../*/target/surefire-reports/</directory>
+            <outputDirectory>/05.Test/unit</outputDirectory>
+        </fileSet>
+        <!--
+          == RTMF GUC source files
+          -->       
+        <fileSet>
+            <directory>../rtmf-guc/src</directory>
+            <outputDirectory>/07.Sources/rtmf-guc</outputDirectory>
+        </fileSet>
+        <!--
+          == RTMF GUC Mock source files
+          -->       
+        <fileSet>
+            <directory>../rtmf-guc-mocks/src</directory>
+            <outputDirectory>/07.Sources/rtmf-guc-mocks</outputDirectory>
+        </fileSet>
+        <!--
+          == RTMF DB sql source files
+          -->       
+        <fileSet>
+            <directory>../rtmf-guc-db/src</directory>
+            <outputDirectory>/07.Sources/rtmf-guc-db</outputDirectory>
+        </fileSet>
+        <!--
+          == RTMF ZmWeb source files
+          
+        <fileSet>
+            <directory>../ZmWeb/target</directory>
+            <outputDirectory>/04.Deployment/ZmWeb</outputDirectory>
+            <includes>
+              <include>*.war</include>
+            </includes>
+        </fileSet>--> 
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <outputDirectory>/04.Deployment/ZmWeb</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>../ZmWeb/src/main/java</directory>
+            <outputDirectory>/04.Deployment/ZmWeb/properties</outputDirectory>
+            <includes>
+              <include>*.properties</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>../ZmWeb/src</directory>
+            <outputDirectory>/07.Sources/ZmWeb</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>../documentatie/Opleverdocumentatie/09. SOGICT Documentatie</directory>
+            <outputDirectory>/09. SOGICT Documentatie</outputDirectory>
+            <excludes>
+              <exclude>relaties tussen CI.ppt</exclude>
+              <exclude>CMDB RTMF nieuw.ppt</exclude>
+              <exclude>*.db</exclude>
+            </excludes>
+        </fileSet>
+    </fileSets>
+     <files>
+     <file>
+            <source>../ZmWeb/target/ZmWeb-1.0.3.war</source>            
+            <outputDirectory>/04.Deployment/ZmWeb</outputDirectory>
+            <destName>ZmWeb.war</destName>
+      </file>
+      </files>
+</assembly>

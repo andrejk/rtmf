@@ -1,0 +1,108 @@
+<!--
+ * Copyright (c) 2009-2011 Gemeente Rotterdam
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.1 (or any later version).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * European Union Public Licence for more details.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see
+ * http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
+-->
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/"
+	xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+	xmlns:os-xsd="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd"
+	xmlns:os-adw="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1"
+	xmlns:os-sbw="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1"
+	targetNamespace="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1"
+	name="ophaalService-servicebinding.wsdl">
+
+	<wsdl:import
+		namespace="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1"
+		location="ophaalService-abstract-definition.wsdl" />
+
+	<wsdl:binding name="ophaalServiceBinding"
+		type="os-adw:OphaalService">
+		
+		<wsaw:UsingAddressing wsdl:required="true" />
+		
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+
+		<wsdl:operation name="ophalenMeldingStatus">
+			<soap:operation
+				soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="ophalenMeldingKenmerk">
+			<soap:operation
+				soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="ophalenTmfKenmerk">
+			<soap:operation
+				soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="ophalenMededeling">
+			<soap:operation
+				soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="ophaalService">
+		<wsdl:documentation>
+			<wsi:Claim conformsTo="http://ws-i.org/profiles/basic/1.1" />
+		</wsdl:documentation>
+		<wsdl:port name="ophaalServiceSOAP"
+			binding="os-sbw:ophaalServiceBinding">
+			<soap:address
+				location="https://s794a.nxs.nl/services"/>
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>

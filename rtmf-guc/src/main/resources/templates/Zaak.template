@@ -1,0 +1,46 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:stat="http://www.interaccess.nl/webplus/statuswfm_v2">
+	<soapenv:Header />
+	<soapenv:Body>
+		<stat:Zaak>
+            <stat:Zaak_verantwoordelijke_oeh>
+               <stat:oeh_id>${oehId}</stat:oeh_id>
+               <stat:oeh_naam>${oehNaam}</stat:oeh_naam>
+            </stat:Zaak_verantwoordelijke_oeh>
+            <stat:Zaak_initiator_mdw>
+               <stat:mdw_achternaam>${mdwAchternaam}</stat:mdw_achternaam>
+            </stat:Zaak_initiator_mdw>
+         	<stat:Zaakidentificatie>${Zaakidentificatie}</stat:Zaakidentificatie>
+			<stat:Startdatum>${Startdatum}</stat:Startdatum>
+			<stat:Zaaktypecode>TMDG</stat:Zaaktypecode>
+			<stat:Zaaktypeomschrijving>Terugmelding Rotterdamse kerngegevens</stat:Zaaktypeomschrijving>
+			<stat:Kenmerk>
+				<stat:kenmerk>${basisRegistratie}</stat:kenmerk>
+				<stat:kenmerkBron>basisRegistratie</stat:kenmerkBron>
+			</stat:Kenmerk>
+			<stat:Kenmerk>
+				<stat:kenmerk>${objectTag}</stat:kenmerk>
+				<stat:kenmerkBron>objectTag</stat:kenmerkBron>
+			</stat:Kenmerk>
+			<stat:Kenmerk>
+				<stat:kenmerk>${objectnaam}</stat:kenmerk>
+				<stat:kenmerkBron>objectNaam</stat:kenmerkBron>
+			</stat:Kenmerk>
+			<stat:Kenmerk>
+				<stat:kenmerk>${objectIdentificatie}</stat:kenmerk>
+				<stat:kenmerkBron>objectIdentificatie</stat:kenmerkBron>
+			</stat:Kenmerk>
+			<stat:Trefwoord>${meldingKenmerk}</stat:Trefwoord>
+			<stat:Resultaatcode>ontvangen</stat:Resultaatcode>
+			<stat:Resultaatomschrijving>Ontvangen door het Rotterdamse verdeelpunt</stat:Resultaatomschrijving>
+			<stat:Oge_id>0</stat:Oge_id>
+			<!--Optional:-->
+			<stat:Formulier>
+				<!--You may enter ANY elements at this point-->
+				<!--Hier staat het terugmelding bericht zoals verstuurd door de TmfPortal. -->
+				<!--Echter, de attachments uit het terugmeldingbericht zijn verwijderd! -->
+				${formulier}
+			</stat:Formulier>
+		</stat:Zaak>
+	</soapenv:Body>
+</soapenv:Envelope>

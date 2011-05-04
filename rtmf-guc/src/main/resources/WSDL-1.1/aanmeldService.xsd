@@ -1,0 +1,159 @@
+<!--
+ * Copyright (c) 2009-2011 Gemeente Rotterdam
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.1 (or any later version).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * European Union Public Licence for more details.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see
+ * http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
+-->
+<xsd:schema
+	targetNamespace="http://wus.tmf.gbo.overheid.nl/wsdl/aanmeldService-V1.1.xsd"
+	elementFormDefault="qualified"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:as="http://wus.tmf.gbo.overheid.nl/wsdl/aanmeldService-V1.1.xsd">
+
+	<xsd:complexType name="TerugmeldingRequestType">
+		<xsd:sequence>
+			<xsd:element name="meldingKenmerk" type="xsd:string" />
+			<xsd:element name="tijdstempelAanlevering" type="xsd:dateTime" />
+			<xsd:element name="basisRegistratie" type="xsd:string" />
+			<xsd:element name="objectTag" type="xsd:string" />
+			<xsd:element name="objectIdentificatie" type="xsd:string" />
+			<xsd:element name="toelichting" type="xsd:string" />
+			<xsd:element name="attributen" type="as:ObjectAttribuutType" maxOccurs="unbounded" minOccurs="1" />
+			<xsd:element name="contactInfo" type="as:ContactType" maxOccurs="1" minOccurs="0" />
+			<xsd:element name="attachment" type="as:AttachmentType" maxOccurs="unbounded" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="IntrekkingRequestType">
+		<xsd:sequence>
+			<xsd:element name="meldingKenmerk" type="xsd:string" />
+			<xsd:element name="tijdstempelAanlevering" type="xsd:dateTime" />
+			<xsd:element name="betreftTmfKenmerk" type="xsd:string" />
+			<xsd:element name="toelichting" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="MededelingRequestType">
+		<xsd:sequence>
+			<xsd:element name="brKenmerk" type="xsd:string" />
+			<xsd:element name="tijdstempelBezorging" type="xsd:dateTime" />
+			<xsd:element name="betreftTmfKenmerk" type="xsd:string" />
+			<xsd:element name="nieuweStatus" type="xsd:string" />
+			<xsd:element name="toelichting" type="xsd:string" maxOccurs="1" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="TmfResponseType">
+		<xsd:sequence>
+			<xsd:element name="classificatie">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="Informatief" />
+						<xsd:enumeration value="Fout" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="code" type="xsd:string" />
+			<xsd:element name="tekst" type="xsd:string" />
+		</xsd:sequence>
+		<xsd:attribute name="TmfKenmerk" type="xsd:string" use="optional"/>
+	</xsd:complexType>
+	
+	<xsd:complexType name="TmfAFResponseType">
+		<xsd:complexContent>
+			<xsd:extension base="as:TmfResponseType">
+				<xsd:attribute name="kenmerk" type="xsd:string" use="optional"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="TmfRHResponseType">
+		<xsd:complexContent>
+			<xsd:extension base="as:TmfResponseType">
+				<xsd:attribute name="BrKenmerk" type="xsd:string" use="optional"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="ObjectAttribuutType">
+		<xsd:sequence>
+			<xsd:element name="attribuutIdentificatie" type="xsd:string" />
+			<xsd:element name="betwijfeldeWaarde" type="xsd:string" />
+			<xsd:element name="voorstel" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ContactType">
+		<xsd:sequence>
+			<xsd:element name="naam" type="xsd:string" maxOccurs="1" minOccurs="0" />
+			<xsd:element name="telefoon" type="xsd:string" maxOccurs="1" minOccurs="0" />
+			<xsd:element name="email" type="xsd:string" maxOccurs="1" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="IdentificatieType">
+		<xsd:sequence>
+			<xsd:element name="oin" type="xsd:string" maxOccurs="1" minOccurs="1" />
+			<xsd:element name="on" type="xsd:string" maxOccurs="1" minOccurs="0" />
+			<xsd:element name="oun" type="xsd:string" maxOccurs="1" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="TmfMetaDataType">
+		<xsd:sequence>
+			<xsd:element name="TmfKenmerk" type="xsd:string" maxOccurs="1" minOccurs="1" />
+			<xsd:element name="Berichtsoort" type="xsd:string" maxOccurs="1" minOccurs="1" />
+			<xsd:element name="tijdstempelAflevering" type="xsd:dateTime"  maxOccurs="1" minOccurs="1" />
+			<xsd:element name="Identificatie" type="as:IdentificatieType" maxOccurs="1" minOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="TerugmeldingForwardType">
+		<xsd:sequence>
+			<xsd:element name="metaData" type="as:TmfMetaDataType" />
+			<xsd:element name="terugmelding" type="as:TerugmeldingRequestType" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="IntrekkingForwardType">
+		<xsd:sequence>
+			<xsd:element name="metaData" type="as:TmfMetaDataType" />
+			<xsd:element name="intrekking" type="as:IntrekkingRequestType" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AttachmentType">
+		<xsd:sequence>
+			<xsd:element name="filename" type="xsd:string" maxOccurs="1" minOccurs="1" />
+			<xsd:element name="base64attachment" type="xsd:base64Binary" maxOccurs="1" minOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="terugmelding" type="as:TerugmeldingRequestType" />
+
+	<xsd:element name="intrekking" type="as:IntrekkingRequestType" />
+
+	<xsd:element name="statusMededeling" type="as:MededelingRequestType" />
+
+	<xsd:element name="ontvangstBevestiging" type="as:TmfAFResponseType" />
+
+	<xsd:element name="foutMelding" type="as:TmfAFResponseType" />
+
+	<xsd:element name="statusBevestiging" type="as:TmfRHResponseType" />
+
+	<xsd:element name="statusFout" type="as:TmfRHResponseType" />
+
+	<xsd:element name="forwardTerugmelding" type="as:TerugmeldingForwardType" />
+
+	<xsd:element name="forwardIntrekking" type="as:IntrekkingForwardType" />
+</xsd:schema>

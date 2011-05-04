@@ -1,0 +1,31 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	<soapenv:Header xmlns:wsa="http://www.w3.org/2005/08/addressing">
+		<wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService/ophalenMeldingKenmerk</wsa:Action>
+		<!-- LET OP: Het RelatesTo 'uuid' moet nog worden ingevuld -->
+		<!--         met het 'uuid' van de aanroeper!              -->
+		<wsa:RelatesTo RelationshipType="http://www.w3.org/2005/08/addressing/reply">uuid:</wsa:RelatesTo>
+		<wsa:To>http://www.w3.org/2005/08/addressing/anonymous</wsa:To>
+	</soapenv:Header>
+	<soapenv:Body>
+		<oph:ophalenMeldingKenmerkResponse
+			xmlns:oph="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd">
+			<oph:meldingMetaData>
+				<oph:terugmeldMCore>
+					<oph:tmfKenmerk>${zaakNummer}</oph:tmfKenmerk>
+					<oph:berichtSoort>${berichtsoort}</oph:berichtSoort>
+					<oph:idOrganisatie>${organisatieId}</oph:idOrganisatie>
+					<oph:naamOrganisatie>${organisatie}</oph:naamOrganisatie>
+				</oph:terugmeldMCore>
+				<!--Optional:-->
+				<oph:afdeling>${afdeling}</oph:afdeling>
+				<oph:tijdstempelOntvangst>${tijdstempelOntvangst}</oph:tijdstempelOntvangst>
+				<!--Optional:-->
+				<oph:tijdstempelGemeld>${tijdstempelGemeld}</oph:tijdstempelGemeld>
+				<oph:statusMelding>${status}</oph:statusMelding>
+				<oph:tijdstempelStatus>${tijdstempelStatus}</oph:tijdstempelStatus>
+				<!--Optional:-->
+				<oph:toelichting>${toelichting}</oph:toelichting>
+			</oph:meldingMetaData>
+		</oph:ophalenMeldingKenmerkResponse>
+	</soapenv:Body>
+</soapenv:Envelope>

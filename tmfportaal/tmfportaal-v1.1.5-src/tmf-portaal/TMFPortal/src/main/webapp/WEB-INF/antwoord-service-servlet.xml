@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="antwoordEndpoint" class="com.ovsoftware.ictu.osb.tmfportal.service.antwoord.endpoint.AntwoordEndpoint">
+    	<property name="nameSpace" value="http://wus.tmf.gbo.overheid.nl/wsdl/aanmeldService-V1.1.xsd"/>
+    </bean>
+
+    <bean id="endpointMapping" class="org.springframework.ws.soap.addressing.server.SimpleActionEndpointMapping">
+        <property name="mappings">
+            <props>
+                <prop key="ontvangstBevestiging">antwoordEndpoint</prop>
+                <prop key="foutMelding">antwoordEndpoint</prop>
+            </props>
+        </property>
+	    <property name="postInterceptors">
+	        <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
+	    </property>
+    </bean>
+
+	<bean id="Service" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+	    <property name="schemaCollection" ref="schemaCollection"/>                                               
+	    <property name="portTypeName" value="tmf-aanmeldenbeantwoorden"/>                                
+	    <property name="locationUri" value="http://tmfportaalserver/antwoordService/"/>                              
+	    <property name="targetNamespace" value="http://wus.tmf.gbo.overheid.nl/wsdl/aanmeldService-V1.1.xsd"/>       
+	</bean>
+	
+	<bean id="schemaCollection" class="org.springframework.xml.xsd.commons.CommonsXsdSchemaCollection">                   
+	    <property name="xsds">
+	    	<list>
+	    		<value>/WEB-INF/aanmeldService.xsd</value>
+	    	</list>
+	    </property>
+		<property name="inline" value="true" /> 
+	</bean>
+
+</beans>

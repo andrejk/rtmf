@@ -1,0 +1,41 @@
+LS,
+
+Onderstaand een bericht van een bijgewerkte status van een Terugmelding vanuit de centrale Terugmeldfaciliteit van de gemeente Rotterdam.
+Dit bericht betreft een bijgewerkte status van een eerdere terugmelding die op uw naam contact gegevens is aangemaakt.
+
+
+Doorgegeven wordt:
+- Algemene informatie om de terugmelding die van status is veranderd uniek te identificeren.
+- De velden waarop de terugmelding betrekking heeft.
+
+De terugmelding luidt als volgt:
+
+Zaakkenmerk                     : $zaakidentificatie
+Meldingkenmerk                  : $meldingKenmerk
+
+Tijdstempel aanlevering         : $begindatum
+
+
+Basisregistratie                : $basisRegistratie
+Object tag                      : $objectTag
+Object naam                     : $objectNaam
+Object identificatie            : $objectIdentificatie
+
+Toelichting                     : $toelichting
+
+
+Attributen
+#foreach($attribuut in $attributen)
+Attribuut identificatie (ID)    : $attribuut.id
+Betwijfelde waarde              : $attribuut.betwijfeldeWaarde
+Voorstel                        : $attribuut.voorstel
+
+#end
+
+Nieuwe status
+Status                          : $nieuweStatus
+Toelichting                     : $nieuweStatusToelichting
+
+
+PS:
+Op $adresMeerInfo vindt u contactinformatie m.b.t. het beheer van de Terugmeldfaciliteit van de gemeente.

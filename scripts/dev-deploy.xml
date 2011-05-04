@@ -1,0 +1,277 @@
+<project name="dev-deploy" xmlns:oracle="antlib:oracle">
+  <property name="maven.repo" value="/opt/tmf/nexus/sonatype-work/nexus/storage/snapshots"/>
+  <property name="deploy.host" value="twd719"/>
+  <property name="deploy.usr" value="tmf"/>
+  <property name="deploy.pwd" value="kanariepietje"/>
+  <property name="rtmfguc.version" value="0.9-SNAPSHOT"/>
+  <property name="rtmfguc.package" value="rtmf-guc-${rtmfguc.version}-bin.tar.gz"/>
+  <property name="rtmf.package" value="rtmf-package-${rtmfguc.version}-bin.tar.gz"/>
+  <property name="gucgeneric.package" value="guc-generic-${rtmfguc.version}-bin.tar.gz"/>
+  <property name="tmfportal.version" value="1.0-SNAPSHOT"/>          
+  <!--
+    ===========================================================================================================
+    ==
+    ===========================================================================================================
+    -->
+  <macrodef name="restart-tomcat-twd719">
+    <sequential>
+    <sshexec host="${deploy.host}" username="${deploy.usr}" password="${deploy.pwd}" command='
+export JAVA_HOME=/opt/jdk;
+export TOMCAT_HOME=/opt/tmf/apache-tomcat-5.5.27;
+export JAVA_OPTS="-Dtmfportal.props=/home/tmf/tmfportal.properties";
+cd $TOMCAT_HOME/bin;
+./shutdown.sh;
+./startup.sh;
+'/>    
+    </sequential>
+  </macrodef> 
+  <macrodef name="restart-mule-twd719">
+    <sequential>
+    <sshexec host="${deploy.host}" username="${deploy.usr}" password="${deploy.pwd}" command='
+export JAVA_HOME=/opt/jdk;
+export MULE_HOME=/opt/tmf/mule ;
+export PATH=$PATH:$MULE_HOME/bin:$JAVA_HOME/bin;
+mule stop -config /opt/tmf/work/07.Sources/main/resources/mule-config.xml;
+export MULE_LIB=$MULE_LIB:/opt/tmf/work/04.Deployment/rtmf-guc-${rtmfguc.version}.jar;
+mule start -config "/opt/tmf/work/07.Sources/main/resources/mule-config.xml,/opt/tmf/work/07.Sources/main/resources/mule-zm-config.xml,/opt/tmf/work/07.Sources/main/resources/mule-config-mocks.xml";
+'/>
+    </sequential>
+  </macrodef>
+  <!--
+    ===========================================================================================================
+    == restart mule, starts all applications in the $MULE_HOME/apps folder
+    ==
+    == environment specific property need to be listed last, they'll overwrite te previous settings
+    ==
+export props="classpath:guc_generic.properties,classpath:rtmfguc_default.properties,classpath:rtmfguc-mocks_default.properties,classpath:rtmfguc-mailsender.properties,classpath:rtmfguc_env.properties";
+export props="classpath:rtmfguc_env.properties,classpath:guc_generic.properties,classpath:rtmfguc_default.properties,classpath:rtmfguc-mocks_default.properties,classpath:rtmfguc-mocks_env.properties,classpath:rtmfguc-mailsender.properties,file:rtmfguc_env.properties";
+    ===========================================================================================================
+    -->  
+  <macrodef name="restart-mule-apps-dir-twd719">
+    <sequential>
+    <sshexec host="${deploy.host}" username="${deploy.usr}" password="${deploy.pwd}" command='
+export JAVA_HOME=/opt/jdk;
+export MULE_HOME=/opt/tmf/mule ;
+export PATH=$PATH:$MULE_HOME/bin:$JAVA_HOME/bin;
+libpath=".";
+for file in `ls -d $MULE_HOME/apps/*/conf`; do libpath=$libpath:$file; done;
+for file in `ls $MULE_HOME/apps/*/lib/*.jar`; do libpath=$libpath:$file; done;
+echo "Mule libs: $libpath";
+export MULE_LIB=$MULE_LIB:$libpath;
+export CLASSPATH=$CLASSPATH:$MULE_LIB;
+echo "MULE_LIB=$MULE_LIB";
+confpath="";
+configs="";
+for file in `ls $MULE_HOME/apps/*/conf/*.xml`; do confpath=$confpath,$file; done;
+for file in `ls $MULE_HOME/apps/*/conf/*.xml`; do configs=$configs,classpath:`basename $file`; done;
+echo "Mule cfg: $confpath";
+echo "Mule configs: $configs";
+props="";
+for file in `ls $HOME/rtmf*.properties`; do props=$props,file:$file; done;
+for file in `ls $MULE_HOME/apps/*/conf/*_{env,xxx}.properties`; do props=$props,classpath:`basename $file`; done;
+for file in `ls $MULE_HOME/apps/*/conf/*.properties`; do props=$props,classpath:`basename $file`; done;
+echo "hardcoding props, just for testing";
+export props="classpath:guc_generic.properties,file:/opt/tmf/mule/apps/rtmf-guc/conf/rtmfguc_default.properties,file:/opt/tmf/mule/apps/rtmf-guc/conf/rtmfguc_env.properties,classpath:rtmfguc-mocks_default.properties,classpath:rtmfguc-mailsender.properties,classpath:rtmfguc_env.properties";
+echo "Mule props: $props";
+echo "********* Stopping mule **********";
+echo "mule stop -config $confpath -M-Dmule.props=$props -M-Dmule.configs=$configs;";
+mule stop -config "$confpath" -M-Dmule.props="$props" -M-Dmule.configs="$configs";
+echo "********* Starting mule **********";
+echo "mule start -config $confpath -M-Dmule.props=$props -M-Dmule.configs=$configs;";
+mule start -config "$confpath" -M-Dmule.props="$props" -M-Dmule.configs="$configs";
+'/>
+    </sequential>    
+  </macrodef>    
+  <!--
+    ===========================================================================================================
+    ==
+    ===========================================================================================================
+    -->
+  <target name="dev-deploy">
+    <echo>Deploying to Development (twd719)</echo>
+    <copy file="${maven.repo}/nl/rotterdam/rtmf/rtmf-guc/${rtmfguc.version}/${rtmfguc.package}" tofile="rtmf-guc.tgz"/>
+    <exec command="ls -ltr"/>
+    <scp file="rtmf-guc.tgz" todir="${deploy.usr}:${deploy.pwd}@${deploy.host}:/opt/tmf/downloads"/>
+    <sshexec host="${deploy.host}" username="${deploy.usr}" password="${deploy.pwd}" command="
+ls -ltr /opt/tmf/downloads;
+cd /opt/tmf; 
+rm -rf work;
+mkdir work;
+cd work;
+tar xzvf ../downloads/rtmf-guc.tgz;
+cp 07.Sources/test/resources/rtmfguc-twd719.properties /home/tmf/rtmfguc.properties;
+cp 07.Sources/test/resources/tmfportal-twd719.properties /home/tmf/tmfportal.properties;
+"/>
+    <restart-mule-twd719/>
+    <restart-tomcat-twd719/>
+  </target>
+  <!--
+    ===========================================================================================================
+    == Deploys all deliverables to the development server. This consists of the following components:
+    == * rtmf-guc     - needs to be deployed in mule 2.2.1
+    == * rtmf-guc-db  - needs to be deployed in an oracle database
+    == * tmf-portal   - needs to be deployed in a jee container (tomcat/oc4j)
+    ===========================================================================================================
+    -->
+  <target name="dev-deploy-guc-generic">
+    <echo>Deploying guc generic to developement (twd719)</echo>
+    <copy file="${maven.repo}/nl/rotterdam/rtmf/guc-generic/${rtmfguc.version}/${gucgeneric.package}" tofile="guc-generic.tgz"/>
+    <exec command="ls -ltr"/>
+    <scp file="guc-generic.tgz" todir="${deploy.usr}:${deploy.pwd}@${deploy.host}:/opt/tmf/downloads"/>
+    <sshexec host="${deploy.host}" username="${deploy.usr}" password="${deploy.pwd}" command="
+export MULE_HOME=/opt/tmf/mule;
+export TOMCAT_HOME=/opt/tmf/apache-tomcat-5.5.27;
+ls -ltr /opt/tmf/downloads;
+cd /opt/tmf;
+rm -rf work;
+mkdir work;
+cd work;
+tar xvzf ../downloads/guc-generic.tgz;
+if [[ ! -d $MULE_HOME/apps ]]; then 
+  mkdir $MULE_HOME/apps;
+fi;
+rm -rf $MULE_HOME/apps/guc-generic;
+cp -R guc-generic $MULE_HOME/apps;
+"/>
+  </target>
+  <target name="all-dev-deploy" depends="dev-deploy-guc-generic">
+    <echo>Deploying to developement (twd719)</echo>
+    <copy file="${maven.repo}/nl/rotterdam/rtmf/rtmf-package/${rtmfguc.version}/${rtmf.package}" tofile="rtmf-package.tgz"/>
+    <exec command="ls -ltr"/>
+    <scp file="rtmf-package.tgz" todir="${deploy.usr}:${deploy.pwd}@${deploy.host}:/opt/tmf/downloads"/>
+    <sshexec host="${deploy.host}" username="${deploy.usr}" password="${deploy.pwd}" command="
+export MULE_HOME=/opt/tmf/mule;
+export TOMCAT_HOME=/opt/tmf/apache-tomcat-5.5.27;
+export JAVA_HOME=/opt/jdk1.6.0_14/jre;
+ls -ltr /opt/tmf/downloads;
+cd /opt/tmf;
+rm -rf work;
+mkdir work;
+cd work;
+tar xvzf ../downloads/rtmf-package.tgz;
+if [[ ! -d $MULE_HOME/apps ]]; then 
+  mkdir $MULE_HOME/apps;
+fi;
+rm -rf $MULE_HOME/apps/rtmf*;
+cp -R 04.Deployment/rtmf-guc $MULE_HOME/apps;
+cp -R 04.Deployment/rtmf-guc-mocks $MULE_HOME/apps;
+rm -rf $TOMCAT_HOME/webapps/TMF*;
+rm -rf $TOMCAT_HOME/webapps/ROOT*;
+cp 04.Deployment/tmfportaal/TMFPortal.war $TOMCAT_HOME/webapps/ROOT.war;
+"/>
+<!-- todo: /opt/tmf/oc4j/ant/bin/ant -f 04.Deployment/ZmWeb/deploy-zmweb.xml install deploy
+-->
+    <restart-mule-apps-dir-twd719/>
+    <restart-tomcat-twd719/>
+  </target>
+  <!--
+    ===========================================================================================================
+    ==
+    ===========================================================================================================
+    -->
+  <target name="tmfportal-dev-deploy">
+    <echo>Deploying to ${deploy.host}</echo>
+    <copy file="${maven.repo}/org/osb/tmf-portaal/TMFPortal/${tmfportal.version}/TMFPortal-${tmfportal.version}.war" tofile="TMFPortal.war"/>
+    <scp file="TMFPortal.war" todir="${deploy.usr}:${deploy.pwd}@${deploy.host}:/opt/tmf/downloads"/>
+    <sshexec host="${deploy.host}" username="${deploy.usr}" password="${deploy.pwd}" command="
+ls -ltr /opt/tmf/downloads;
+cp /opt/tmf/downloads/TMFPortal.war /opt/tmf/apache-tomcat-5.5.27/webapps/;
+"/>
+    <restart-tomcat-twd719/>
+  </target>
+  <!--
+    ===========================================================================================================
+    ==
+    ===========================================================================================================
+    -->
+  <target name="tmfportal-dev-deploy-oc4j">
+    <echo>Deploying to ${deploy.host} (oc4j)</echo>
+    <copy file="${maven.repo}/org/osb/tmf-portaal/TMFPortal/${tmfportal.version}/TMFPortal-${tmfportal.version}.war" tofile="TMFPortal.war"/>
+    <scp file="TMFPortal.war" todir="${deploy.usr}:${deploy.pwd}@${deploy.host}:/opt/tmf/downloads"/>
+    <oc4j-ear-deploy name="TMFPortal"  filename="TMFPortal.war" contextRoot="/TMFPortal" webModule="TMFPortal" deploymentName="TMFPortal"
+          deployer.uri="deployer:oc4j:opmn://twd719:6003/oc4j" admin.username="oc4jadmin" admin.password="admin"
+        />
+  </target>
+  <!--
+    ===========================================================================================================
+    ==
+    ===========================================================================================================
+    -->
+  <target name="config-gm-zm-mocks">
+    <echo>Configuring endpoints to use gm and zm mocks</echo>
+    <exec command="svn export file:///home/tmf/svnrepo/tmfguc/trunk/rtmf-guc/src/test/resources/rtmfguc-twd719-gm-zm-mocks.properties"/>
+    <scp file="rtmfguc-twd719-gm-zm-mocks.properties" todir="${deploy.usr}:${deploy.pwd}@${deploy.host}:/opt/tmf/mule/apps/rtmf-guc/conf/rtmfguc_env.properties"/>
+    <restart-mule-apps-dir-twd719/>
+  </target>
+
+  <!--
+    ===========================================================================================================
+    ==
+    ===========================================================================================================
+    -->
+  <target name="config-gm-mocks">
+    <echo>Configuring endpoints to use mocks only</echo>
+    <exec command="svn export file:///home/tmf/svnrepo/tmfguc/trunk/rtmf-guc/src/test/resources/rtmfguc-twd719-gm-mocks.properties"/>
+    <scp file="rtmfguc-twd719-gm-mocks.properties" todir="${deploy.usr}:${deploy.pwd}@${deploy.host}:/opt/tmf/mule/apps/rtmf-guc/conf/rtmfguc_env.properties"/>
+    <restart-mule-apps-dir-twd719/>
+  </target>
+
+  <!--
+    ===========================================================================================================
+    ==
+    ===========================================================================================================
+    -->
+  <target name="config-zm-mocks">
+    <echo>Configuring endpoints to use mocks for ZM only</echo>
+    <exec command="svn export file:///home/tmf/svnrepo/tmfguc/trunk/rtmf-guc/src/test/resources/rtmfguc-twd719-zm-mocks.properties"/>
+    <scp file="rtmfguc-twd719-zm-mocks.properties" todir="${deploy.usr}:${deploy.pwd}@${deploy.host}:/opt/tmf/mule/apps/rtmf-guc/conf/rtmfguc_env.properties"/>
+    <restart-mule-apps-dir-twd719/>
+  </target>
+
+  <!--
+    ===========================================================================================================
+    ==
+    ===========================================================================================================
+    -->
+  <target name="config-all-mocks">
+    <echo>Configuring endpoints to use mocks only</echo>
+    <exec command="svn export file:///home/tmf/svnrepo/tmfguc/trunk/rtmf-guc/src/test/resources/rtmfguc-twd719-all-mocks.properties"/>
+    <scp file="rtmfguc-twd719-all-mocks.properties" todir="${deploy.usr}:${deploy.pwd}@${deploy.host}:/opt/tmf/mule/apps/rtmf-guc/conf/rtmfguc_env.properties"/>
+    <restart-mule-apps-dir-twd719/>
+  </target>
+
+  <!--
+    ===========================================================================================================
+    ==
+    ===========================================================================================================
+    -->
+  <target name="config-no-mocks">
+    <echo>Configuring endpoints to use mocks only</echo>
+    <exec command="svn export file:///home/tmf/svnrepo/tmfguc/trunk/rtmf-guc/src/test/resources/rtmfguc-twd719.properties"/>
+    <scp file="rtmfguc-twd719.properties" todir="${deploy.usr}:${deploy.pwd}@${deploy.host}:/opt/tmf/mule/apps/rtmf-guc/conf/rtmfguc_env.properties"/>
+    <restart-mule-apps-dir-twd719/>
+  </target>
+
+  <!--
+    ===========================================================================================================
+    ==
+    ===========================================================================================================
+    -->
+  <target name="config-portal-landelijk">
+    <echo>Configuring portal zodat mule slechts dient als proxy voor landelijke services</echo>
+    <exec command="svn export file:///home/tmf/svnrepo/tmfguc/trunk/rtmf-guc/src/test/resources/tmfportal-twd719-proxy.properties"/>
+    <scp file="tmfportal-twd719-proxy.properties" todir="${deploy.usr}:${deploy.pwd}@${deploy.host}:/home/tmf/tmfportal.properties"/>
+    <restart-tomcat-twd719/>
+  </target>
+  <!--
+    ===========================================================================================================
+    ==
+    ===========================================================================================================
+    -->
+  <target name="config-portal-rotterdam">
+    <echo>Configuring portal zodat mule landelijk met rotterdam combineert</echo>
+    <exec command="svn export file:///home/tmf/svnrepo/tmfguc/trunk/rtmf-guc/src/test/resources/tmfportal-twd719-combi.properties"/>
+    <scp file="tmfportal-twd719-combi.properties" todir="${deploy.usr}:${deploy.pwd}@${deploy.host}:/home/tmf/tmfportal.properties"/>
+    <restart-tomcat-twd719/>
+  </target>
+</project>

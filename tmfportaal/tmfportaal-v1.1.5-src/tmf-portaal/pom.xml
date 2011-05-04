@@ -1,0 +1,191 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.osb.tmf-portaal</groupId>
+	<artifactId>tmf-portaal</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>TMFPortalWeb Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+  <parent>
+    <groupId>org.osb.tmf-portaal</groupId>
+    <artifactId>osb-tmf-portaal</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  
+  <properties>
+<!--
+    <centralhost>smart-java.nl</centralhost>
+-->
+    <test.skip>true</test.skip>
+    <maven.test.failure.ignore>true</maven.test.failure.ignore>   
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>     
+  </properties>
+
+  <modules>
+	<module>TMFPortal</module>
+	<module>TMFCore-WUS-WUSlite</module>
+	<module>TMFCore-EBMS-WUSlite</module>
+	<module>StelselCatalogus-WUS-WUSlite</module>
+  </modules>
+	
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.15</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+			<version>2.5.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<scope>runtime</scope>
+			<version>1.1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<scope>runtime</scope>
+			<version>1.1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>2.5.5</version>
+			<scope>compile</scope>
+		</dependency>
+
+	        <dependency>
+	            <groupId>org.springframework.ws</groupId>
+	            <artifactId>spring-oxm</artifactId>
+	            <version>1.5.5</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.springframework.ws</groupId>
+	            <artifactId>spring-ws-core</artifactId>
+	            <version>1.5.5</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>jdom</groupId>
+	            <artifactId>jdom</artifactId>
+	            <version>1.0</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.apache.ws.commons.schema</groupId>
+	            <artifactId>XmlSchema</artifactId>
+	            <version>1.4.2</version>
+	        </dependency>
+	
+		<!-- Tiles 2 -->
+
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-core</artifactId>
+			<version>2.0.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+			<version>2.0.5</version>
+		</dependency>
+		
+		<!-- file upload -->
+		
+		<dependency>
+            		<groupId>commons-fileupload</groupId>
+            		<artifactId>commons-fileupload</artifactId>
+            		<version>1.2.1</version>
+        	</dependency>
+		<dependency>
+            		<groupId>commons-io</groupId>
+            		<artifactId>commons-io</artifactId>
+            		<version>1.4</version>
+        	</dependency>
+		<dependency>
+            		<groupId>commons-lang</groupId>
+            		<artifactId>commons-lang</artifactId>
+            		<version>2.4</version>
+        	</dependency>
+	</dependencies>
+
+  <repositories>
+<!--
+    <repository>
+      <id>project-repo</id>
+      <name>The osb-tmf-portaal's central project Maven repository</name>
+      <url>https://osb-tmf-portaal.${centralhost}/repo</url>
+    </repository>
+-->
+   </repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>snapshots.repository.codehaus.org</id>
+			<url>http://snapshots.repository.codehaus.org</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<build>
+		<finalName>TMFPortalWeb</finalName>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.4.3</version>
+				<configuration>
+					<skip>${test.skip}</skip>
+					<testFailureIgnore>${maven.test.failure.ignore}</testFailureIgnore>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.5</version>
+			</plugin>
+			<plugin>
+				<groupId>com.atlassian.maven.plugins</groupId>
+				<artifactId>maven-clover2-plugin</artifactId>
+				<executions>
+					<execution>
+					    <phase>default</phase>
+						<goals>
+							<goal>instrument</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

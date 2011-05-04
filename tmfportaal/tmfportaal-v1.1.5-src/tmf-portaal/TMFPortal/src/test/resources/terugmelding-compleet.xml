@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- Dit bestand bevat drie terugmeldingen:
+		 1 = Coen Tinselaar -> Koen Tinselboer
+		 2 = Rik de Vriep   -> Rick de Vries
+		 3 = Pieter Boef    -> Peter Boevink 
+	 -->
+	
+	<!-- 
+	=== START: MeldingCompleet1 ===
+	-->
+	
+	<bean id="tc1" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.mock.TerugmeldingCompleet">
+		<property name="terugmelding">
+			<ref bean="tc1-t"/>
+		</property>
+		<property name="terugmeldingDetails">
+			<ref bean="tc1-td"/>
+		</property>
+	</bean>
+		
+		<!-- Terugmelding -->
+		<bean id="tc1-t" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.Terugmelding">
+			<property name="meldingKenmerk">
+				<value>Eigen kenmerk1</value>
+			</property>
+			<property name="contactGegevens">
+				<ref bean="tc1-t-cg"/>
+			</property>
+			<property name="tijdstempelAanlevering">
+				<ref bean="tc1-t-ta"/>
+			</property>
+			<property name="tagBR">
+				<value>BRK</value>
+			</property>
+			<property name="tagObject">
+				<value>PER</value>
+			</property>
+			<property name="idObject">
+				<value>NL-01-12345678</value>
+			</property>
+			<property name="objectAttribuutLijst">
+				<!-- list defaults naar ArrayList, reflection wordt gebruikt voor type-safety -->
+				<list>
+					<ref bean="tc1-t-oa1"/>
+					<ref bean="tc1-t-oa2"/>
+				</list>
+			</property>
+			<property name="toelichting">
+				<value>Toelichting 1</value>
+			</property>
+			<property name="terugmeldingKern">
+				<ref bean="tc1-t-tk"/>
+			</property>
+			<property name="bijlageLijst">
+				<list>
+				</list>
+			</property>
+		</bean>
+		
+			<bean id="tc1-t-cg" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.ContactGegevens">
+				<property name="naam">
+					<value>dhr P. Steffens</value>
+				</property>
+				<property name="telefoon">
+					<value>0541-533 111</value>
+				</property>
+				<property name="email">
+					<value>fake@ovsoftware.com</value>
+				</property>
+			</bean>
+												
+			<bean id="tc1-t-ta" class="java.util.GregorianCalendar">
+				<!-- 01-01-2008 01:00:10 -->
+				<constructor-arg>
+					<value>2008</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>00</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>10</value>
+				</constructor-arg>
+			</bean>
+			
+			<!-- Terugmelding - BRObjectAttribuut1 -->
+			<bean id="tc1-t-oa1" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.ObjectAttribuut">
+				<property name="idAttribuut">
+					<value>EE04</value>
+				</property>
+				<property name="betwijfeldeWaarde">
+					<value>Coen</value>
+				</property>
+				<property name="voorstel">
+					<value>Koen</value>
+				</property>
+			</bean>
+			
+			<!-- Terugmelding - BRObjectAttribuut2 -->
+			<bean id="tc1-t-oa2" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.ObjectAttribuut">
+				<property name="idAttribuut">
+					<value>EE02</value>
+				</property>
+				<property name="betwijfeldeWaarde">
+					<value>Tinselaar</value>
+				</property>
+				<property name="voorstel">
+					<value>Tinselboer</value>
+				</property>
+			</bean>
+		
+			<!-- Terugmelding - TerugmeldingKern -->
+			<bean id="tc1-t-tk" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.TerugmeldingKern">
+				<property name="tmfKenmerk">
+					<value>1</value>
+				</property>
+				<property name="berichtSoort">
+					<value>berichtsoort1</value>
+				</property>
+				<property name="idOrganisatie">
+					<value>ID OVSoftware</value>
+				</property>
+				<property name="naamOrganisatie">
+					<value>OVSoftware</value>
+				</property>
+			</bean>
+		
+		<!-- TerugmeldingDetails -->
+		<bean id="tc1-td" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.TerugmeldingDetails">
+			<property name="terugmeldingKern">
+				<ref bean="tc1-t-tk"/>
+			</property>
+			<property name="afdeling">
+				<value>Afdeling 1</value>
+			</property>
+			<property name="tijdstempelOntvangst">
+				<ref bean="tc1-t-tk-to"/>
+			</property>
+			<property name="tijdstempelGemeld">
+				<ref bean="tc1-t-tk-tg"/>
+			</property>
+			<property name="statusMelding">
+				<value>ontvangen</value>
+			</property>
+			<property name="tijdstempelStatus">
+				<ref bean="tc1-t-tk-ts"/>
+			</property>
+		</bean>
+		
+			<bean id="tc1-t-tk-to" class="java.util.GregorianCalendar">
+				<!-- 01-01-2008 01:00:10 -->
+				<constructor-arg>
+					<value>2008</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>00</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>10</value>
+				</constructor-arg>
+			</bean>
+			
+			<bean id="tc1-t-tk-tg" class="java.util.GregorianCalendar">
+				<!-- 01-01-2008 01:00:00 -->
+				<constructor-arg>
+					<value>2008</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>00</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>00</value>
+				</constructor-arg>
+			</bean>
+			
+			<bean id="tc1-t-tk-ts" class="java.util.GregorianCalendar">
+				<!-- 01-01-2008 01:00:10 -->
+				<constructor-arg>
+					<value>2008</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>00</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>10</value>
+				</constructor-arg>
+			</bean>
+		
+	<!-- 
+	=== EINDE: MeldingCompleet1 ===
+	--> 
+
+	
+	<!-- 
+	=== START: MeldingCompleet2 ===
+	-->
+	
+	<bean id="tc2" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.mock.TerugmeldingCompleet">
+		<property name="terugmelding">
+			<ref bean="tc2-t"/>
+		</property>
+		<property name="terugmeldingDetails">
+			<ref bean="tc2-td"/>
+		</property>
+	</bean>
+		
+		<!-- Terugmelding -->
+		<bean id="tc2-t" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.Terugmelding">
+			<property name="meldingKenmerk">
+				<value>Eigen kenmerk2</value>
+			</property>
+			<property name="contactGegevens">
+				<ref bean="tc2-t-cg"/>
+			</property>
+			<property name="tijdstempelAanlevering">
+				<ref bean="tc2-t-ta"/>
+			</property>
+			<property name="tagBR">
+				<value>BRK</value>
+			</property>
+			<property name="tagObject">
+				<value>PER</value>
+			</property>
+			<property name="idObject">
+				<value>NL-02-12345678</value>
+			</property>
+			<property name="objectAttribuutLijst">
+				<!-- list defaults naar ArrayList, reflection wordt gebruikt voor type-safety -->
+				<list>
+					<ref bean="tc2-t-oa1"/>
+					<ref bean="tc2-t-oa2"/>
+				</list>
+			</property>
+			<property name="toelichting">
+				<value>Toelichting 2</value>
+			</property>
+			<property name="terugmeldingKern">
+				<ref bean="tc2-t-tk"/>
+			</property>
+			<property name="bijlageLijst">
+				<list>
+				</list>
+			</property>
+		</bean>
+		
+			<bean id="tc2-t-cg" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.ContactGegevens">
+				<property name="naam">
+					<value>dhr P. Steffens</value>
+				</property>
+				<property name="telefoon">
+					<value>0541-533 111</value>
+				</property>
+				<property name="email">
+					<value>fake@ovsoftware.com</value>
+				</property>
+			</bean>
+						
+			<bean id="tc2-t-ta" class="java.util.GregorianCalendar">
+				<!-- 02-01-2008 02:00:10 -->
+				<constructor-arg>
+					<value>2008</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>02</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>02</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>00</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>10</value>
+				</constructor-arg>
+			</bean>
+			
+			<!-- Terugmelding - BRObjectAttribuut1 -->
+			<bean id="tc2-t-oa1" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.ObjectAttribuut">
+				<property name="idAttribuut">
+					<value>EE04</value>
+				</property>
+				<property name="betwijfeldeWaarde">
+					<value>Rik</value>
+				</property>
+				<property name="voorstel">
+					<value>Rick</value>
+				</property>
+			</bean>
+			
+			<!-- Terugmelding - BRObjectAttribuut2 -->
+			<bean id="tc2-t-oa2" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.ObjectAttribuut">
+				<property name="idAttribuut">
+					<value>EE02</value>
+				</property>
+				<property name="betwijfeldeWaarde">
+					<value>de Vriep</value>
+				</property>
+				<property name="voorstel">
+					<value>de Vries</value>
+				</property>
+			</bean>
+		
+			<!-- Terugmelding - TerugmeldingKern -->
+			<bean id="tc2-t-tk" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.TerugmeldingKern">
+				<property name="tmfKenmerk">
+					<value>2</value>
+				</property>
+				<property name="berichtSoort">
+					<value>berichtsoort2</value>
+				</property>
+				<property name="idOrganisatie">
+					<value>ID OVSoftware</value>
+				</property>
+				<property name="naamOrganisatie">
+					<value>OVSoftware</value>
+				</property>
+			</bean>
+		
+		<!-- TerugmeldingDetails -->
+		<bean id="tc2-td" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.TerugmeldingDetails">
+			<property name="terugmeldingKern">
+				<ref bean="tc2-t-tk"/>
+			</property>
+			<property name="afdeling">
+				<value>Afdeling 2</value>
+			</property>
+			<property name="tijdstempelOntvangst">
+				<ref bean="tc2-t-tk-to"/>
+			</property>
+			<property name="tijdstempelGemeld">
+				<ref bean="tc2-t-tk-tg"/>
+			</property>
+			<property name="statusMelding">
+				<value>gemeld</value>
+			</property>
+			<property name="tijdstempelStatus">
+				<ref bean="tc2-t-tk-ts"/>
+			</property>
+		</bean>
+		
+			<bean id="tc2-t-tk-to" class="java.util.GregorianCalendar">
+				<!-- 02-01-2008 02:00:10 -->
+				<constructor-arg>
+					<value>2008</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>02</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>02</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>00</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>10</value>
+				</constructor-arg>
+			</bean>
+			
+			<bean id="tc2-t-tk-tg" class="java.util.GregorianCalendar">
+				<!-- 02-01-2008 02:00:00 -->
+				<constructor-arg>
+					<value>2008</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>02</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>02</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>00</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>00</value>
+				</constructor-arg>
+			</bean>
+			
+			<bean id="tc2-t-tk-ts" class="java.util.GregorianCalendar">
+				<!-- 02-01-2008 02:00:10 -->
+				<constructor-arg>
+					<value>2008</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>02</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>02</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>00</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>10</value>
+				</constructor-arg>
+			</bean>
+		
+	<!-- 
+	=== EINDE: MeldingCompleet2 ===
+	--> 
+
+	<!-- 
+	=== START: MeldingCompleet3 ===
+	-->
+	
+	<bean id="tc3" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.mock.TerugmeldingCompleet">
+		<property name="terugmelding">
+			<ref bean="tc3-t"/>
+		</property>
+		<property name="terugmeldingDetails">
+			<ref bean="tc3-td"/>
+		</property>
+	</bean>
+		
+		<!-- Terugmelding -->
+		<bean id="tc3-t" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.Terugmelding">
+			<property name="meldingKenmerk">
+				<value>Eigen kenmerk3</value>
+			</property>
+			<property name="contactGegevens">
+				<ref bean="tc3-t-cg"/>
+			</property>
+			<property name="tijdstempelAanlevering">
+				<ref bean="tc3-t-ta"/>
+			</property>
+			<property name="tagBR">
+				<value>BRK</value>
+			</property>
+			<property name="tagObject">
+				<value>PER</value>
+			</property>
+			<property name="idObject">
+				<value>NL-03-12345678</value>
+			</property>
+			<property name="objectAttribuutLijst">
+				<!-- list defaults naar ArrayList, reflection wordt gebruikt voor type-safety -->
+				<list>
+					<ref bean="tc3-t-oa1"/>
+					<ref bean="tc3-t-oa2"/>
+				</list>
+			</property>
+			<property name="toelichting">
+				<value>Toelichting 3</value>
+			</property>
+			<property name="terugmeldingKern">
+				<ref bean="tc3-t-tk"/>
+			</property>
+			<property name="bijlageLijst">
+				<list>
+				</list>
+			</property>
+		</bean>
+		
+			<bean id="tc3-t-cg" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.ContactGegevens">
+				<property name="naam">
+					<value>dhr P. Steffens</value>
+				</property>
+				<property name="telefoon">
+					<value>0541-533 111</value>
+				</property>
+				<property name="email">
+					<value>fake@ovsoftware.com</value>
+				</property>
+			</bean>
+			
+			<bean id="tc3-t-ta" class="java.util.GregorianCalendar">
+				<!-- 03-01-2008 03:00:10 -->
+				<constructor-arg>
+					<value>2008</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>03</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>03</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>00</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>10</value>
+				</constructor-arg>
+			</bean>
+			
+			<!-- Terugmelding - BRObjectAttribuut1 -->
+			<bean id="tc3-t-oa1" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.ObjectAttribuut">
+				<property name="idAttribuut">
+					<value>EE04</value>
+				</property>
+				<property name="betwijfeldeWaarde">
+					<value>Pieter</value>
+				</property>
+				<property name="voorstel">
+					<value>Peter</value>
+				</property>
+			</bean>
+			
+			<!-- Terugmelding - BRObjectAttribuut2 -->
+			<bean id="tc3-t-oa2" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.ObjectAttribuut">
+				<property name="idAttribuut">
+					<value>EE02</value>
+				</property>
+				<property name="betwijfeldeWaarde">
+					<value>Boef</value>
+				</property>
+				<property name="voorstel">
+					<value>Boevink</value>
+				</property>
+			</bean>
+		
+			<!-- Terugmelding - TerugmeldingKern -->
+			<bean id="tc3-t-tk" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.TerugmeldingKern">
+				<property name="tmfKenmerk">
+					<value>3</value>
+				</property>
+				<property name="berichtSoort">
+					<value>berichtsoort3</value>
+				</property>
+				<property name="idOrganisatie">
+					<value>ID OVSoftware</value>
+				</property>
+				<property name="naamOrganisatie">
+					<value>OVSoftware</value>
+				</property>
+			</bean>
+		
+		<!-- TerugmeldingDetails -->
+		<bean id="tc3-td" class="com.ovsoftware.ictu.osb.tmfportal.service.tmfcore.datatypes.TerugmeldingDetails">
+			<property name="terugmeldingKern">
+				<ref bean="tc3-t-tk"/>
+			</property>
+			<property name="afdeling">
+				<value>Afdeling 3</value>
+			</property>
+			<property name="tijdstempelOntvangst">
+				<ref bean="tc3-t-tk-to"/>
+			</property>
+			<property name="tijdstempelGemeld">
+				<ref bean="tc3-t-tk-tg"/>
+			</property>
+			<property name="statusMelding">
+				<value>gemeld</value>
+			</property>
+			<property name="tijdstempelStatus">
+				<ref bean="tc3-t-tk-ts"/>
+			</property>
+		</bean>
+		
+			<bean id="tc3-t-tk-to" class="java.util.GregorianCalendar">
+				<!-- 03-01-2008 03:00:10 -->
+				<constructor-arg>
+					<value>2008</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>03</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>03</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>00</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>10</value>
+				</constructor-arg>
+			</bean>
+			
+			<bean id="tc3-t-tk-tg" class="java.util.GregorianCalendar">
+				<!-- 03-01-2008 03:00:00 -->
+				<constructor-arg>
+					<value>2008</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>03</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>03</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>00</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>00</value>
+				</constructor-arg>
+			</bean>
+			
+			<bean id="tc3-t-tk-ts" class="java.util.GregorianCalendar">
+				<!-- 03-01-2008 03:00:10 -->
+				<constructor-arg>
+					<value>2008</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>01</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>03</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>03</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>00</value>
+				</constructor-arg>
+				<constructor-arg>
+					<value>10</value>
+				</constructor-arg>
+			</bean>
+		
+	<!-- 
+	=== EINDE: MeldingCompleet3 ===
+	--> 
+	 	
+</beans>
