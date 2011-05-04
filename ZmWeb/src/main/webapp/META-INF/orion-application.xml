@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'windows-1252'?>
+<orion-application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/orion-application-10_0.xsd">
+	<jazn provider="XML" default-realm="jazn.com" jaas-mode="doAsPrivileged">
+		<jazn-web-app auth-method="COREIDSSO" />
+	</jazn>
+	<security-role-mapping name="zmweb">
+		<group name="tmf_zmweb"></group>
+	</security-role-mapping>
+	<jazn-loginconfig>
+		<application>
+			<name>ZmWeb</name>
+			<login-modules>
+				<login-module>
+					<class>oracle.security.jazn.login.module.coreid.CoreIDLoginModule</class>
+					<control-flag>required</control-flag>
+					<options>
+						<option>
+							<name>coreid.password.attribute</name>
+							<value>password</value>
+						</option>
+						<option>
+							<name>coreid.name.attribute</name>
+							<value>userid</value>
+						</option>
+						<option>
+							<name>addAllRoles</name>
+							<value>true</value>
+						</option>
+						<option>
+							<name>coreid.resource.operation</name>
+							<value>MYRESOURCEOPERATION</value>
+						</option>
+						<option>
+							<name>coreid.resource.type</name>
+							<value>myresourcetype</value>
+						</option>
+						<option>
+							<name>coreid.resource.name</name>
+							<value>/myresourceurl</value>
+						</option>
+					</options>
+				</login-module>
+			</login-modules>
+		</application>
+	</jazn-loginconfig>
+</orion-application>

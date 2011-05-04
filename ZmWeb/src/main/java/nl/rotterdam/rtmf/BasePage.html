@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+  <wicket:link> 
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/homepage-style.css" />
+  </wicket:link> 
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <h1 class="gemLogo">Gemeente Rotterdam</h1>
+      <ul id="smallMenu">
+        <li>
+          <a wicket:id="headerHelpLink" href="http://www.rotterdam.nl/smartsite.dws?id=2166143">help</a>
+        </li>
+      </ul>
+      <div id="titleBar">
+        <div id="left">Zakenmagazijn Terugmelden</div>
+      </div>
+    </div>
+    <!-- end #header -->
+    <div id="mainContent">
+      <div id="mainBlock">
+        <wicket:child />
+      </div>
+    </div>
+    <div id="footer">
+      <ul id="foList">
+        <li>
+          <a href="http://www.rotterdam.nl/smartsite.dws?id=2166143" wicket:id="footerHelpLink">help</a>
+        </li>
+      </ul>
+    </div>
+    <!-- end footer -->
+  </div>
+    <!-- end container -->
+</body>
+</html>

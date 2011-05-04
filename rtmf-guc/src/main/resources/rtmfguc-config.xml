@@ -1,0 +1,1351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (c) 2009-2011 Gemeente Rotterdam
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.1 (or any later version).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * European Union Public Licence for more details.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see
+ * http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
+-->
+<mule xmlns="http://www.mulesource.org/schema/mule/core/2.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns:http="http://www.mulesource.org/schema/mule/http/2.2" xmlns:vm="http://www.mulesource.org/schema/mule/vm/2.2"
+	xmlns:xm="http://www.mulesource.org/schema/mule/xml/2.2" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:scripting="http://www.mulesource.org/schema/mule/scripting/2.2"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:management="http://www.mulesource.org/schema/mule/management/2.2"
+	xmlns:file="http://www.mulesource.org/schema/mule/file/2.2" xmlns:smtp="http://www.mulesource.org/schema/mule/smtp/2.2"
+	xmlns:email="http://www.mulesource.org/schema/mule/email/2.2"
+	xsi:schemaLocation="
+               http://www.mulesource.org/schema/mule/scripting/2.2 http://www.mulesource.org/schema/mule/scripting/2.2/mule-scripting.xsd
+               http://www.mulesource.org/schema/mule/core/2.2 http://www.mulesource.org/schema/mule/core/2.2/mule.xsd
+               http://www.mulesource.org/schema/mule/smtp/2.2 http://www.mulesource.org/schema/mule/smtp/2.2/mule-smtp.xsd
+               http://www.mulesource.org/schema/mule/http/2.2 http://www.mulesource.org/schema/mule/http/2.2/mule-http.xsd
+               http://www.mulesource.org/schema/mule/vm/2.2 http://www.mulesource.org/schema/mule/vm/2.2/mule-vm.xsd
+               http://www.mulesource.org/schema/mule/xml/2.2 http://www.mulesource.org/schema/mule/xml/2.2/mule-xml.xsd
+               http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+               http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+               http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd
+               http://www.mulesource.org/schema/mule/management/2.2 http://www.mulesource.org/schema/mule/management/2.2/mule-management.xsd
+               http://www.mulesource.org/schema/mule/file/2.2 http://www.mulesource.org/schema/mule/file/2.2/mule-file.xsd
+               http://www.mulesource.org/schema/mule/email/2.2 http://www.mulesource.org/schema/mule/email/2.2/mule-email.xsd">
+    <description>
+    Deze mule configuratie zorgt ervoor dat de ICTU TMF (terugmeld faciliteit) binnen Rotterdam ook gebruikt kan worden voor
+    Rotterdamse kern-gegevens. Berichten tussen de TMF portal en de OSB gateway worden aangevuld met gegevens uit het rotterdams
+    gegevenmagazijn. Terugmeldingen worden ingevoerd in het Rotterdams zakenmagazijn.
+    
+    Deze mule applicatie is afhankelijk van de volgende externe services:
+    * Landelijk Stelselcatalogus (via OSB Gateway)
+    * Landelijke TMF Core (via OSB Gateway)
+    * Rotterdams gegevensmagazijn metadata
+    * Rotterdams gegevensmagazijn actuele data
+    * Rotterdams zakenmagazijn
+    * SMTP server
+    </description>
+    <vm:connector name="rtmf.vm.connector.internal"/>
+	<!--
+		uitgezet vanwege problemen met integration test: dubbele instatiatie
+		management:jmx-default-config port="1098" registerMx4jAdapter="true" /
+	-->
+
+	<!--
+		De spring bean constructie wordt hier gebruikt om het mogelijk te
+		maken om meerdere config files met een prioritering te laden en ze te
+		skippen als ze niet bestaan. Dat lukt niet met
+		<context:property-placeholder>
+	-->
+	<spring:beans>
+	    <spring:bean id="propertyConfigurer" 
+        class="nl.rotterdam.ioo.guc_algemeen.config.ListablePropertyPlaceholderConfigurer">
+         <spring:property name="locationList" value="${mule.props}"/>
+        </spring:bean>
+		<!--
+			uitgezet vanwege problemen met integration test: dubbele instatiatie
+			spring:bean id="exporter"
+			class="org.springframework.jmx.export.MBeanExporter"
+			lazy-init="false"> <spring:property name="beans"> <spring:map>
+			<spring:entry key="bean:name=stelselCatalogusCacheBean"
+			value-ref="stelselCatalogusCacheBean" /> </spring:map>
+			</spring:property> </spring:bean
+		-->
+		
+		<!-- Springbean waar de attachments in opgeslagen worden. -->
+		<spring:bean class="nl.rotterdam.rtmf.guc.transformer.AttachmentStore"
+            name="attachmentStore" />
+		
+    	<!--  Tijdelijke oplossing HSQL cache voor bijhouden van cache. 
+    	 <spring:bean class="nl.rotterdam.rtmf.guc.cache.StelselCatalogusCacheHSQL"
+			name="stelselCatalogusCacheBean" /> -->
+
+		
+		<!--  Deze config enabelen wanneer oracle database geinstalleerd is en gereedgemaakt is voor gebruik van cache.
+			  Bij het aanzetten van deze config van bean stelselCatalogusCacheBean verwijderen -->
+		<spring:bean id="trmfguc.cacheDataSource" class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">
+		   <spring:property name="URL" value="${rtmf.cfg.jdbc.cacheDataSource.url}"/>
+		   <spring:property name="user" value="${rtmf.cfg.jdbc.cacheDataSource.user}"/>
+		   <spring:property name="password" value="${rtmf.cfg.jdbc.cacheDataSource.password}"/>
+		   <spring:property name="maxStatements" value="${rtmf.cfg.jdbc.cacheDataSource.maxStatements}"/>
+		   <spring:property name="implicitCachingEnabled" value="${rtmf.cfg.jdbc.cacheDataSource.implicitCachingEnabled}"/>
+		   <spring:property name="connectionCachingEnabled" value="true" />
+		   <spring:property name="connectionCacheProperties">
+		     <spring:props>
+			  <spring:prop key="MinLimit">${rtmf.cfg.jdbc.cacheDataSource.MinLimit}</spring:prop>
+			  <spring:prop key="MaxLimit">${rtmf.cfg.jdbc.cacheDataSource.MaxLimit}</spring:prop>
+			  <spring:prop key="InitialLimit">${rtmf.cfg.jdbc.cacheDataSource.InitialLimit}</spring:prop>
+			  <spring:prop key="MaxStatementsLimit">${rtmf.cfg.jdbc.cacheDataSource.MaxStatementsLimit}</spring:prop>
+			  <spring:prop key="InactivityTimeout">${rtmf.cfg.jdbc.cacheDataSource.InactivityTimeout}</spring:prop>
+			  <spring:prop key="ConnectionWaitTimeout">${rtmf.cfg.jdbc.cacheDataSource.ConnectionWaitTimeout}</spring:prop>
+			  <spring:prop key="AbandonedConnectionTimeout">${rtmf.cfg.jdbc.cacheDataSource.AbandonedConnectionTimeout}</spring:prop>
+			  <spring:prop key="ValidateConnection">${rtmf.cfg.jdbc.cacheDataSource.ValidateConnection}</spring:prop>
+		      </spring:props>
+		   </spring:property>
+		   </spring:bean>
+		<!--
+	 		* Het formaat van de cacheCleanupInterval gaat in delen van een dag.
+	 		* Voor de leesbaarheid is gekozen voor 24ste om in uren te geven
+	 		* 1 uur: 1/24, een halve dag: 12/24, een dag 1, 2 dagen 2/1 etc.
+	 	-->
+		<spring:bean class="nl.rotterdam.rtmf.guc.cache.StelselCatalogusCacheOracle"
+			name="stelselCatalogusCacheBean" >
+			<spring:property name="dataSource" ref="trmfguc.cacheDataSource"/>
+			<spring:property name="cacheCleanupInterval" value="12/24"/>
+		</spring:bean>
+				
+
+		<spring:bean
+			class="org.springframework.beans.factory.config.PropertiesFactoryBean"
+			name="bronhouderProperties">
+			<spring:property name="ignoreResourceNotFound" value="true" />
+			<spring:property name="locations">
+				<spring:list>
+					<spring:value>classpath*:rtmfguc_bronhouder-mock.properties</spring:value>
+					<spring:value>classpath*:rtmfguc_bronhouder.properties</spring:value>
+					<spring:value>file:///${user.home}/rtmfguc_bronhouder.properties</spring:value>
+					<spring:value>file:${rtmf.cfg.bronhouder.config.location}</spring:value>
+				</spring:list>
+			</spring:property>
+		</spring:bean>
+		<spring:bean class="nl.rotterdam.rtmf.guc.bronhouder.catalogus.BronhouderCatalogus"
+			name="bronhouderCatalogusBean">
+			<spring:property name="properties" ref="bronhouderProperties">
+			</spring:property>
+		</spring:bean>
+		<spring:bean
+			class="nl.rotterdam.rtmf.guc.component.TerugmeldingZmMessageEnricher"
+			name="bronhouderMessageEnricher">
+			<spring:property name="bronhouderCatalogus" ref="bronhouderCatalogusBean">
+			</spring:property>
+		</spring:bean>
+		<spring:bean
+			class="org.springframework.beans.factory.config.PropertiesFactoryBean"
+			name="stufVraagTemplateProperties">
+			<spring:property name="ignoreResourceNotFound" value="true" />
+			<spring:property name="locations">
+				<spring:list>
+					<spring:value>groovy-scripts/stufvraagtemplate.properties</spring:value>
+				</spring:list>
+			</spring:property>
+		</spring:bean>
+		<spring:bean
+			class="nl.rotterdam.rtmf.guc.ping.PingStelselcatalogusRott"
+			name="pingStelselcatalogusRott">
+			<spring:property name="url" value="http://${rtmf.cfg.gm.stelselcatalogus.host}:${rtmf.cfg.gm.stelselcatalogus.port}/${rtmf.cfg.gm.stelselcatalogus.path}"/>
+		</spring:bean>
+		<spring:bean
+			class="nl.rotterdam.rtmf.guc.ping.PingStelselcatalogusLand"
+			name="pingStelselcatalogusLand">
+			<spring:property name="url" value="http://${rtmf.cfg.osbgw.stelselcatalogus.host}:${rtmf.cfg.osbgw.stelselcatalogus.port}/${rtmf.cfg.osbgw.stelselcatalogus.metadata.path}"/>
+		</spring:bean>
+		<spring:bean
+			class="nl.rotterdam.rtmf.guc.ping.PingOphalenStatusLand"
+			name="pingOphalenStatusLand">
+			<spring:property name="url" value="http://${rtmf.cfg.osbgw.tmf.ophalen.host}:${rtmf.cfg.osbgw.tmf.ophalen.port}/${rtmf.cfg.osbgw.tmf.ophalen.path}"/>
+		</spring:bean>
+		<spring:bean
+			class="nl.rotterdam.rtmf.guc.ping.PingZakenmagazijnRott"
+			name="pingZakenmagazijnRott">
+			<spring:property name="url" value="http://${rtmf.cfg.zm.host}:${rtmf.cfg.zm.port}/${rtmf.cfg.zm.manager.path}"/>
+		</spring:bean>
+		
+		<!-- <spring:bean class="nl.rotterdam.ioo.guc_algemeen.componenten.functional.PingableDataSourceBean"
+					 name="rtmfPingableDatasourceBean">
+			<spring:property name="dataSource" ref="trmfguc.cacheDataSource"/>
+		</spring:bean>-->
+	</spring:beans>
+	
+
+    <!-- transformers tbv logging -->
+	<custom-transformer 
+			class="nl.rotterdam.ioo.guc_algemeen.componenten.trace.TracingTransformer" 
+			name="rtmf.tracing.request.transformer">
+		<spring:property name="isResponseTransformer" value="false"/>
+		<spring:property name="logRequestOnError" value="true"/>
+		<spring:property name="logResponseOnError" value="true"/>
+	</custom-transformer>
+
+	<custom-transformer 
+			class="nl.rotterdam.ioo.guc_algemeen.componenten.trace.TracingTransformer" 
+			name="rtmf.tracing.response.transformer">
+		<spring:property name="isResponseTransformer" value="true"/>
+		<spring:property name="logRequestOnError" value="true"/>
+		<spring:property name="logResponseOnError" value="true"/>
+		<spring:property name="errorFilterExpressions">
+			<spring:list>
+			    <spring:value>xpath:count(//faultcode)!=0</spring:value>
+			    <spring:value>xpath:count(//foutBericht)!=0</spring:value>
+			</spring:list>
+		</spring:property>
+	</custom-transformer>
+		
+	<!-- transformers -->
+	<xm:xslt-transformer name="TMFToGMTransformer"
+		xsl-file="xsl/TMFtoGM.xsl" />
+	<xm:xslt-transformer name="GMToTMFTransformer"
+		xsl-file="xsl/GMtoTMF.xsl" />
+	<byte-array-to-string-transformer
+		name="byteArrayToString" />
+	<scripting:transformer name="mergeTMFandGMtransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/stelselBevragenMerger.groovy">
+			<property key="stelselCatalogusCache" value-ref="stelselCatalogusCacheBean" />
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="gmgetObjectInfoResponseToTMFgetObjectInfoAndValuesResponse">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/GMgetObjectInfoResponseToTMFgetObjectInfoAndValuesResponse.groovy">
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="terugmeldenSplitTMFtransformer">
+		<scripting:script engine="groovy" file="groovy-scripts/TerugmeldenSplitter.groovy">
+			<property key="stelselCatalogusCache" value-ref="stelselCatalogusCacheBean" />
+			<property key="service" value="TMF" />
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="terugmeldenSplitZMtransformer">
+		<scripting:script engine="groovy" file="groovy-scripts/TerugmeldenSplitter.groovy">
+			<property key="stelselCatalogusCache" value-ref="stelselCatalogusCacheBean" />
+			<property key="service" value="ZM" />
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="terugmeldenResponseMergerTransformer">
+		<scripting:script engine="groovy" file="groovy-scripts/TerugmeldenResponseMerger.groovy">
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="cacheTransformer">
+		<scripting:script engine="groovy" file="groovy-scripts/CacheTransformer.groovy">
+			<property key="stelselCatalogusCache" value-ref="stelselCatalogusCacheBean" />
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="cacheTransformerTMF">
+		<scripting:script engine="groovy" file="groovy-scripts/CacheTransformerTMF.groovy">
+			<property key="stelselCatalogusCache" value-ref="stelselCatalogusCacheBean" />
+		</scripting:script>
+	</scripting:transformer>
+	<!--
+	<custom-transformer name="traceTransformer"
+		class="nl.rotterdam.rtmf.guc.transformer.TraceTransformer" />
+	-->
+    <scripting:transformer name="scBevragenNaarStufTransformer">
+        <scripting:script engine="groovy" file="groovy-scripts/ScBevragenNaarStufTransformer.groovy">
+          <property key="stufvraagtemplate" value-ref="stufVraagTemplateProperties" />
+        </scripting:script>
+    </scripting:transformer>
+    <scripting:transformer name="actueleStufNaarScBevragenTransformer">
+        <scripting:script engine="groovy" file="groovy-scripts/ActueleStufNaarScBevragenTransformer.groovy">
+            <property key="stelselCatalogusCache" value-ref="stelselCatalogusCacheBean" />
+        </scripting:script>
+    </scripting:transformer>
+    <scripting:transformer name="actueleWaardenToObjectInfoTransformer">
+        <scripting:script engine="groovy" file="groovy-scripts/ActueleWaardenToObjectInfoTransformer.groovy">
+        </scripting:script>
+    </scripting:transformer>
+    <scripting:transformer name="mergeActueleWaardentransformer">
+        <scripting:script engine="groovy" file="groovy-scripts/MergeActueleWaarden.groovy">
+        </scripting:script>
+    </scripting:transformer>            
+    <scripting:transformer name="zmResponseTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/ZmResponseTransformer.groovy">
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="prettyTerugmeldenEmailTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/PrettyTerugmeldenEmailTransformer.groovy">
+			<property key="emailTemplate" value="templates/EmailTerugmelding.template" />
+			<property key="stelselCatalogusCache" value-ref="stelselCatalogusCacheBean" />
+			<property key="adresMeerInfo" value="${rtmf.cfg.mail.terugmelding.adres.meer.info}" />
+			<property key="zmwebPrefix" value="${rtmf.cfg.mail.zmweb.adres.prefix}" />
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="nieuwZaaknummer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/NieuwZaaknummer.groovy">
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="terugmeldingToZaakTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/TerugmeldingToZaakTransformer.groovy">
+			<property key="bronhouderCatalogus" value-ref="bronhouderCatalogusBean" />
+			<property key="stelselCatalogusCache" value-ref="stelselCatalogusCacheBean" />
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="terugmeldingToStapCreatieOntvangenTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/TerugmeldingToStapTransformer.groovy">
+			<property key="zervice" value="create" />
+			<property key="zerviceType" value="ontvangen" />
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="terugmeldingToStatusCreatieTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/TerugmeldingToStatusCreatieTransformer.groovy">
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="zakenmagazijnResponseTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/ZakenmagazijnResponseTransformer.groovy">
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="createZaakToBronhouderInfo">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/CreateZaakToBronhouderInfo.groovy">
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="cleanZmPayloadArray">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/CleanZmPayloadArray.groovy">
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="terugmeldingToZaakUpdateTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/TerugmeldingToZaakUpdateTransformer.groovy">
+			<property key="updateType" value="gemeld" />
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="terugmeldingToStapUpdateTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/TerugmeldingToStapTransformer.groovy">
+			<property key="zervice" value="update" />
+			<property key="zerviceType" value="gemeld" />
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="terugmeldingToZaakUpdateGemeldTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/TerugmeldingToZaakUpdateTransformer.groovy">
+			<property key="updateType" value="gemeld" />
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="terugmeldingToStapCreatieBeoordelenTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/TerugmeldingToStapTransformer.groovy">
+			<property key="zervice" value="create" />
+			<property key="zerviceType" value="beoordelen" />
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="intrekkingToZaakUpdateTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/intrekken/IntrekkingToZaakUpdateTransformer.groovy">
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="intrekkingToStapUpdateTransformer">
+        <scripting:script engine="groovy"
+            file="groovy-scripts/intrekken/IntrekkingToStapUpdateTransformer.groovy">
+        </scripting:script>
+    </scripting:transformer>
+    <scripting:transformer name="intrekkingToStapCreatieTransformer">
+        <scripting:script engine="groovy"
+            file="groovy-scripts/intrekken/IntrekkingToStapCreatieTransformer.groovy">
+        </scripting:script>
+    </scripting:transformer>
+    <scripting:transformer name="intrekkingToStatusCreatieTransformer">
+        <scripting:script engine="groovy"
+            file="groovy-scripts/intrekken/IntrekkingToStatusCreatieTransformer.groovy">
+        </scripting:script>
+    </scripting:transformer>
+    <scripting:transformer name="prettyIntrekkingBerichtgevingTransformer">
+        <scripting:script engine="groovy"
+            file="groovy-scripts/intrekken/PrettyIntrekkingBerichtgevingTransformer.groovy">
+            <property key="template" value="templates/IntrekkingBerichtgeving.template" />
+            <property key="adresMeerInfo" value="${rtmf.cfg.mail.intrekking.adres.meer.info}" />
+            <property key="zmwebPrefix" value="${rtmf.cfg.mail.zmweb.adres.prefix}" />
+        </scripting:script>
+    </scripting:transformer>
+	<scripting:transformer name="ophalenZaakDetailsNaarOphalenMeldingKenmerkTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/OphalenZaakDetailsNaarOphalenMeldingKenmerkTransformer.groovy">
+		</scripting:script>
+	</scripting:transformer>
+	<scripting:transformer name="intrekkingToZaakDetailTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/intrekken/IntrekkingToZaakDetailTransformer.groovy">
+		</scripting:script>
+	</scripting:transformer>
+	<custom-transformer class="nl.rotterdam.rtmf.guc.transformer.IntrekkingAddBereikenAdresTransformer" 
+	                 name="intrekkingAddBereikenAdresTransformer">
+            <spring:property name="bronhouderCatalogus" ref="bronhouderCatalogusBean"/>
+    </custom-transformer>
+    <custom-transformer class="nl.rotterdam.rtmf.guc.transformer.IntrekkingResponseTransformer" name="intrekkingResponseTransformer"/>
+    
+	<scripting:transformer name="ophalenZmTransformer">
+        <scripting:script engine="groovy"
+            file="groovy-scripts/OphalenZmTransformer.groovy">
+        </scripting:script>
+    </scripting:transformer>
+    <scripting:transformer name="mergeOphalenTransformer">
+        <scripting:script engine="groovy"
+            file="groovy-scripts/OphalenResponseMerger.groovy">
+        </scripting:script>
+    </scripting:transformer>
+    <scripting:transformer name="restoreMeldingKenmerkTransformer">
+        <scripting:script engine="groovy"
+            file="groovy-scripts/RestoreMeldingKenmerkTransformer.groovy">
+        </scripting:script>
+    </scripting:transformer>
+	
+	<custom-transformer name="addSoapHeaderTransformer"
+        class="nl.rotterdam.rtmf.guc.transformer.AddSoapHeaderTransformer"/>
+
+	<custom-transformer name="addPayloadAsAttachmentTransformer"
+		class="nl.rotterdam.rtmf.guc.transformer.AddPayloadAsAttachmentTransformer" >
+		<spring:property name="store" ref="attachmentStore"/>
+	</custom-transformer>
+		
+	<custom-transformer name="moveAttachmentsToStoreTransformer"
+        class="nl.rotterdam.rtmf.guc.transformer.MoveAttachmentsToStoreTransformer" >
+        <spring:property name="store" ref="attachmentStore"/>
+    </custom-transformer>
+    
+    <custom-transformer name="removeAttachmentsFromStoreTransformer"
+        class="nl.rotterdam.rtmf.guc.transformer.RemoveAttachmentsFromStoreTransformer" >
+        <spring:property name="store" ref="attachmentStore"/>
+    </custom-transformer>
+    
+    <custom-transformer name="tmfObjectAndValuesRequestToGMObjectInfo"
+        class="nl.rotterdam.rtmf.guc.transformer.TMFObjectAndValuesRequestToGMObjectInfo" />
+     
+	<custom-transformer name="toPayloadArrayTransformer"
+		class="nl.rotterdam.rtmf.guc.transformer.MulticastSyncCollectionTransformer" />
+
+	<custom-transformer name="validateMessage"
+		class="nl.rotterdam.rtmf.guc.transformer.ValidateMessage" />
+
+	<custom-transformer name="validateSOAPMessage"
+		class="nl.rotterdam.rtmf.guc.transformer.ValidateSoapMessage" />
+
+	<custom-transformer name="validateStelselCatalogusMessage"
+		class="nl.rotterdam.rtmf.guc.transformer.ValidateStelselCatalogusMessage" />
+
+	<custom-transformer name="validateStufMessage"
+		class="nl.rotterdam.rtmf.guc.transformer.ValidateStufMessage" />
+
+	<custom-transformer name="exceptionPayloadTransformer"
+		class="nl.rotterdam.rtmf.guc.transformer.ExceptionPayloadTransformer" />
+
+	<email:object-to-mime-transformer name="objectToMimeTransformer" />
+	
+		
+	<!--
+		Het gebruiken van deze transformers is tijdelijk. Dit moet er uit
+		voordat we in productie gaan. Deze oplossing gaat fout als de
+		osb-gateway een fout terug geeft.
+	-->
+	<message-properties-transformer name="delete-content-type-header">
+		<delete-message-property key="Content-Type" />
+	</message-properties-transformer>
+	<message-properties-transformer name="add-xml-content-type-header">
+		<add-message-property key="Content-Type" value="text/xml" />
+	</message-properties-transformer>
+	<message-properties-transformer name="delete-accept-header">
+		<delete-message-property key="Accept-Encoding" />
+	</message-properties-transformer>
+	<message-properties-transformer name="add-xml-accept-header">
+		<add-message-property key="Accept-Encoding"
+			value="gzip,deflate" />
+	</message-properties-transformer>
+
+	<!-- connector configuraties -->
+	<file:connector name="RtmfFileConnector" streaming="false"
+		outputPattern="rtmf-terugmelding-#[function:dateStamp].xml" >
+		<file:expression-filename-parser />
+	</file:connector>
+	
+	<model name="main">
+
+		<service name="stelselBevragenService">
+			<description>Op dit endpoint komt de TMFPortaal binnen.
+            We bekijken hier met een filter om wat voor bericht het gaat. Alleen Rotterdamse gegevens
+            Alleen landelijke gegevens of beiden. We sturen het bericht vanaf hier door naar de juiste mule service.
+            Omdat de call naar de actuele waarden hier binnen komt, maar in de huidige situatie 
+            waarin TMF geen actuele data aanleverd filteren we deze berichten er direct uit 
+            en zetten die door naar de juiste service.</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}stelselBevragenService"
+					synchronous="true" transformer-refs="rtmf.tracing.request.transformer"
+					name="rtmfguc.stelselBevragenService.inbound.vm"
+					responseTransformer-refs="exceptionPayloadTransformer"/>
+				<http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}" port="${rtmf.cfg.rtmfguc.port}"
+					path="${rtmf.cfg.rtmfguc.app.path}stelselBevragenService" synchronous="true"
+					transformer-refs="delete-accept-header add-xml-accept-header byteArrayToString rtmf.tracing.request.transformer"
+					responseTransformer-refs="exceptionPayloadTransformer delete-content-type-header add-xml-content-type-header"
+					name="rtmfguc.stelselBevragenService.inbound.http"  connector-ref="domein.http.connector">
+				</http:inbound-endpoint>
+			</inbound>
+			<outbound>
+			    <!-- De eerste filtering-router is geen filter op basis van de cache.
+			         We willen hier alleen bepalen of een bericht van het type bevragen is.
+			         In dat geval splitsen we direct af naar de actuele waarden service.
+			    -->
+				<filtering-router>
+                    <vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}actueleWaardenService"
+                        synchronous="true" responseTransformer-refs="validateMessage GMToTMFTransformer" />
+                    <wildcard-filter pattern="*bevragen xmlns=*" />
+                </filtering-router>
+				<filtering-router>
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}stelselBevragenServiceMulticastIn"
+						synchronous="true" transformer-refs="rtmf.tracing.request.transformer" responseTransformer-refs="validateMessage rtmf.tracing.response.transformer"/>
+					<custom-filter
+						class="nl.rotterdam.rtmf.guc.filter.StelselCatalogusCacheFilter">
+						<spring:property name="expectedService" value="Both" />
+						<spring:property name="stelselCatalogusCache" ref="stelselCatalogusCacheBean" />
+					</custom-filter>
+				</filtering-router>
+				<filtering-router>
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}tmfStelselBevragenServiceIn"
+						synchronous="true" responseTransformer-refs="validateMessage"/>
+					<custom-filter
+						class="nl.rotterdam.rtmf.guc.filter.StelselCatalogusCacheFilter">
+						<spring:property name="expectedService" value="TMF" />
+						<spring:property name="stelselCatalogusCache" ref="stelselCatalogusCacheBean" />
+					</custom-filter>
+				</filtering-router>
+				<filtering-router>
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}gmStelselBevragenServiceIn"
+						synchronous="true" responseTransformer-refs="validateMessage addSoapHeaderTransformer gmgetObjectInfoResponseToTMFgetObjectInfoAndValuesResponse GMToTMFTransformer" />
+					<custom-filter
+						class="nl.rotterdam.rtmf.guc.filter.StelselCatalogusCacheFilter">
+						<spring:property name="expectedService" value="GM" />
+						<spring:property name="stelselCatalogusCache" ref="stelselCatalogusCacheBean" />
+					</custom-filter>
+				</filtering-router>
+		 		<forwarding-catch-all-strategy>
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}rtmfErrors" />
+				</forwarding-catch-all-strategy>
+			</outbound>
+		</service>
+
+		<service name="stelselBevragenServiceMulticasting">
+			<description>Stelselbevragen service, deze service zorgt ervoor dat er een bericht 
+			naar landelijk en rotterdam gaat. Deze berichten worden gecombineerd tot 1 response 
+			bericht.</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}stelselBevragenServiceMulticastIn"
+					synchronous="true"  transformer-refs="rtmf.tracing.request.transformer"  
+					responseTransformer-refs="validateMessage mergeTMFandGMtransformer rtmf.tracing.response.transformer"
+					name="rtmfguc.stelselBevragenServiceMulticasting.inbound.vm" />
+			</inbound>
+			<!--   -->
+			<outbound>
+				<!--
+					enableCorrelation zorgt ervoor dat de correlation_group_size gezet
+					wordt als er al een correlation_id ingevult is. Dit gaat anders
+					fout omdat de filtering router er nu voor zit welke al een
+					correlation_id zet.
+				-->
+				<custom-outbound-router class="nl.rotterdam.rtmf.guc.routing.outbound.PayloadArrayMulticastRouter">
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}tmfStelselBevragenServiceIn"
+						synchronous="true" />
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}gmStelselBevragenServiceIn"
+						synchronous="true" />
+				</custom-outbound-router>						
+			</outbound>
+		</service>
+		
+		<service name="actueleWaardenService">
+            <description>Actuele waarden service, Op dit endpoint komt de TMFPortaal binnen.
+            We bekijken hier met een filter om wat voor bericht het gaat. Alleen Rotterdamse gegevens
+            Alleen landelijke gegevens of beiden. We sturen het bericht vanaf hier door naar de juiste mule service.
+            </description>
+            <inbound>
+                <vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}actueleWaardenService"
+                    synchronous="true"
+                    responseTransformer-refs="validateMessage rtmf.tracing.request.transformer"
+                    name="rtmfguc.actueleWaardenService.inbound.vm"/>
+                <http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}" port="${rtmf.cfg.rtmfguc.port}"
+                    path="${rtmf.cfg.rtmfguc.app.path}actueleWaardenService" synchronous="true"
+                    transformer-refs="delete-accept-header add-xml-accept-header byteArrayToString rtmf.tracing.request.transformer"
+                    responseTransformer-refs="validateMessage delete-content-type-header add-xml-content-type-header"
+                    name="rtmfguc.actueleWaardenService.inbound.http"  connector-ref="domein.http.connector">
+                </http:inbound-endpoint>
+            </inbound>
+            <outbound>
+                <filtering-router>
+                    <vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}actueleWaardenServiceMulticastIn"
+                        synchronous="true" />
+                    <custom-filter
+                        class="nl.rotterdam.rtmf.guc.filter.StelselCatalogusCacheFilter">
+                        <spring:property name="expectedService" value="Both" />
+                        <spring:property name="stelselCatalogusCache" ref="stelselCatalogusCacheBean" />
+                    </custom-filter>
+                </filtering-router>
+                <!-- <filtering-router>
+                    <vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmfguc.app.path}tmfStelselBevragenServiceIn"
+                        transformer-refs="actueleWaardenToObjectInfoTransformer"
+                        synchronous="true" />
+                    <custom-filter
+                        class="nl.rotterdam.rtmf.guc.filter.StelselCatalogusCacheFilter">
+                        <spring:property name="expectedService" value="TMF" />
+                        <spring:property name="stelselCatalogusCache" ref="stelselCatalogusCacheBean" />
+                    </custom-filter>
+                </filtering-router>-->
+                <filtering-router>
+                    <vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}gmActueleWaardenServiceIn"
+                        synchronous="true" responseTransformer-refs="validateMessage GMToTMFTransformer" />
+                    <custom-filter
+                        class="nl.rotterdam.rtmf.guc.filter.StelselCatalogusCacheFilter">
+                        <spring:property name="expectedService" value="GM" />
+                        <spring:property name="stelselCatalogusCache" ref="stelselCatalogusCacheBean" />
+                    </custom-filter>
+                </filtering-router>
+                <forwarding-catch-all-strategy>
+                    <vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}rtmfErrors" />
+                </forwarding-catch-all-strategy>
+            </outbound>
+        </service>
+		
+		<service name="ActueleWaardenServiceMulticasting">
+            <description>Actuele waarden service.
+            Deze service stuurt een request door naar het GM voor het ophalen van de actuele waarden.
+            Deze service stuurt het bericht echter ook door naar een service van het stelselcatalogus.
+            De portaal verwacht na het bevragen dat alle attributen terug komen.
+            Omdat de TMF service echter geen bevragen meer ondersteund roepen we hier de service 
+            getObjectInfo aan om de lijst weer compleet te maken.
+            </description>
+            <inbound>
+                <vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}actueleWaardenServiceMulticastIn"
+                    synchronous="true" responseTransformer-refs="validateMessage mergeActueleWaardentransformer rtmf.tracing.response.transformer"
+                    name="rtmfguc.actueleWaardenServiceMulticasting.inbound.vm" />
+            </inbound>
+            <outbound>
+                <!--
+                    enableCorrelation zorgt ervoor dat de correlation_group_size gezet
+                    wordt als er al een correlation_id ingevult is. Dit gaat anders
+                    fout omdat de filtering router er nu voor zit welke al een
+                    correlation_id zet.
+                -->
+                <custom-outbound-router  class="nl.rotterdam.rtmf.guc.routing.outbound.PayloadArrayMulticastRouter">
+                    <vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}tmfStelselBevragenServiceIn"
+                        synchronous="true" />
+                    <vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}gmActueleWaardenServiceIn"
+                        synchronous="true" />
+                </custom-outbound-router>
+            </outbound>
+        </service>
+		
+
+		<!-- === TMF Services === -->
+		<service name="TMFStelselBevragenService">
+			<description>Proxy voor de landelijke Stelselcatalogus service</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}tmfStelselBevragenServiceIn"
+					synchronous="true" transformer-refs="rtmf.tracing.request.transformer"
+					name="rtmfguc.stelselcatalogus.metadata.proxy.inbound.vm" />
+				<http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}" port="${rtmf.cfg.rtmfguc.port}"
+					path="${rtmf.cfg.rtmfguc.app.path}tmfStelselBevragenService" synchronous="true"
+					transformer-refs="delete-accept-header add-xml-accept-header byteArrayToString rtmf.tracing.request.transformer"
+					responseTransformer-refs="validateMessage delete-content-type-header add-xml-content-type-header"
+					name="rtmfguc.stelselcatalogus.metadata.proxy.inbound.http"  connector-ref="domein.http.connector"/>
+			</inbound>
+			<outbound>
+				<pass-through-router>
+					<http:outbound-endpoint host="${rtmf.cfg.osbgw.stelselcatalogus.host}"
+						port="${rtmf.cfg.osbgw.stelselcatalogus.port}" path="${rtmf.cfg.osbgw.stelselcatalogus.metadata.path}"
+						synchronous="true" responseTransformer-refs="validateMessage byteArrayToString cacheTransformerTMF"
+						transformer-refs="rtmf.tracing.request.transformer"  connector-ref="domein.http.connector"
+						name="rtmfguc.stelselcatalogus.metadata.proxy.outbound.http" />
+				</pass-through-router>
+			</outbound>
+		</service>
+		
+		<service name="TMFAanmeldenBeantwoorden">
+          <description>Endpoint voor berichten verstuurd door TMFCore</description>
+		  <inbound>
+		     <http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}" port="${rtmf.cfg.rtmfguc.port}"
+					path="${rtmf.cfg.rtmfguc.app.path}tmfAanmeldenBeantwoorden" synchronous="true"
+					transformer-refs="byteArrayToString rtmf.tracing.request.transformer"
+					responseTransformer-refs="validateMessage rtmf.tracing.response.transformer"
+					name="rtmfguc.tmf.aanmeldenbeantwoorden.inbound.http"  connector-ref="domein.http.connector">
+					</http:inbound-endpoint>
+		  </inbound>
+		</service>
+
+		<service name="OphaalService">
+			<description>Algemene ophaal service voor status terugmeldingen</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}ophaalServiceIn"
+					name="rtmfguc.ophalen.inbound.vm" synchronous="true"
+					transformer-refs="rtmf.tracing.request.transformer"
+					/>
+				<http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}" port="${rtmf.cfg.rtmfguc.port}"
+					path="${rtmf.cfg.rtmfguc.app.path}ophaalService" 
+					transformer-refs="delete-accept-header add-xml-accept-header rtmf.tracing.request.transformer"
+					responseTransformer-refs="validateMessage delete-content-type-header add-xml-content-type-header"
+					synchronous="true" name="rtmfguc.ophalen.inbound.http"  connector-ref="domein.http.connector"/>
+			</inbound>
+			<outbound>
+				<filtering-router>
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}ophaalServiceMulticastIn"
+						synchronous="true" name="rtmfguc.ophalen.MulticastOutbound.vm" transformer-refs="rtmf.tracing.request.transformer" responseTransformer-refs="validateMessage rtmf.tracing.response.transformer" />
+                    <wildcard-filter pattern="*ophalenMeldingStatus*" />
+				</filtering-router>
+				<filtering-router>
+				    <vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}tmfOphaalServiceIn"
+                        synchronous="true" name="rtmfguc.ophalen.TMFOnlyOutbound.vm" 
+                        transformer-refs="restoreMeldingKenmerkTransformer rtmf.tracing.request.transformer" responseTransformer-refs="validateMessage rtmf.tracing.response.transformer" />
+                    <custom-filter
+                        class="nl.rotterdam.rtmf.guc.filter.OphalenMeldingKenmerkFilter">
+                        <spring:property name="prefix" value="B" />
+                    </custom-filter>
+				</filtering-router>
+				<filtering-router>
+                    <vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}zmManagerServiceIn"
+                        synchronous="true" name="rtmfguc.ophalen.ZMOnlyOutbound.vm" 
+                        transformer-refs="ophalenZmTransformer rtmf.tracing.request.transformer" responseTransformer-refs="validateMessage byteArrayToString ophalenZaakDetailsNaarOphalenMeldingKenmerkTransformer rtmf.tracing.response.transformer" />
+                    <custom-filter
+                        class="nl.rotterdam.rtmf.guc.filter.OphalenMeldingKenmerkFilter">
+                        <spring:property name="prefix" value="K" />
+                    </custom-filter>
+                </filtering-router>
+			</outbound>
+		</service>
+		
+		<service name="OphaalServiceMulticasting">
+            <description>Multicasting ophaal service voor status terugmeldingen</description>
+            <inbound>
+                <vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}ophaalServiceMulticastIn"
+                    name="rtmfguc.ophalen.multicasting.inbound.vm" synchronous="true"
+                    transformer-refs="rtmf.tracing.request.transformer"
+                    responseTransformer-refs="validateMessage mergeOphalenTransformer"/>
+            </inbound>
+            <outbound>
+                <custom-outbound-router class="nl.rotterdam.rtmf.guc.routing.outbound.RtmfZmZaakQueryRouter">
+                    <vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}tmfOphaalServiceIn"
+                        synchronous="true" name="rtmfguc.ophalen.TMFOutbound.vm" transformer-refs="rtmf.tracing.request.transformer" responseTransformer-refs="validateMessage rtmf.tracing.response.transformer" />
+                    <vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}zmManagerServiceIn"
+                        synchronous="true" name="rtmfguc.ophalen.ZMOutbound.vm" transformer-refs="ophalenZmTransformer rtmf.tracing.request.transformer" responseTransformer-refs="validateMessage rtmf.tracing.response.transformer" />
+                </custom-outbound-router>
+            </outbound>
+        </service>
+		
+		<service name="TMFOphaalService">
+			<description>TMF OphaalService (status terugmelding)</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}tmfOphaalServiceIn"
+					transformer-refs="rtmf.tracing.request.transformer" synchronous="true"
+					name="rtmfguc.tmf.ophalen.proxy.inbound.vm" />
+				<http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}" port="${rtmf.cfg.rtmfguc.port}"
+					path="${rtmf.cfg.rtmfguc.app.path}tmfOphaalService"  connector-ref="domein.http.connector"
+					transformer-refs="delete-accept-header add-xml-accept-header rtmf.tracing.request.transformer"
+					responseTransformer-refs="validateMessage delete-content-type-header add-xml-content-type-header"
+					synchronous="true" name="rtmfguc.tmf.ophalen.proxy.inbound.http" />
+			</inbound>
+			<outbound>
+				<pass-through-router>
+					<http:outbound-endpoint host="${rtmf.cfg.osbgw.tmf.ophalen.host}"
+						port="${rtmf.cfg.osbgw.tmf.ophalen.port}" path="${rtmf.cfg.osbgw.tmf.ophalen.path}"
+						synchronous="true" transformer-refs="rtmf.tracing.request.transformer"
+						name="rtmfguc.tmf.ophalen.proxy.outbound.http"  connector-ref="domein.http.connector"/>
+				</pass-through-router>
+			</outbound>
+		</service>
+
+        <!-- TerugmeldServices -->
+
+		<service name="TerugmeldService">
+			<description>Algemene aanmeld/terugmeld service</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}terugmeldServiceIn"
+					name="rtmfguc.terugmelden.proxy.inbound.vm" synchronous="true"
+					transformer-refs="moveAttachmentsToStoreTransformer rtmf.tracing.request.transformer"
+					responseTransformer-refs="removeAttachmentsFromStoreTransformer" />
+				<http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}" port="${rtmf.cfg.rtmfguc.port}"
+					path="${rtmf.cfg.rtmfguc.app.path}terugmeldService"  connector-ref="domein.http.connector"
+					transformer-refs="delete-accept-header add-xml-accept-header moveAttachmentsToStoreTransformer rtmf.tracing.request.transformer"
+					responseTransformer-refs="removeAttachmentsFromStoreTransformer validateMessage delete-content-type-header add-xml-content-type-header"
+					synchronous="true" name="rtmfguc.terugmelden.proxy.inbound.http" />
+			</inbound>
+			<outbound>
+				<filtering-router>
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}terugmeldMulticastServiceIn"
+						synchronous="true" />
+					<custom-filter class="nl.rotterdam.rtmf.guc.filter.TerugmeldCacheFilter">
+						<spring:property name="expectedService" value="Both" />
+						<spring:property name="stelselCatalogusCache" ref="stelselCatalogusCacheBean" />
+					</custom-filter>
+				</filtering-router>
+				<filtering-router>
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}tmfTerugmeldServiceIn"
+						synchronous="true" />
+					<custom-filter class="nl.rotterdam.rtmf.guc.filter.TerugmeldCacheFilter">
+						<spring:property name="expectedService" value="TMF" />
+						<spring:property name="stelselCatalogusCache" ref="stelselCatalogusCacheBean" />
+					</custom-filter>
+				</filtering-router>
+				<filtering-router>
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}zmTerugmeldServiceIn"
+						synchronous="true" />
+					<custom-filter class="nl.rotterdam.rtmf.guc.filter.TerugmeldCacheFilter">
+						<spring:property name="expectedService" value="GM" />
+						<spring:property name="stelselCatalogusCache" ref="stelselCatalogusCacheBean" />
+					</custom-filter>
+				</filtering-router>
+				<forwarding-catch-all-strategy>
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}rtmfErrors" />
+				</forwarding-catch-all-strategy>
+			</outbound>
+		</service>
+
+		<service name="TerugmeldMulticastingService">
+			<description>Terugmeld service, deze service kan gebruikt 
+			worden als een bericht naar zowel de landelijke service 
+			als de rotterdamse service moet</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}terugmeldMulticastServiceIn"
+					synchronous="true" responseTransformer-refs="validateMessage terugmeldenResponseMergerTransformer rtmf.tracing.response.transformer" 
+					transformer-refs="rtmf.tracing.request.transformer"
+					name="rtmfguc.terugmelden.multicast.inbound.vm"/>
+			</inbound>
+			<outbound>
+				<!--
+					enableCorrelation zorgt ervoor dat de correlation_group_size gezet
+					wordt als er al een correlation_id ingevult is. Dit gaat anders
+					fout omdat de filtering router er nu voor zit welke al een
+					correlation_id zet.
+				-->
+				<custom-outbound-router  class="nl.rotterdam.rtmf.guc.routing.outbound.PayloadArrayMulticastRouter">
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}tmfTerugmeldServiceIn"
+						synchronous="true" transformer-refs="terugmeldenSplitTMFtransformer rtmf.tracing.request.transformer"
+						responseTransformer-refs="validateMessage rtmf.tracing.response.transformer"
+						name="rtmfguc.terugmelden.multicast.outbound.tmf.vm"/>
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}zmTerugmeldServiceIn"
+						synchronous="true" transformer-refs="terugmeldenSplitZMtransformer rtmf.tracing.request.transformer"
+						responseTransformer-refs="validateMessage rtmf.tracing.response.transformer"
+						name="rtmfguc.terugmelden.multicast.outbound.zm.vm"/>
+				</custom-outbound-router>
+			</outbound>
+		</service>
+
+		<service name="TMFTerugmeldService">
+			<description>Proxy voor de landelijke TMF terugmeld service</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}tmfTerugmeldServiceIn"
+					synchronous="true" transformer-refs="rtmf.tracing.request.transformer"
+					name="rtmfguc.tmf.terugmelden.proxy.inbound.vm" />
+				<http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}" port="${rtmf.cfg.rtmfguc.port}"
+					path="${rtmf.cfg.rtmfguc.app.path}tmfTerugmeldService"  connector-ref="domein.http.connector"
+					transformer-refs="delete-accept-header add-xml-accept-header rtmf.tracing.request.transformer"
+					responseTransformer-refs="validateMessage delete-content-type-header add-xml-content-type-header"
+					synchronous="true" name="rtmfguc.tmf.terugmelden.proxy.inbound.http" />
+
+			</inbound>
+			<outbound>
+				<pass-through-router>
+					<http:outbound-endpoint host="${rtmf.cfg.osbgw.tmf.host}"
+					 connector-ref="domein.http.connector"
+						port="${rtmf.cfg.osbgw.tmf.port}" path="${rtmf.cfg.osbgw.tmf.path}" synchronous="true"
+						transformer-refs="rtmf.tracing.request.transformer" name="rtmfguc.tmf.terugmelden.proxy.outbound.http" />
+				</pass-through-router>
+			</outbound>
+		</service>
+
+		<service name="ZMTerugmeldServiceEmail">
+			<description>Service voor het versturen van een email naar de bronhouder van het kerngegeven
+			waarover teruggemeld wordt</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}zmTerugmeldServiceEmailIn"
+					synchronous="true" transformer-refs="rtmf.tracing.request.transformer addPayloadAsAttachmentTransformer"
+					name="rtmfguc.zm.terugmelden.proxy.inbound.email.vm" responseTransformer-refs="validateMessage zmResponseTransformer"/>
+			</inbound>
+
+			<component>
+				<spring-object bean="bronhouderMessageEnricher" />
+			</component>
+
+			<outbound>
+				<pass-through-router>
+			
+					<!-- De expression evaluation '#[header:bronhouder.berekenAdres] werkt niet, daarom wordt  -->
+					<!-- het 'TO' veld is door de 'bronhouderMessageEnricher' aan de message toegevoegd        -->
+			
+					<smtp:outbound-endpoint synchronous="true"
+						host="${rtmf.cfg.mail.smtp.host}"
+						port="${rtmf.cfg.mail.smtp.port}" from="${rtmf.cfg.mail.address.from}" 
+						subject="${rtmf.cfg.mail.subject.terugmelding}" transformer-refs="rtmf.tracing.request.transformer addPayloadAsAttachmentTransformer prettyTerugmeldenEmailTransformer objectToMimeTransformer"/>
+				</pass-through-router>
+			</outbound>
+			<default-connector-exception-strategy />
+			
+		</service>
+
+		<service name="ZMTerugmeldServiceFile">
+			<description>Service voor het schrijven van een terugmeld bestand tbv van de bronhouder</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}zmTerugmeldServiceFileIn"
+					synchronous="true" transformer-refs="rtmf.tracing.request.transformer"
+					name="rtmfguc.zm.terugmelden.proxy.inbound.file.vm" 
+					responseTransformer-refs="validateMessage zmResponseTransformer"/>
+			</inbound>
+			<!--
+			<outbound>
+				<pass-through-router>
+					<http:outbound-endpoint host="${zm.terugmeld.host}"
+						port="${zm.terugmeld.port}" path="${zm.terugmeld.path}"
+						synchronous="true" transformer-refs="rtmf.tracing.request.transformer"
+						name="rtmfguc.zm.terugmelden.file.proxy.outbound.http" />
+				</pass-through-router>
+			</outbound>
+			-->
+
+			<component>
+				<spring-object bean="bronhouderMessageEnricher" />
+			</component>
+		
+			<outbound>
+				<custom-outbound-router
+					class="nl.rotterdam.rtmf.guc.routing.outbound.RtmfTemplateEndpointRouter">
+					<!-- De filenaam staat gedefinieerd in de connector defenitie. -->
+					<file:outbound-endpoint name="rtmfguc.zm.terugmelden.file.proxy.outbound"
+						address="file://#[header:bronhouder.bereikenAdres]"
+						connector-ref="RtmfFileConnector" synchronous="true" />
+				</custom-outbound-router>
+			</outbound>
+		</service>
+
+		<!-- === GM Services === -->
+
+		<service name="gmStelselBevragenService">
+			<description>Deze service is een proxy voor de stelselcatalogus service
+			geimplementeerd op de rotterdamse gegevensmagazijn. Wordt gebruikt om een 
+			beschrijving te krijgen van de objecten en attributen van de rotterdamse
+			kerngegevens.</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}gmStelselBevragenServiceIn"
+					transformer-refs="rtmf.tracing.request.transformer" synchronous="true"
+					name="rtmfguc.gm.stelselcatalogus.proxy.inbound.vm" />
+				<http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}" port="${rtmf.cfg.rtmfguc.port}"
+					path="${rtmf.cfg.rtmfguc.app.path}gmStelselBevragenService"
+					 connector-ref="domein.http.connector"
+					transformer-refs="delete-accept-header add-xml-accept-header byteArrayToString rtmf.tracing.request.transformer"
+					responseTransformer-refs="validateMessage delete-content-type-header add-xml-content-type-header"
+					synchronous="true" name="rtmfguc.gm.stelselcatalogus.proxy.inbound.http" />
+			</inbound>
+			<outbound>
+				<pass-through-router>
+					<http:outbound-endpoint host="${rtmf.cfg.gm.stelselcatalogus.host}"
+						port="${rtmf.cfg.gm.stelselcatalogus.port}" path="${rtmf.cfg.gm.stelselcatalogus.path}"
+						synchronous="true" transformer-refs="tmfObjectAndValuesRequestToGMObjectInfo TMFToGMTransformer"
+						 connector-ref="domein.http.connector"
+						responseTransformer-refs="byteArrayToString validateMessage cacheTransformer"
+						name="rtmfguc.gm.stelselcatalogus.proxy.outbound.http" />
+				</pass-through-router>
+			</outbound>
+		</service>
+		
+		<!-- GM Actuele waarden services -->
+		
+        <service name="gmActueleWaardenService">
+            <description>Proxy voor de gegevens magazijn service Functioneel heeft deze service geen functie.
+            Technisch gezien is deze service nodig. Zonder deze service krijgen we 2 async multicasting-routers 
+            achter elkaar. Daarbij gaat het niet goed omdat de payload van de 2de multicasting-router niet 
+            getransformeerd aankomt. Om dit op te lossen hebben we deze synchrone passthrough er tussen.
+            </description>
+            <inbound>
+                <vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}gmActueleWaardenServiceIn"
+                    responseTransformer-refs="validateMessage rtmf.tracing.response.transformer" 
+                    synchronous="true"
+                    name="rtmfguc.gm.actuelewaarden.service.inbound.vm" />
+            </inbound>
+            <outbound>
+                <pass-through-router>
+                    <vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}gmActueleWaardenMulticastingServiceIn" synchronous="true" responseTransformer-refs="validateMessage" />
+                </pass-through-router>
+            </outbound>
+        </service>
+        
+		<service name="gmActueleWaardenMulticastingService">
+            <description>Proxy voor de gegevens magazijn service waarmee actuele
+                waarden van rotterdamse kerngegevens opgevraagd kunnen worden in stuf
+                formaat. Service verwacht bericht in TMFPortal formaat, wordt omgezet
+                naar een stuf query. Antwoord wordt weer van stuf formaat naar
+                TMFPortal formaat geconverteerd met behulp van een call naar het stelselcatalogus.
+                We moeten namelijk weten welke gegevens er vanuit het stelselcatalogus verwacht worden uit het 
+                bericht. Met behulp van de stuffpath uit het stelsel bericht kunnen we nu het stuff bericht uitlezen.                 
+            </description>
+            <inbound>
+                <vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}gmActueleWaardenMulticastingServiceIn"
+                    responseTransformer-refs="validateMessage actueleStufNaarScBevragenTransformer rtmf.tracing.response.transformer" 
+                    synchronous="true"
+                    name="rtmfguc.gm.actuelewaarden.multicasting.service.inbound.vm" />
+            </inbound>
+            <outbound>
+            	<custom-outbound-router  class="nl.rotterdam.rtmf.guc.routing.outbound.PayloadArrayMulticastRouter">
+                    <vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}gmActueleWaardenProxyIn" synchronous="true" responseTransformer-refs="validateStufMessage"/>
+                    <vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}gmStelselBevragenServiceIn" synchronous="true"
+                        transformer-refs="validateMessage actueleWaardenToObjectInfoTransformer" />
+                </custom-outbound-router>
+            </outbound>
+        </service>
+		
+		<service name="gmActueleWaardenProxy">
+            <description>Proxy voor de gegevens magazijn service waarmee actuele
+                waarden van rotterdamse kerngegevens opgevraagd kunnen worden in stuf
+                formaat. Service verwacht bericht in TMFPortal formaat, wordt omgezet
+                naar een stuf query. Antwoord wordt weer van stuf formaat naar
+                TMFPortal formaat geconverteerd.
+            </description>
+            <inbound>
+                <vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}gmActueleWaardenProxyIn"
+                    transformer-refs="rtmf.tracing.request.transformer" 
+                    synchronous="true"
+                    name="rtmfguc.gm.actuelewaarden.proxy.inbound.vm" />
+            </inbound>
+            <outbound>
+                <pass-through-router>
+                    <http:outbound-endpoint host="${rtmf.cfg.gm.actuelewaarden.host}"
+                        port="${rtmf.cfg.gm.actuelewaarden.port}" path="${rtmf.cfg.gm.actuelewaarden.path}"
+                        synchronous="true" connector-ref="domein.http.connector"
+                         transformer-refs="byteArrayToString rtmf.tracing.request.transformer scBevragenNaarStufTransformer"
+                        responseTransformer-refs="byteArrayToString validateMessage rtmf.tracing.response.transformer"
+                        name="rtmfguc.gm.actuelewaarden.proxy.outbound.http" 
+                        />
+                </pass-through-router>
+            </outbound>
+        </service>
+		
+		<service name="rtmfErrors">
+			<description>Hier komen de error berichten terecht, bijvoorbeeld de berichten 
+			niet door de filters heenvallen.</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}rtmfErrors"
+					synchronous="false" name="rtmfguc.inbound.error" transformer-refs="rtmf.tracing.request.transformer"/>
+			</inbound>
+			<outbound>
+				<pass-through-router>
+					<file:outbound-endpoint path="/tmp"
+						outputPattern="rtmf-message-error-#[function:datestamp].txt" />
+				</pass-through-router>
+			</outbound>
+		</service>
+
+		<service name="ZMTerugmeldService">
+			<description>
+				Deze service voert alle stappen uit welke nodig zijn om
+				een terugmelding naar het zakenmagazijn te doen.
+				1 - Aanmaken van een nieuwe zaak
+				2 - Informeren van de brobhouder (via email of file)
+				3 - Update van de zaak en stap in het zakenmagazijn om
+				    aan te geven dat de zaak bij de bronhouder is gemeld
+			</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true" 
+					path="${rtmf.cfg.rtmfguc.app.path}zmTerugmeldServiceIn" 
+					name="rtmfguc.zm.terugmelden.proxy.inbound.vm" 
+					transformer-refs="rtmf.tracing.request.transformer" 
+					responseTransformer-refs="byteArrayToString validateMessage cleanZmPayloadArray" />
+			</inbound>
+			<outbound>
+				<custom-outbound-router
+					class="nl.rotterdam.rtmf.guc.router.RTMFChainingRouter">
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnAanmakenZaak" 
+						name="rtmfguc.zm.terugmelden.aanmakenZaak.proxy.outbound.vm" />
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zmTerugmeldServiceInformeerBronhouderIn" 
+						name="rtmfguc.zm.terugmelden.informeerBronhouder.proxy.outbound.vm" 
+						transformer-refs="createZaakToBronhouderInfo"/>
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnTerugmeldingUpdateZaak" 
+						name="rtmfguc.zm.terugmelden.updateZaak.proxy.outbound.vm" />
+				</custom-outbound-router>
+			</outbound>
+		</service>
+
+		<service name="AanmakenZaak">
+			<description>
+				Deze service voert alle stappen uit welke nodig zijn om
+				een nieuwe zaak aan te maken in het zakenmagazijn.
+				1 - NieuwZaaknummer
+				2 - ZaakCreatie (ontvangen)
+				3 - StapCreatie (ontvangen)
+				4 - StatusCreatie (ontvangen)
+			</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnAanmakenZaak"
+					synchronous="true"
+					name="rtmfguc.zakenMagazijnService.aanmakenZaak.inbound.vm" />
+			</inbound>
+			<outbound>
+				<custom-outbound-router
+					class="nl.rotterdam.rtmf.guc.router.RTMFChainingRouter">
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnNieuwZaaknummerService"
+						name="rtmfguc.zakenMagazijnService.aanmakenZaak.nieuwZaaknummer.proxy.outbound.http"
+						transformer-refs="nieuwZaaknummer" />
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnZaakCreatieService"
+						name="rtmfguc.zakenMagazijnService.aanmakenZaak.zaakCreatie.proxy.outbound.http"
+						transformer-refs="terugmeldingToZaakTransformer"
+						responseTransformer-refs="byteArrayToString validateMessage zakenmagazijnResponseTransformer" />
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnStapCreatieService"
+						name="rtmfguc.zakenMagazijnService.aanmakenZaak.stapCreatie.proxy.outbound.http"
+						transformer-refs="terugmeldingToStapCreatieOntvangenTransformer"
+						responseTransformer-refs="byteArrayToString validateMessage zakenmagazijnResponseTransformer" />
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnStatusCreatieService"
+						name="rtmfguc.zakenMagazijnService.aanmakenZaak.statusCreatie.proxy.outbound.http"
+						transformer-refs="terugmeldingToStatusCreatieTransformer"
+						responseTransformer-refs="byteArrayToString validateMessage zakenmagazijnResponseTransformer" />
+				</custom-outbound-router>
+			</outbound>
+		</service>
+
+		<service name="ZMTerugmeldInformeerBronhouderService">
+			<description>
+				Informeer de bronhouder dat er een zaak in het 
+				zakenmagazijn is gezet. De bronhouder kan op twee
+				manieren worden ge-informeerd
+				1 - Via Email
+				2 - Via en bestand op het/een filesysteem
+			</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}zmTerugmeldServiceInformeerBronhouderIn"
+					synchronous="true" transformer-refs="rtmf.tracing.request.transformer"
+					name="rtmfguc.zm.terugmelden.informeerBronhouder.proxy.inbound.vm" />
+			</inbound>
+			<outbound>
+				<!--  -->
+				<!-- Uiteindelijk moeten de terugmeldingen of via email of naar -->
+				<!-- een bestand op een server bij het ZakenMagazijn worden     -->
+				<!-- aangemeld.                                                 -->
+				<!--  -->
+				<filtering-router>
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal"
+						path="${rtmf.cfg.rtmfguc.app.path}zmTerugmeldServiceEmailIn" synchronous="true" />
+					<custom-filter
+						class="nl.rotterdam.rtmf.guc.filter.BronhouderCatalogusFilter">
+						<spring:property name="expectedService" value="Email" />
+						<spring:property name="bronhouderCatalogus" ref="bronhouderCatalogusBean" />
+					</custom-filter>
+				</filtering-router>
+				<filtering-router>
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal"
+						path="${rtmf.cfg.rtmfguc.app.path}zmTerugmeldServiceFileIn" synchronous="true" />
+					<custom-filter
+						class="nl.rotterdam.rtmf.guc.filter.BronhouderCatalogusFilter">
+						<spring:property name="expectedService" value="File" />
+						<spring:property name="bronhouderCatalogus" ref="bronhouderCatalogusBean" />
+					</custom-filter>
+				</filtering-router>
+			</outbound>
+		</service>
+
+		<service name="UpdateZaakTerugmelding">
+			<description>
+				Deze service voert alle stappen uit welke nodig zijn om
+				een bestaande zaak aan te passen (update) in het zakenmagazijn.
+				1 - ZaakUpdate (gemeld)
+				2 - StapUpdate (gemeld)
+				3 - StapCreatie (beoordelen)
+			</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnTerugmeldingUpdateZaak"
+					synchronous="true"
+					name="rtmfguc.zakenMagazijnService.terugmelding.updateZaak.inbound.vm" />
+			</inbound>
+			<outbound>
+				<custom-outbound-router
+					class="nl.rotterdam.rtmf.guc.router.RTMFChainingRouter">
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnZaakUpdateService"
+						name="rtmfguc.zakenMagazijnService.terugmelding.updateZaak.zaakUpdate.proxy.outbound.http"
+						transformer-refs="terugmeldingToZaakUpdateGemeldTransformer"
+						responseTransformer-refs="byteArrayToString validateMessage zakenmagazijnResponseTransformer" />
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnStapUpdateService"
+						name="rtmfguc.zakenMagazijnService.terugmelding.updateZaak.stapUpdate.proxy.outbound.http"
+						transformer-refs="terugmeldingToStapUpdateTransformer"
+						responseTransformer-refs="byteArrayToString validateMessage zakenmagazijnResponseTransformer" />
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnStapCreatieService"
+						name="rtmfguc.zakenMagazijnService.terugmelding.updateZaak.stapCreatie.proxy.outbound.http"
+						transformer-refs="terugmeldingToStapCreatieBeoordelenTransformer"
+						responseTransformer-refs="byteArrayToString validateMessage zakenmagazijnResponseTransformer" />
+				</custom-outbound-router>
+			</outbound>
+		</service>
+
+        <!-- Services tbv het intrekken van een terugmelding -->
+        <service name="intrekService">
+            <description>Op dit endpoint komt de TMFPortaal binnen.
+            We bekijken hier met een filter of het een Rotterdamse of landelijke zaak betreft.
+            Dit doen we op basis van het betreft TMF kenmerk. Rotterdamse terugmeldingen beginnen met TMD 
+            We sturen het bericht vanaf hier door naar de juiste mule service.
+            </description>
+            <inbound>
+                <vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}intrekService"
+                    synchronous="true" transformer-refs="rtmf.tracing.request.transformer"
+                    name="rtmfguc.intrekService.inbound.vm" />
+                <http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}" port="${rtmf.cfg.rtmfguc.port}"
+                    path="${rtmf.cfg.rtmfguc.app.path}intrekService" synchronous="true"
+                    transformer-refs="delete-accept-header add-xml-accept-header byteArrayToString rtmf.tracing.request.transformer"
+                    responseTransformer-refs="validateMessage delete-content-type-header add-xml-content-type-header"
+                     connector-ref="domein.http.connector"
+                    name="rtmfguc.intrekService.inbound.http">
+                </http:inbound-endpoint>
+            </inbound>
+            <outbound>
+                <filtering-router>
+                    <vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}zmIntrekServiceIn"
+                        synchronous="true"/>
+                        <regex-filter pattern=".*betreftTmfKenmerk>TMD..*"/>
+                </filtering-router>
+                <filtering-router>
+                    <vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}tmfIntrekServiceIn"
+                        synchronous="true"/>
+                       <not-filter>
+                        <regex-filter pattern=".*betreftTmfKenmerk>TMD..*"/>
+                       </not-filter>
+                </filtering-router>
+            </outbound>
+        </service>
+        
+        <service name="TMFIntrekService">
+            <description>TMF Intrekken Terugmelding service (om het aanmelden van
+                terugmeldingen en
+                intrekken van terugmeldingen te scheiden)
+            </description>
+            <inbound>
+                <vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}tmfIntrekServiceIn"
+                    name="rtmfguc.tmf.intrekken.proxy.inbound.vm" synchronous="true"
+                    transformer-refs="rtmf.tracing.request.transformer" />
+                <http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}" port="${rtmf.cfg.rtmfguc.port}"
+                    path="${rtmf.cfg.rtmfguc.app.path}tmfIntrekService"  connector-ref="domein.http.connector"
+                    transformer-refs="delete-accept-header add-xml-accept-header rtmf.tracing.request.transformer"
+                    responseTransformer-refs="validateMessage delete-content-type-header add-xml-content-type-header"
+                    synchronous="true" name="rtmfguc.tmf.intrekken.proxy.inbound.http" />
+            </inbound>
+            <outbound>
+                <pass-through-router>
+                    <http:outbound-endpoint host="${rtmf.cfg.osbgw.tmf.host}"
+                     connector-ref="domein.http.connector"
+                        port="${rtmf.cfg.osbgw.tmf.port}" path="${rtmf.cfg.osbgw.tmf.path}" synchronous="true"
+                        transformer-refs="rtmf.tracing.request.transformer" name="rtmfguc.tmf.intrekken.proxy.outbound.http" />
+                </pass-through-router>
+            </outbound>
+        </service>
+        
+		<service name="zmIntrekService">
+			<description>
+				Deze service voert alle stappen uit welke nodig zijn om
+				een bestaande zaak aan te passen (update) in het zakenmagazijn
+				in het geval van een intrekking.
+				1 - ZaakUpdate (ingetrokken)
+				2a- Ophalen details van de zaak
+				2b- StapUpdate (ingetrokken)
+				3 - StapCreatie (Staken onderzoek)
+				4 - StatusCreatie (In behandeling) - optioneel
+			</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}zmIntrekServiceIn"
+					synchronous="true"
+					name="rtmfguc.zakenMagazijnService.intrekking.updateZaak.inbound.vm"
+					responseTransformer-refs="intrekkingResponseTransformer validateMessage" />
+			</inbound>
+			<outbound>
+				<custom-outbound-router
+					class="nl.rotterdam.rtmf.guc.router.RTMFChainingRouter">
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zmManagerServiceIn"
+						name="rtmfguc.zakenMagazijnService.intrekking.updateZaak.proxy.outbound.vm"
+						transformer-refs="intrekkingToZaakUpdateTransformer rtmf.tracing.request.transformer"
+						responseTransformer-refs="byteArrayToString validateMessage zakenmagazijnResponseTransformer" />
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zmManagerServiceIn"
+						name="rtmfguc.zakenMagazijnService.intrekking.updateZaak.zaakDetail.proxy.outbound.vm"
+						transformer-refs="intrekkingToZaakDetailTransformer validateMessage rtmf.tracing.request.transformer"
+						responseTransformer-refs="byteArrayToString validateMessage" />
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zmManagerServiceIn"
+						name="rtmfguc.zakenMagazijnService.intrekking.updateZaak.stapUpdate.proxy.outbound.vm"
+						transformer-refs="intrekkingToStapUpdateTransformer validateMessage rtmf.tracing.request.transformer"
+						responseTransformer-refs="byteArrayToString validateMessage zakenmagazijnResponseTransformer" />
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zmManagerServiceIn"
+						name="rtmfguc.zakenMagazijnService.intrekking.updateZaak.stapCreatie.proxy.outbound.vm"
+						transformer-refs="intrekkingToStapCreatieTransformer validateMessage rtmf.tracing.request.transformer"
+						responseTransformer-refs="byteArrayToString validateMessage zakenmagazijnResponseTransformer" />
+					<!-- Bepaal of de stap moet gebeuren. -->
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zmManagerServiceIn"
+						name="rtmfguc.zakenMagazijnService.intrekking.updateZaak.statusCreatie.proxy.outbound.vm"
+						transformer-refs="intrekkingToStatusCreatieTransformer validateMessage rtmf.tracing.request.transformer"
+						responseTransformer-refs="byteArrayToString validateMessage zakenmagazijnResponseTransformer">
+						<custom-filter class="nl.rotterdam.rtmf.guc.filter.StatusCreatieInBehandelingFilter"/>
+					</vm:outbound-endpoint>
+					
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true" path="${rtmf.cfg.rtmfguc.app.path}zmIntrekBerichtgevingService" 
+					    name="rtmfguc.zakenMagazijnService.intrekking.updateZaak.berichtgeving.proxy.outbound.vm" >
+					</vm:outbound-endpoint>
+				</custom-outbound-router>
+			</outbound>
+		</service>
+
+   <service name="zmIntrekBerichtgevingService">
+            <description>Hier bekijken we hoe we de bronhouder informeren over intrekken van een terugmelding
+            </description>
+            <inbound>
+                <vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}zmIntrekBerichtgevingService"
+                    synchronous="true" transformer-refs="rtmf.tracing.request.transformer intrekkingAddBereikenAdresTransformer"
+                    name="rtmfguc.intrekBerichtgevingService.inbound.vm" />
+            </inbound>
+            <outbound>
+                <!-- email outbound -->
+                <filtering-router>
+                    <smtp:outbound-endpoint synchronous="true"
+                        name="rtmfguc.zakenMagazijnService.intrekBerichtgevingService.email.proxy.outbound.smtp"
+                        host="${rtmf.cfg.mail.smtp.host}"
+                        port="${rtmf.cfg.mail.smtp.port}" from="${rtmf.cfg.mail.address.from}" 
+                        subject="${rtmf.cfg.mail.subject.intrekking}" transformer-refs="rtmf.tracing.request.transformer prettyIntrekkingBerichtgevingTransformer objectToMimeTransformer"
+                        responseTransformer-refs="rtmf.tracing.response.transformer validateMessage">
+                    </smtp:outbound-endpoint>
+                    <custom-filter
+                        class="nl.rotterdam.rtmf.guc.filter.IntrekkingBronhouderCatalogusFilter">
+                        <spring:property name="expectedService" value="Email" />
+                        <spring:property name="bronhouderCatalogus" ref="bronhouderCatalogusBean" />
+                    </custom-filter>
+                </filtering-router>
+                <!-- file outbound -->
+                <filtering-router>
+                    <file:outbound-endpoint name="rtmfguc.zakenMagazijnService.intrekBerichtgevingService.file.proxy.outbound"
+                        transformer-refs="prettyIntrekkingBerichtgevingTransformer rtmf.tracing.request.transformer"
+                        path="#[header:fileName]"
+                        connector-ref="RtmfFileConnector" synchronous="true" />
+                    <custom-filter
+                        class="nl.rotterdam.rtmf.guc.filter.IntrekkingBronhouderCatalogusFilter">
+                        <spring:property name="expectedService" value="File" />
+                        <spring:property name="bronhouderCatalogus" ref="bronhouderCatalogusBean" />
+                    </custom-filter>
+                </filtering-router>
+            </outbound>
+        </service>
+        
+	</model>
+</mule>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (c) 2009-2011 Gemeente Rotterdam
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.1 (or any later version).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * European Union Public Licence for more details.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see
+ * http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>nl.rotterdam.rtmf</groupId>
+        <artifactId>rtmf</artifactId>
+        <version>1.0.3</version>
+    </parent>
+    <groupId>nl.rotterdam.rtmf</groupId>
+    <artifactId>rtmf-guc-mocks</artifactId>
+    <packaging>jar</packaging>
+    <name>RTMF mocks</name>
+    <dependencies>
+        <dependency>
+            <groupId>nl.rotterdam.ioo.guc_algemeen</groupId>
+            <artifactId>guc_algemeen_componenten</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+    </dependencies>
+</project>

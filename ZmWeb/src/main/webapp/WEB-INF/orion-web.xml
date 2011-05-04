@@ -1,0 +1,18 @@
+<?xml version="1.0"?> 
+<orion-web-app 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/orion-web-10_0.xsd"        deployment-version="null"
+
+        deployment-time="1279111669702" 
+        jsp-cache-directory="./persistence" 
+        jsp-cache-tlds="standard" 
+        temporary-directory="./temp" 
+        directory-browsing="allow" 
+        context-root="ZmWeb" 
+ schema-major-version="10" schema-minor-version="0" > 
+        <web-app-class-loader search-local-classes-first="true" include-war-manifest-class-path="true" /> 
+        <security-role-mapping name="zmweb"> 
+                <group name="tmf_zmweb"></group> 
+        </security-role-mapping> 
+        <web-app> 
+        </web-app> 
+</orion-web-app> 

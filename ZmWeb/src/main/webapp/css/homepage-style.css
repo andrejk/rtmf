@@ -1,0 +1,203 @@
+h2 {
+    color: #000;
+    font-size: 140%;
+    padding: 1px 0px 5px 0px;
+    border-bottom: 1px solid #999;
+    width: 387px;
+    margin-top: 10px;
+    clear: both;
+    
+}
+
+a,* a,* * a {
+    color: #15af0d;
+    text-decoration: none;
+    font-weight: bold;
+}
+span.buttonSpan input.button{
+   background-color:white;
+    border:medium none;
+    color:#15AF0D;
+    font-size:100%;
+    font-style:inherit;
+    font-weight:bold;
+    margin-left:0;
+    margin-top:4px;
+    padding-left:0;
+    text-align:left;
+}
+
+#mainContent {
+    margin: 0;
+    padding: 0;
+    width:100%;
+}
+
+#welkomBalk {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    height: 30px;
+    float: none;
+    width: 990px;
+    margin: 0 0 20px 0;
+    background: #15af0d;
+    padding: 7px 0 0 21px;
+    text-align: left;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#mainContent #mainBlock {
+    width: 100%;
+    margin-bottom:23px
+}
+
+#erasmusbrugImage {
+    background: #fff url(../images/erasmusbrug.jpg) no-repeat;
+    height: 200px;
+    padding: 0;
+    margin: 0;
+    width: 570px;
+    float: right;
+}
+/* welkom */
+div.welkombar{
+    border-bottom:1px solid #999999;
+    height:121px;
+    margin-bottom:32px;
+    background:#FFFFFF url(../images/digid_3-kolommen_skyline.jpg) no-repeat scroll right top;
+    padding-bottom:9px;
+    width:990px;
+}
+div.welkomtext{
+    float:left;
+    margin-bottom:10px;
+    margin-left:0;
+    padding-left:0;
+    padding-right:0;
+    width:400px;
+}
+div.logo{
+    float:left;  
+    margin-right:8px; 
+}
+
+table.overzicht {
+	clear: both;
+    width: 100%;
+}
+
+table.attribuuts {
+    width: 586px;
+    margin-top: 5px;
+}
+table.attribuuts th, table.overzicht th {
+    background-color:#000000;
+    color:#FFFFFF;
+    padding-top:5px;
+    padding-bottom:5px;
+    font-weight: bold;
+}
+table.attribuuts tr td, table.overzicht tr td a{
+    color: #000000;
+    font-weight: normal;
+}
+table.attribuuts tr td.kenmerk , table.attribuuts th.kenmerk, table.overzicht tr td.kenmerk , table.overzicht th.kenmerk {
+    width:250px;
+}
+table.attribuuts tr.even, table.overzicht tr.even {
+    background: #FFFFFF;
+}
+table.attribuuts tr.oneven,  table.overzicht tr.oneven {
+    background: #EEEEEE;
+}
+table.overzicht tr:hover  td{   
+    background: #15AF0D;
+    cursor: pointer;
+}
+
+table.overzicht tr:hover td a {
+    color: #FFFFFF;
+    font-weight: normal;
+}
+
+div#titleBar {
+    letter-spacing:1px;
+}
+
+div label {
+    width:220px;
+    vertical-align: top;
+    float: left;
+}
+span.value {
+    padding:2px;
+    width:600px;
+    display:table-cell;
+    display:inline-block;
+    color: #7d6a55;
+    font-style: italic;
+}
+
+select.value {
+    padding:2px;
+    width:600px;
+    display:table-cell;
+    display:inline-block;
+}
+
+textarea.value {
+    width:598px;
+    padding:0px;
+    display:table-cell;
+    display:inline-block;
+}
+
+div.statusBlock {
+    margin-top: 5px;
+    margin-bottum: 10px;	
+}
+
+div.statusBlock label {
+    clear: both;
+}
+
+input.btn {
+    margin-top: 20px;
+}
+
+input {
+    width: 150px;
+}
+
+table#zoekTable select {
+	width: 100%;
+}
+
+table#zoekTable td {
+    padding: 0 0 2px;
+}
+
+table#zoekTable td input{
+    padding: 0px;
+}
+
+input.dateddmm {
+	float: left;
+	margin-right: 5px;
+    width: 40px;
+}
+
+input.dateyyyy {
+	float: right;
+    width: 50px;
+}
+
+div.feedback {
+    color: red;
+}
+
+div.feedback li.feedbackPanelINFO {
+    color: green;
+}

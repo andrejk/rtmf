@@ -1,0 +1,157 @@
+<BG:prsLv01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0300" xmlns:StUF="http://www.egem.nl/StUF/StUF0300" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <BG:stuurgegevens>
+      <BG:versieStUF>0300</BG:versieStUF>
+      <BG:sectormodel>BG</BG:sectormodel>
+      <BG:versieSectormodel>0300</BG:versieSectormodel>
+      <BG:berichtcode>Lv01</BG:berichtcode>
+      <BG:zender>
+         <StUF:organisatie>Rotterdam</StUF:organisatie>
+         <StUF:applicatie>RTMF</StUF:applicatie>
+      </BG:zender>
+      <BG:ontvanger>
+         <StUF:organisatie>Rotterdam</StUF:organisatie>
+         <StUF:applicatie>ABKR</StUF:applicatie>
+      </BG:ontvanger>
+      <BG:referentienummer>7000</BG:referentienummer>
+      <BG:tijdstipBericht>20080526150000</BG:tijdstipBericht>
+      <BG:entiteittype>PRS</BG:entiteittype>
+   </BG:stuurgegevens>
+   <BG:body>
+      <BG:parametersVraag>
+         <BG:sortering>1</BG:sortering>
+         <BG:indicatorVervolgvraag>false</BG:indicatorVervolgvraag>
+         <BG:maximumAantal>15</BG:maximumAantal>
+         <BG:indicatorHistorisch>N</BG:indicatorHistorisch>
+         <BG:indicatorAfnemerIndicatie>false</BG:indicatorAfnemerIndicatie>
+         <BG:indicatorAantal>false</BG:indicatorAantal>
+      </BG:parametersVraag>
+      <BG:gelijk StUF:entiteittype="PRS">
+         <BG:bsn>${objectId}</BG:bsn>
+      </BG:gelijk>
+      <BG:scope StUF:entiteittype="PRS">
+         <BG:a-nummer StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:bsn StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:naamPrsGrp>
+            <BG:voornamen StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <BG:voorletters StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <BG:voorvoegselGeslachtsnaam StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <BG:geslachtsnaam StUF:noValue="geenWaarde" xsi:nil="true"/>
+         </BG:naamPrsGrp>
+         <BG:geboortedatum StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:geboorteplaatsGrp>
+            <BG:geboorteplaats StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <BG:codeGeboorteland StUF:noValue="geenWaarde" xsi:nil="true"/>
+         </BG:geboorteplaatsGrp>
+         <BG:geslachtsaanduiding StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:datumOverlijden StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:plaatsOverlijdenGrp>
+            <BG:plaatsOverlijden StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <BG:codeLandOverlijden StUF:noValue="geenWaarde" xsi:nil="true"/>
+         </BG:plaatsOverlijdenGrp>
+         <BG:indicatieGeheim StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:academischeTitel StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:adellijkeTitelPredikaat StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:codeGemeenteVanInschrijving StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:datumInschrijvingGemeente StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:datumOpschortingBijhouding StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:omschrijvingRedenOpschortingBijhouding StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:codeLandEmigratie StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:datumVertrekUitNederland StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:codeLandImmigratie StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:datumVestigingInNederland StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:indicatieGezagMinderjarige StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:indicatieCuratelestelling StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:verblijfstitelGrp>
+            <BG:verblijfstitel StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <BG:datumVerkrijgingVerblijfstitel StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <BG:datumVerliesVerblijfstitel StUF:noValue="geenWaarde" xsi:nil="true"/>
+         </BG:verblijfstitelGrp>
+         <BG:aanduidingBijzonderNederlanderschap StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:burgerlijkeStaat StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:aanduidingNaamgebruik StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:bankgiroRekeningnummer StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:subjectnrAKR StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:e-mailAdres StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:telefoonnummer StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:faxnummer StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:tijdvakGeldigheid>
+            <StUF:beginGeldigheid StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <StUF:eindGeldigheid StUF:noValue="geenWaarde" xsi:nil="true"/>
+         </BG:tijdvakGeldigheid>
+         <BG:extraElementen>
+            <StUF:extraElement naam="Datumingangonderzoeknationaliteit" StUF:noValue="geenWaarde" xsi:nil="true"/>
+         </BG:extraElementen>
+         <BG:isGetrouwdGeregistreerdPartnerMet StUF:entiteittype="PRSPRSHUW">
+            <BG:gerelateerde StUF:entiteittype="PRS">
+               <BG:a-nummer StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:bsn StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:naamPrsGrp>
+                  <BG:voornamen StUF:noValue="geenWaarde" xsi:nil="true"/>
+                  <BG:voorletters StUF:noValue="geenWaarde" xsi:nil="true"/>
+                  <BG:voorvoegselGeslachtsnaam StUF:noValue="geenWaarde" xsi:nil="true"/>
+                  <BG:geslachtsnaam StUF:noValue="geenWaarde" xsi:nil="true"/>
+               </BG:naamPrsGrp>
+               <BG:geboortedatum StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:geboorteplaatsGrp>
+                  <BG:geboorteplaats StUF:noValue="geenWaarde" xsi:nil="true"/>
+                  <BG:codeGeboorteland StUF:noValue="geenWaarde" xsi:nil="true"/>
+               </BG:geboorteplaatsGrp>
+               <BG:geslachtsaanduiding StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:datumOverlijden StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:plaatsOverlijdenGrp>
+                  <BG:plaatsOverlijden StUF:noValue="geenWaarde" xsi:nil="true"/>
+                  <BG:codeLandOverlijden StUF:noValue="geenWaarde" xsi:nil="true"/>
+               </BG:plaatsOverlijdenGrp>
+               <BG:indicatieGeheim StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:academischeTitel StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:adellijkeTitelPredikaat StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:codeGemeenteVanInschrijving StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:datumInschrijvingGemeente StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:datumOpschortingBijhouding StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:omschrijvingRedenOpschortingBijhouding StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:codeLandEmigratie StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:datumVertrekUitNederland StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:codeLandImmigratie StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:datumVestigingInNederland StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:indicatieGezagMinderjarige StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:indicatieCuratelestelling StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:verblijfstitelGrp>
+                  <BG:verblijfstitel StUF:noValue="geenWaarde" xsi:nil="true"/>
+                  <BG:datumVerkrijgingVerblijfstitel StUF:noValue="geenWaarde" xsi:nil="true"/>
+                  <BG:datumVerliesVerblijfstitel StUF:noValue="geenWaarde" xsi:nil="true"/>
+               </BG:verblijfstitelGrp>
+               <BG:aanduidingBijzonderNederlanderschap StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:burgerlijkeStaat StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:aanduidingNaamgebruik StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:bankgiroRekeningnummer StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:subjectnrAKR StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:e-mailAdres StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:telefoonnummer StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:faxnummer StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <BG:tijdvakGeldigheid>
+                  <StUF:beginGeldigheid StUF:noValue="geenWaarde" xsi:nil="true"/>
+                  <StUF:eindGeldigheid StUF:noValue="geenWaarde" xsi:nil="true"/>
+               </BG:tijdvakGeldigheid>
+            </BG:gerelateerde>
+            <BG:datumSluiting StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <BG:plaatsSluiting StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <BG:landSluiting StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <BG:soortVerbintenis StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <BG:datumOntbinding StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <BG:plaatsOntbinding StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <BG:landOntbinding StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <BG:redenOntbinding StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <BG:datumInschrijvingVonnisOntbinding StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <BG:tijdvakRelatie>
+               <StUF:beginRelatie StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <StUF:eindRelatie StUF:noValue="geenWaarde" xsi:nil="true"/>
+            </BG:tijdvakRelatie>
+            <BG:extraElementen>
+               <StUF:extraElement naam="Datumingangonderzoekhuwelijk" StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <StUF:extraElement naam="Datumeindeonderzoekhuwelijk" StUF:noValue="geenWaarde" xsi:nil="true"/>
+               <StUF:extraElement naam="Aanduidingonderzoekhuwelijk" StUF:noValue="geenWaarde" xsi:nil="true"/>
+            </BG:extraElementen>
+         </BG:isGetrouwdGeregistreerdPartnerMet>
+      </BG:scope>
+   </BG:body>
+</BG:prsLv01>

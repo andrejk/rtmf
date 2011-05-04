@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="nl" xmlns:wicket="http://wicket.apache.org/">
+  <body>
+    <wicket:extend>
+        <div id="welkomBalk">
+          <span>Overzicht zoekresultaten</span>
+        </div>
+        
+	        <div class="welkomtext">
+	            <p>Op basis van de opgegeven selectiecriteria zijn onderstaande terugmeldingen gevonden. Klik op een terugmelding om de details te bekijken en eventueel de status te wijzigen.</p>
+	        </div>      
+              
+        <table class="overzicht">
+            <tr>
+                <th>Datum aanlevering</th>
+                <th class="kenmerk">Meldingskenmerk</th>
+                <th>Zaaknummer</th>
+                <th>Basis registratie</th>
+                <th>Object</th>
+                <th>Objectidentificatie</th>
+                <th>Status</th>
+            </tr>
+			<tr wicket:id="zaakRegel">
+				<td><a wicket:id="datum" class="overzicht" href="#"><span wicket:id="datumSpan"/></a></td>
+				<td class="kenmerk"><a wicket:id="meldingskenmerk" class="overzicht" href="#"><span wicket:id="meldingskenmerkSpan"/></a></td>
+				<td><a wicket:id="zaaknummer" class="overzicht" href="#"><span wicket:id="zaaknummerSpan"/></a></td>
+				<td><a wicket:id="basisRegistratie" class="overzicht" href="#"><span wicket:id="basisRegistratieSpan"/></a></td>
+				<td><a wicket:id="object" class="overzicht" href="#"><span wicket:id="objectSpan"/></a></td>
+				<td><a wicket:id="objectidentificatie" class="overzicht" href="#"><span wicket:id="objectidentificatieSpan"/></a></td>
+				<td><a wicket:id="status" class="overzicht" href="#"><span wicket:id="statusSpan"/></a></td>
+			</tr>
+        </table>
+        <input type="button" class="btn" value="Vorige" onclick="history.back()" /> 
+      </wicket:extend>
+  </body>
+</html>

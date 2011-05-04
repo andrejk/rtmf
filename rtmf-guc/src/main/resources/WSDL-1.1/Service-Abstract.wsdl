@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (c) 2009-2011 Gemeente Rotterdam
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.1 (or any later version).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * European Union Public Licence for more details.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see
+ * http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
+-->
+<wsdl:definitions 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://tmfportal.ovsoftware.com/services"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+	xmlns:defreply="http://tmfportal.ovsoftware.com/services/defaultreply.xsd"
+	xmlns:ns1="http://wus.tmf.gbo.overheid.nl/wsdl/aanmeldService-V1.1.xsd"
+	targetNamespace="http://tmfportal.ovsoftware.com/services"
+	name="Service-Abstract.wsdl">
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified">
+			<xsd:import namespace="http://tmfportal.ovsoftware.com/services/defaultreply.xsd" schemaLocation="./defaultreply.xsd" />
+			<xsd:import namespace="http://wus.tmf.gbo.overheid.nl/wsdl/aanmeldService-V1.1.xsd" schemaLocation="aanmeldService.xsd" />
+		</xsd:schema>
+		<xsd:schema elementFormDefault="qualified" targetNamespace="http://tmfportal.ovsoftware.com/services">
+			<xsd:simpleType name="FaultType">
+				<xsd:restriction base="xsd:string" />
+			</xsd:simpleType>
+			<xsd:element name="fault" type="tns:FaultType" />
+		</xsd:schema>
+	</wsdl:types>
+	
+	<wsdl:message name="intrekking">
+		<wsdl:part name="parameters" element="ns1:intrekking" />
+	</wsdl:message>
+
+
+	<wsdl:message name="terugmelding">
+		<wsdl:part name="parameters" element="ns1:terugmelding" />
+	</wsdl:message>
+
+
+	<wsdl:message name="intrekkingResponse">
+		<wsdl:part name="parameters" element="defreply:response" />
+	</wsdl:message>
+
+
+	<wsdl:message name="terugmeldingResponse">
+		<wsdl:part name="parameters" element="defreply:response" />
+	</wsdl:message>
+
+
+	<wsdl:message name="fault">
+		<wsdl:part name="parameters" element="tns:fault" />
+	</wsdl:message>
+	
+	<wsdl:portType name="tmf-aanmelden">
+		
+		<wsdl:operation name="terugmelding">
+			<wsdl:input message="tns:terugmelding"
+				wsaw:Action="A04000000000046-tmf-aanmelden-terugmelding-https---s794.nxs.nl-corvus-httpd-ebms-inbound" />
+			<wsdl:output message="tns:terugmeldingResponse"
+				wsaw:Action="A04000000000046-tmf-aanmelden-terugmelding-https---s794.nxs.nl-corvus-httpd-ebms-inboundResponse" />
+			<wsdl:fault message="tns:fault" 
+				name="terugmeldingFault" />
+		</wsdl:operation>
+
+
+		<wsdl:operation name="intrekking">
+			<wsdl:input message="tns:intrekking"
+				wsaw:Action="A04000000000046-tmf-aanmelden-intrekking-https---s794.nxs.nl-corvus-httpd-ebms-inbound" />
+			<wsdl:output message="tns:intrekkingResponse"
+				wsaw:Action="A04000000000046-tmf-aanmelden-intrekking-https---s794.nxs.nl-corvus-httpd-ebms-inboundResponse" />
+			<wsdl:fault message="tns:fault" 
+				name="intrekkingFault" />
+		</wsdl:operation>
+
+
+	</wsdl:portType>
+</wsdl:definitions>

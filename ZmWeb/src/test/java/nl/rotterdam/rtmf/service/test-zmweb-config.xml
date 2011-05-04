@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans      http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context    http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:annotation-config />
+    <context:component-scan base-package="nl.rotterdam.rtmf" />
+    
+    <!-- Master Spring config for test and jetty:run.
+         Creates a number of test beans, then includes shared config. -->
+
+    <!-- Must define: idmDataSource, irmaDataSource -->
+    <import resource="classpath:/zm-client-context.xml"/>
+    
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+            name="zmClientProperties">
+        <property name="locations">
+            <list>
+                <value>classpath:/settings-zmweb.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="velocityEngine"
+        class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="velocityProperties">
+	        <props>
+	            <prop key="resource.loader">class</prop>
+	            <prop key="class.resource.loader.class">
+	                org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+	            </prop>
+	        </props>
+        </property>
+    </bean>
+    <bean
+            class="org.springframework.beans.factory.config.PropertiesFactoryBean"
+            name="zmWebProperties">
+            <property name="ignoreResourceNotFound" value="true" />
+            <property name="locations">
+                <list>
+                    <value>classpath*:zmweb.properties</value>
+                </list>
+            </property>
+        </bean>
+        
+    <bean id="wicketApplication" class="nl.rotterdam.rtmf.WicketApplication">
+    </bean>
+    
+</beans>
