@@ -6,7 +6,7 @@ RTMF staat voor Rotterdamse Terugmeld Faciliteit. RTMF is een koppeling tussen D
 Licentie
 --------
 
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL), version 1.1 (or any later version).
+This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL), version 1.1 (or any later version). Full text: http://www.osor.eu/eupl/eupl-v1.1/nl/EUPL%20v.1.1%20-%20Licentie.pdf
 
 Build
 -----
@@ -14,11 +14,13 @@ Build
 Het RTMF project maakt gebruikt van maven 2. De build werkt nog niet met Maven 3.
 
 RTMF heeft een aantal afhankelijkheden nodig die door maven niet uit publieke repositories gedownload kan worden. Je zult deze zelf in een lokale repository of in je lokale cache moeten zetten:
+
 * TMFPortal - opensource software te downloaden bij Logius: http://www.logius.nl/producten/gegevensuitwisseling/digimelding/
 * subethasmtp - http://code.google.com/p/subethasmtp/downloads/list
 * oracle jdbc - ojdbc14, versie 10.2.0.4.0
 
 Een aantal afhankelijkheden zijn niet beschikbaar, de gebruiker van de code van RTMF dient hiervoor zelf een alternatief te realiseren:
+
 * guc_algemeen_componenten - Rotterdam specifieke Mule ESB componenten voor oa logging.
 * zm-client - Koppeling met Rotterdams zakenmagazijn.
 
@@ -50,8 +52,9 @@ Configuratie
 ------------
 
 RTMF maakt gebruik van een aantal configuratie bestanden:
+
 * rtmfguc_env.properties - configuratie voor RTMF Mule applicatie
 * tmfportal.properties - configuratie voor TMF Portal (Digimelding)
 
-Voorbeelden van deze bestanden zijn te vinden in rtmf-guc/src/test/resources. Voor ontwikkeldoeleinden kan het best gebruik gemaakt worden van een configuratie naar mock services.
+Voorbeelden van deze bestanden zijn te vinden in rtmf-guc/src/test/resources. Voor ontwikkeldoeleinden kan het best gebruik gemaakt worden van een configuratie naar mock services. Je kunt deze in je $HOME directory plaatsen.
 
