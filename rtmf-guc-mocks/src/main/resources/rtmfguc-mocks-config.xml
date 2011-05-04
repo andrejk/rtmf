@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (c) 2009-2011 Gemeente Rotterdam
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.1 (or any later version).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * European Union Public Licence for more details.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see
+ * http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
+  -->
+<mule xmlns="http://www.mulesource.org/schema/mule/core/2.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns:http="http://www.mulesource.org/schema/mule/http/2.2" xmlns:vm="http://www.mulesource.org/schema/mule/vm/2.2"
+	xmlns:xm="http://www.mulesource.org/schema/mule/xml/2.2" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:scripting="http://www.mulesource.org/schema/mule/scripting/2.2"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+
+	xsi:schemaLocation="
+               http://www.mulesource.org/schema/mule/scripting/2.2 http://www.mulesource.org/schema/mule/scripting/2.2/mule-scripting.xsd
+               http://www.mulesource.org/schema/mule/core/2.2 http://www.mulesource.org/schema/mule/core/2.2/mule.xsd
+               http://www.mulesource.org/schema/mule/http/2.2 http://www.mulesource.org/schema/mule/http/2.2/mule-http.xsd
+               http://www.mulesource.org/schema/mule/vm/2.2 http://www.mulesource.org/schema/mule/vm/2.2/mule-vm.xsd
+               http://www.mulesource.org/schema/mule/xml/2.2 http://www.mulesource.org/schema/mule/xml/2.2/mule-xml.xsd
+               http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+               http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+               http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd">
+
+	<!--
+		Dat refresable wil nog niet helemaal werken, helaas De scripts missen
+		dan ook de MuleContext als je alleen lang:groovy bean gebruikt En de
+		mule Refreshable will niet werken omdat er geen SpringConverters voor
+		zijn (voor het zetten van script property)
+	-->
+	<!--
+		<spring:beans> <lang:groovy
+		id="quasiIntelligentTmfMockServicesScriptBean"
+		script-source="classpath:QuasiIntelligentTmfMockServices.groovy"
+		refresh-check-delay="1000"/> </spring:beans>
+
+		<scripting:groovy-refreshable
+		name="quasiIntelligentTmfMockServicesScript"
+		refreshableBean-ref="quasiIntelligentTmfMockServicesScriptBean"/>
+	-->
+
+<!-- 
+	<scripting:script engine="groovy" file="Simple.groovy"
+		name="SimpleId"></scripting:script>
+-->
+	<byte-array-to-object-transformer
+		name="byteArrayToObject" />
+
+	<model name="rtfm-mocks">
+
+		<service name="stelselCatalogusServiceMock">
+			<description>Een mock service om stelselBevragen service na te
+				bootsen. Metadata en actuele waarden</description>
+			<inbound>
+				<http:inbound-endpoint host="${rtmf.cfg.mock.stelselcatalogus.host}"
+					port="${rtmf.cfg.mock.stelselcatalogus.port}" path="${rtmf.cfg.mock.stelselcatalogus.metadata.path}"
+					synchronous="true" contentType="text/xml" transformer-refs="byteArrayToObject rtmf.tracing.request.transformer"
+					responseTransformer-refs="delete-content-type-header add-xml-content-type-header"
+					name="rtmfguc.mock.stelselcatalogus.inbound.http"  connector-ref="domein.http.connector" />
+			</inbound>
+			<scripting:component>
+				<scripting:script
+					file="groovy-scripts/StelselBevragenTmfMockServices.groovy" />
+			</scripting:component>
+		</service>
+
+		<service name="tmfAanmeldenIntrekkenServiceMock">
+			<description> Een mock service om terugmelden service van het TMF na
+				te bootsen (terugmelden, intrekken)</description>
+			<inbound>
+				<http:inbound-endpoint host="${rtmf.cfg.mock.tmf.host}"
+					port="${rtmf.cfg.mock.tmf.port}" path="${rtmf.cfg.mock.tmf.path}" synchronous="true"
+					contentType="text/xml" transformer-refs="byteArrayToObject rtmf.tracing.request.transformer"
+					responseTransformer-refs="delete-content-type-header add-xml-content-type-header"
+					name="rtmfguc.mock.tmf.inbound.http"  connector-ref="domein.http.connector"/>
+			</inbound>
+			<scripting:component>
+				<scripting:script file="groovy-scripts/TerugmeldenTmfMockServices.groovy" />
+			</scripting:component>
+		</service>
+		
+		<service name="zmTerugmeldenServiceMock">
+            <inbound>
+                <http:inbound-endpoint host="${rtmf.cfg.mock.zm.host}"
+                    port="${rtmf.cfg.mock.zm.port}"  connector-ref="domein.http.connector"
+                    path="${rtmf.cfg.mock.zm.terugmeld.path}" synchronous="true" contentType="text/xml"
+                    transformer-refs="byteArrayToObject rtmf.tracing.request.transformer"
+                    responseTransformer-refs="delete-content-type-header add-xml-content-type-header"
+                    name="rtmfguc.mock.zm.inbound.http"/>
+            </inbound>
+            <scripting:component>
+                 <scripting:script file="groovy-scripts/TerugmeldenZmMockServices.groovy"/>
+            </scripting:component>
+        </service>
+		
+
+        <service name="tmfOphalenStatusServiceMock">
+            <description> Een mock service om terugmelden service van het TMF na
+                te bootsen (status ophalen)</description>
+            <inbound>
+                <http:inbound-endpoint host="${rtmf.cfg.mock.tmf.ophalen.host}" 
+                    port="${rtmf.cfg.mock.tmf.ophalen.port}"  connector-ref="domein.http.connector"
+                    path="${rtmf.cfg.mock.tmf.ophalen.path}" synchronous="true" contentType="text/xml"
+                    transformer-refs="byteArrayToObject rtmf.tracing.request.transformer"
+                    responseTransformer-refs="delete-content-type-header add-xml-content-type-header"
+                    name="rtmfguc.mock.tmf.ophalen.inbound.http"/>
+            </inbound>
+            <scripting:component>
+                 <scripting:script file="groovy-scripts/OphalenTmfMockServices.groovy"/>
+            </scripting:component>
+        </service>
+        
+		<service name="gmStelselCatalogusMetadataServiceMock">
+			<description>Een mock service om stelselBevragen service van het GM
+				na te bootsen.</description>
+			<inbound>
+				<http:inbound-endpoint host="${rtmf.cfg.mock.gm.stelselcatalogus.host}"
+					port="${rtmf.cfg.mock.gm.stelselcatalogus.port}" path="${rtmf.cfg.mock.gm.stelselcatalogus.path}"
+					synchronous="true" contentType="text/xml" transformer-refs="byteArrayToObject rtmf.tracing.request.transformer"
+					responseTransformer-refs="delete-content-type-header add-xml-content-type-header"
+					name="rtmfguc.mock.gm.stelselcatalogus.metadata.inbound.http" 
+					 connector-ref="domein.http.connector"/>
+			</inbound>
+			<scripting:component>
+				<scripting:script
+					file="groovy-scripts/StelselBevragenGmMockServices.groovy" />
+			</scripting:component>
+		</service>
+        
+		<service name="gmStelselCatalogusActueleWaardenServiceMock">
+			<description>Een mock service om actuele waarden van GM na te bootsen
+			</description>
+			<inbound>
+				<http:inbound-endpoint host="${rtmf.cfg.mock.gm.stuf.host}"
+				 connector-ref="domein.http.connector"
+					port="${rtmf.cfg.mock.gm.stuf.port}" path="${rtmf.cfg.mock.gm.stuf.path}"
+					synchronous="true" contentType="text/xml" transformer-refs="byteArrayToObject rtmf.tracing.request.transformer"
+					responseTransformer-refs="delete-content-type-header add-xml-content-type-header"
+					name="rtmfguc.mock.gm.stelselcatalogus.actuelewaarden.inbound.http" />
+			</inbound>
+			<scripting:component>
+				<scripting:script file="groovy-scripts/StufSoZaWeGmMockServices.groovy" />
+			</scripting:component>
+		</service>
+		
+
+	</model>
+</mule>

@@ -1,0 +1,130 @@
+<!--
+ * Copyright (c) 2009-2011 Gemeente Rotterdam
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.1 (or any later version).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * European Union Public Licence for more details.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see
+ * http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
+-->
+<wsdl:definitions
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+	xmlns:os-xsd="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd"
+	xmlns:os-adw="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1"
+	targetNamespace="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1"
+	name="ophaalService-abstract-definition.wsdl">
+
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified">
+			<xsd:import
+				namespace="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd"
+				schemaLocation="ophaalService.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="faultMsg">
+		<wsdl:part name="Fault" element="os-xsd:tmfFault"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="ophalenMeldingStatusRequest">
+		<wsdl:part name="ophalenMeldingStatus"
+			element="os-xsd:ophalenMeldingStatus">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="ophalenMeldingStatusResponse">
+		<wsdl:part name="ophalenMeldingStatusResponse"
+			element="os-xsd:ophalenMeldingStatusResponse">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="ophalenMeldingKenmerkRequest">
+		<wsdl:part name="ophalenMeldingKenmerk"
+			element="os-xsd:ophalenMeldingKenmerk">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="ophalenMeldingKenmerkResponse">
+		<wsdl:part name="ophalenMeldingKemerkResponse"
+			element="os-xsd:ophalenMeldingKenmerkResponse">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="ophalenTmfKenmerkRequest">
+		<wsdl:part name="ophalenTmfKenmerk"
+			element="os-xsd:ophalenTmfKenmerk">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="ophalenTmfKenmerkResponse">
+		<wsdl:part name="ophalenTmfKenmerkResponse"
+			element="os-xsd:ophalenTmfKenmerkResponse">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="ophalenMededelingRequest">
+		<wsdl:part name="ophalenMededeling"
+			element="os-xsd:ophalenMededeling">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="ophalenMededelingResponse">
+		<wsdl:part name="ophalenMededelingResponse"
+			element="os-xsd:ophalenMededelingResponse">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:portType name="OphaalService">
+	
+		<wsdl:operation name="ophalenMeldingStatus">
+			<wsdl:input message="os-adw:ophalenMeldingStatusRequest"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingStatusRequest" />
+			<wsdl:output message="os-adw:ophalenMeldingStatusResponse"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingStatusResponse" />
+			<wsdl:fault name="fault"
+				message="os-adw:faultMsg">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="ophalenMeldingKenmerk">
+			<wsdl:input message="os-adw:ophalenMeldingKenmerkRequest"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingKenmerkRequest" />
+			<wsdl:output message="os-adw:ophalenMeldingKenmerkResponse"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingKenmerkResponse" />
+			<wsdl:fault name="fault"
+				message="os-adw:faultMsg">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="ophalenTmfKenmerk">
+			<wsdl:input message="os-adw:ophalenTmfKenmerkRequest"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenTmfKenmerkRequest" />
+			<wsdl:output message="os-adw:ophalenTmfKenmerkResponse"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenTmfKenmerkResponse" />
+			<wsdl:fault name="fault"
+				message="os-adw:faultMsg">
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="ophalenMededeling">
+			<wsdl:input message="os-adw:ophalenMededelingRequest"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMededelingRequest" />
+			<wsdl:output message="os-adw:ophalenMededelingResponse"
+				wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMededelingResponse" />
+			<wsdl:fault name="fault"
+				message="os-adw:faultMsg">
+			</wsdl:fault>
+		</wsdl:operation>
+
+	</wsdl:portType>
+
+</wsdl:definitions>

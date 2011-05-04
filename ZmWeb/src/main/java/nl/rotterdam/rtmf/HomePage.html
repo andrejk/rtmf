@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="nl" xmlns:wicket="http://wicket.apache.org/">
+  <body>
+    <wicket:extend>
+    <div id="welkomBalk">
+          <span>Zoek terugmelding</span>
+        </div>
+    <div class="welkombar">
+        <div class="welkomtext">
+            <p>Welkom bij de applicatie waarmee de status van een terugmelding op kerngegevens kan worden bijgewerkt. Hieronder vindt u een aantal selectiecriteria op basis waarvan u kunt zoeken naar terugmeldingen. Na selectie van de juiste terugmelding kunt u de status ervan bijwerken.</p>
+        </div>      
+    </div>
+        <form wicket:id="zoekForm">
+	        <table id="zoekTable">
+	        <tr>
+		        <td>Meldingskenmerk</td>
+		        <td><input type="text" wicket:id="meldingskenmerk"/></td>
+	        </tr>
+	        <tr>
+	            <td>Zaaknummer</td>
+	            <td><input type="text" wicket:id="zaaknummer"/></td>
+	        </tr>
+	        <tr>
+	            <td>Objectidentificatie</td>
+	            <td><input wicket:id="objectIdentificatie" type="text"/></td>
+	        </tr>
+	        <tr>
+	            <td>Vanaf datum</td>
+	            <td>
+	                <input wicket:id="vanafDatumDag" class="dateddmm" type="text" value="" maxlength="2" />
+	                <input wicket:id="vanafDatumMaand" class="dateddmm" type="text" value="" maxlength="2" />
+	                <input wicket:id="vanafDatumJaar" class="dateyyyy" type="text" value="" maxlength="4"/>
+	            </td>
+	            <td>dd / mm / jjjj</td>
+	        </tr>
+	        <tr>
+	            <td>Tm datum</td>
+	            <td>
+	                <input wicket:id="totDatumDag" class="dateddmm" type="text" value="" maxlength="2"/>
+	                <input wicket:id="totDatumMaand" class="dateddmm" type="text" value="" maxlength="2"/>
+	                <input wicket:id="totDatumJaar" class="dateyyyy" type="text" value="" maxlength="4"/>
+	            </td>
+	            <td>dd / mm / jjjj</td>
+	        </tr>
+	        <tr>
+	            <td>Status terugmelding</td>
+	            <td>
+	                <select wicket:id="statusTerugmelding">
+	                    <option></option>
+	                    <option>Iets</option>
+	                    <option>Iets anders</option>
+	                </select>
+	            </td>
+	        </tr>
+	        <tr>
+	            <!-- <td><input type="submit" value="Nieuwe zoekopdracht" class="btn"/></td>-->
+	            <td><input wicket:id="submit" type="submit" value="Zoek" class="btn"/></td>
+	        </tr>
+	        </table>
+        </form>
+        </wicket:extend>
+  </body>
+</html>

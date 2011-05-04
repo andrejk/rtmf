@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (c) 2009-2011 Gemeente Rotterdam
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.1 (or any later version).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * European Union Public Licence for more details.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see
+ * http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
+-->
+<con:soapui-project name="gm-ioo-wsdl-1.1" resourceRoot="${projectDir}" soapui-version="3.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="200508" name="stelselBevragenBinding" type="wsdl" bindingName="{http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO}stelselBevragenBinding" soapVersion="1_1" anonymous="optional" definition="stelselBevragen-servicebinding-ioo.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/iteye/projecten/gemeenteRotterdam/tmf/source/rtmf-guc/src/main/resources/WSDL-1.1/stelselBevragen-servicebinding-ioo.wsdl"><con:part><con:url>file:/D:/iteye/projecten/gemeenteRotterdam/tmf/source/rtmf-guc/src/main/resources/WSDL-1.1/stelselBevragen-servicebinding-ioo.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO" name="stelselBevragen-servicebinding-ioo.wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:sb-xsd="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO.xsd" xmlns:sb-sbw="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO">
+  <wsdl:import namespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO" location="stelselBevragen-abstract-definition-ioo.wsdl"/>
+  <wsdl:binding name="stelselBevragenBinding" type="sb-sbw:StelselBevragen">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <!--WHO for oracle
+		<wsaw:UsingAddressing wsdl:required="true" />-->
+    <wsdl:operation name="getObjectInfo">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="bevragen">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getObjectTypeList">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getBasisregistratieList">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="stelselBevragenService">
+    <wsdl:documentation>
+      <wsi:Claim conformsTo="http://ws-i.org/profiles/basic/1.1"/>
+    </wsdl:documentation>
+    <wsdl:port name="stelselBevragenSOAP" binding="sb-sbw:stelselBevragenBinding">
+      <soap:address location="http://localhost:8585/services"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\D:\iteye\projecten\gemeenteRotterdam\tmf\source\rtmf-guc\src\main\resources\WSDL-1.1\stelselBevragen-abstract-definition-ioo.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO" name="stelselBevragen-abstract-definition-ioo.wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:sb-xsd="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO.xsd" xmlns:sb-adw="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified">
+      <xsd:import namespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO.xsd" schemaLocation="stelselBevragen-ioo.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getObjectInfoRequest">
+    <wsdl:part name="getObjectInfo" element="sb-xsd:getObjectInfo"/>
+  </wsdl:message>
+  <wsdl:message name="getObjectInfoResponse">
+    <wsdl:part element="sb-xsd:getObjectInfoResponse" name="getObjectInfoResponse"/>
+  </wsdl:message>
+  <wsdl:message name="bevragenRequest">
+    <wsdl:part name="bevragen" element="sb-xsd:bevragen"/>
+  </wsdl:message>
+  <wsdl:message name="bevragenResponse">
+    <wsdl:part name="bevragenResponse" element="sb-xsd:bevragenResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="faultMsg">
+    <wsdl:part name="Fault" element="sb-xsd:gobFault"/>
+  </wsdl:message>
+  <wsdl:message name="getObjectTypeListRequest">
+    <wsdl:part name="getObjectTypeList" element="sb-xsd:getObjectTypeList"/>
+  </wsdl:message>
+  <wsdl:message name="getObjectTypeListResponse">
+    <wsdl:part element="sb-xsd:getObjectTypeListResponse" name="getObjectTypeListResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getBasisregistratieListRequest">
+    <wsdl:part name="getBasisregistratieList" element="sb-xsd:getBasisregistratieList"/>
+  </wsdl:message>
+  <wsdl:message name="getBasisregistratieListResponse">
+    <wsdl:part element="sb-xsd:getBasisregistratieListResponse" name="getBasisregistratieListResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="StelselBevragen">
+    <wsdl:operation name="getObjectInfo">
+      <wsdl:input message="sb-adw:getObjectInfoRequest" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoRequest"/>
+      <wsdl:output message="sb-adw:getObjectInfoResponse" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoResponse"/>
+      <wsdl:fault name="fault" message="sb-adw:faultMsg"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="bevragen">
+      <wsdl:input message="sb-adw:bevragenRequest" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/bevragenRequest"/>
+      <wsdl:output message="sb-adw:bevragenResponse" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/bevragenResponse"/>
+      <wsdl:fault name="fault" message="sb-adw:faultMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="getObjectTypeList">
+      <wsdl:input message="sb-adw:getObjectTypeListRequest" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListRequest"/>
+      <wsdl:output message="sb-adw:getObjectTypeListResponse" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListResponse"/>
+      <wsdl:fault name="fault" message="sb-adw:faultMsg"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getBasisregistratieList">
+      <wsdl:input message="sb-adw:getBasisregistratieListRequest" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getBasisregistratieListRequest"/>
+      <wsdl:output message="sb-adw:getBasisregistratieListResponse" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getBasisregistratieListResponse"/>
+      <wsdl:fault name="fault" message="sb-adw:faultMsg"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\D:\iteye\projecten\gemeenteRotterdam\tmf\source\rtmf-guc\src\main\resources\WSDL-1.1\stelselBevragen-ioo.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO.xsd" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:sb-xsd="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO.xsd">
+  <xsd:element name="getObjectInfo" type="sb-xsd:ObjectInfoRequestType"></xsd:element>
+  <xsd:element name="getObjectInfoResponse" type="sb-xsd:ObjectInfoResponseType"></xsd:element>
+  <xsd:complexType name="BevragenRequestType">
+    <xsd:sequence>
+      <xsd:element name="brTag" type="xsd:string"/>
+      <xsd:element name="objectTag" type="xsd:string"/>
+      <xsd:element name="objectId" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BevragenResponseType">
+    <xsd:sequence>
+      <xsd:element name="objectinstantie" type="sb-xsd:ObjectValueType"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ObjectType">
+    <xsd:sequence>
+      <xsd:element name="ObjectHeaderInfo" type="sb-xsd:ObjectHeaderType"></xsd:element>
+      <xsd:element name="attributen" type="sb-xsd:AttribuutType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AttribuutType">
+    <xsd:sequence>
+      <xsd:element name="code" type="xsd:string"/>
+      <xsd:element name="naam" type="xsd:string"/>
+      <!--IOO uitbreiding t.b.v. TMF-->
+      <xsd:element name="gegevenstype" type="xsd:string"/>
+      <xsd:element name="stufpath" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="bevragen" type="sb-xsd:BevragenRequestType"></xsd:element>
+  <xsd:element name="bevragenResponse" type="sb-xsd:BevragenResponseType"></xsd:element>
+  <xsd:complexType name="AttribuutValueType">
+    <xsd:sequence>
+      <xsd:element name="attribuutInfo" type="sb-xsd:AttribuutType"></xsd:element>
+      <xsd:element name="value" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ObjectValueType">
+    <xsd:sequence>
+      <xsd:element name="objectInfo" type="sb-xsd:ObjectHeaderType"></xsd:element>
+      <xsd:element name="attributeValues" type="sb-xsd:AttribuutValueType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ObjectHeaderType">
+    <xsd:sequence>
+      <xsd:element name="tag" type="xsd:string"/>
+      <xsd:element name="naam" type="xsd:string"/>
+      <xsd:element name="bevraagbaar" type="xsd:boolean"></xsd:element>
+      <xsd:element name="instructie" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ObjectInfoRequestType">
+    <xsd:sequence>
+      <xsd:element name="BRTag" type="xsd:string"/>
+      <xsd:element name="ObjectTag" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ObjectInfoResponseType">
+    <xsd:sequence>
+      <xsd:element name="objectInfo" type="sb-xsd:ObjectType"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="gobFault" type="sb-xsd:MeldingType"/>
+  <xsd:complexType name="MeldingType">
+    <xsd:sequence>
+      <xsd:element name="classificatie" type="xsd:string"></xsd:element>
+      <xsd:element name="code" type="xsd:string"/>
+      <xsd:element name="tekst" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="getObjectTypeList" type="sb-xsd:ObjectTypeListRequestType"></xsd:element>
+  <xsd:element name="getObjectTypeListResponse" type="sb-xsd:ObjectTypeListResponseType"></xsd:element>
+  <xsd:complexType name="ObjectTypeListRequestType">
+    <xsd:sequence>
+      <xsd:element name="BRTag" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ObjectTypeListResponseType">
+    <xsd:sequence>
+      <xsd:element name="objectTypeList" type="sb-xsd:ObjectHeaderType" maxOccurs="unbounded" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="getBasisregistratieList" type="sb-xsd:BasisregistratieListRequestType"></xsd:element>
+  <xsd:element name="getBasisregistratieListResponse" type="sb-xsd:BasisregistratieListResponseType"></xsd:element>
+  <xsd:complexType name="BasisregistratieListRequestType">
+    <xsd:sequence></xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BasisregistratieListResponseType">
+    <xsd:sequence>
+      <xsd:element name="basisregistratieList" type="sb-xsd:BasisregistratieType" maxOccurs="unbounded" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BasisregistratieType">
+    <xsd:sequence>
+      <xsd:element name="tag" type="xsd:string"/>
+      <xsd:element name="naam" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8585/services</con:endpoint><con:endpoint>http://localhost:18088/services</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="bevragen" bindingOperationName="bevragen" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8585/services</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stel:bevragen>
+         <stel:brTag>?</stel:brTag>
+         <stel:objectTag>?</stel:objectTag>
+         <stel:objectId>?</stel:objectId>
+      </stel:bevragen>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/bevragenRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getBasisregistratieList" bindingOperationName="getBasisregistratieList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:18088/services</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	<soapenv:Header xmlns:wsa="http://www.w3.org/2005/08/addressing">
+		<wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getBasisregistratieListRequest/stelselBevragenService
+		</wsa:Action>
+		<wsa:MessageID>uuid:84b42edc-6715-48c2-9b93-680c5a55c080
+		</wsa:MessageID>
+		<wsa:To>http://twd720.resource.ta-twd.rotterdam.nl:10080/services
+		</wsa:To>
+	</soapenv:Header>
+	<soapenv:Body>
+		<sb-xsd:getBasisregistratieList xmlns:sb-xsd="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO.xsd"/>
+	</soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getBasisregistratieListRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getObjectInfo" bindingOperationName="getObjectInfo" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8585/services</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stel:getObjectInfo>
+         <stel:BRTag>?</stel:BRTag>
+         <stel:ObjectTag>?</stel:ObjectTag>
+      </stel:getObjectInfo>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getObjectTypeList" bindingOperationName="getObjectTypeList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:18088/services</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stel:getObjectTypeList>
+         <stel:BRTag>BBB</stel:BRTag>
+      </stel:getObjectTypeList>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService port="18088" path="/services" host="localhost" name="GMstelselBevragenBinding MockService" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="bevragen" interface="stelselBevragenBinding" operation="bevragen"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8" compression="&lt;none>" useWsAddressing="true" httpResponseStatus=""><con:settings><con:setting id="com.eviware.soapui.settings.CommonSettings@entitizeProperties">true</con:setting></con:settings><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stel:bevragenResponse>
+         <stel:objectinstantie>
+            <stel:objectInfo>
+               <stel:tag>?</stel:tag>
+               <stel:naam>?</stel:naam>
+               <stel:bevraagbaar>?</stel:bevraagbaar>
+               <stel:instructie>?</stel:instructie>
+            </stel:objectInfo>
+            <!--Zero or more repetitions:-->
+            <stel:attributeValues>
+               <stel:attribuutInfo>
+                  <stel:code>?</stel:code>
+                  <stel:naam>?</stel:naam>
+                  <stel:gegevenstype>?</stel:gegevenstype>
+                  <stel:stufpath>?</stel:stufpath>
+               </stel:attribuutInfo>
+               <stel:value>?</stel:value>
+            </stel:attributeValues>
+         </stel:objectinstantie>
+      </stel:bevragenResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/bevragenResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="getBasisregistratieList" interface="stelselBevragenBinding" operation="getBasisregistratieList"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>GemeentelijkeRegistraties</con:defaultResponse><con:response name="GemeentelijkeRegistraties" encoding="UTF-8" compression="&lt;none>" useWsAddressing="true"><con:settings/><con:script>def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context);
+
+requestContext.correlationId = mockRequest.getHttpRequest().getHeader("X-MULE_CORRELATION_ID")
+requestContext.replyTo = mockRequest.getHttpRequest().getHeader("X-MULE_REPLYTO")
+requestContext.remoteSync = mockRequest.getHttpRequest().getHeader("X-MULE_REMOTE_SYNC")
+requestContext.encoding = mockRequest.getHttpRequest().getHeader("X-MULE_ENCODING")
+requestContext.endpoint = mockRequest.getHttpRequest().getHeader("X-MULE_ENDPOINT")
+requestContext.remoteClientAddress = mockRequest.getHttpRequest().getHeader("X-MULE_REMOTE_CLIENT_ADDRESS")
+requestContext.originatingEndpoint = mockRequest.getHttpRequest().getHeader("X-MULE_ORIGINATING_ENDPOINT")
+requestContext.correlationGroupSize = mockRequest.getHttpRequest().getHeader("X-MULE_CORRELATION_GROUP_SIZE")
+requestContext.replyToRequestor = mockRequest.getHttpRequest().getHeader("X-MULE_REPLYTO_REQUESTOR")
+
+// TODO: maak een loop die alle header kopieert (of alleen die met X-*)</con:script><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stelgm="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stelgm:getBasisregistratieListResponse>
+         <!--Zero or more repetitions:-->
+         <stelgm:basisregistratieList>
+            <stelgm:tag>GM-REG1</stelgm:tag>
+            <stelgm:naam>Personen (GM)</stelgm:naam>
+         </stelgm:basisregistratieList>
+         <stelgm:basisregistratieList>
+            <stelgm:tag>OSB-REG2</stelgm:tag>
+            <stelgm:naam>Havens (GM)</stelgm:naam>
+         </stelgm:basisregistratieList>
+	 <stelgm:basisregistratieList>
+            <stelgm:tag>BRA</stelgm:tag>
+            <stelgm:naam>Basis Registratie Adressen</stelgm:naam>
+         </stelgm:basisregistratieList>
+         <stelgm:basisregistratieList>
+            <stelgm:tag>WOZ</stelgm:tag>
+            <stelgm:naam>Andere naam</stelgm:naam>
+         </stelgm:basisregistratieList>
+         <stelgm:basisregistratieList>
+            <stelgm:tag>ANDERETAG</stelgm:tag>
+            <stelgm:naam>Basisregistratie Kadaster</stelgm:naam>
+         </stelgm:basisregistratieList>
+      </stelgm:getBasisregistratieListResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:header><con:name>MULE_REPLYTO_REQUESTOR</con:name><con:value>${replyToRequestor}</con:value></con:header><con:header><con:name>MULE_REPLYTO</con:name><con:value>${replyTo}</con:value></con:header><con:header><con:name>MULE_REMOTE_SYNC</con:name><con:value>${remoteSync}</con:value></con:header><con:header><con:name>MULE_REMOTE_CLIENT_ADDRESS</con:name><con:value>${remoteClientAddress}</con:value></con:header><con:header><con:name>MULE_CORRELATION_ID</con:name><con:value>${correlationId}</con:value></con:header><con:header><con:name>MULE_ENDPOINT</con:name><con:value>${remoteClientAddress}</con:value></con:header><con:header><con:name>MULE_CORRELATION_GROUP_SIZE</con:name><con:value>${correlationGroupSize}</con:value></con:header><con:header><con:name>MULE_ENCODING</con:name><con:value>${encoding}</con:value></con:header><con:header><con:name>MULE_ORIGINATING_ENDPOINT</con:name><con:value>${endpoint}</con:value></con:header><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getBasisregistratieListResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="getObjectInfo" interface="stelselBevragenBinding" operation="getObjectInfo"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>GemeentelijkePersoonAttributen</con:defaultResponse><con:response name="GemeentelijkePersoonAttributen" encoding="UTF-8" compression="&lt;none>" useWsAddressing="true"><con:settings/><con:script>def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context);
+
+requestContext.correlationId = mockRequest.getHttpRequest().getHeader("X-MULE_CORRELATION_ID")
+requestContext.replyTo = mockRequest.getHttpRequest().getHeader("X-MULE_REPLYTO")
+requestContext.remoteSync = mockRequest.getHttpRequest().getHeader("X-MULE_REMOTE_SYNC")
+requestContext.encoding = mockRequest.getHttpRequest().getHeader("X-MULE_ENCODING")
+requestContext.endpoint = mockRequest.getHttpRequest().getHeader("X-MULE_ENDPOINT")
+requestContext.remoteClientAddress = mockRequest.getHttpRequest().getHeader("X-MULE_REMOTE_CLIENT_ADDRESS")
+requestContext.originatingEndpoint = mockRequest.getHttpRequest().getHeader("X-MULE_ORIGINATING_ENDPOINT")
+requestContext.correlationGroupSize = mockRequest.getHttpRequest().getHeader("X-MULE_CORRELATION_GROUP_SIZE")
+requestContext.replyToRequestor = mockRequest.getHttpRequest().getHeader("X-MULE_REPLYTO_REQUESTOR")
+
+// TODO: maak een loop die alle header kopieert (of alleen die met X-*)</con:script><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stelgm="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stelgm:getObjectInfoResponse>
+         <stelgm:objectInfo>
+            <stelgm:ObjectHeaderInfo>
+               <stelgm:tag>GM-PERSOON</stelgm:tag>
+               <stelgm:naam>Persoon</stelgm:naam>
+               <stelgm:bevraagbaar>true</stelgm:bevraagbaar>
+               <stelgm:instructie>TEST-INSTRUCTIE</stelgm:instructie>
+            </stelgm:ObjectHeaderInfo>
+            <!--Zero or more repetitions:-->
+            <stelgm:attributen>
+               <stelgm:code>GM-PERSOON-TUSSENVOEGSEL</stelgm:code>
+               <stelgm:naam>Tussenvoegsel</stelgm:naam>
+            </stelgm:attributen>
+            <stelgm:attributen>
+               <stelgm:code>GM-PERSOON-ACHTERNAAM</stelgm:code>
+               <stelgm:naam>Achternaam</stelgm:naam>
+            </stelgm:attributen>
+            <stelgm:attributen>
+               <stelgm:code>GM-PERSOON-ROTTERDAMSE-BIJNAAM</stelgm:code>
+               <stelgm:naam>Rotterdamse bijnaam</stelgm:naam>
+            </stelgm:attributen>
+         </stelgm:objectInfo>
+      </stelgm:getObjectInfoResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:header><con:name>MULE_REPLYTO_REQUESTOR</con:name><con:value>${replyToRequestor}</con:value></con:header><con:header><con:name>MULE_REPLYTO</con:name><con:value>${replyTo}</con:value></con:header><con:header><con:name>MULE_REMOTE_SYNC</con:name><con:value>${remoteSync}</con:value></con:header><con:header><con:name>MULE_REMOTE_CLIENT_ADDRESS</con:name><con:value>${remoteClientAddress}</con:value></con:header><con:header><con:name>MULE_CORRELATION_ID</con:name><con:value>${correlationId}</con:value></con:header><con:header><con:name>MULE_ENDPOINT</con:name><con:value>${remoteClientAddress}</con:value></con:header><con:header><con:name>MULE_CORRELATION_GROUP_SIZE</con:name><con:value>${correlationGroupSize}</con:value></con:header><con:header><con:name>MULE_ENCODING</con:name><con:value>${encoding}</con:value></con:header><con:header><con:name>MULE_ORIGINATING_ENDPOINT</con:name><con:value>${endpoint}</con:value></con:header><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="getObjectTypeList" interface="stelselBevragenBinding" operation="getObjectTypeList"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>GemeentelijkeObjectTypeLijstPersoon</con:defaultResponse><con:response name="GemeentelijkeObjectTypeLijstPersoon" encoding="UTF-8" useWsAddressing="true" compression="&lt;none>"><con:settings/><con:script>def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context);
+
+requestContext.correlationId = mockRequest.getHttpRequest().getHeader("X-MULE_CORRELATION_ID")
+requestContext.replyTo = mockRequest.getHttpRequest().getHeader("X-MULE_REPLYTO")
+requestContext.remoteSync = mockRequest.getHttpRequest().getHeader("X-MULE_REMOTE_SYNC")
+requestContext.encoding = mockRequest.getHttpRequest().getHeader("X-MULE_ENCODING")
+requestContext.endpoint = mockRequest.getHttpRequest().getHeader("X-MULE_ENDPOINT")
+requestContext.remoteClientAddress = mockRequest.getHttpRequest().getHeader("X-MULE_REMOTE_CLIENT_ADDRESS")
+requestContext.originatingEndpoint = mockRequest.getHttpRequest().getHeader("X-MULE_ORIGINATING_ENDPOINT")
+requestContext.correlationGroupSize = mockRequest.getHttpRequest().getHeader("X-MULE_CORRELATION_GROUP_SIZE")
+requestContext.replyToRequestor = mockRequest.getHttpRequest().getHeader("X-MULE_REPLYTO_REQUESTOR")
+
+// TODO: maak een loop die alle header kopieert (of alleen die met X-*)</con:script><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stelgm="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stelgm:getObjectTypeListResponse>
+         <!--Zero or more repetitions:-->
+         <stelgm:objectTypeList>
+            <stelgm:tag>GM-PERSOON</stelgm:tag>
+            <stelgm:naam>Persoon</stelgm:naam>
+            <stelgm:bevraagbaar>false</stelgm:bevraagbaar>
+            <stelgm:instructie>TEST-INSTRUCTIE 1</stelgm:instructie>
+         </stelgm:objectTypeList>
+         <stelgm:objectTypeList>
+            <stelgm:tag>GM-BOOT</stelgm:tag>
+            <stelgm:naam>Boot</stelgm:naam>
+            <stelgm:bevraagbaar>false</stelgm:bevraagbaar>
+            <stelgm:instructie>TEST-INSTRUCTIE 1</stelgm:instructie>
+         </stelgm:objectTypeList>
+	 <stelgm:objectTypeList>
+            <stelgm:tag>STA</stelgm:tag>
+            <stelgm:naam>Staanplaats</stelgm:naam>
+            <stelgm:bevraagbaar>true</stelgm:bevraagbaar>
+            <stelgm:instructie/>
+         </stelgm:objectTypeList>
+      </stelgm:getObjectTypeListResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:header><con:name>MULE_REPLYTO_REQUESTOR</con:name><con:value>${replyToRequestor}</con:value></con:header><con:header><con:name>MULE_REPLYTO</con:name><con:value>${replyTo}</con:value></con:header><con:header><con:name>MULE_REMOTE_SYNC</con:name><con:value>${remoteSync}</con:value></con:header><con:header><con:name>MULE_REMOTE_CLIENT_ADDRESS</con:name><con:value>${remoteClientAddress}</con:value></con:header><con:header><con:name>MULE_CORRELATION_ID</con:name><con:value>${correlationId}</con:value></con:header><con:header><con:name>MULE_ENDPOINT</con:name><con:value>${remoteClientAddress}</con:value></con:header><con:header><con:name>MULE_CORRELATION_GROUP_SIZE</con:name><con:value>${correlationGroupSize}</con:value></con:header><con:header><con:name>MULE_ENCODING</con:name><con:value>${encoding}</con:value></con:header><con:header><con:name>MULE_ORIGINATING_ENDPOINT</con:name><con:value>${endpoint}</con:value></con:header><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/></con:soapui-project>

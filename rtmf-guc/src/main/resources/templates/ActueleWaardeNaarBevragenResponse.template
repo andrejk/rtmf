@@ -1,0 +1,26 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stelgm="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1-IOO.xsd">
+    <soapenv:Header xmlns:wsa="http://www.w3.org/2005/08/addressing">
+	<wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/bevragen</wsa:Action>
+	<wsa:RelatesTo RelationshipType="http://www.w3.org/2005/08/addressing/reply">uuid:${messageId}</wsa:RelatesTo>
+	<wsa:To>http://www.w3.org/2005/08/addressing/anonymous</wsa:To>
+</soapenv:Header>
+	<soapenv:Body>
+		<stelgm:bevragenResponse> 
+			<stelgm:objectinstantie>
+				<stelgm:objectInfo>
+				   <stelgm:tag>TMF-PERSOON</stelgm:tag>
+				   <stelgm:naam>Persoon</stelgm:naam>
+				   <stelgm:bevraagbaar>true</stelgm:bevraagbaar>
+				   <stelgm:instructie>TEST-INSTRUCTIE</stelgm:instructie>
+				</stelgm:objectInfo> <% attributeValues.each { attributeValue -> %>	
+					<stelgm:attributeValues>
+			            <stelgm:attribuutInfo>
+			              <stelgm:code>${attributeValue.tag}</stelgm:code>
+			              <stelgm:naam>${attributeValue.naam}</stelgm:naam>
+			            </stelgm:attribuutInfo>
+			            <stelgm:value>${attributeValue.actueleWaarde}</stelgm:value>
+			         </stelgm:attributeValues> <% } %>
+			</stelgm:objectinstantie>
+		</stelgm:bevragenResponse>
+	</soapenv:Body>
+</soapenv:Envelope>

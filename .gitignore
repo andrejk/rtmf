@@ -1,0 +1,14 @@
+target/
+tmfportaal/oldTMF/
+.settings/
+*.classpath
+*.project
+*.db
+*.war
+*~
+*.log
+/guc-generic/.settings/
+/guc-generic/target/
+.classpath
+.project
+/rtmf-guc/.mule/

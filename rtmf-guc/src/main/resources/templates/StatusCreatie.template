@@ -1,0 +1,13 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stat="http://www.interaccess.nl/webplus/statuswfm_v2">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stat:Status>
+         <stat:Zaakidentificatie>${Zaakidentificatie}</stat:Zaakidentificatie>
+         <stat:Geen_status_zetter>true</stat:Geen_status_zetter>
+         <stat:Datumstatusgezet>${Datumstatusgezet}</stat:Datumstatusgezet>
+         <stat:Statuscode>${Statuscode}</stat:Statuscode>
+         <stat:Statusomschrijving>${Statusomschrijving}</stat:Statusomschrijving>
+         <stat:Oge_id>0</stat:Oge_id>
+      </stat:Status>
+   </soapenv:Body>
+</soapenv:Envelope>

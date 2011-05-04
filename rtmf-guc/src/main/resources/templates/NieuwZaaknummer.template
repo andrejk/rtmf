@@ -1,0 +1,11 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:zaak="http://www.rotterdam.nl/zkn/zaaknummer">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <zaak:nieuwZaaknummerRequest>
+         <zaak:zaaktype>TMDG</zaak:zaaktype>
+         <zaak:jaartal>${jaartal}</zaak:jaartal>
+         <zaak:maand>${maand}</zaak:maand>
+      </zaak:nieuwZaaknummerRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+

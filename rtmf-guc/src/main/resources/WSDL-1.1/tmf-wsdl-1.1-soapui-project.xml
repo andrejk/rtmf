@@ -1,0 +1,1101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (c) 2009-2011 Gemeente Rotterdam
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.1 (or any later version).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * European Union Public Licence for more details.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see
+ * http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
+-->
+<con:soapui-project name="tmf-wsdl-1.1" resourceRoot="${projectDir}" soapui-version="3.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="200508" name="stelselBevragenBinding" type="wsdl" bindingName="{http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1}stelselBevragenBinding" soapVersion="1_1" anonymous="optional" definition="stelselBevragen-servicebinding.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/pp/tmf/workspace/rtmf-guc/src/main/resources/WSDL/stelselBevragen-servicebinding.wsdl"><con:part><con:url>file:/Users/pp/tmf/workspace/rtmf-guc/src/main/resources/WSDL/stelselBevragen-servicebinding.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1" name="stelselBevragen-servicebinding.wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:sb-xsd="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd" xmlns:sb-sbw="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1">
+  <wsdl:import namespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1" location="stelselBevragen-abstract-definition.wsdl"/>
+  <wsdl:binding name="stelselBevragenBinding" type="sb-sbw:StelselBevragen">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsaw:UsingAddressing wsdl:required="true"/>
+    <wsdl:operation name="getObjectInfo">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="bevragen">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getObjectTypeList">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getBasisregistratieList">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="stelselBevragenService">
+    <wsdl:documentation>
+      <wsi:Claim conformsTo="http://ws-i.org/profiles/basic/1.1"/>
+    </wsdl:documentation>
+    <wsdl:port name="stelselBevragenSOAP" binding="sb-sbw:stelselBevragenBinding">
+      <soap:address location="https://s794a.nxs.nl/services"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/Users/pp/tmf/workspace/rtmf-guc/src/main/resources/WSDL/stelselBevragen-abstract-definition.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1" name="stelselBevragen-abstract-definition.wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:sb-xsd="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd" xmlns:sb-adw="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified">
+      <xsd:import namespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd" schemaLocation="stelselBevragen.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getObjectInfoRequest">
+    <wsdl:part name="getObjectInfo" element="sb-xsd:getObjectInfo"/>
+  </wsdl:message>
+  <wsdl:message name="getObjectInfoResponse">
+    <wsdl:part element="sb-xsd:getObjectInfoResponse" name="getObjectInfoResponse"/>
+  </wsdl:message>
+  <wsdl:message name="bevragenRequest">
+    <wsdl:part name="bevragen" element="sb-xsd:bevragen"/>
+  </wsdl:message>
+  <wsdl:message name="bevragenResponse">
+    <wsdl:part name="bevragenResponse" element="sb-xsd:bevragenResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="faultMsg">
+    <wsdl:part name="Fault" element="sb-xsd:gobFault"/>
+  </wsdl:message>
+  <wsdl:message name="getObjectTypeListRequest">
+    <wsdl:part name="getObjectTypeList" element="sb-xsd:getObjectTypeList"/>
+  </wsdl:message>
+  <wsdl:message name="getObjectTypeListResponse">
+    <wsdl:part element="sb-xsd:getObjectTypeListResponse" name="getObjectTypeListResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getBasisregistratieListRequest">
+    <wsdl:part name="getBasisregistratieList" element="sb-xsd:getBasisregistratieList"/>
+  </wsdl:message>
+  <wsdl:message name="getBasisregistratieListResponse">
+    <wsdl:part element="sb-xsd:getBasisregistratieListResponse" name="getBasisregistratieListResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="StelselBevragen">
+    <wsdl:operation name="getObjectInfo">
+      <wsdl:input message="sb-adw:getObjectInfoRequest" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoRequest"/>
+      <wsdl:output message="sb-adw:getObjectInfoResponse" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoResponse"/>
+      <wsdl:fault name="fault" message="sb-adw:faultMsg"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="bevragen">
+      <wsdl:input message="sb-adw:bevragenRequest" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/bevragenRequest"/>
+      <wsdl:output message="sb-adw:bevragenResponse" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/bevragenResponse"/>
+      <wsdl:fault name="fault" message="sb-adw:faultMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="getObjectTypeList">
+      <wsdl:input message="sb-adw:getObjectTypeListRequest" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListRequest"/>
+      <wsdl:output message="sb-adw:getObjectTypeListResponse" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListResponse"/>
+      <wsdl:fault name="fault" message="sb-adw:faultMsg"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getBasisregistratieList">
+      <wsdl:input message="sb-adw:getBasisregistratieListRequest" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getBasisregistratieListRequest"/>
+      <wsdl:output message="sb-adw:getBasisregistratieListResponse" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getBasisregistratieListResponse"/>
+      <wsdl:fault name="fault" message="sb-adw:faultMsg"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/Users/pp/tmf/workspace/rtmf-guc/src/main/resources/WSDL/stelselBevragen.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:sb-xsd="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+  <xsd:element name="getObjectInfo" type="sb-xsd:ObjectInfoRequestType"></xsd:element>
+  <xsd:element name="getObjectInfoResponse" type="sb-xsd:ObjectInfoResponseType"></xsd:element>
+  <xsd:complexType name="BevragenRequestType">
+    <xsd:sequence>
+      <xsd:element name="brTag" type="xsd:string"/>
+      <xsd:element name="objectTag" type="xsd:string"/>
+      <xsd:element name="objectId" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BevragenResponseType">
+    <xsd:sequence>
+      <xsd:element name="objectinstantie" type="sb-xsd:ObjectValueType"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ObjectType">
+    <xsd:sequence>
+      <xsd:element name="ObjectHeaderInfo" type="sb-xsd:ObjectHeaderType"></xsd:element>
+      <xsd:element name="attributen" type="sb-xsd:AttribuutType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AttribuutType">
+    <xsd:sequence>
+      <xsd:element name="code" type="xsd:string"/>
+      <xsd:element name="naam" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="bevragen" type="sb-xsd:BevragenRequestType"></xsd:element>
+  <xsd:element name="bevragenResponse" type="sb-xsd:BevragenResponseType"></xsd:element>
+  <xsd:complexType name="AttribuutValueType">
+    <xsd:sequence>
+      <xsd:element name="attribuutInfo" type="sb-xsd:AttribuutType"></xsd:element>
+      <xsd:element name="value" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ObjectValueType">
+    <xsd:sequence>
+      <xsd:element name="objectInfo" type="sb-xsd:ObjectHeaderType"></xsd:element>
+      <xsd:element name="attributeValues" type="sb-xsd:AttribuutValueType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ObjectHeaderType">
+    <xsd:sequence>
+      <xsd:element name="tag" type="xsd:string"/>
+      <xsd:element name="naam" type="xsd:string"/>
+      <xsd:element name="bevraagbaar" type="xsd:boolean"></xsd:element>
+      <xsd:element name="instructie" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ObjectInfoRequestType">
+    <xsd:sequence>
+      <xsd:element name="BRTag" type="xsd:string"/>
+      <xsd:element name="ObjectTag" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ObjectInfoResponseType">
+    <xsd:sequence>
+      <xsd:element name="objectInfo" type="sb-xsd:ObjectType"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="gobFault" type="sb-xsd:MeldingType"/>
+  <xsd:complexType name="MeldingType">
+    <xsd:sequence>
+      <xsd:element name="classificatie" type="xsd:string"></xsd:element>
+      <xsd:element name="code" type="xsd:string"/>
+      <xsd:element name="tekst" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="getObjectTypeList" type="sb-xsd:ObjectTypeListRequestType"></xsd:element>
+  <xsd:element name="getObjectTypeListResponse" type="sb-xsd:ObjectTypeListResponseType"></xsd:element>
+  <xsd:complexType name="ObjectTypeListRequestType">
+    <xsd:sequence>
+      <xsd:element name="BRTag" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ObjectTypeListResponseType">
+    <xsd:sequence>
+      <xsd:element name="objectTypeList" type="sb-xsd:ObjectHeaderType" maxOccurs="unbounded" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="getBasisregistratieList" type="sb-xsd:BasisregistratieListRequestType"></xsd:element>
+  <xsd:element name="getBasisregistratieListResponse" type="sb-xsd:BasisregistratieListResponseType"></xsd:element>
+  <xsd:complexType name="BasisregistratieListRequestType">
+    <xsd:sequence></xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BasisregistratieListResponseType">
+    <xsd:sequence>
+      <xsd:element name="basisregistratieList" type="sb-xsd:BasisregistratieType" maxOccurs="unbounded" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BasisregistratieType">
+    <xsd:sequence>
+      <xsd:element name="tag" type="xsd:string"/>
+      <xsd:element name="naam" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://s794a.nxs.nl/services</con:endpoint><con:endpoint>http://localhost:63081/stelselBevragenService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="bevragen" bindingOperationName="bevragen" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" useWsAddressing="true"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:63081/stelselBevragenService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stel:bevragen>
+         <stel:brTag>?</stel:brTag>
+         <stel:objectTag>?</stel:objectTag>
+         <stel:objectId>?</stel:objectId>
+      </stel:bevragen>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/bevragenRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getBasisregistratieList" bindingOperationName="getBasisregistratieList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" useWsAddressing="true"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:63081/stelselBevragenService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stel:getBasisregistratieList/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getBasisregistratieListRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getObjectInfo" bindingOperationName="getObjectInfo" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" useWsAddressing="true"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://s794a.nxs.nl/services</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stel:getObjectInfo>
+         <stel:BRTag>?</stel:BRTag>
+         <stel:ObjectTag>?</stel:ObjectTag>
+      </stel:getObjectInfo>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getObjectTypeList" bindingOperationName="getObjectTypeList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" useWsAddressing="true"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://s794a.nxs.nl/services</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stel:getObjectTypeList>
+         <stel:BRTag>?</stel:BRTag>
+      </stel:getObjectTypeList>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="200508" name="ophaalServiceBinding" type="wsdl" bindingName="{http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1}ophaalServiceBinding" soapVersion="1_1" anonymous="optional" definition="ophaalService-servicebinding.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/pp/tmf/workspace/rtmf-guc/src/main/resources/WSDL/ophaalService-servicebinding.wsdl"><con:part><con:url>file:/Users/pp/tmf/workspace/rtmf-guc/src/main/resources/WSDL/ophaalService-servicebinding.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1" name="ophaalService-servicebinding.wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:os-xsd="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd" xmlns:os-adw="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1" xmlns:os-sbw="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1">
+  <wsdl:import namespace="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1" location="ophaalService-abstract-definition.wsdl"/>
+  <wsdl:binding name="ophaalServiceBinding" type="os-adw:OphaalService">
+    <wsaw:UsingAddressing wsdl:required="true"/>
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ophalenMeldingStatus">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ophalenMeldingKenmerk">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ophalenTmfKenmerk">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ophalenMededeling">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ophaalService">
+    <wsdl:documentation>
+      <wsi:Claim conformsTo="http://ws-i.org/profiles/basic/1.1"/>
+    </wsdl:documentation>
+    <wsdl:port name="ophaalServiceSOAP" binding="os-sbw:ophaalServiceBinding">
+      <soap:address location="https://s794a.nxs.nl/services"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/Users/pp/tmf/workspace/rtmf-guc/src/main/resources/WSDL/ophaalService-abstract-definition.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1" name="ophaalService-abstract-definition.wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:os-xsd="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd" xmlns:os-adw="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified">
+      <xsd:import namespace="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd" schemaLocation="ophaalService.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="faultMsg">
+    <wsdl:part name="Fault" element="os-xsd:tmfFault"/>
+  </wsdl:message>
+  <wsdl:message name="ophalenMeldingStatusRequest">
+    <wsdl:part name="ophalenMeldingStatus" element="os-xsd:ophalenMeldingStatus"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ophalenMeldingStatusResponse">
+    <wsdl:part name="ophalenMeldingStatusResponse" element="os-xsd:ophalenMeldingStatusResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ophalenMeldingKenmerkRequest">
+    <wsdl:part name="ophalenMeldingKenmerk" element="os-xsd:ophalenMeldingKenmerk"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ophalenMeldingKenmerkResponse">
+    <wsdl:part name="ophalenMeldingKemerkResponse" element="os-xsd:ophalenMeldingKenmerkResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ophalenTmfKenmerkRequest">
+    <wsdl:part name="ophalenTmfKenmerk" element="os-xsd:ophalenTmfKenmerk"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ophalenTmfKenmerkResponse">
+    <wsdl:part name="ophalenTmfKenmerkResponse" element="os-xsd:ophalenTmfKenmerkResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ophalenMededelingRequest">
+    <wsdl:part name="ophalenMededeling" element="os-xsd:ophalenMededeling"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ophalenMededelingResponse">
+    <wsdl:part name="ophalenMededelingResponse" element="os-xsd:ophalenMededelingResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="OphaalService">
+    <wsdl:operation name="ophalenMeldingStatus">
+      <wsdl:input message="os-adw:ophalenMeldingStatusRequest" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingStatusRequest"/>
+      <wsdl:output message="os-adw:ophalenMeldingStatusResponse" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingStatusResponse"/>
+      <wsdl:fault name="fault" message="os-adw:faultMsg"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ophalenMeldingKenmerk">
+      <wsdl:input message="os-adw:ophalenMeldingKenmerkRequest" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingKenmerkRequest"/>
+      <wsdl:output message="os-adw:ophalenMeldingKenmerkResponse" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingKenmerkResponse"/>
+      <wsdl:fault name="fault" message="os-adw:faultMsg"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ophalenTmfKenmerk">
+      <wsdl:input message="os-adw:ophalenTmfKenmerkRequest" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenTmfKenmerkRequest"/>
+      <wsdl:output message="os-adw:ophalenTmfKenmerkResponse" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenTmfKenmerkResponse"/>
+      <wsdl:fault name="fault" message="os-adw:faultMsg"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ophalenMededeling">
+      <wsdl:input message="os-adw:ophalenMededelingRequest" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMededelingRequest"/>
+      <wsdl:output message="os-adw:ophalenMededelingResponse" wsaw:Action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMededelingResponse"/>
+      <wsdl:fault name="fault" message="os-adw:faultMsg"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/Users/pp/tmf/workspace/rtmf-guc/src/main/resources/WSDL/ophaalService.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:os-xsd="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd">
+  <xsd:element name="tmfFault" type="os-xsd:meldingType"/>
+  <xsd:complexType name="tmfFaultType">
+    <xsd:sequence>
+      <xsd:element name="code" type="xsd:int"/>
+      <xsd:element name="text" type="xsd:string"/>
+      <xsd:element name="detail" type="os-xsd:meldingType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="mededelingType">
+    <xsd:sequence>
+      <xsd:element name="tmfKenmerk" type="xsd:string"/>
+      <xsd:element name="tijdstempelStatusChange" type="xsd:dateTime"/>
+      <xsd:element name="brKenmerk" type="xsd:string"/>
+      <xsd:element name="betreftTmfKenmerk" type="xsd:string"/>
+      <xsd:element name="nieuweStatus" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="mededelingTypeList">
+    <xsd:sequence>
+      <xsd:element name="mededelingList" type="os-xsd:mededelingType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="statusType">
+    <xsd:sequence>
+      <xsd:element name="tijdstempelBezorging" type="xsd:dateTime"></xsd:element>
+      <xsd:element name="status" type="xsd:string"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="statusTypeList">
+    <xsd:sequence>
+      <xsd:element name="statusList" type="os-xsd:statusType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="objectAttribuutType">
+    <xsd:sequence>
+      <xsd:element name="idAttribuut" type="xsd:string"/>
+      <xsd:element name="betwijfeldeWaarde" type="xsd:string"></xsd:element>
+      <xsd:element name="voorstel" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="objectAttribuutTypeList">
+    <xsd:sequence>
+      <xsd:element name="objectAttribuutList" type="os-xsd:objectAttribuutType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="terugmeldType">
+    <xsd:sequence>
+      <xsd:element name="meldingKenmerk" type="xsd:string"></xsd:element>
+      <xsd:element name="naamContact" type="xsd:string"/>
+      <xsd:element name="telefoonContact" type="xsd:string"></xsd:element>
+      <xsd:element name="emailContact" type="xsd:string"></xsd:element>
+      <xsd:element name="tijdstempelAanlever" type="xsd:string"></xsd:element>
+      <xsd:element name="tagBR" type="xsd:string"/>
+      <xsd:element name="tagObject" type="xsd:string"/>
+      <xsd:element name="idObject" type="xsd:string"/>
+      <xsd:element name="objectAttributen" type="os-xsd:objectAttribuutTypeList"></xsd:element>
+      <xsd:element name="toelichting" type="xsd:string"/>
+      <xsd:element name="status" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="terugmeldResponseType">
+    <xsd:sequence>
+      <xsd:element name="terugmeld" type="os-xsd:terugmeldType"></xsd:element>
+      <xsd:element name="terugmeldMCore" type="os-xsd:terugmeldMetaCoreType"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="terugmeldResponseTypeList">
+    <xsd:sequence>
+      <xsd:element name="terugmeldResponseList" type="os-xsd:terugmeldResponseType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ophalenTmfKenmerkResponseType">
+    <xsd:sequence>
+      <xsd:element name="kenmerkResponseList" type="os-xsd:statusTypeList"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ophalenMeldingKenmerkResponseType">
+    <xsd:sequence>
+      <xsd:element name="meldingMetaData" type="os-xsd:terugmeldMetaType"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="terugmeldMetaCoreType">
+    <xsd:sequence>
+      <xsd:element name="tmfKenmerk" type="xsd:string"/>
+      <xsd:element name="berichtSoort" type="xsd:string"></xsd:element>
+      <xsd:element name="idOrganisatie" type="xsd:string"></xsd:element>
+      <xsd:element name="naamOrganisatie" type="xsd:string"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="terugmeldMetaType">
+    <xsd:sequence>
+      <xsd:element name="terugmeldMCore" type="os-xsd:terugmeldMetaCoreType"/>
+      <xsd:element name="afdeling" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="tijdstempelOntvangst" type="xsd:dateTime"/>
+      <xsd:element name="tijdstempelGemeld" type="xsd:dateTime" minOccurs="0"/>
+      <xsd:element name="statusMelding" type="xsd:string"/>
+      <xsd:element name="tijdstempelStatus" type="xsd:dateTime"/>
+      <xsd:element name="toelichting" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ophalenMededelingResponseType">
+    <xsd:sequence>
+      <xsd:element name="mededelingResponseList" type="os-xsd:mededelingTypeList"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ophalenStatusResponseType">
+    <xsd:sequence>
+      <xsd:element name="statusResponseList" type="os-xsd:terugmeldResponseTypeList"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ophalenMeldingKenmerkRequestType">
+    <xsd:sequence>
+      <xsd:element name="meldingKenmerk" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ophalenTmfKenmerkRequestType">
+    <xsd:sequence>
+      <xsd:element name="tmfKenmerk" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ophalenStatusRequestType">
+    <xsd:sequence>
+      <xsd:element name="status" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="vanDatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="totDatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ophalenMededelingRequestType">
+    <xsd:sequence>
+      <xsd:element name="nieuweStatus" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="vanDatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="totDatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ophalenMeldingStatus" type="os-xsd:ophalenMeldingStatusRequestType"></xsd:element>
+  <xsd:element name="ophalenMeldingStatusResponse" type="os-xsd:ophalenStatusResponseType"></xsd:element>
+  <xsd:element name="ophalenMeldingKenmerk" type="os-xsd:ophalenMeldingKenmerkRequestType"></xsd:element>
+  <xsd:element name="ophalenMeldingKenmerkResponse" type="os-xsd:ophalenMeldingKenmerkResponseType"></xsd:element>
+  <xsd:element name="ophalenTmfKenmerk" type="os-xsd:ophalenTmfKenmerkRequestType"></xsd:element>
+  <xsd:element name="ophalenTmfKenmerkResponse" type="os-xsd:ophalenTmfKenmerkResponseType"></xsd:element>
+  <xsd:element name="ophalenMededeling" type="os-xsd:ophalenMededelingRequestType"></xsd:element>
+  <xsd:element name="ophalenMededelingResponse" type="os-xsd:ophalenMededelingResponseType"></xsd:element>
+  <xsd:complexType name="meldingType">
+    <xsd:sequence>
+      <xsd:element name="classificatie" type="xsd:string"></xsd:element>
+      <xsd:element name="code" type="xsd:string"/>
+      <xsd:element name="tekst" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ophalenMeldingStatusRequestType">
+    <xsd:sequence>
+      <xsd:element name="meldingStatusRequest" type="os-xsd:ophalenStatusRequestType" maxOccurs="1" minOccurs="0"/>
+      <xsd:element name="meldingKenmerk" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+      <xsd:element name="tmfKenmerk" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://s794a.nxs.nl/services</con:endpoint><con:endpoint>http://localhost:8088/ophalen</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="ophalenMededeling" bindingOperationName="ophalenMededeling" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" useWsAddressing="true"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/ophalen</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:oph="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <oph:ophalenMededeling>
+         <!--Optional:-->
+         <oph:nieuweStatus>?</oph:nieuweStatus>
+         <!--Optional:-->
+         <oph:vanDatum>?</oph:vanDatum>
+         <!--Optional:-->
+         <oph:totDatum>?</oph:totDatum>
+      </oph:ophalenMededeling>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMededelingRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="ophalenMeldingKenmerk" bindingOperationName="ophalenMeldingKenmerk" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" useWsAddressing="true"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://s794a.nxs.nl/services</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:oph="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <oph:ophalenMeldingKenmerk>
+         <oph:meldingKenmerk>?</oph:meldingKenmerk>
+      </oph:ophalenMeldingKenmerk>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingKenmerkRequest"/></con:call></con:operation><con:operation isOneWay="false" action="" name="ophalenMeldingStatus" bindingOperationName="ophalenMeldingStatus" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" useWsAddressing="true"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@skip_soap_action">false</con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/ophalen</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:oph="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <oph:ophalenMeldingStatus>
+         <!--Optional:-->
+         <oph:meldingStatusRequest>
+            <!--Optional:-->
+            <oph:status>?</oph:status>
+            <!--Optional:-->
+            <oph:vanDatum>?</oph:vanDatum>
+            <!--Optional:-->
+            <oph:totDatum>?</oph:totDatum>
+         </oph:meldingStatusRequest>
+         <!--Optional:-->
+         <oph:meldingKenmerk>?</oph:meldingKenmerk>
+         <!--Optional:-->
+         <oph:tmfKenmerk>?</oph:tmfKenmerk>
+      </oph:ophalenMeldingStatus>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingStatusRequest" addDefaultAction="false"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="ophalenTmfKenmerk" bindingOperationName="ophalenTmfKenmerk" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" useWsAddressing="true"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://s794a.nxs.nl/services</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:oph="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <oph:ophalenTmfKenmerk>
+         <oph:tmfKenmerk>?</oph:tmfKenmerk>
+      </oph:ophalenTmfKenmerk>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenTmfKenmerkRequest"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="200508" name="tmf-aanmeldenBinding" type="wsdl" bindingName="{http://tmfportal.ovsoftware.com/services}tmf-aanmeldenBinding" soapVersion="1_1" anonymous="optional" definition="Service.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/pp/tmf/workspace/rtmf-guc/src/main/resources/WSDL-1.1/Service.wsdl"><con:part><con:url>file:/Users/pp/tmf/workspace/rtmf-guc/src/main/resources/WSDL-1.1/Service.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://tmfportal.ovsoftware.com/services" name="Service.wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:osb="http://tmfportal.ovsoftware.com/services" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" xmlns:tns="http://tmfportal.ovsoftware.com/services" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl">
+  <wsdl:import namespace="http://tmfportal.ovsoftware.com/services" location="./Service-Abstract.wsdl"/>
+  <wsdl:binding name="tmf-aanmeldenBinding" type="osb:tmf-aanmelden">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsaw:UsingAddressing wsdl:required="true"/>
+    <wsdl:operation name="terugmelding">
+      <soap:operation soapAction="A04000000000046-tmf-aanmelden-terugmelding-https---s794.nxs.nl-corvus-httpd-ebms-inbound"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="terugmeldingFault">
+        <soap:fault name="terugmeldingFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="intrekking">
+      <soap:operation soapAction="A04000000000046-tmf-aanmelden-intrekking-https---s794.nxs.nl-corvus-httpd-ebms-inbound"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="intrekkingFault">
+        <soap:fault name="intrekkingFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="tmf-aanmelden">
+    <wsdl:documentation>
+      <wsi:Claim conformsTo="http://ws-i.org/profiles/basic/1.1"/>
+    </wsdl:documentation>
+    <wsdl:port name="tmf-aanmelden" binding="tns:tmf-aanmeldenBinding">
+      <soap:address location="http://tmfportal.ovsoftware.com/services"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/Users/pp/tmf/workspace/rtmf-guc/src/main/resources/WSDL-1.1/Service-Abstract.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://tmfportal.ovsoftware.com/services" name="Service-Abstract.wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tmfportal.ovsoftware.com/services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:defreply="http://tmfportal.ovsoftware.com/services/defaultreply.xsd" xmlns:ns1="http://wus.tmf.gbo.overheid.nl/wsdl/aanmeldService-V1.1.xsd">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified">
+      <xsd:import namespace="http://tmfportal.ovsoftware.com/services/defaultreply.xsd" schemaLocation="./defaultreply.xsd"/>
+      <xsd:import namespace="http://wus.tmf.gbo.overheid.nl/wsdl/aanmeldService-V1.1.xsd" schemaLocation="aanmeldService.xsd"/>
+    </xsd:schema>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://tmfportal.ovsoftware.com/services">
+      <xsd:simpleType name="FaultType">
+        <xsd:restriction base="xsd:string"/>
+      </xsd:simpleType>
+      <xsd:element name="fault" type="tns:FaultType"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="intrekking">
+    <wsdl:part name="parameters" element="ns1:intrekking"/>
+  </wsdl:message>
+  <wsdl:message name="terugmelding">
+    <wsdl:part name="parameters" element="ns1:terugmelding"/>
+  </wsdl:message>
+  <wsdl:message name="intrekkingResponse">
+    <wsdl:part name="parameters" element="defreply:response"/>
+  </wsdl:message>
+  <wsdl:message name="terugmeldingResponse">
+    <wsdl:part name="parameters" element="defreply:response"/>
+  </wsdl:message>
+  <wsdl:message name="fault">
+    <wsdl:part name="parameters" element="tns:fault"/>
+  </wsdl:message>
+  <wsdl:portType name="tmf-aanmelden">
+    <wsdl:operation name="terugmelding">
+      <wsdl:input message="tns:terugmelding" wsaw:Action="A04000000000046-tmf-aanmelden-terugmelding-https---s794.nxs.nl-corvus-httpd-ebms-inbound"/>
+      <wsdl:output message="tns:terugmeldingResponse" wsaw:Action="A04000000000046-tmf-aanmelden-terugmelding-https---s794.nxs.nl-corvus-httpd-ebms-inboundResponse"/>
+      <wsdl:fault message="tns:fault" name="terugmeldingFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="intrekking">
+      <wsdl:input message="tns:intrekking" wsaw:Action="A04000000000046-tmf-aanmelden-intrekking-https---s794.nxs.nl-corvus-httpd-ebms-inbound"/>
+      <wsdl:output message="tns:intrekkingResponse" wsaw:Action="A04000000000046-tmf-aanmelden-intrekking-https---s794.nxs.nl-corvus-httpd-ebms-inboundResponse"/>
+      <wsdl:fault message="tns:fault" name="intrekkingFault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/Users/pp/tmf/workspace/rtmf-guc/src/main/resources/WSDL-1.1/defaultreply.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://tmfportal.ovsoftware.com/services/defaultreply.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tmfportal.ovsoftware.com/services/defaultreply.xsd">
+  <xs:simpleType name="stringtype">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:complexType name="responsetype">
+    <xs:sequence>
+      <xs:element name="text" type="tns:stringtype"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="response" type="tns:responsetype"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/pp/tmf/workspace/rtmf-guc/src/main/resources/WSDL-1.1/aanmeldService.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://wus.tmf.gbo.overheid.nl/wsdl/aanmeldService-V1.1.xsd" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:as="http://wus.tmf.gbo.overheid.nl/wsdl/aanmeldService-V1.1.xsd">
+  <xsd:complexType name="TerugmeldingRequestType">
+    <xsd:sequence>
+      <xsd:element name="meldingKenmerk" type="xsd:string"/>
+      <xsd:element name="tijdstempelAanlevering" type="xsd:dateTime"/>
+      <xsd:element name="basisRegistratie" type="xsd:string"/>
+      <xsd:element name="objectTag" type="xsd:string"/>
+      <xsd:element name="objectIdentificatie" type="xsd:string"/>
+      <xsd:element name="toelichting" type="xsd:string"/>
+      <xsd:element name="attributen" type="as:ObjectAttribuutType" maxOccurs="unbounded" minOccurs="1"/>
+      <xsd:element name="contactInfo" type="as:ContactType" maxOccurs="1" minOccurs="0"/>
+      <xsd:element name="attachment" type="as:AttachmentType" maxOccurs="unbounded" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="IntrekkingRequestType">
+    <xsd:sequence>
+      <xsd:element name="meldingKenmerk" type="xsd:string"/>
+      <xsd:element name="tijdstempelAanlevering" type="xsd:dateTime"/>
+      <xsd:element name="betreftTmfKenmerk" type="xsd:string"/>
+      <xsd:element name="toelichting" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="MededelingRequestType">
+    <xsd:sequence>
+      <xsd:element name="brKenmerk" type="xsd:string"/>
+      <xsd:element name="tijdstempelBezorging" type="xsd:dateTime"/>
+      <xsd:element name="betreftTmfKenmerk" type="xsd:string"/>
+      <xsd:element name="nieuweStatus" type="xsd:string"/>
+      <xsd:element name="toelichting" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="TmfResponseType">
+    <xsd:sequence>
+      <xsd:element name="classificatie">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Informatief"/>
+            <xsd:enumeration value="Fout"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="code" type="xsd:string"/>
+      <xsd:element name="tekst" type="xsd:string"/>
+    </xsd:sequence>
+    <xsd:attribute name="TmfKenmerk" type="xsd:string" use="optional"/>
+  </xsd:complexType>
+  <xsd:complexType name="TmfAFResponseType">
+    <xsd:complexContent>
+      <xsd:extension base="as:TmfResponseType">
+        <xsd:attribute name="kenmerk" type="xsd:string" use="optional"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="TmfRHResponseType">
+    <xsd:complexContent>
+      <xsd:extension base="as:TmfResponseType">
+        <xsd:attribute name="BrKenmerk" type="xsd:string" use="optional"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ObjectAttribuutType">
+    <xsd:sequence>
+      <xsd:element name="attribuutIdentificatie" type="xsd:string"/>
+      <xsd:element name="betwijfeldeWaarde" type="xsd:string"/>
+      <xsd:element name="voorstel" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ContactType">
+    <xsd:sequence>
+      <xsd:element name="naam" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+      <xsd:element name="telefoon" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+      <xsd:element name="email" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="IdentificatieType">
+    <xsd:sequence>
+      <xsd:element name="oin" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+      <xsd:element name="on" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+      <xsd:element name="oun" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="TmfMetaDataType">
+    <xsd:sequence>
+      <xsd:element name="TmfKenmerk" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+      <xsd:element name="Berichtsoort" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+      <xsd:element name="tijdstempelAflevering" type="xsd:dateTime" maxOccurs="1" minOccurs="1"/>
+      <xsd:element name="Identificatie" type="as:IdentificatieType" maxOccurs="1" minOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="TerugmeldingForwardType">
+    <xsd:sequence>
+      <xsd:element name="metaData" type="as:TmfMetaDataType"/>
+      <xsd:element name="terugmelding" type="as:TerugmeldingRequestType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="IntrekkingForwardType">
+    <xsd:sequence>
+      <xsd:element name="metaData" type="as:TmfMetaDataType"/>
+      <xsd:element name="intrekking" type="as:IntrekkingRequestType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AttachmentType">
+    <xsd:sequence>
+      <xsd:element name="filename" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+      <xsd:element name="base64attachment" type="xsd:base64Binary" maxOccurs="1" minOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="terugmelding" type="as:TerugmeldingRequestType"/>
+  <xsd:element name="intrekking" type="as:IntrekkingRequestType"/>
+  <xsd:element name="statusMededeling" type="as:MededelingRequestType"/>
+  <xsd:element name="ontvangstBevestiging" type="as:TmfAFResponseType"/>
+  <xsd:element name="foutMelding" type="as:TmfAFResponseType"/>
+  <xsd:element name="statusBevestiging" type="as:TmfRHResponseType"/>
+  <xsd:element name="statusFout" type="as:TmfRHResponseType"/>
+  <xsd:element name="forwardTerugmelding" type="as:TerugmeldingForwardType"/>
+  <xsd:element name="forwardIntrekking" type="as:IntrekkingForwardType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://tmfportal.ovsoftware.com/services</con:endpoint><con:endpoint>http://Le-Grand-Ordinateur.local:8088/services</con:endpoint></con:endpoints><con:operation isOneWay="false" action="A04000000000046-tmf-aanmelden-intrekking-https---s794.nxs.nl-corvus-httpd-ebms-inbound" name="intrekking" bindingOperationName="intrekking" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" useWsAddressing="true"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://tmfportal.ovsoftware.com/services</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aan="http://wus.tmf.gbo.overheid.nl/wsdl/aanmeldService-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <aan:intrekking>
+         <aan:meldingKenmerk>?</aan:meldingKenmerk>
+         <aan:tijdstempelAanlevering>?</aan:tijdstempelAanlevering>
+         <aan:betreftTmfKenmerk>?</aan:betreftTmfKenmerk>
+         <aan:toelichting>?</aan:toelichting>
+      </aan:intrekking>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="A04000000000046-tmf-aanmelden-intrekking-https---s794.nxs.nl-corvus-httpd-ebms-inbound"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="A04000000000046-tmf-aanmelden-terugmelding-https---s794.nxs.nl-corvus-httpd-ebms-inbound" name="terugmelding" bindingOperationName="terugmelding" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" useWsAddressing="true"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://tmfportal.ovsoftware.com/services</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aan="http://wus.tmf.gbo.overheid.nl/wsdl/aanmeldService-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <aan:terugmelding>
+         <aan:meldingKenmerk>?</aan:meldingKenmerk>
+         <aan:tijdstempelAanlevering>?</aan:tijdstempelAanlevering>
+         <aan:basisRegistratie>?</aan:basisRegistratie>
+         <aan:objectTag>?</aan:objectTag>
+         <aan:objectIdentificatie>?</aan:objectIdentificatie>
+         <aan:toelichting>?</aan:toelichting>
+         <!--1 or more repetitions:-->
+         <aan:attributen>
+            <aan:attribuutIdentificatie>?</aan:attribuutIdentificatie>
+            <aan:betwijfeldeWaarde>?</aan:betwijfeldeWaarde>
+            <aan:voorstel>?</aan:voorstel>
+         </aan:attributen>
+         <!--Optional:-->
+         <aan:contactInfo>
+            <!--Optional:-->
+            <aan:naam>?</aan:naam>
+            <!--Optional:-->
+            <aan:telefoon>?</aan:telefoon>
+            <!--Optional:-->
+            <aan:email>?</aan:email>
+         </aan:contactInfo>
+         <!--Zero or more repetitions:-->
+         <aan:attachment>
+            <aan:filename>?</aan:filename>
+            <aan:base64attachment>cid:63380806118</aan:base64attachment>
+         </aan:attachment>
+      </aan:terugmelding>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="A04000000000046-tmf-aanmelden-terugmelding-https---s794.nxs.nl-corvus-httpd-ebms-inbound"/></con:call></con:operation></con:interface><con:mockService port="8088" path="/bevragen" host="localhost" name="stelselBevragenBinding MockService" bindToHostOnly="false" docroot="" dispatchResponseMessages="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-version">false</con:setting></con:settings><con:mockOperation name="bevragen" interface="stelselBevragenBinding" operation="bevragen"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>BevraagPersoonData</con:defaultResponse><con:response name="BevraagPersoonData" encoding="UTF-8" useWsAddressing="true" compression="&lt;none>"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stel:bevragenResponse>
+	 <stel:objectinstantie>
+            <stel:objectInfo>
+               <stel:tag>TMF-PERSOON</stel:tag>
+               <stel:naam>Persoon</stel:naam>
+               <stel:bevraagbaar>true</stel:bevraagbaar>
+               <stel:instructie>TEST-INSTRUCTIE</stel:instructie>
+            </stel:objectInfo>
+            <!--Zero or more repetitions:-->
+            <stel:attributeValues>
+               <stel:attribuutInfo>
+                  <stel:code>TMF-PERSOON-VOORNAAM</stel:code>
+                  <stel:naam>Voornaam</stel:naam>
+               </stel:attribuutInfo>
+               <stel:value>Petet</stel:value>
+            </stel:attributeValues>
+            <stel:attributeValues>
+               <stel:attribuutInfo>
+                  <stel:code>TMF-PERSOON-TUSSENVOEGSEL</stel:code>
+                  <stel:naam>Tussenvoegsel</stel:naam>
+               </stel:attribuutInfo>
+               <stel:value>van der</stel:value>
+            </stel:attributeValues>
+            <stel:attributeValues>
+               <stel:attribuutInfo>
+                  <stel:code>TMF-PERSOON-ACHTERNAAM</stel:code>
+                  <stel:naam>Achternaam</stel:naam>
+               </stel:attribuutInfo>
+               <stel:value>Baker</stel:value>
+            </stel:attributeValues>
+         </stel:objectinstantie>
+      </stel:bevragenResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/bevragenResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="getBasisregistratieList" interface="stelselBevragenBinding" operation="getBasisregistratieList"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>LandelijkeRegistraties</con:defaultResponse><con:response name="LandelijkeRegistraties" encoding="UTF-8" useWsAddressing="true" compression="&lt;none>"><con:settings/><con:script>def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context);
+
+requestContext.correlationId = mockRequest.getHttpRequest().getHeader("X-MULE_CORRELATION_ID")
+requestContext.replyTo = mockRequest.getHttpRequest().getHeader("X-MULE_REPLYTO")
+requestContext.remoteSync = mockRequest.getHttpRequest().getHeader("X-MULE_REMOTE_SYNC")
+requestContext.encoding = mockRequest.getHttpRequest().getHeader("X-MULE_ENCODING")
+requestContext.endpoint = mockRequest.getHttpRequest().getHeader("X-MULE_ENDPOINT")
+requestContext.remoteClientAddress = mockRequest.getHttpRequest().getHeader("X-MULE_REMOTE_CLIENT_ADDRESS")
+requestContext.originatingEndpoint = mockRequest.getHttpRequest().getHeader("X-MULE_ORIGINATING_ENDPOINT")
+requestContext.correlationGroupSize = mockRequest.getHttpRequest().getHeader("X-MULE_CORRELATION_GROUP_SIZE")
+requestContext.replyToRequestor = mockRequest.getHttpRequest().getHeader("X-MULE_REPLYTO_REQUESTOR")
+
+// TODO: maak een loop die alle header kopieert (of alleen die met X-*)</con:script><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stel:getBasisregistratieListResponse>
+         <!--Zero or more repetitions:-->
+         <stel:basisregistratieList>
+            <stel:tag>TMF-REG1</stel:tag>
+            <stel:naam>Personen (TMF)</stel:naam>
+         </stel:basisregistratieList>
+         <stel:basisregistratieList>
+            <stel:tag>TMF-REG2</stel:tag>
+            <stel:naam>Vervoer (TMF)</stel:naam>
+         </stel:basisregistratieList>
+      </stel:getBasisregistratieListResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:header><con:name>MULE_REPLYTO_REQUESTOR</con:name><con:value>${replyToRequestor}</con:value></con:header><con:header><con:name>MULE_REPLYTO</con:name><con:value>${remoteSync}</con:value></con:header><con:header><con:name>MULE_REMOTE_SYNC</con:name><con:value>${replyTo}</con:value></con:header><con:header><con:name>MULE_REMOTE_CLIENT_ADDRESS</con:name><con:value>${remoteClientAddress}</con:value></con:header><con:header><con:name>MULE_CORRELATION_ID</con:name><con:value>${correlationId}</con:value></con:header><con:header><con:name>MULE_ENDPOINT</con:name><con:value>${remoteClientAddress}</con:value></con:header><con:header><con:name>MULE_CORRELATION_GROUP_SIZE</con:name><con:value>${correlationGroupSize}</con:value></con:header><con:header><con:name>MULE_ENCODING</con:name><con:value>${encoding}</con:value></con:header><con:header><con:name>MULE_ORIGINATING_ENDPOINT</con:name><con:value>${endpoint}</con:value></con:header><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getBasisregistratieListResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="getObjectInfo" interface="stelselBevragenBinding" operation="getObjectInfo"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>PersoonAttributen</con:defaultResponse><con:response name="PersoonAttributen" encoding="UTF-8" useWsAddressing="true" compression="&lt;none>"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stel:getObjectInfoResponse>
+         <stel:objectInfo>
+            <stel:ObjectHeaderInfo>
+               <stel:tag>TMF-PERSOON</stel:tag>
+               <stel:naam>Persoon</stel:naam>
+               <stel:bevraagbaar>true</stel:bevraagbaar>
+               <stel:instructie>TEST-INSTRUCTIE</stel:instructie>
+            </stel:ObjectHeaderInfo>
+            <!--Zero or more repetitions:-->
+            <stel:attributen>
+               <stel:code>TMF-PERSOON-VOORNAAM</stel:code>
+               <stel:naam>Voornaam</stel:naam>
+            </stel:attributen>
+            <stel:attributen>
+               <stel:code>TMF-PERSOON-TUSSENVOEGSEL</stel:code>
+               <stel:naam>Tussenvoegsel</stel:naam>
+            </stel:attributen>
+            <stel:attributen>
+               <stel:code>TMF-PERSOON-ACHTERNAAM</stel:code>
+               <stel:naam>Achternaam</stel:naam>
+            </stel:attributen>
+         </stel:objectInfo>
+      </stel:getObjectInfoResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectInfoResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="getObjectTypeList" interface="stelselBevragenBinding" operation="getObjectTypeList"><con:settings/><con:dispatchPath/><con:dispatchStyle>QUERY_MATCH</con:dispatchStyle><con:defaultResponse>ListwithThreeObjectTypesReg1</con:defaultResponse><con:response name="EmptyResponse" encoding="UTF-8" useWsAddressing="true" compression="&lt;none>"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stel:getObjectTypeListResponse/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListResponse"/></con:response><con:response name="ListwithThreeObjectTypesReg1" encoding="UTF-8" useWsAddressing="true" compression="&lt;none>"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stel:getObjectTypeListResponse>
+         <!--Zero or more repetitions:-->
+         <stel:objectTypeList>
+            <stel:tag>TMF-PERSOON</stel:tag>
+            <stel:naam>Persoon</stel:naam>
+            <stel:bevraagbaar>true</stel:bevraagbaar>
+            <stel:instructie>TEST-INSTRUCTIE 1</stel:instructie>
+         </stel:objectTypeList>
+         <stel:objectTypeList>
+            <stel:tag>TMF-GEBOUW</stel:tag>
+            <stel:naam>Gebouw</stel:naam>
+            <stel:bevraagbaar>true</stel:bevraagbaar>
+            <stel:instructie>TEST-INSTRUCTIE 2</stel:instructie>
+         </stel:objectTypeList>
+         <stel:objectTypeList>
+            <stel:tag>TMF-VERGUNNING</stel:tag>
+            <stel:naam>Vergunning</stel:naam>
+            <stel:bevraagbaar>true</stel:bevraagbaar>
+            <stel:instructie>TEST-INSTRUCTIE 3</stel:instructie>
+         </stel:objectTypeList>
+      </stel:getObjectTypeListResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListResponse"/></con:response><con:response name="ListwithThreeObjectTypesReg2" encoding="UTF-8" useWsAddressing="true" compression="&lt;none>"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stel="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stel:getObjectTypeListResponse>
+         <!--Zero or more repetitions:-->
+         <stel:objectTypeList>
+            <stel:tag>TEST-AUTO</stel:tag>
+            <stel:naam>Auto</stel:naam>
+            <stel:bevraagbaar>true</stel:bevraagbaar>
+            <stel:instructie>TEST-INSTRUCTIE 1</stel:instructie>
+         </stel:objectTypeList>
+         <stel:objectTypeList>
+            <stel:tag>TEST-VRACHTWAGEN</stel:tag>
+            <stel:naam>Vrachtwagen</stel:naam>
+            <stel:bevraagbaar>true</stel:bevraagbaar>
+            <stel:instructie>TEST-INSTRUCTIE 2</stel:instructie>
+         </stel:objectTypeList>
+         <stel:objectTypeList>
+            <stel:tag>TEST-BUS</stel:tag>
+            <stel:naam>Bus</stel:naam>
+            <stel:bevraagbaar>true</stel:bevraagbaar>
+            <stel:instructie>TEST-INSTRUCTIE 3</stel:instructie>
+         </stel:objectTypeList>
+      </stel:getObjectTypeListResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getObjectTypeListResponse"/></con:response><con:dispatchConfig xsi:type="con:MockOperationQueryMatchDispatch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:query><con:name>TMF-REG-1</con:name><con:query>declare namespace S='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd';
+declare namespace ns2='http://www.w3.org/2005/08/addressing';
+//ns1:BRTag</con:query><con:match>TMF-REG1</con:match><con:response>ListwithThreeObjectTypesReg1</con:response><con:disabled>false</con:disabled></con:query><con:query><con:name>TMF-REG-2</con:name><con:query>declare namespace S='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen-V1.1.xsd';
+declare namespace ns2='http://www.w3.org/2005/08/addressing';
+//ns1:BRTag</con:query><con:match>TMF-REG2</con:match><con:response>ListwithThreeObjectTypesReg2</con:response></con:query></con:dispatchConfig></con:mockOperation><con:properties/></con:mockService><con:mockService port="8088" path="/ophalen" host="localhost" name="ophaalServiceBinding MockService" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-version">false</con:setting></con:settings><con:mockOperation name="ophalenMededeling" interface="ophaalServiceBinding" operation="ophalenMededeling"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8" useWsAddressing="true" compression="&lt;none>"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:oph="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <oph:ophalenMededelingResponse>
+         <oph:mededelingResponseList>
+            <!--Zero or more repetitions:-->
+            <oph:mededelingList>
+               <oph:tmfKenmerk>?</oph:tmfKenmerk>
+               <oph:tijdstempelStatusChange>?</oph:tijdstempelStatusChange>
+               <oph:brKenmerk>?</oph:brKenmerk>
+               <oph:betreftTmfKenmerk>?</oph:betreftTmfKenmerk>
+               <oph:nieuweStatus>?</oph:nieuweStatus>
+            </oph:mededelingList>
+         </oph:mededelingResponseList>
+      </oph:ophalenMededelingResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMededelingResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="ophalenMeldingKenmerk" interface="ophaalServiceBinding" operation="ophalenMeldingKenmerk"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>HaalKenmerk123Op</con:defaultResponse><con:response name="HaalKenmerk123Op" encoding="UTF-8" useWsAddressing="true" compression="&lt;none>"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:oph="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <oph:ophalenMeldingKenmerkResponse>
+         <oph:meldingMetaData>
+            <oph:terugmeldMCore>
+               <oph:tmfKenmerk>123</oph:tmfKenmerk>
+               <oph:berichtSoort>berichtSoort</oph:berichtSoort>
+               <oph:idOrganisatie>OrganisatieId</oph:idOrganisatie>
+               <oph:naamOrganisatie>Organisatie</oph:naamOrganisatie>
+            </oph:terugmeldMCore>
+            <!--Optional:-->
+            <oph:afdeling>Afdeling</oph:afdeling>
+            <oph:tijdstempelOntvangst>2009-08-14T11:32:24.743+02:00</oph:tijdstempelOntvangst>
+            <!--Optional:-->
+            <oph:tijdstempelGemeld>2009-08-14T11:29:09.743+02:00</oph:tijdstempelGemeld>
+            <oph:statusMelding>ontvangen</oph:statusMelding>
+            <oph:tijdstempelStatus>2009-08-14T15:13:10.743+02:00</oph:tijdstempelStatus>
+            <!--Optional:-->
+            <oph:toelichting>Wat doen we hier mee?</oph:toelichting>
+         </oph:meldingMetaData>
+      </oph:ophalenMeldingKenmerkResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingKenmerkResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="ophalenMeldingStatus" interface="ophaalServiceBinding" operation="ophalenMeldingStatus"><con:settings/><con:dispatchStyle>QUERY_MATCH</con:dispatchStyle><con:defaultResponse>EmptyResponse</con:defaultResponse><con:response name="EmptyResponse" encoding="UTF-8" useWsAddressing="true" compression="&lt;none>"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:oph="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <oph:ophalenMeldingStatusResponse>
+         <oph:statusResponseList>
+         </oph:statusResponseList>
+      </oph:ophalenMeldingStatusResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingStatusResponse"/></con:response><con:response name="LookForKenmerk123" encoding="UTF-8" useWsAddressing="true"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:oph="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <oph:ophalenMeldingStatusResponse>
+         <oph:statusResponseList>
+            <!--Zero or more repetitions:-->
+            <oph:terugmeldResponseList>
+               <oph:terugmeld>
+                  <oph:meldingKenmerk>123</oph:meldingKenmerk>
+                  <oph:naamContact>PP Bakker</oph:naamContact>
+                  <oph:telefoonContact>020-123</oph:telefoonContact>
+                  <oph:emailContact>pp@abc</oph:emailContact>
+                  <oph:tijdstempelAanlever>2009-08-14T11:29:09.743+02:00</oph:tijdstempelAanlever>
+                  <oph:tagBR>TMF-REG1</oph:tagBR>
+                  <oph:tagObject>TMF-PERSOON</oph:tagObject>
+                  <oph:idObject>123</oph:idObject>
+                  <oph:objectAttributen>
+                     <!--Zero or more repetitions:-->
+                     <oph:objectAttribuutList>
+                        <oph:idAttribuut>TMF-PERSOON-VOORNAAM</oph:idAttribuut>
+                        <oph:betwijfeldeWaarde>Petet</oph:betwijfeldeWaarde>
+                        <oph:voorstel>Peter</oph:voorstel>
+                     </oph:objectAttribuutList>
+                     <oph:objectAttribuutList>
+                        <oph:idAttribuut>TMF-PERSOON-TUSSENVOEGSEL</oph:idAttribuut>
+                        <oph:betwijfeldeWaarde>van der</oph:betwijfeldeWaarde>
+                        <oph:voorstel></oph:voorstel>
+                     </oph:objectAttribuutList>
+                     <oph:objectAttribuutList>
+                        <oph:idAttribuut>TMF-PERSOON-ACHTERNAAM</oph:idAttribuut>
+                        <oph:betwijfeldeWaarde>Baker</oph:betwijfeldeWaarde>
+                        <oph:voorstel>Bakker</oph:voorstel>
+                     </oph:objectAttribuutList>
+                  </oph:objectAttributen>
+                  <oph:toelichting>Naam klopt niet</oph:toelichting>
+                  <oph:status>ontvangen</oph:status>
+               </oph:terugmeld>
+               <oph:terugmeldMCore>
+                  <oph:tmfKenmerk>123</oph:tmfKenmerk>
+                  <oph:berichtSoort>Berichtsoort</oph:berichtSoort>
+                  <oph:idOrganisatie>idOrganisatie</oph:idOrganisatie>
+                  <oph:naamOrganisatie>naamOrgasatie</oph:naamOrganisatie>
+               </oph:terugmeldMCore>
+            </oph:terugmeldResponseList>
+         </oph:statusResponseList>
+      </oph:ophalenMeldingStatusResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingStatusResponse"/></con:response><con:dispatchConfig xsi:type="con:MockOperationQueryMatchDispatch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:query><con:name>Match123</con:name><con:query>declare namespace S='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd';
+declare namespace ns2='http://www.w3.org/2005/08/addressing';
+//ns1:meldingKenmerk
+</con:query><con:match>123</con:match><con:response>LookForKenmerk123</con:response></con:query></con:dispatchConfig></con:mockOperation><con:mockOperation name="ophalenTmfKenmerk" interface="ophaalServiceBinding" operation="ophalenTmfKenmerk"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>HaalKenmerk123Op</con:defaultResponse><con:response name="HaalKenmerk123Op" encoding="UTF-8" compression="&lt;none>" useWsAddressing="true"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:oph="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <oph:ophalenTmfKenmerkResponse>
+         <oph:kenmerkResponseList>
+            <!--Zero or more repetitions:-->
+            <oph:statusList>
+               <oph:tijdstempelBezorging>2009-08-14T11:29:09.743+02:00</oph:tijdstempelBezorging>
+               <oph:status>ontvangen</oph:status>
+            </oph:statusList>
+         </oph:kenmerkResponseList>
+      </oph:ophalenTmfKenmerkResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenTmfKenmerkResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:mockService port="8088" path="/terugmelden" host="localhost" name="tmf-aanmeldenBinding MockService" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="intrekking" interface="tmf-aanmeldenBinding" operation="intrekking"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>OK Response</con:defaultResponse><con:response name="OK Response" encoding="UTF-8" compression="&lt;none>" useWsAddressing="true"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:def="http://tmfportal.ovsoftware.com/services/defaultreply.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <def:response>
+         <text>OK</text>
+      </def:response>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="A04000000000046-tmf-aanmelden-intrekking-https---s794.nxs.nl-corvus-httpd-ebms-inbound"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="terugmelding" interface="tmf-aanmeldenBinding" operation="terugmelding"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>OK response</con:defaultResponse><con:response name="OK response" encoding="UTF-8" compression="&lt;none>" useWsAddressing="true"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:def="http://tmfportal.ovsoftware.com/services/defaultreply.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <def:response>
+         <text>OK</text>
+      </def:response>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="A04000000000046-tmf-aanmelden-terugmelding-https---s794.nxs.nl-corvus-httpd-ebms-inbound"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/></con:soapui-project>

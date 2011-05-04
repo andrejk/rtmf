@@ -1,0 +1,173 @@
+<p1:prsLv01 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p2="http://www.egem.nl/StUF/StUF0300" xmlns:p1="http://www.egem.nl/StUF/sector/bg/0300">
+<p1:stuurgegevens>
+   <p1:versieStUF>0300</p1:versieStUF>
+   <p1:sectormodel>BG</p1:sectormodel>
+   <p1:versieSectormodel>0300</p1:versieSectormodel>
+   <p1:berichtcode>Lv01</p1:berichtcode>
+   <p1:zender>
+      <p2:organisatie>Rotterdam</p2:organisatie>
+      <p2:applicatie>RTMF</p2:applicatie>
+   </p1:zender>
+   <p1:ontvanger>
+      <p2:organisatie>Rotterdam</p2:organisatie>
+      <p2:applicatie>ABKR</p2:applicatie>
+   </p1:ontvanger>
+   <p1:referentienummer>7000</p1:referentienummer>
+   <p1:tijdstipBericht>20080526150000</p1:tijdstipBericht>
+   <p1:entiteittype>PRS</p1:entiteittype>
+</p1:stuurgegevens>
+<p1:body>
+   <p1:parametersVraag>
+      <p1:sortering>1</p1:sortering>
+      <p1:indicatorVervolgvraag>false</p1:indicatorVervolgvraag>
+      <p1:maximumAantal>15</p1:maximumAantal>
+      <p1:indicatorHistorisch>N</p1:indicatorHistorisch>
+      <p1:indicatorAfnemerIndicatie>false</p1:indicatorAfnemerIndicatie>
+      <p1:indicatorAantal>false</p1:indicatorAantal>
+   </p1:parametersVraag>
+   <p1:gelijk p2:entiteittype="PRS">
+      <p1:bsn>${objectId}</p1:bsn>
+   </p1:gelijk>
+   <p1:scope p2:entiteittype="PRS">
+      <p1:a-nummer p2:noValue="geenWaarde" xsi:nil="true" />
+      <p1:bsn p2:noValue="geenWaarde" xsi:nil="true" />
+      <p1:naamPrsGrp>
+         <p1:voornamen p2:noValue="geenWaarde" xsi:nil="true" />
+         <p1:voorvoegselGeslachtsnaam p2:noValue="geenWaarde" xsi:nil="true" />
+         <p1:geslachtsnaam p2:noValue="geenWaarde" xsi:nil="true" />
+      </p1:naamPrsGrp>
+      <p1:geboortedatum p2:noValue="geenWaarde" xsi:nil="true" />
+      <p1:geboorteplaatsGrp>
+         <p1:geboorteplaats p2:noValue="geenWaarde" xsi:nil="true" />
+         <p1:codeGeboorteland p2:noValue="geenWaarde" xsi:nil="true" />
+      </p1:geboorteplaatsGrp>
+      <p1:geslachtsaanduiding p2:noValue="geenWaarde" xsi:nil="true" />
+      <p1:datumOverlijden p2:noValue="geenWaarde" xsi:nil="true" />
+      <p1:indicatieGeheim p2:noValue="geenWaarde" xsi:nil="true" />
+      <p1:codeGemeenteVanInschrijving p2:noValue="geenWaarde" xsi:nil="true" />
+      <p1:datumInschrijvingGemeente p2:noValue="geenWaarde" xsi:nil="true" />
+      <p1:codeLandEmigratie p2:noValue="geenWaarde" xsi:nil="true" />
+      <p1:datumVertrekUitNederland p2:noValue="geenWaarde" xsi:nil="true" />
+      <p1:verblijfstitelGrp>
+         <p1:verblijfstitel p2:noValue="geenWaarde" xsi:nil="true" />
+         <p1:datumVerkrijgingVerblijfstitel p2:noValue="geenWaarde" xsi:nil="true" />
+         <p1:datumVerliesVerblijfstitel p2:noValue="geenWaarde" xsi:nil="true" />
+      </p1:verblijfstitelGrp>
+      <p1:aanduidingNaamgebruik p2:noValue="geenWaarde" xsi:nil="true" />
+       <p1:heeftAlsCorrespondentieAdres p2:entiteittype="PRSADRCOR">
+         <p1:gerelateerde p2:entiteittype="ADR">
+            <p1:adresBuitenlandGrp>
+               <p1:adresBuitenland1 p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:adresBuitenland2 p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:adresBuitenland3 p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:landcode p2:noValue="geenWaarde" xsi:nil="true" />
+            </p1:adresBuitenlandGrp>
+            <p1:straatHuisnummerGrp>
+               <p1:straatnaam p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:huisnummer p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:huisletter p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:huisnummertoevoeging p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:locatieomschrijving p2:noValue="geenWaarde" xsi:nil="true" />
+            </p1:straatHuisnummerGrp>
+            <p1:postcode p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:woonplaatsnaam p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:ingangsdatum p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:gemeentecode p2:noValue="geenWaarde" xsi:nil="true" />
+         </p1:gerelateerde>
+      </p1:heeftAlsCorrespondentieAdres>
+       <p1:heeftAlsInschrijvingsAdres p2:entiteittype="PRSADRINS">
+         <p1:gerelateerde p2:entiteittype="ADR">
+            <p1:adresBuitenlandGrp>
+               <p1:adresBuitenland1 p2:noValue="geenWaarde" />
+               <p1:adresBuitenland2 p2:noValue="geenWaarde" />
+               <p1:adresBuitenland3 p2:noValue="geenWaarde" />
+               <p1:landcode p2:noValue="geenWaarde" xsi:nil="true" />
+            </p1:adresBuitenlandGrp>
+            <p1:straatHuisnummerGrp>
+               <p1:straatnaam p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:huisnummer p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:huisletter p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:huisnummertoevoeging p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:locatieomschrijving p2:noValue="geenWaarde" xsi:nil="true" />
+            </p1:straatHuisnummerGrp>
+            <p1:postcode p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:woonplaatsnaam p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:ingangsdatum p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:gemeentecode p2:noValue="geenWaarde" xsi:nil="true" />
+         </p1:gerelateerde>
+      </p1:heeftAlsInschrijvingsAdres>
+       <p1:heeftAlsVerblijfsAdres p2:entiteittype="PRSADRVBL">
+         <p1:gerelateerde p2:entiteittype="ADR">
+            <p1:adresBuitenlandGrp>
+               <p1:adresBuitenland1 p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:adresBuitenland2 p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:adresBuitenland3 p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:landcode p2:noValue="geenWaarde" xsi:nil="true" />
+            </p1:adresBuitenlandGrp>
+            <p1:straatHuisnummerGrp>
+               <p1:straatnaam p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:huisnummer p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:huisletter p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:huisnummertoevoeging p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:locatieomschrijving p2:noValue="geenWaarde" xsi:nil="true" />
+            </p1:straatHuisnummerGrp>
+            <p1:postcode p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:woonplaatsnaam p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:ingangsdatum p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:gemeentecode p2:noValue="geenWaarde" xsi:nil="true" />
+         </p1:gerelateerde>
+      </p1:heeftAlsVerblijfsAdres>
+      <p1:heeftAlsNationaliteit p2:entiteittype="PRSNAT">
+         <p1:gerelateerde p2:entiteittype="NAT">
+            <p1:code p2:noValue="geenWaarde" xsi:nil="true" />
+         </p1:gerelateerde>
+      </p1:heeftAlsNationaliteit>
+      <p1:isGetrouwdGeregistreerdPartnerMet p2:entiteittype="PRSPRSHUW">
+         <p1:gerelateerde p2:entiteittype="PRS">
+            <p1:a-nummer p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:bsn p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:naamPrsGrp>
+               <p1:voornamen p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:voorvoegselGeslachtsnaam p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:geslachtsnaam p2:noValue="geenWaarde" xsi:nil="true" />
+            </p1:naamPrsGrp>
+            <p1:geboortedatum p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:geboorteplaatsGrp>
+               <p1:geboorteplaats p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:codeGeboorteland p2:noValue="geenWaarde" xsi:nil="true" />
+            </p1:geboorteplaatsGrp>
+            <p1:geslachtsaanduiding p2:noValue="geenWaarde" xsi:nil="true" />
+         </p1:gerelateerde>
+         <p1:datumSluiting p2:noValue="geenWaarde" xsi:nil="true" />
+          <p1:soortVerbintenis p2:noValue="geenWaarde" xsi:nil="true" />
+         <p1:datumOntbinding p2:noValue="geenWaarde" xsi:nil="true" />
+      </p1:isGetrouwdGeregistreerdPartnerMet>
+      <p1:heeftAlsKinderen p2:entiteittype="PRSPRSKND">
+         <p1:gerelateerde p2:entiteittype="PRS">
+            <p1:a-nummer p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:bsn p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:naamPrsGrp>
+               <p1:voornamen p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:voorvoegselGeslachtsnaam p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:geslachtsnaam p2:noValue="geenWaarde" xsi:nil="true" />
+            </p1:naamPrsGrp>
+            <p1:geboortedatum p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:geslachtsaanduiding p2:noValue="geenWaarde" xsi:nil="true" />
+         </p1:gerelateerde>
+      </p1:heeftAlsKinderen>
+      <p1:heeftAlsOuders p2:entiteittype="PRSPRSOUD">
+         <p1:gerelateerde p2:entiteittype="PRS">
+            <p1:a-nummer p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:bsn p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:naamPrsGrp>
+               <p1:voornamen p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:voorvoegselGeslachtsnaam p2:noValue="geenWaarde" xsi:nil="true" />
+               <p1:geslachtsnaam p2:noValue="geenWaarde" xsi:nil="true" />
+            </p1:naamPrsGrp>
+            <p1:geboortedatum p2:noValue="geenWaarde" xsi:nil="true" />
+            <p1:geslachtsaanduiding p2:noValue="geenWaarde" xsi:nil="true" />
+         </p1:gerelateerde>
+      </p1:heeftAlsOuders>
+   </p1:scope>
+</p1:body>
+</p1:prsLv01>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (c) 2009-2011 Gemeente Rotterdam
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.1 (or any later version).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * European Union Public Licence for more details.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see
+ * http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
+-->
+<xsd:schema targetNamespace="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd"
+	elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:os-xsd="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd">
+
+	<xsd:element name="tmfFault" type="os-xsd:meldingType"/>
+
+	<xsd:complexType name="tmfFaultType">
+		<xsd:sequence>
+			<xsd:element name="code" type="xsd:int"/>
+			<xsd:element name="text" type="xsd:string"/>
+			<xsd:element name="detail" type="os-xsd:meldingType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="mededelingType">
+		<xsd:sequence>
+			<xsd:element name="tmfKenmerk" type="xsd:string"/>
+			<xsd:element name="tijdstempelStatusChange" type="xsd:dateTime"/>
+			<xsd:element name="brKenmerk" type="xsd:string"/>
+			<xsd:element name="betreftTmfKenmerk" type="xsd:string"/>
+			<xsd:element name="nieuweStatus" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="mededelingTypeList">
+		<xsd:sequence>
+			<xsd:element name="mededelingList" type="os-xsd:mededelingType" minOccurs="0"
+				maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="statusType">
+		<xsd:sequence>
+			<xsd:element name="tijdstempelBezorging" type="xsd:dateTime"> </xsd:element>
+			<xsd:element name="status" type="xsd:string"> </xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="statusTypeList">
+		<xsd:sequence>
+			<xsd:element name="statusList" type="os-xsd:statusType" maxOccurs="unbounded"
+				minOccurs="0"> </xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="objectAttribuutType">
+		<xsd:sequence>
+			<xsd:element name="idAttribuut" type="xsd:string"/>
+			<xsd:element name="betwijfeldeWaarde" type="xsd:string"> </xsd:element>
+			<xsd:element name="voorstel" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="objectAttribuutTypeList">
+		<xsd:sequence>
+			<xsd:element name="objectAttribuutList" type="os-xsd:objectAttribuutType"
+				maxOccurs="unbounded" minOccurs="0"> </xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="terugmeldType">
+		<xsd:sequence>
+			<xsd:element name="meldingKenmerk" type="xsd:string"> </xsd:element>
+			<xsd:element name="naamContact" type="xsd:string"/>
+			<xsd:element name="telefoonContact" type="xsd:string"> </xsd:element>
+			<xsd:element name="emailContact" type="xsd:string"> </xsd:element>
+			<xsd:element name="tijdstempelAanlever" type="xsd:string"> </xsd:element>
+			<xsd:element name="tagBR" type="xsd:string"/>
+			<xsd:element name="tagObject" type="xsd:string"/>
+			<xsd:element name="idObject" type="xsd:string"/>
+			<xsd:element name="objectAttributen" type="os-xsd:objectAttribuutTypeList"> </xsd:element>
+			<xsd:element name="toelichting" type="xsd:string"/>
+			<xsd:element name="status" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="terugmeldResponseType">
+		<xsd:sequence>
+			<xsd:element name="terugmeld" type="os-xsd:terugmeldType"> </xsd:element>
+			<xsd:element name="terugmeldMCore" type="os-xsd:terugmeldMetaCoreType"> </xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="terugmeldResponseTypeList">
+		<xsd:sequence>
+			<xsd:element name="terugmeldResponseList" type="os-xsd:terugmeldResponseType"
+				maxOccurs="unbounded" minOccurs="0"> </xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ophalenTmfKenmerkResponseType">
+		<xsd:sequence>
+			<xsd:element name="kenmerkResponseList" type="os-xsd:statusTypeList"> </xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ophalenMeldingKenmerkResponseType">
+		<xsd:sequence>
+			<xsd:element name="meldingMetaData" type="os-xsd:terugmeldMetaType"> </xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="terugmeldMetaCoreType">
+		<xsd:sequence>
+			<xsd:element name="tmfKenmerk" type="xsd:string"/>
+			<xsd:element name="berichtSoort" type="xsd:string"> </xsd:element>
+			<xsd:element name="idOrganisatie" type="xsd:string"> </xsd:element>
+			<xsd:element name="naamOrganisatie" type="xsd:string"> </xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="terugmeldMetaType">
+		<xsd:sequence>
+			<xsd:element name="terugmeldMCore" type="os-xsd:terugmeldMetaCoreType"/>
+			<xsd:element name="afdeling" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="tijdstempelOntvangst" type="xsd:dateTime"/>
+			<xsd:element name="tijdstempelGemeld" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="statusMelding" type="xsd:string"/>
+			<xsd:element name="tijdstempelStatus" type="xsd:dateTime"/>
+			<xsd:element name="toelichting" type="xsd:string"  minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ophalenMededelingResponseType">
+		<xsd:sequence>
+			<xsd:element name="mededelingResponseList" type="os-xsd:mededelingTypeList"
+			> </xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ophalenStatusResponseType">
+		<xsd:sequence>
+			<xsd:element name="statusResponseList" type="os-xsd:terugmeldResponseTypeList"
+			> </xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ophalenMeldingKenmerkRequestType">
+		<xsd:sequence>
+			<xsd:element name="meldingKenmerk" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ophalenTmfKenmerkRequestType">
+		<xsd:sequence>
+			<xsd:element name="tmfKenmerk" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ophalenStatusRequestType">
+		<xsd:sequence>
+			<xsd:element name="status" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="vanDatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totDatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+
+	</xsd:complexType>
+	
+	<xsd:complexType name="ophalenMededelingRequestType">
+		<xsd:sequence>
+			<xsd:element name="nieuweStatus" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="vanDatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="totDatum" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+
+	</xsd:complexType>
+
+	<xsd:element name="ophalenMeldingStatus" type="os-xsd:ophalenMeldingStatusRequestType"> </xsd:element>
+
+	<xsd:element name="ophalenMeldingStatusResponse" type="os-xsd:ophalenStatusResponseType"> </xsd:element>
+
+	<xsd:element name="ophalenMeldingKenmerk" type="os-xsd:ophalenMeldingKenmerkRequestType"> </xsd:element>
+
+	<xsd:element name="ophalenMeldingKenmerkResponse"
+		type="os-xsd:ophalenMeldingKenmerkResponseType"> </xsd:element>
+
+	<xsd:element name="ophalenTmfKenmerk" type="os-xsd:ophalenTmfKenmerkRequestType"> </xsd:element>
+
+	<xsd:element name="ophalenTmfKenmerkResponse" type="os-xsd:ophalenTmfKenmerkResponseType"> </xsd:element>
+
+	<xsd:element name="ophalenMededeling" type="os-xsd:ophalenMededelingRequestType"> </xsd:element>
+
+	<xsd:element name="ophalenMededelingResponse" type="os-xsd:ophalenMededelingResponseType"> </xsd:element>
+
+	<xsd:complexType name="meldingType">
+		<xsd:sequence>
+			<xsd:element name="classificatie" type="xsd:string"> </xsd:element>
+			<xsd:element name="code" type="xsd:string"/>
+			<xsd:element name="tekst" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ophalenMeldingStatusRequestType">
+		<xsd:sequence>
+			<xsd:element name="meldingStatusRequest" type="os-xsd:ophalenStatusRequestType"
+				maxOccurs="1" minOccurs="0"/>
+			<xsd:element name="meldingKenmerk" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+			<xsd:element name="tmfKenmerk" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

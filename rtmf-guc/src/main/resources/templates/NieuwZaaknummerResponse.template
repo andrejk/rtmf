@@ -1,0 +1,6 @@
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+   <env:Header/>
+   <env:Body>
+      <ns2:zaaknummerResponse xmlns:ns2="http://www.rotterdam.nl/zkn/zaaknummer">TMD.${jaarKort}.${maandNummer}.10101</ns2:zaaknummerResponse>
+   </env:Body>
+</env:Envelope>

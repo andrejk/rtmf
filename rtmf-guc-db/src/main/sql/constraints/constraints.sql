@@ -1,0 +1,1 @@
+alter table rtmf_cache add constraint rtmf_cache_pk PRIMARY KEY ( key ) USING INDEX IND_RTMF_CACHE_PK;

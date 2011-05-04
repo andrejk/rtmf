@@ -1,0 +1,795 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>nl.rotterdam.rtmf</groupId>
+    <artifactId>rtmf-guc</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0.3</version>
+    <name>Rotterdamse terugmeld faciliteit guc</name>
+    <description>  
+	   In het kader van het programma Data Chain draagt het project Stelsel Basis- en Kernregistraties 
+       zorg voor het realiseren van voorzieningen voor het beschikbaar stellen van basis- en kerngegevens. 
+       Onderdeel van deze voorzieningen is de mogelijkheid van het indienen van terugmeldingen op deze gegevens. 
+       Om naast het gebruik van de landelijke Terugmeldfaciliteit ook aan kerngegevens binnen de 
+       gemeente Rotterdam gelijke kwaliteitseisen te stellen, is het gebruik van een geïntegreerde, 
+       adequate en transparante Terugmeldfaciliteit voor Rotterdam van groot belang. 
+    </description>
+    <issueManagement>
+        <system>Trac</system>
+        <url>http://twd729.resource.ta-twd.rotterdam.nl/projects/tmfguc/trac/</url>
+    </issueManagement>
+    <ciManagement>
+        <system>hudson</system>
+        <url>http://twd729.resource.ta-twd.rotterdam.nl:8080/</url>
+        <notifiers>
+            <notifier>
+                <type>mail</type>
+                <configuration>
+                    <recipients>andrej@koelewijn.net</recipients>
+                </configuration>
+                <sendOnError>true</sendOnError>
+                <sendOnFailure>true</sendOnFailure>
+                <sendOnSuccess>true</sendOnSuccess>
+                <sendOnWarning>true</sendOnWarning>
+            </notifier>
+        </notifiers>
+    </ciManagement>
+
+    <developers>
+        <developer>
+            <name>John Copier</name>
+            <email>john.copier@it-eye.nl</email>
+        </developer>
+        <developer>
+            <id>akoelewijn</id>
+            <name>Andrej Koelewijn</name>
+            <email>andrej@koelewijn.net</email>
+        </developer>
+        <developer>
+            <id>rvweverwijk</id>
+            <name>Ron van Weverwijk</name>
+            <email>ron.van.weverwijk@it-eye.nl</email>
+        </developer>
+        <developer>
+            <id>ppbakker</id>
+            <name>Peter Paul Bakker</name>
+            <email>peter.paul.bakker@stokpop.nl</email>
+        </developer>
+        <developer>
+            <id>ebuis</id>
+            <name>Enno Buis</name>
+            <email>enno.buis@atosorigin.com</email>
+        </developer>
+    </developers>
+
+    <properties>
+        <mule.version>2.2.1</mule.version>
+        <rtmf.version>0.9</rtmf.version>
+		<!--
+		<tmf.portal.version>1.0-SNAPSHOT</tmf.portal.version>
+		-->
+        <tmf.portal.version>1.2.5</tmf.portal.version>
+        <runtime.library.scope>provided</runtime.library.scope>
+		<!-- om encoding issues te voorkomen met copied files -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- gebruikt door ioo guc componenten -->
+        <commons-lang.version>2.4</commons-lang.version>
+        <easymock.version>2.5</easymock.version>
+        <junit.version>4.5</junit.version>
+        <spring.version>2.5.6</spring.version>
+        <jdom.version>1.1</jdom.version>
+    </properties>
+    <profiles>
+		<!-- profile to enable running mule from commandline with maven -->
+        <profile>
+            <id>standalone</id>
+            <properties>
+                <runtime.library.scope>compile</runtime.library.scope>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>selenium-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>start</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>start-server</goal>
+                                </goals>
+                                <configuration>
+                                    <background>true</background>
+                                    <logOutput>true</logOutput>
+                                    <multiWindow>true</multiWindow>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>stop</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop-server</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+		<!-- profile to enable running tests headless on continuous integration 
+			server -->
+        <profile>
+            <id>CIServer</id>
+            <properties>
+                <runtime.library.scope>compile</runtime.library.scope>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>generate-test-resources</phase>
+                                <configuration>
+                                    <tasks>
+                                        <copy tofile="${user.home}/rtmfguc_env.properties"
+											overwrite="true"
+											file="${basedir}/src/test/resources/rtmfguc-twd729-ci-tests-all-mocks.properties" />
+                                        <copy tofile="${user.home}/tmfportal.properties"
+											overwrite="true"
+											file="${basedir}/src/test/resources/tmfportal-twd729-ci.properties" />
+                                    </tasks>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>selenium-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>xvfb</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>xvfb</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>start</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>start-server</goal>
+                                </goals>
+                                <configuration>
+                                    <background>true</background>
+                                    <logOutput>true</logOutput>
+                                    <multiWindow>true</multiWindow>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>stop</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop-server</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.groovy.maven</groupId>
+                        <artifactId>gmaven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>mule-graph</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <source>
+							<![CDATA[
+								println "Running MuleDot"
+								projDir = project.basedir.toString()
+								siteDir = projDir + "/target/docs/"
+								groovyDir = projDir + "/src/main/resources/groovy-scripts/"
+								muleConfigDir = projDir + "/src/main/resources/"
+								ant.mkdir(dir: siteDir)
+
+								File script = new File(groovyDir + "MuleDot.groovy")
+								File scriptHl = new File(groovyDir + "MuleDotHL.groovy")
+
+								if (script.exists()) {
+									files = (new File(muleConfigDir)).listFiles().grep(~/.*rtmfguc.*config.xml$/)
+									for (muleFile in files){
+										baseFilename = muleFile.name[0..-5]
+										println "baseFilename ${baseFilename}"
+										def shell = new GroovyShell()
+										println "converting mule to dot"
+										def result = shell.run(script, [ muleFile.absolutePath.toString(), (siteDir + baseFilename + ".dot")])
+										println "converting mule to hl dot"
+										def resultHl = shell.run(scriptHl,[muleFile.absolutePath.toString(), siteDir + baseFilename + "-hl.dot"])
+										println "running dot to generate image files"
+										try{
+											["dot","-Tpng", siteDir + baseFilename + ".dot","-o", siteDir + baseFilename + ".png"].execute()
+											["dot","-Tsvg", siteDir + baseFilename + ".dot","-o", siteDir + baseFilename + ".svg"].execute()
+											["dot","-Tpdf", siteDir + baseFilename + ".dot","-o", siteDir + baseFilename + ".pdf"].execute()
+											["dot","-Tpng",siteDir + baseFilename + "-hl.dot","-o", siteDir + baseFilename + "-hl.png"].execute()
+											["dot","-Tsvg",siteDir + baseFilename + "-hl.dot","-o", siteDir + baseFilename + "-hl.svg"].execute()
+											["dot","-Tpdf",siteDir + baseFilename + "-hl.dot","-o", siteDir + baseFilename + "-hl.pdf"].execute()
+										} catch (e) {
+											println "Failed to run dot on mule graph, probably due to missing dot executable"
+										}
+									}
+								} else {
+									event("StatusError", ["Scripts missing"])
+								}
+								]]>
+                                    </source>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>Development</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins />
+            </build>
+        </profile>
+
+    </profiles>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>codehaus snapshot repository</id>
+            <url>http://snapshots.repository.codehaus.org/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </pluginRepository>
+		<!--
+		<pluginRepository>
+			<id>codehaus snapshot repository</id>
+			<url>http://snapshots.repository.codehaus.org/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+		-->
+    </pluginRepositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>nl.rotterdam.rtmf</groupId>
+            <artifactId>rtmf-guc-mocks</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>nl.rotterdam.rtmf</groupId>
+            <artifactId>guc-generic</artifactId>
+            <version>1.0</version>
+        </dependency>
+<!-- 
+		<dependency>
+			<groupId>org.safehaus.jug</groupId>
+			<artifactId>jug.osgi</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.santuario</groupId>
+			<artifactId>xmlsec.osgi</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.script</groupId>
+			<artifactId>groovy-engine.osgi</artifactId>
+			<version>1.1</version>
+		</dependency>
+-->
+		<!-- Imports the Mule core library: -->
+        <dependency>
+            <groupId>org.mule</groupId>
+            <artifactId>mule-core</artifactId>
+            <version>${mule.version}</version>
+            <scope>${runtime.library.scope}</scope>
+<!-- 			
+			<exclusions>
+				<exclusion>
+					<groupId>org.safehaus.jug</groupId>
+					<artifactId>jug</artifactId>
+				</exclusion>
+			</exclusions>
+-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.mule.modules</groupId>
+            <artifactId>mule-module-client</artifactId>
+            <version>${mule.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mule.tests</groupId>
+            <artifactId>mule-tests-functional</artifactId>
+            <version>${mule.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+		<!-- Imports Mule server builders: -->
+        <dependency>
+            <groupId>org.mule.modules</groupId>
+            <artifactId>mule-module-builders</artifactId>
+            <version>${mule.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+		<!-- Adds support for VM provider: -->
+
+        <dependency>
+            <groupId>org.mule.transports</groupId>
+            <artifactId>mule-transport-vm</artifactId>
+            <version>${mule.version}</version>
+            <scope>${runtime.library.scope}</scope>
+        </dependency>
+
+		<!-- Adds support for Standard-IO provider: -->
+        <dependency>
+            <groupId>org.mule.transports</groupId>
+            <artifactId>mule-transport-stdio</artifactId>
+            <version>${mule.version}</version>
+            <scope>${runtime.library.scope}</scope>
+        </dependency>
+
+		<!-- Adds support for File provider: -->
+        <dependency>
+            <groupId>org.mule.transports</groupId>
+            <artifactId>mule-transport-file</artifactId>
+            <version>${mule.version}</version>
+            <scope>${runtime.library.scope}</scope>
+        </dependency>
+
+		<!-- Adds support for Email provider: -->
+        <dependency>
+            <groupId>org.mule.transports</groupId>
+            <artifactId>mule-transport-email</artifactId>
+            <version>${mule.version}</version>
+            <scope>${runtime.library.scope}</scope>
+        </dependency>
+
+		<!-- Adds support for TCP/IP provider: -->
+        <dependency>
+            <groupId>org.mule.transports</groupId>
+            <artifactId>mule-transport-tcp</artifactId>
+            <version>${mule.version}</version>
+            <scope>${runtime.library.scope}</scope>
+        </dependency>
+
+		<!-- Adds support for cxf provider: -->
+        <dependency>
+            <groupId>org.mule.transports</groupId>
+            <artifactId>mule-transport-cxf</artifactId>
+            <version>${mule.version}</version>
+            <scope>${runtime.library.scope}</scope>
+<!-- 			
+			<exclusions>
+				<exclusion>  
+					<groupId>org.apache.santuario</groupId>
+					<artifactId>xmlsec</artifactId>
+				</exclusion>
+			</exclusions>
+-->			
+        </dependency>
+
+		<!-- Adds support for Spring container: -->
+        <dependency>
+            <groupId>org.mule.modules</groupId>
+            <artifactId>mule-module-spring-config</artifactId>
+            <version>${mule.version}</version>
+            <scope>${runtime.library.scope}</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mule.modules</groupId>
+            <artifactId>mule-module-scripting</artifactId>
+            <version>${mule.version}</version>
+            <scope>${runtime.library.scope}</scope>
+<!-- 			
+			<exclusions>
+				<exclusion>
+					<groupId>javax.script</groupId>
+					<artifactId>groovy-engine</artifactId>
+				</exclusion>
+			</exclusions>
+-->			
+        </dependency>
+
+        <dependency>
+            <groupId>org.mule.modules</groupId>
+            <artifactId>mule-module-management</artifactId>
+            <version>${mule.version}</version>
+            <scope>${runtime.library.scope}</scope>
+        </dependency>
+
+		<!-- for testing -->
+        <dependency>
+            <groupId>org.mule.tests</groupId>
+            <artifactId>mule-tests-functional</artifactId>
+            <version>${mule.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>  <!-- declare the exclusion here -->
+                    <groupId>org.safehaus.jug</groupId>
+                    <artifactId>jug</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+		<!-- Adds support for jUnit: -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.6</version>
+            <scope>test</scope>
+        </dependency>
+
+		<!-- Adds support for selenium tests: -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium.client-drivers</groupId>
+            <artifactId>selenium-java-client-driver</artifactId>
+            <version>1.0.1</version>
+            <scope>test</scope>
+        </dependency>
+
+		<!-- Adds support for HSQLDB for the cache -->
+        <dependency>
+            <groupId>hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>1.8.0.10</version>
+        </dependency>
+
+		<!-- Adds support for ORACLEDB for the cache -->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc14</artifactId>
+            <version>10.2.0.4.0</version>
+        </dependency>
+
+		<!-- dummy mail server for unit tests -->
+        <dependency>
+            <groupId>org.subethamail</groupId>
+            <artifactId>subethasmtp</artifactId>
+            <version>3.1.4</version>
+            <!--
+            <exclusions>
+                <exclusion>
+                    <artifactId>mail</artifactId>
+                    <groupId>javax.mail</groupId>
+                </exclusion>    
+            </exclusions>
+            -->
+        </dependency>
+		<!-- groovy compiler -->
+		<!-- <dependency> <groupId>org.codehaus.groovy.maven.runtime</groupId> 
+			<artifactId>gmaven-runtime-default</artifactId> <version>1.0-rc-3</version> 
+			</dependency> -->
+<!---->
+        <dependency>
+            <groupId>nl.rotterdam.ioo.guc_algemeen</groupId>
+            <artifactId>guc_algemeen_componenten</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+		<!-- -->
+		<!-- testing xerces sax implementation -->
+        <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+		<!-- We gebruiken een httpClient voor het testen van webservices in de 
+			functional ping -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <scm>
+        <url>http://twd729.resource.ta-twd.rotterdam.nl/projects/tmfguc/svn/</url>
+    </scm>
+    <organization>
+        <name>Rotterdam</name>
+        <url>www.rotterdam.nl</url>
+    </organization>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <verbose>true</verbose>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <configuration>
+                    <sourceIncludes>
+                        <sourceInclude>**/*.groovy</sourceInclude>
+                    </sourceIncludes>
+                    <additionalProjectnatures>
+                        <projectnature>org.eclipse.jdt.groovy.core.groovyNature</projectnature>
+                    </additionalProjectnatures>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+				<!-- the integration tests include the selenium tests -->
+                <executions>
+                    <execution>
+                        <id>default-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <skip>false</skip>
+                            <forkMode>pertest</forkMode>
+                            <forkedProcessTimeoutInSeconds>600</forkedProcessTimeoutInSeconds>
+                            <excludes>
+                                <exclude>**/selenium/*Test.java</exclude>
+                            </excludes>
+                            <includes>
+                                <include>**/*Test.java</include>
+                            </includes>
+                            <mule.version>2.2.1</mule.version>
+                            <systemProperties>
+                                <property>
+                                    <name>mule.props</name>
+                                    <value>classpath:guc_generic.properties,classpath:rtmfguc_default.properties,classpath:rtmfguc_env.properties,classpath:rtmfguc-mocks_default.properties,classpath:rtmfguc-mocks_env.properties,classpath:rtmfguc-mailsender.properties,file:${user.home}/rtmfguc_env.properties</value>
+                                </property>
+                                <property>
+                                    <name>mule.configs</name>
+                                    <value>classpath:guc_generic_config.xml,classpath:rtmfguc-config.xml,classpath:rtmfguc-zm-config.xml,classpath:rtmfguc-mocks-config.xml,classpath:rtmfguc-mocks-zm-config.xml</value>
+                                </property>
+                            </systemProperties>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>integration-test</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <skip>false</skip>
+                            <includes>
+                                <include>**/selenium/*Test.java</include>
+                            </includes>
+                            <systemProperties>
+                                <property>
+                                    <name>mule.props</name>
+                                    <value>classpath:guc_generic.properties,classpath:rtmfguc_default.properties,classpath:rtmfguc_env.properties,classpath:rtmfguc-mocks_default.properties,classpath:rtmfguc-mocks_env.properties,classpath:rtmfguc-mailsender.properties,file:${user.home}/rtmfguc_env.properties</value>
+                                </property>
+                                <property>
+                                    <name>mule.configs</name>
+                                    <value>classpath:guc_generic_config.xml,classpath:rtmfguc-config.xml,classpath:rtmfguc-zm-config.xml,classpath:rtmfguc-mocks-config.xml,classpath:rtmfguc-mocks-zm-config.xml</value>
+                                </property>
+                            </systemProperties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>dependency-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>get-latest-tmfportal-war</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.osb.tmf-portaal</groupId>
+                                    <artifactId>TMFPortal</artifactId>
+                                    <version>${tmf.portal.version}</version>
+                                    <type>war</type>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+			<!-- run jetty met TMFPortal voor de integratie tests -->
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>7.0.0.RC3</version>
+                <configuration>
+                    <webApp>${project.build.directory}/TMFPortal-${tmf.portal.version}.war</webApp>
+                    <stopPort>9966</stopPort>
+                    <stopKey>kappen</stopKey>
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>9191</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-jetty</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run-war</goal>
+                        </goals>
+                        <configuration>
+                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                            <daemon>true</daemon>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+			<!-- plugin voor het maken van de tar.gz -->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2-beta-2</version>
+                <inherited>false</inherited>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                        <phase>package</phase> <!-- append to the packaging phase. -->
+                        <goals>
+                            <goal>single</goal> <!-- goals == mojos -->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>**/rtmfguc-config.xml</exclude>
+                        <exclude>**/rtmfguc-test-config.xml</exclude>
+                        <exclude>**/rtmfguc-zm-config.xml</exclude>
+                        <exclude>*.properties</exclude>
+                        <exclude>**/*-config.xml</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+			<!-- <plugin> <groupId>org.codehaus.groovy.maven</groupId> <artifactId>gmaven-plugin</artifactId> 
+				<executions> <execution> <goals> <goal>compile</goal> </goals> <configuration> 
+				<sources> <fileset> <directory>${pom.basedir}/src/main/groovy/</directory> 
+				<includes> <include>**/*.groovy</include> </includes> </fileset> </sources> 
+				<targetBytecode>1.5</targetBytecode> <providerSelection>1.5</providerSelection> 
+				</configuration> </execution> </executions> </plugin> -->
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>muleforge-snapshots</id>
+            <name>Apache SNAPSHOT Repository</name>
+            <url>http://snapshots.repository.muleforge.org</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>ibiblio.org</id>
+            <name>ibiblio</name>
+            <url>http://mirrors.ibiblio.org/pub/mirrors/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+		<!-- needed for selenium tests: openqa repo -->
+        <repository>
+            <id>openqa</id>
+            <name>OpenQA Repository</name>
+            <url>http://nexus.openqa.org/content/repositories/releases/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>atlassian</id>
+            <url>http://repository.atlassian.com/maven2</url>
+        </repository>
+
+        <repository> 
+            <id>mule-deps</id> 
+            <name>Mule Dependencies</name> 
+            <url>http://dist.codehaus.org/mule/dependencies/maven2</url>
+        </repository>         
+    </repositories>
+
+    <reporting>
+        <plugins>
+			<!-- Javadoc -->
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+			<!-- cross-referenced HTML version of the source code -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jxr-maven-plugin</artifactId>
+            </plugin>
+			<!-- JUnit -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+			<!-- Test coverage -->
+            <plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>maven-clover2-plugin</artifactId>
+            </plugin>
+			<!-- PMD -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <configuration>
+                    <targetJdk>1.6</targetJdk>
+                    <rulesets>
+                        <ruleset>/rulesets/basic.xml</ruleset>
+                        <ruleset>/rulesets/controversial.xml</ruleset>
+                    </rulesets>
+                    <format>xml</format>
+                    <linkXref>true</linkXref>
+                    <sourceEncoding>utf-8</sourceEncoding>
+                    <minimumTokens>100</minimumTokens>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <configuration>
+                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                    <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </reporting>
+</project>

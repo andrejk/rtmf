@@ -1,0 +1,13 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"  
+                  xmlns:wsa="http://www.w3.org/2005/08/addressing">
+   <soapenv:Header>
+      <wsa:To>http://www.w3.org/2005/08/addressing/anonymous</wsa:To>
+      <wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/ophalenService/ophalenMeldingStatusResponse</wsa:Action>
+      <wsa:RelatesTo>${wsaMessageId}</wsa:RelatesTo>
+   </soapenv:Header>
+   <soapenv:Body>
+      <ophalenMeldingStatusResponse xmlns="http://wus.tmf.gbo.overheid.nl/wsdl/ophaalService-V1.1.xsd">
+      	<statusResponseList />
+      <ophalenMeldingStatusResponse>
+   </soapenv:Body>
+</soapenv:Envelope>

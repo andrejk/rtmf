@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+ * Copyright (c) 2009-2011 Gemeente Rotterdam
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the European Union Public Licence (EUPL),
+ * version 1.1 (or any later version).
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * European Union Public Licence for more details.
+ *
+ * You should have received a copy of the European Union Public Licence
+ * along with this program. If not, see
+ * http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:9191/" />
+<title>RTMFBevraagUseCase</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">RTMFBevraagUseCase</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/main.htm</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Terugmelden</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Volgende &gt;&gt;']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>BRObjectID</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Volgende &gt;&gt;']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Bevraag</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>newTMF-PERSOON-TUSSENVOEGSEL</td>
+	<td>van der</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>newTMF-PERSOON-VOORNAAM</td>
+	<td>Petet</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>newTMF-PERSOON-ACHTERNAAM</td>
+	<td>Baker</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>newTMF-PERSOON-VOORNAAM</td>
+	<td>Peter</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>newTMF-PERSOON-TUSSENVOEGSEL</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>newTMF-PERSOON-ACHTERNAAM</td>
+	<td>Bakker</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Volgende &gt;&gt;']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>reason</td>
+	<td>Naam klopte niet</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>meldingkenmerk</td>
+	<td>P123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name</td>
+	<td>PP Bakker</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>phonenumber</td>
+	<td>020-123</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Volgende &gt;&gt;']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Versturen']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td></td>
+	<td>Terugmelding is succesvol verstuurd</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

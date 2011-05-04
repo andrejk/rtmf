@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesource.org/schema/mule/core/2.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns:vm="http://www.mulesource.org/schema/mule/vm/2.2" xmlns:xm="http://www.mulesource.org/schema/mule/xml/2.2"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:scripting="http://www.mulesource.org/schema/mule/scripting/2.2"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xsi:schemaLocation="
+               http://www.mulesource.org/schema/mule/scripting/2.2 http://www.mulesource.org/schema/mule/scripting/2.2/mule-scripting.xsd
+               http://www.mulesource.org/schema/mule/core/2.2 http://www.mulesource.org/schema/mule/core/2.2/mule.xsd
+               http://www.mulesource.org/schema/mule/vm/2.2 http://www.mulesource.org/schema/mule/vm/2.2/mule-vm.xsd
+               http://www.mulesource.org/schema/mule/xml/2.2 http://www.mulesource.org/schema/mule/xml/2.2/mule-xml.xsd
+               http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+               http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+               http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd">
+	<spring:bean class="nl.rotterdam.rtmf.guc.cache.StelselCatalogusCacheHSQL"
+			name="stelselCatalogusCacheBean" />
+			
+	<custom-transformer name="traceTransformer"
+		class="nl.rotterdam.rtmf.guc.transformer.TraceTransformer" />
+
+	<scripting:transformer name="prettyEmailTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/PrettyTerugmeldenEmailTransformer.groovy">
+			<property key="emailTemplate" value="templates/EmailTerugmelding.template"  />
+			<property key="adresMeerInfo" value="rtmf.cfg.mail.terugmelding.adres.meer.info" />
+			<property key="stelselCatalogusCache" value-ref="stelselCatalogusCacheBean" />
+			<property key="zmwebPrefix" value="${rtmf.cfg.mail.zmweb.adres.prefix}" />
+		</scripting:script>
+	</scripting:transformer>
+	
+	<model name="GroovyTemplateTest">
+			<service name="TestPrettyEmail">
+			<description>Deze service stuurt het inkomende bericht naar een
+				terug via een prettyprinter response transformer
+			</description>
+			<inbound>
+				<vm:inbound-endpoint path="testPrettyEmail"
+					synchronous="true" transformer-refs="traceTransformer"
+					name="rtmfguc.testPrettyEmail.inbound.vm"
+					responseTransformer-refs="prettyEmailTransformer" />
+			</inbound>
+<!--
+			<outbound>
+				<pass-through-router>
+					<vm:outbound-endpoint synchronous="true" name="dummy.vm" />
+				</pass-through-router>
+			</outbound>
+-->
+			<default-connector-exception-strategy />
+		</service>
+	</model>
+
+
+</mule>
