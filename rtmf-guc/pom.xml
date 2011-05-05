@@ -558,7 +558,7 @@
                                 <exclude>**/selenium/*Test.java</exclude>
                             </excludes>
                             <includes>
-                                <include>**/*Test.java</include>
+                                <include>**/*xTest.java</include>
                             </includes>
                             <mule.version>2.2.1</mule.version>
                             <systemProperties>

@@ -31,10 +31,8 @@
               http://www.mulesource.org/schema/mule/http/2.2 http://www.mulesource.org/schema/mule/http/2.2/mule-http.xsd
               http://www.mulesource.org/schema/mule/jbossts/2.2 http://www.mulesource.org/schema/mule/jbossts/2.2/mule-jbossts.xsd">
 
-    <description>Standaard TWD Mule Domein configuratie. Deze
-       configuratie
-       wordt beheerd door GW TWD en mag derhalve niet door
-       projecten worden
+    <description>Standaard TWD Mule Domein configuratie. Deze configuratie
+       wordt beheerd door GW TWD en mag derhalve niet door projecten worden
        gewijzigd cq opgeleverd.
     </description>
 

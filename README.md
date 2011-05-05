@@ -79,7 +79,6 @@ Indien je alleen de selenium tests wilt uitvoeren kun je maven als volgt starten
 mvn -Pstandalone -Dtest=*UseCaseTest* integration-test
 ```
 
-
 ## Testen ##
 
 ### Alle services gemocked ###
@@ -92,11 +91,15 @@ mvn -Pstandalone -Dtest=*UseCaseTest* integration-test
   ```
 
 * Mule starten
+
   ```
   cd rtmf/rtm-guc
   EXPORT MULE_HOME=$HOME/programs/mule-standalone-2.2.1
   runMuleWithMocksModule.sh
   ```
+
+* Oracle database starten
+* Browser openen op http://localhost:8080/. Terugmelden op natuurlijk persoon met BSN 78548718 levert actuele waarden op.
 
 ### Met lokale services ###
 
