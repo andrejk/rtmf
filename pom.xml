@@ -16,22 +16,22 @@
  * http://www.osor.eu/eupl/european-union-public-licence-eupl-v.1.1
   -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>nl.rotterdam.rtmf</groupId>
-	<artifactId>rtmf</artifactId>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>nl.rotterdam.rtmf</groupId>
+    <artifactId>rtmf</artifactId>
 
-	<packaging>pom</packaging>
-	<version>1.0.3</version>
-	<name>Rotterdamse terugmeld faciliteit</name>
-	<description>  
-	   In het kader van het programma Data Chain draagt het project Stelsel Basis- en Kernregistraties 
-       zorg voor het realiseren van voorzieningen voor het beschikbaar stellen van basis- en kerngegevens. 
-       Onderdeel van deze voorzieningen is de mogelijkheid van het indienen van terugmeldingen op deze gegevens. 
-       Om naast het gebruik van de landelijke Terugmeldfaciliteit ook aan kerngegevens binnen de 
-       gemeente Rotterdam gelijke kwaliteitseisen te stellen, is het gebruik van een geïntegreerde, 
-       adequate en transparante Terugmeldfaciliteit voor Rotterdam van groot belang. 
+    <packaging>pom</packaging>
+    <version>1.0.3</version>
+    <name>Rotterdamse terugmeld faciliteit</name>
+    <description>
+        In het kader van het programma Data Chain draagt het project Stelsel Basis- en Kernregistraties
+        zorg voor het realiseren van voorzieningen voor het beschikbaar stellen van basis- en kerngegevens.
+        Onderdeel van deze voorzieningen is de mogelijkheid van het indienen van terugmeldingen op deze gegevens.
+        Om naast het gebruik van de landelijke Terugmeldfaciliteit ook aan kerngegevens binnen de
+        gemeente Rotterdam gelijke kwaliteitseisen te stellen, is het gebruik van een geïntegreerde,
+        adequate en transparante Terugmeldfaciliteit voor Rotterdam van groot belang.
     </description>
     <issueManagement>
         <system>GitHub Issues</system>
@@ -86,15 +86,15 @@
         <rtmf.version>0.9</rtmf.version>
         <tmf.portal.version>1.0-SNAPSHOT</tmf.portal.version>
         <runtime.library.scope>provided</runtime.library.scope>
-	<!-- om encoding issues te voorkomen met copied files -->
+        <!-- om encoding issues te voorkomen met copied files -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- gebruikt door ioo guc componenten -->
         <commons-lang.version>2.4</commons-lang.version>
         <easymock.version>2.5</easymock.version>
         <junit.version>4.5</junit.version>
         <spring.version>2.5.6</spring.version>
-        <jdom.version>1.1</jdom.version>		
-    </properties>	
+        <jdom.version>1.1</jdom.version>
+    </properties>
     <scm>
         <url>https://github.com/rotterdam/rtmf</url>
     </scm>
@@ -106,12 +106,23 @@
         <module>guc-generic</module>
         <module>rtmf-guc-mocks</module>
         <module>rtmf-guc</module>
-<!--
         <module>rtmf-guc-db</module>
         <module>ZmWeb</module>
         <module>rtmf-package</module>
--->
     </modules>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>2.2</version>
+                </plugin>
+                ...
+            </plugins>
+        </pluginManagement>
+
+    </build>
     <reporting>
         <plugins>
             <plugin>
@@ -131,13 +142,13 @@
             <id>muleforge</id>
             <url>http://repository.muleforge.org</url>
             <name>MuleForge Repository</name>
-        </repository >
+        </repository>
 
         <repository>
             <id>mule.dependencies</id>
             <url>http://dist.codehaus.org/mule/dependencies/maven2/</url>
             <name>Mule Dependencies Repository</name>
-        </repository >
+        </repository>
 
         <repository>
             <id>ibiblio-mule-deps</id>
@@ -151,7 +162,7 @@
             <url>http://download.java.net/maven/2/</url>
             <layout>default</layout>
         </repository>
-        
+
         <repository>
             <id>servicemix-opensaml</id>
             <name>servicemix-opensaml</name>
