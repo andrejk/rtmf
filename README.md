@@ -72,7 +72,7 @@ Voordat RTMF gecompileerd en getest kan worden dienen de volgende stappen uitgev
     Deze afhankelijkheden houden in dat dit project momenteel niet zonder aanpassingen gecompileerd kan worden.
 
 * Mule 2.2.1 installeren
-* Tomcat 6 installeren
+* Tomcat 6 of 7 installeren
 
 ### Build ###
 
@@ -94,7 +94,7 @@ Indien dit een integratie test is dient eerst selenium gestart te worden. Je kun
 
 ```
 .../selenium$ java -jar selenium-server-standalone-2.0b3.jar
-.../apache-tomcat-6.0.32$ CATALINA_OPTS=-Dtmfportal.props=/tmp/tmfportal.properties bin/startup.sh
+.../apache-tomcat-6.0.32$ CATALINA_OPTS=-Dtmfportal.config=/tmp/tmfportal.properties bin/startup.sh
 .../rtmf-guc$ mvn -o -Dtest=*TerugmeldingUseCaseTest* test
 
 ```
@@ -117,7 +117,7 @@ Stappen:
   TMFPortal war file in webapps folder van je tomcat installatie plaatsen. Hernoemen naar ROOT.war (TMFPortal 1.2.5 draait alleen als root web applicatie). Vervolgens tomcat starten:
 
   ```
-  CATALINA_OPTS=-Dtmfportal.props=/tmp/tmfportal.properties ./startup.sh
+  CATALINA_OPTS=-Dtmfportal.config=/tmp/tmfportal.properties ./startup.sh
   ```
 
 * Mule starten
