@@ -173,13 +173,13 @@ public class TestZakenmagazijn extends FunctionalTestCase {
 
 	@Override
 	protected String getConfigResources() {
-		return "rtmfguc-config.xml,rtmfguc-mocks-config.xml,rtmfguc-zm-config.xml,rtmfguc-mocks-zm-config.xml";
+		return "guc_generic_config.xml,rtmfguc-config.xml,rtmfguc-mocks-config.xml,rtmfguc-zm-config.xml,rtmfguc-mocks-zm-config.xml";
 	}
 
 	public void testNieuwZaaknummer() throws Exception {
 		MuleClient client = new MuleClient();
 		MuleMessage response = client.send(
-				"vm://rtmfguc/zakenMagazijnNieuwZaaknummerService",
+				"vm://guc/rtmfguc/zakenMagazijnNieuwZaaknummerService",
 				nieuwZaaknummerRequest, null);
 		assertNotNull(
 				"Geen response teruggekregen na aanroep NieuwZaaknummer.",
@@ -199,7 +199,7 @@ public class TestZakenmagazijn extends FunctionalTestCase {
 	public void testZaakCreatie() throws Exception {
 		MuleClient client = new MuleClient();
 		MuleMessage response = client.send(
-				"vm://rtmfguc/zakenMagazijnZaakCreatieService",
+				"vm://guc/rtmfguc/zakenMagazijnZaakCreatieService",
 				zaakCreatieRequest, null);
 		assertNotNull("Geen response teruggekregen na aanroep ZaakCreatie.",
 				response);
@@ -217,7 +217,7 @@ public class TestZakenmagazijn extends FunctionalTestCase {
 	public void testStapCreatieOntvangen() throws Exception {
 		MuleClient client = new MuleClient();
 		MuleMessage response = client.send(
-				"vm://rtmfguc/zakenMagazijnStapCreatieService",
+				"vm://guc/rtmfguc/zakenMagazijnStapCreatieService",
 				String.format(stapCreatieRequest,
 						"Het ontvangen van de terugmelding door de bronhouder",
 						"ONTVANGEN"), null);
@@ -240,7 +240,7 @@ public class TestZakenmagazijn extends FunctionalTestCase {
 	public void testStatusCreatieOntvangen() throws Exception {
 		MuleClient client = new MuleClient();
 		MuleMessage response = client.send(
-				"vm://rtmfguc/zakenMagazijnStatusCreatieService",
+				"vm://guc/rtmfguc/zakenMagazijnStatusCreatieService",
 				statusCreatieOntvangenRequest, null);
 		assertNotNull("Geen response teruggekregen na aanroep StatusCreatie.",
 				response);
@@ -338,7 +338,7 @@ public class TestZakenmagazijn extends FunctionalTestCase {
 	public void testZaakUpdate() throws Exception {
 		MuleClient client = new MuleClient();
 		MuleMessage response = client.send(
-				"vm://rtmfguc/zakenMagazijnZaakUpdateService",
+				"vm://guc/rtmfguc/zakenMagazijnZaakUpdateService",
 				zaakUpdateRequest, null);
 		assertNotNull("Geen response teruggekregen na aanroep ZaakUpdate.",
 				response);
@@ -356,7 +356,7 @@ public class TestZakenmagazijn extends FunctionalTestCase {
 	public void testStapUpdateGemeld() throws Exception {
 		MuleClient client = new MuleClient();
 		MuleMessage response = client.send(
-				"vm://rtmfguc/zakenMagazijnStapUpdateService",
+				"vm://guc/rtmfguc/zakenMagazijnStapUpdateService",
 				stapUpdateGemeldRequest, null);
 		assertNotNull("Geen response teruggekregen na aanroep StapUpdate.",
 				response);
@@ -374,7 +374,7 @@ public class TestZakenmagazijn extends FunctionalTestCase {
 	public void testStapCreatieBeoordelen() throws Exception {
 		MuleClient client = new MuleClient();
 		MuleMessage response = client.send(
-				"vm://rtmfguc/zakenMagazijnStapCreatieService",
+				"vm://guc/rtmfguc/zakenMagazijnStapCreatieService",
 				String.format(stapCreatieRequest,
 						"Het beoordelen van de terugmelding door de bronhouder",
 						"BEOORDELEN"), null);
