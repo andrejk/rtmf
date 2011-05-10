@@ -62,6 +62,38 @@
 				</pass-through-router>
 			</outbound>
 		</service>
+                
+                <!--  -->
+		<!-- Zakenmagazijn Create Services met Stap en Status -->
+		<!--  -->
+
+		<service name="ZaakCreatieServiceMetStapEnStatus">
+			<description>
+				Deze service doet een aanroep naar het zakenmagazijn om
+				een nieuwe zaak aan te maken inclusief Stap en Status (zaakcreatie_met_stap_en_status).
+			</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" 
+					path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnZaakCreatieServiceMetStapEnStatus"
+					synchronous="true"
+					name="rtmfguc.zakenMagazijnService.zaakCreatieMetStapEnStatus.inbound.vm" />
+				<http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}"
+					port="${rtmf.cfg.rtmfguc.port}" path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnZaakCreatieServiceMetStapEnStatus"
+					synchronous="true" connector-ref="domein.http.connector"
+					transformer-refs="delete-accept-header add-xml-accept-header byteArrayToString"
+					responseTransformer-refs="delete-content-type-header add-xml-content-type-header"
+					name="rtmfguc.zakenMagazijnService.zaakCreatieMetStapEnStatus.inbound.http">
+				</http:inbound-endpoint>
+			</inbound>
+			<outbound>
+				<pass-through-router>
+					<http:outbound-endpoint host="${rtmf.cfg.zm.host}"
+					connector-ref="domein.http.connector"
+						port="${rtmf.cfg.zm.port}" path="${rtmf.cfg.zm.manager.path}" synchronous="true"
+						name="rtmfguc.zakenMagazijnService.zaakCreatieMetStapEnStatus.proxy.outbound.http" />
+				</pass-through-router>
+			</outbound>
+		</service>
 		
 		<!--  -->
 		<!-- Zakenmagazijn Create Services -->
@@ -149,6 +181,38 @@
 				</pass-through-router>
 			</outbound>
 		</service>
+                
+                <!--  -->
+		<!-- Zakenmagazijn Update Services met Stap en Status-->
+		<!--  -->
+
+		<service name="ZaakUpdateServiceMetStapEnStatus">
+			<description>
+				Deze service doet een aanroep naar het zakenmagazijn om
+				een update op een zaak te doen inclusief Stap en Status (zaakupdate_met_stap_en_status).
+			</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" 
+					path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnZaakUpdateServiceMetStapEnStatus"
+					synchronous="true"
+					name="rtmfguc.zakenMagazijnService.zaakUpdateMetStapEnStatus.inbound.vm" />
+				<http:inbound-endpoint host="${rtmf.cfg.rtmfguc.host}"
+					port="${rtmf.cfg.rtmfguc.port}" path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnZaakUpdateServiceMetStapEnStatus"
+					synchronous="true" connector-ref="domein.http.connector"
+					transformer-refs="delete-accept-header add-xml-accept-header byteArrayToString"
+					responseTransformer-refs="delete-content-type-header add-xml-content-type-header"
+					name="rtmfguc.zakenMagazijnService.zaakUpdateMetStapEnStatus.inbound.http">
+				</http:inbound-endpoint>
+			</inbound>
+			<outbound>
+				<pass-through-router>
+					<http:outbound-endpoint host="${rtmf.cfg.zm.host}"
+						connector-ref="domein.http.connector"
+						port="${rtmf.cfg.zm.port}" path="${rtmf.cfg.zm.manager.path}" synchronous="true"
+						name="rtmfguc.zakenMagazijnService.zaakUpdateMetStapEnStatus.proxy.outbound.http" />
+				</pass-through-router>
+			</outbound>
+		</service>                
 
 		<!--  -->
 		<!-- Zakenmagazijn Update Services -->
