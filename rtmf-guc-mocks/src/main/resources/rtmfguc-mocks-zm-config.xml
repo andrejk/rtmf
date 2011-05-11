@@ -78,37 +78,37 @@
                             	<filtering-router>
 					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}zaakCreatieServiceMetStapEnStatusMock"
 						synchronous="true" />
-					<wildcard-filter pattern="*<stat:Trefwoord>UnitTester-ZMSTAPSTATUS</stat:Trefwoord>*" />
+					<wildcard-filter pattern="*UnitTester-ZMSTAPSTATUS*" />
 				</filtering-router>
 				<filtering-router>
 					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}zaakCreatieServiceMock"
 						synchronous="true" />
-					<wildcard-filter pattern="*<stat:Trefwoord>UnitTester-ZakenMagazijn</stat:Trefwoord>*" />
+					<wildcard-filter pattern="*UnitTester-ZakenMagazijn*" />
 				</filtering-router>
 				<filtering-router>
 					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}stapCreatieServiceMock"
 						synchronous="true" />
-					<wildcard-filter pattern="*<stat:Zaakidentificatie>TMD.09.10.90000</stat:Zaakidentificatie>*" />
+					<wildcard-filter pattern="*TMD.09.10.90000*" />
 				</filtering-router>
 				<filtering-router>
 					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}statusCreatieServiceMock"
 						synchronous="true" />
-					<wildcard-filter pattern="<stat:Zaakidentificatie>TMD.09.10.80000</stat:Zaakidentificatie>" />
+					<wildcard-filter pattern="*TMD.09.10.80000*" />
 				</filtering-router>
                                 <filtering-router>
 					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}zaakUpdateServiceMetStapEnStatusMock"
 						synchronous="true" />
-					<wildcard-filter pattern="*<stat:Zaakidentificatie>TMD.09.10.99990</stat:Zaakidentificatie>*" />
+					<wildcard-filter pattern="*TMD.09.10.99990*" />
 				</filtering-router>
 				<filtering-router>
 					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}zaakUpdateServiceMock"
 						synchronous="true" />
-					<wildcard-filter pattern="*<stat:Zaakidentificatie>TMD.09.10.99991</stat:Zaakidentificatie>*" />
+					<wildcard-filter pattern="*TMD.09.10.99991*" />
 				</filtering-router>
 				<filtering-router>
 					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}stapUpdateServiceMock"
 						synchronous="true" />
-					<wildcard-filter pattern="*<stat:Zaakidentificatie>TMD.09.10.99992</stat:Zaakidentificatie>>*" />
+					<wildcard-filter pattern="*TMD.09.10.99992*" />
 				</filtering-router>
 				<!--<filtering-router>
 					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}stapCreatieServiceMock"
