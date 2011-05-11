@@ -72,6 +72,8 @@ Voordat RTMF gecompileerd en getest kan worden dienen de volgende stappen uitgev
 
 * Mule 2.2.1 installeren
 * Tomcat 6 of 7 installeren
+* Install James mailserver
+  Download and unzip apache James. Configure ports. Edit $JAMES_HOME/apps/james/SAR-INF/config.xml. Change smtpserver port to 18089.
 
 ### Build ###
 
