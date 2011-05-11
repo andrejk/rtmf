@@ -1,0 +1,33 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stat="http://www.interaccess.nl/webplus/statuswfm_v2">
+   <soapenv:Header/>
+   <soapenv:Body>
+        </stat:ZaakUpdateWithStapAndStatus>
+            <stat:ZaakUpdate>
+                <stat:Zaakidentificatie>${Zaakidentificatie}</stat:Zaakidentificatie>
+                <stat:Resultaatcode>${Resultaatcode}</stat:Resultaatcode>
+                <stat:Resultaatomschrijving>${Resultaatomschrijving}</stat:Resultaatomschrijving>
+                <stat:Resultaattoelichting>${Resultaattoelichting}</stat:Resultaattoelichting>
+                <stat:Oge_id>0</stat:Oge_id>
+            </stat:ZaakUpdate>
+        </stat:ZaakUpdateWithStapAndStatus>
+        <stat:StapUpdate>
+             <stat:Zaakidentificatie>${Zaakidentificatie}</stat:Zaakidentificatie>
+             <stat:Begindatum>${Begindatum}</stat:Begindatum>
+             <stat:Staptypecode>${Staptypecode}</stat:Staptypecode>
+             <stat:Resultaatcode>${Resultaatcode}</stat:Resultaatcode>
+             <stat:Stapeinddatum>${Stapeindedatum}</stat:Stapeinddatum>
+             <stat:Resultaatomschrijving>${Resultaatomschrijving}</stat:Resultaatomschrijving>
+             <stat:Resultaattoelichting>${Resultaattoelichting}</stat:Resultaattoelichting>
+             <stat:Oge_id>0</stat:Oge_id>
+        </stat:StapUpdate>
+        <stat:Stap>
+             <stat:Zaakidentificatie>${Zaakidentificatie}</stat:Zaakidentificatie>
+             <stat:Geen_stap_uitvoerder>true</stat:Geen_stap_uitvoerder>
+             <stat:Geen_stap_verantwoordelijke>true</stat:Geen_stap_verantwoordelijke>
+             <stat:Begindatum>${Begindatum}</stat:Begindatum>
+             <stat:Stapomschrijving>${Stapomschrijving}</stat:Stapomschrijving>
+             <stat:Staptypecode>${Staptypecode}</stat:Staptypecode>
+             <stat:Oge_id>0</stat:Oge_id>
+        </stat:Stap>
+   </soapenv:Body>
+</soapenv:Envelope>
