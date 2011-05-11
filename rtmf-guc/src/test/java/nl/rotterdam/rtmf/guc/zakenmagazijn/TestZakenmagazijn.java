@@ -57,6 +57,7 @@ public class TestZakenmagazijn extends FunctionalTestCase {
         String zaakCreatieMetStapEnStatusRequest = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:stat=\"http://www.interaccess.nl/webplus/statuswfm_v2\">"
 			+ "	<soapenv:Header />"
 			+ "	<soapenv:Body>"
+                        + "     <stat:ZaakCreateWithStapAndStatus>"
 			+ "		<stat:Zaak>"
 			+ "			<!--Verantwoordelijke: ff tijdelijk geen, openstaande vraag aan IOO-->"
 			+ "			<stat:Geen_zaak_verantwoordelijke>true"
@@ -114,6 +115,7 @@ public class TestZakenmagazijn extends FunctionalTestCase {
 			+ "                 <stat:Statusomschrijving>Ontvangen</stat:Statusomschrijving>"
 			+ "                 <stat:Oge_id>0</stat:Oge_id>"
 			+ "             </stat:Status>"
+                        + "     </stat:ZaakCreateWithStapAndStatus>"
 			+ "	</soapenv:Body>"
 			+ "</soapenv:Envelope>";
 
@@ -213,7 +215,7 @@ public class TestZakenmagazijn extends FunctionalTestCase {
         String zaakUpdateMetStapEnStatusRequest = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:stat=\"http://www.interaccess.nl/webplus/statuswfm_v2\">"
 			+ "   <soapenv:Header/>"
 			+ "   <soapenv:Body>"
-                        + "     </stat:ZaakUpdateWithStapAndStatus>"
+                        + "     <stat:ZaakUpdateWithStapAndStatus>"
 			+ "         <stat:ZaakUpdate>"
 			+ "             <stat:Zaakidentificatie>TMD.09.10.99990</stat:Zaakidentificatie>"
 			+ "             <stat:Resultaatcode>gemeld</stat:Resultaatcode>"

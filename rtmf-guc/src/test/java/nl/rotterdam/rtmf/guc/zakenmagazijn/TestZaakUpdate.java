@@ -124,6 +124,8 @@ public class TestZaakUpdate extends FunctionalTestCase {
 
 	}
 
+        //Bestaat niet?
+        /*
 	public void testUpdateZaakIntrekking() throws Exception {
 		MuleClient client = new MuleClient();
 		MuleMessage message = new DefaultMuleMessage(IntrekkingRequest);
@@ -140,7 +142,7 @@ public class TestZaakUpdate extends FunctionalTestCase {
 		assertNotNull("Geen payload teruggekregen", payload);
 		assertTrue("De zaak is aangepast..", payload
 				.contains("operatie succesvol"));
-	}
+	}*/
 	
 	@Override
 	public void doSetUp() throws Exception {
