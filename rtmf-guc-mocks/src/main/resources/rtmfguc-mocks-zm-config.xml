@@ -93,9 +93,7 @@
 				<filtering-router>
 					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}statusCreatieServiceMock"
 						synchronous="true" />
-					<or-filter>
 					<wildcard-filter pattern="<stat:Zaakidentificatie>TMD.09.10.80000</stat:Zaakidentificatie>" />
-					</or-filter>
 				</filtering-router>
                                 <filtering-router>
 					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}zaakUpdateServiceMetStapEnStatusMock"
