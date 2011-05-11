@@ -39,7 +39,6 @@ Voordat RTMF gecompileerd en getest kan worden dienen de volgende stappen uitgev
   User created.
   SQL> grant connect, resource to rtmfguc;              
   Grant succeeded.
-
   > /rtmf-guc-db/src/main/sql$ sqlplus rtmfguc/rtmfguc@XE
   SQL*Plus: Release 10.2.0.1.0 - Production on Sun Mar 27 23:07:58 2011
   Copyright (c) 1982, 2005, Oracle.  All rights reserved.
@@ -94,9 +93,8 @@ Indien dit een integratie test is dient eerst selenium gestart te worden. Je kun
 
 ```
 .../selenium$ java -jar selenium-server-standalone-2.0b3.jar
-.../apache-tomcat-6.0.32$ CATALINA_OPTS=-Dtmfportal.props=/tmp/tmfportal.properties bin/startup.sh
+../apache-tomcat-6.0.32$ CATALINA_OPTS=-Dtmfportal.props=/tmp/tmfportal.properties bin/startup.sh
 .../rtmf-guc$ mvn -o -Dtest=*IntrekkenUseCaseTest* test
-
 ```
 
 Het is ook mogelijk om selenium automatisch te laten starten door maven. Gebruik hiervoor het profiel standalone:
@@ -132,5 +130,15 @@ Stappen:
 * Browser openen op http://localhost:8080/. Terugmelden op natuurlijk persoon met BSN 78548718 levert actuele waarden op.
 
 ### Met lokale services ###
+
+## Documentatie ##
+
+De maven pom van rtmf-guc bevat een goal om diagrammen te genereren die de mule configuraties visualiseren. Dit wordt gedaan mbv een groovy script dat de mule xml bestanden vertaald naar graphviz dot bestanden. Vervolgens wordt graphviz gebruikt om pdf en png bestanden te genereren.
+
+De diagrammen kunnen ook handmatig gegenereerd worden:
+
+```
+groovy gen-mule-graphs.groovy
+```
 
 ## Opleveren ##
