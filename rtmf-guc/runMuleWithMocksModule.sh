@@ -23,6 +23,7 @@ export MULE_LIB=$MULE_LIB:$RTMFGUC_PATH/../guc-generic/target/guc_algemeen_compo
 export MULE_LIB=$MULE_LIB:$RTMFGUC_PATH/../guc-generic/target/guc-generic-1.0.jar
 export MULE_LIB=$MULE_LIB:$RTMFGUC_PATH/target/classes
 export MULE_LIB=$MULE_LIB:$RTMFGUC_PATH/../rtmf-guc-mocks/target/classes
+export MULE_LIB=$MULE_LIB:$RTMFGUC_PATH/../guc-generic/target/classes
 export MULE_LIB=$MULE_LIB:$HOME/.m2/repository/org/apache/httpcomponents/httpclient/4.0.1/httpclient-4.0.1.jar
 export MULE_LIB=$MULE_LIB:$HOME/.m2/repository/org/apache/httpcomponents/httpcore/4.0.1/httpcore-4.0.1.jar
 echo "mule_lib=$MULE_LIB"
