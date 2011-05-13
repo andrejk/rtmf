@@ -1,23 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>nl.rotterdam.rtmf</groupId>
+    <parent>
+        <groupId>nl.rotterdam.rtmf</groupId>
+        <artifactId>rtmf</artifactId>
+        <version>1.0.3</version>
+    </parent>
 	<artifactId>ZmWeb</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.3</version>
 	<name>Zakenmagazijn terugmelden</name>
 	<description></description>
-	<!--
-		TODO <organization> <name>company name</name> <url>company url</url>
-		</organization>
-	-->
-	<licenses>
-		<license>
-			<name>The Apache Software License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
+<!--
 	<repositories>
 		<repository>
 			<id>javax</id>
@@ -25,6 +18,7 @@
 			<url>http://download.java.net/maven/2/</url>
 		</repository>
 	</repositories>
+	-->
 	<dependencies>
 		<!--  WICKET DEPENDENCIES -->
 		<dependency>
@@ -234,7 +228,7 @@
 		<mule.version>2.2.1</mule.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>		
 	</properties>
-  
+<!--
   <reporting>
     <plugins>
       <plugin>
@@ -247,5 +241,5 @@
       </plugin>
     </plugins>
   </reporting>
-  	
+-->
 </project>

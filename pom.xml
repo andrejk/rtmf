@@ -83,15 +83,15 @@
     </developers>
     <properties>
         <mule.version>2.2.1</mule.version>
-        <rtmf.version>0.9</rtmf.version>
-        <tmf.portal.version>1.0-SNAPSHOT</tmf.portal.version>
+        <rtmf.version>1.0.3</rtmf.version>
+        <tmf.portal.version>1.2.5</tmf.portal.version>
         <runtime.library.scope>provided</runtime.library.scope>
         <!-- om encoding issues te voorkomen met copied files -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- gebruikt door ioo guc componenten -->
         <commons-lang.version>2.4</commons-lang.version>
         <easymock.version>2.5</easymock.version>
-        <junit.version>4.5</junit.version>
+        <junit.version>4.8.1</junit.version>
         <spring.version>2.5.6</spring.version>
         <jdom.version>1.1</jdom.version>
     </properties>
@@ -116,26 +116,51 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>2.2</version>
+                    <version>2.1.1</version>
+                    <dependencies>
+                        <!-- For SyntaxHighlighter macro: http://code.google.com/p/m2-site-tools/ -->
+                        <!--<dependency>-->
+                        <!--<groupId>com.anasoft.os</groupId>-->
+                        <!--<artifactId>m2st-doxia-macros</artifactId>-->
+                        <!--<version>${m2st.version}</version>-->
+                        <!--</dependency>-->
+                        <dependency>
+                            <groupId>org.apache.maven.doxia</groupId>
+                            <artifactId>doxia-sink-api</artifactId>
+                            <version>1.1.3</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.maven.doxia</groupId>
+                            <artifactId>doxia-core</artifactId>
+                            <version>1.1.3</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
-                ...
+
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>2.3.1</version>
+                </plugin>
+
             </plugins>
         </pluginManagement>
 
     </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.3.1</version>
-                <configuration>
-                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-                    <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
+    <!--<reporting>-->
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-project-info-reports-plugin</artifactId>-->
+                <!--&lt;!&ndash;<version>2.3.1</version>&ndash;&gt;-->
+                <!--<configuration>-->
+                    <!--<dependencyLocationsEnabled>false</dependencyLocationsEnabled>-->
+                    <!--<dependencyDetailsEnabled>false</dependencyDetailsEnabled>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    <!--</reporting>-->
 
     <repositories>
         <repository>
