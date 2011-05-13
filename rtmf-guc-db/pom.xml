@@ -10,10 +10,8 @@
 		<version>1.0.3</version>
 	</parent>
 
-	<groupId>nl.rotterdam.rtmf</groupId>
 	<artifactId>rtmf-guc-db</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0</version>
 	<name>RTMF database schema</name>
 	<description>  
 		Database objecten tbv caching in rtmfguc
