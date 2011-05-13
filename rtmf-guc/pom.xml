@@ -3,10 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>nl.rotterdam.rtmf</groupId>
+        <parent>
+        <groupId>nl.rotterdam.rtmf</groupId>
+        <artifactId>rtmf</artifactId>
+        <version>1.0.3</version>
+    </parent>
     <artifactId>rtmf-guc</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.3</version>
     <name>Rotterdamse terugmeld faciliteit guc</name>
     <description>  
 	   In het kader van het programma Data Chain draagt het project Stelsel Basis- en Kernregistraties 
@@ -16,10 +19,13 @@
        gemeente Rotterdam gelijke kwaliteitseisen te stellen, is het gebruik van een geïntegreerde, 
        adequate en transparante Terugmeldfaciliteit voor Rotterdam van groot belang. 
     </description>
+    <!--
     <issueManagement>
         <system>Trac</system>
         <url>http://twd729.resource.ta-twd.rotterdam.nl/projects/tmfguc/trac/</url>
     </issueManagement>
+    -->
+    <!--
     <ciManagement>
         <system>hudson</system>
         <url>http://twd729.resource.ta-twd.rotterdam.nl:8080/</url>
@@ -36,7 +42,8 @@
             </notifier>
         </notifiers>
     </ciManagement>
-
+         -->
+    <!--
     <developers>
         <developer>
             <name>John Copier</name>
@@ -63,24 +70,24 @@
             <email>enno.buis@atosorigin.com</email>
         </developer>
     </developers>
-
+          -->
+    <!--
     <properties>
         <mule.version>2.2.1</mule.version>
         <rtmf.version>0.9</rtmf.version>
-		<!--
-		<tmf.portal.version>1.0-SNAPSHOT</tmf.portal.version>
-		-->
+
         <tmf.portal.version>1.2.5</tmf.portal.version>
         <runtime.library.scope>provided</runtime.library.scope>
-		<!-- om encoding issues te voorkomen met copied files -->
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- gebruikt door ioo guc componenten -->
+
         <commons-lang.version>2.4</commons-lang.version>
         <easymock.version>2.5</easymock.version>
         <junit.version>4.5</junit.version>
         <spring.version>2.5.6</spring.version>
         <jdom.version>1.1</jdom.version>
     </properties>
+        -->
     <profiles>
 		<!-- profile to enable running mule from commandline with maven -->
         <profile>
@@ -274,12 +281,12 @@
         <dependency>
             <groupId>nl.rotterdam.rtmf</groupId>
             <artifactId>rtmf-guc-mocks</artifactId>
-            <version>1.0.3</version>
+            <version>${rtmf.version}</version>
         </dependency>
         <dependency>
             <groupId>nl.rotterdam.rtmf</groupId>
             <artifactId>guc-generic</artifactId>
-            <version>1.0</version>
+            <version>${rtmf.version}</version>
         </dependency>
 <!-- 
 		<dependency>
@@ -706,6 +713,66 @@
 				<includes> <include>**/*.groovy</include> </includes> </fileset> </sources> 
 				<targetBytecode>1.5</targetBytecode> <providerSelection>1.5</providerSelection> 
 				</configuration> </execution> </executions> </plugin> -->
+            <plugin>
+                      <groupId>org.apache.maven.plugins</groupId>
+                      <artifactId>maven-site-plugin</artifactId>
+                      <version>3.0-beta-2</version>
+                      <configuration>
+                        <reportPlugins>
+                          <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-javadoc-plugin</artifactId>
+                            <version>2.7</version>
+                          </plugin>
+                          <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-jxr-plugin</artifactId>
+                            <version>2.1</version>
+                            <configuration>
+                              <aggregate>true</aggregate>
+                            </configuration>
+                          </plugin>
+                          <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-surefire-report-plugin</artifactId>
+                            <version>2.6</version>
+                          </plugin>
+                          <!--<plugin>-->
+                            <!--<groupId>org.codehaus.mojo</groupId>-->
+                            <!--<artifactId>cobertura-maven-plugin</artifactId>-->
+                            <!--<version>2.4</version>-->
+                            <!--<configuration>-->
+                              <!--<formats>-->
+                                <!--<format>xml</format>-->
+                                <!--<format>html</format>-->
+                              <!--</formats>-->
+                            <!--</configuration>-->
+                          <!--</plugin>-->
+                          <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-checkstyle-plugin</artifactId>
+                            <version>2.6</version>
+                          </plugin>
+			<!-- PMD -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <configuration>
+                    <targetJdk>1.6</targetJdk>
+                    <rulesets>
+                        <ruleset>/rulesets/basic.xml</ruleset>
+                        <ruleset>/rulesets/controversial.xml</ruleset>
+                    </rulesets>
+                    <format>xml</format>
+                    <linkXref>true</linkXref>
+                    <sourceEncoding>utf-8</sourceEncoding>
+                    <minimumTokens>100</minimumTokens>
+                </configuration>
+            </plugin>
+                        </reportPlugins>
+                      </configuration>
+                    </plugin>
+
         </plugins>
     </build>
 
@@ -790,7 +857,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.2</version>
+                <!--<version>2.2</version>-->
                 <configuration>
                     <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
                     <dependencyDetailsEnabled>false</dependencyDetailsEnabled>

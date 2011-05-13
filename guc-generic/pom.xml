@@ -23,10 +23,8 @@
         <artifactId>rtmf</artifactId>
         <version>1.0.3</version>
     </parent>
-    <groupId>nl.rotterdam.rtmf</groupId>
     <artifactId>guc-generic</artifactId>
     <packaging>jar</packaging>
-    <version>1.0</version>
     <name>GUC generic</name>
     <description> Dit project bevat configuratie en libraries die normaal
 	gesproken door een standaard GUC Mule installatie geleverd worden. Dit project
