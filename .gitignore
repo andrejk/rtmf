@@ -1,4 +1,6 @@
 *.iml
+*.iws
+*.ipr
 target/
 tmfportaal/oldTMF/
 .settings/
@@ -13,3 +15,5 @@ tmfportaal/oldTMF/
 .classpath
 .project
 /rtmf-guc/.mule/
+/documentatie
+/logs
