@@ -23,7 +23,7 @@ def HTTP_NS_URI="http://www.mulesource.org/schema/mule/http/2.2"
 def FILE_NS_URI="http://www.mulesource.org/schema/mule/file/2.2"
 def VM_NS_URI="http://www.mulesource.org/schema/mule/vm/2.2"
 
-static nsMap = [ http:HTTP_NS_URI, file:FILE_NS_URI, vm:VM_NS_URI ]
+def nsMap = [ http:HTTP_NS_URI, file:FILE_NS_URI, vm:VM_NS_URI ]
 
 def serviceNode(service){
 	outRouterName = service.outbound.'*'[0].name()
