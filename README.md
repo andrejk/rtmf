@@ -140,6 +140,7 @@ De maven pom van rtmf-guc bevat een goal om diagrammen te genereren die de mule 
 De diagrammen kunnen ook handmatig gegenereerd worden:
 
 ```
-groovy gen-
+groovy gen-mule-graphs.groovy
 ```
+
 ## Opleveren ##

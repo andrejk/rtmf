@@ -23,7 +23,6 @@
         <artifactId>rtmf</artifactId>
         <version>1.0.3</version>
     </parent>
-    <groupId>nl.rotterdam.rtmf</groupId>
     <artifactId>rtmf-guc-mocks</artifactId>
     <packaging>jar</packaging>
     <name>RTMF mocks</name>
