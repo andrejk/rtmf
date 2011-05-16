@@ -168,7 +168,7 @@
     </fileSets>
      <files>
      <file>
-            <source>../ZmWeb/target/ZmWeb-1.0.3.war</source>            
+            <source>../ZmWeb/target/ZmWeb-1.0.4.war</source>
             <outputDirectory>/04.Deployment/ZmWeb</outputDirectory>
             <destName>ZmWeb.war</destName>
       </file>
