@@ -297,6 +297,13 @@
 			<property key="stelselCatalogusCache" value-ref="stelselCatalogusCacheBean" />
 		</scripting:script>
 	</scripting:transformer>
+        <scripting:transformer name="terugmeldingToZaakMetStapEnStatusTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/TerugmeldingToZaakMetStapEnStatus.groovy">
+			<property key="bronhouderCatalogus" value-ref="bronhouderCatalogusBean" />
+			<property key="stelselCatalogusCache" value-ref="stelselCatalogusCacheBean" />
+		</scripting:script>
+	</scripting:transformer>
 	<scripting:transformer name="terugmeldingToStapCreatieOntvangenTransformer">
 		<scripting:script engine="groovy"
 			file="groovy-scripts/TerugmeldingToStapTransformer.groovy">
@@ -335,6 +342,11 @@
 			file="groovy-scripts/TerugmeldingToStapTransformer.groovy">
 			<property key="zervice" value="update" />
 			<property key="zerviceType" value="gemeld" />
+		</scripting:script>
+	</scripting:transformer>
+        <scripting:transformer name="terugmeldingToZaakMetStapEnStatusUpdateTransformer">
+		<scripting:script engine="groovy"
+			file="groovy-scripts/TerugmeldingToZaakMetStapEnStatusUpdate.groovy">
 		</scripting:script>
 	</scripting:transformer>
 	<scripting:transformer name="terugmeldingToZaakUpdateGemeldTransformer">
@@ -1076,8 +1088,36 @@
 				</custom-outbound-router>
 			</outbound>
 		</service>
+                
+                <service name="AanmakenZaak">
+			<description>
+				Deze service voert alle stappen uit welke nodig zijn om
+				een nieuwe zaak aan te maken in het zakenmagazijn.
+				1 - NieuwZaaknummer
+				2 - ZaakMetStapEnStatus
+			</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnAanmakenZaak"
+					synchronous="true"
+					name="rtmfguc.zakenMagazijnService.aanmakenZaakMetStapEnStatus.inbound.vm" />
+			</inbound>
+			<outbound>
+				<custom-outbound-router
+					class="nl.rotterdam.rtmf.guc.router.RTMFChainingRouter">
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnNieuwZaaknummerService"
+						name="rtmfguc.zakenMagazijnService.aanmakenZaak.nieuwZaaknummer.proxy.outbound.http"
+						transformer-refs="nieuwZaaknummer" />
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnZaakCreatieServiceMetStapEnStatus"
+						name="rtmfguc.zakenMagazijnService.aanmakenZaak.metStapEnStatus.proxy.outbound.http"
+						transformer-refs="terugmeldingToZaakMetStapEnStatusTransformer"
+						responseTransformer-refs="byteArrayToString validateMessage zakenmagazijnResponseTransformer" />
+				</custom-outbound-router>
+			</outbound>
+		</service>
 
-		<service name="AanmakenZaak">
+		<service name="AanmakenZaakOLD">
 			<description>
 				Deze service voert alle stappen uit welke nodig zijn om
 				een nieuwe zaak aan te maken in het zakenmagazijn.
@@ -1087,7 +1127,7 @@
 				4 - StatusCreatie (ontvangen)
 			</description>
 			<inbound>
-				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnAanmakenZaak"
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnAanmakenZaakOLD"
 					synchronous="true"
 					name="rtmfguc.zakenMagazijnService.aanmakenZaak.inbound.vm" />
 			</inbound>
@@ -1096,7 +1136,7 @@
 					class="nl.rotterdam.rtmf.guc.router.RTMFChainingRouter">
 					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
 						path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnNieuwZaaknummerService"
-						name="rtmfguc.zakenMagazijnService.aanmakenZaak.nieuwZaaknummer.proxy.outbound.http"
+						name="rtmfguc.zakenMagazijnService.aanmakenZaak.nieuwZaaknummerOLD.proxy.outbound.http"
 						transformer-refs="nieuwZaaknummer" />
 					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
 						path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnZaakCreatieService"
@@ -1156,8 +1196,9 @@
 				</filtering-router>
 			</outbound>
 		</service>
-
-		<service name="UpdateZaakTerugmelding">
+                
+                
+                		<service name="UpdateZaakTerugmelding">
 			<description>
 				Deze service voert alle stappen uit welke nodig zijn om
 				een bestaande zaak aan te passen (update) in het zakenmagazijn.
@@ -1169,6 +1210,31 @@
 				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnTerugmeldingUpdateZaak"
 					synchronous="true"
 					name="rtmfguc.zakenMagazijnService.terugmelding.updateZaak.inbound.vm" />
+			</inbound>
+			<outbound>
+				<custom-outbound-router
+					class="nl.rotterdam.rtmf.guc.router.RTMFChainingRouter">
+					<vm:outbound-endpoint connector-ref="rtmf.vm.connector.internal" synchronous="true"
+						path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnZaakUpdateService"
+						name="rtmfguc.zakenMagazijnService.terugmelding.metStapEnStatus.zaakUpdate.proxy.outbound.http"
+						transformer-refs="terugmeldingToZaakMetStapEnStatusUpdateTransformer"
+						responseTransformer-refs="byteArrayToString validateMessage zakenmagazijnResponseTransformer" />
+				</custom-outbound-router>
+			</outbound>
+		</service>
+
+		<service name="UpdateZaakTerugmeldingOLD">
+			<description>
+				Deze service voert alle stappen uit welke nodig zijn om
+				een bestaande zaak aan te passen (update) in het zakenmagazijn.
+				1 - ZaakUpdate (gemeld)
+				2 - StapUpdate (gemeld)
+				3 - StapCreatie (beoordelen)
+			</description>
+			<inbound>
+				<vm:inbound-endpoint connector-ref="rtmf.vm.connector.internal" path="${rtmf.cfg.rtmfguc.app.path}zakenMagazijnTerugmeldingUpdateZaakOLD"
+					synchronous="true"
+					name="rtmfguc.zakenMagazijnService.terugmelding.updateZaakOLD.inbound.vm" />
 			</inbound>
 			<outbound>
 				<custom-outbound-router

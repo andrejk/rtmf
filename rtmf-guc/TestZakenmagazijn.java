@@ -53,72 +53,6 @@ public class TestZakenmagazijn extends FunctionalTestCase {
 			+ "		</env:Fault>"
 			+ "	</env:Body>"
 			+ "</env:Envelope>";
-        
-        String zaakCreatieMetStapEnStatusRequest = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:stat=\"http://www.interaccess.nl/webplus/statuswfm_v2\">"
-			+ "	<soapenv:Header />"
-			+ "	<soapenv:Body>"
-                        + "     <stat:ZaakCreateWithStapAndStatus>"
-			+ "		<stat:Zaak>"
-			+ "			<!--Verantwoordelijke: ff tijdelijk geen, openstaande vraag aan IOO-->"
-			+ "			<stat:Geen_zaak_verantwoordelijke>true"
-			+ "			</stat:Geen_zaak_verantwoordelijke>"
-			+ "			<!--Initiator: ff tijdelijk geen, openstaande vraag aan IOO-->"
-			+ "			<stat:Geen_zaak_initiator>true</stat:Geen_zaak_initiator>"
-			+ "			<stat:Zaakidentificatie>TMD.09.10.01010</stat:Zaakidentificatie>"
-			+ "			<stat:Startdatum>2009-08-27T15:51:58.635+02:00</stat:Startdatum>"
-			+ "			<stat:Zaaktypecode>TMDG</stat:Zaaktypecode>"
-			+ "			<stat:Zaaktypeomschrijving>Terugmelding Rotterdamse kerngegevens</stat:Zaaktypeomschrijving>"
-			+ "			<stat:Kenmerk>"
-			+ "				<stat:kenmerk>RDAM-02</stat:kenmerk>"
-			+ "				<stat:kenmerkBron>basisRegistratie</stat:kenmerkBron>"
-			+ "			</stat:Kenmerk>"
-			+ "			<stat:Kenmerk>"
-			+ "				<stat:kenmerk>GM-PERSOON</stat:kenmerk>"
-			+ "				<stat:kenmerkBron>objectTag</stat:kenmerkBron>"
-			+ "			</stat:Kenmerk>"
-			+ "			<stat:Kenmerk>"
-			+ "				<stat:kenmerk>OBJECTNAAM</stat:kenmerk>"
-			+ "				<stat:kenmerkBron>objectNaam</stat:kenmerkBron>"
-			+ "			</stat:Kenmerk>"
-			+ "			<stat:Kenmerk>"
-			+ "				<stat:kenmerk>adres</stat:kenmerk>"
-			+ "				<stat:kenmerkBron>objectIdentificatie</stat:kenmerkBron>"
-			+ "			</stat:Kenmerk>"
-			+ "                     <stat:Trefwoord>UnitTester-ZMSTAPSTATUS</stat:Trefwoord>"
-			+ "			<stat:Resultaatcode>ontvangen</stat:Resultaatcode>"
-			+ "			<stat:Resultaatomschrijving>Ontvangen door het Rotterdamse verdeelpunt</stat:Resultaatomschrijving>"
-			+ "			<stat:Oge_id>0</stat:Oge_id>"
-			+ "			<!--Optional:-->"
-			+ "			<stat:Formulier>"
-			+ "				<!--You may enter ANY elements at this point-->"
-			+ "				<!--Hier staat het terugmelding bericht zoals verstuurd door de TmfPortal. -->"
-			+ "				<!--Echter, de attachments uit het terugmeldingbericht zijn verwijderd! -->"
-			+ "			</stat:Formulier>"
-			+ "		</stat:Zaak>"
-                        + "             <stat:Stap>"
-			+ "                 <stat:Zaakidentificatie>TMD.09.10.98765</stat:Zaakidentificatie>"
-			+ "                 <!--Uitvoerder: nog ff geen, openstaande vraag bij IOO-->"
-			+ "                 <stat:Geen_stap_uitvoerder>true</stat:Geen_stap_uitvoerder>"
-			+ "                 <!--Uitvoerder: nog ff geen, openstaande vraag bij IOO-->"
-			+ "                 <stat:Geen_stap_verantwoordelijke>true</stat:Geen_stap_verantwoordelijke>"
-			+ "                 <stat:Begindatum>2009-10-06T00:00:00.000</stat:Begindatum>"
-			+ "                 <stat:Stapomschrijving>%s</stat:Stapomschrijving>"
-			+ "                 <stat:Staptypecode>%s</stat:Staptypecode>"
-			+ "                 <stat:Oge_id>0</stat:Oge_id>"
-			+ "             </stat:Stap>"
-			+ "             <stat:Status>"
-			+ "                 <stat:Zaakidentificatie>TMD.09.10.00001</stat:Zaakidentificatie>"
-			+ "                 <!--Zetter: tijdelijk nog niet, openstaande vraag bij IOO-->"
-			+ "                 <stat:Geen_status_zetter>true</stat:Geen_status_zetter>"
-			+ "                 <stat:Datumstatusgezet>2009-10-06T00:00:00.000</stat:Datumstatusgezet>"
-			+ "                 <stat:Statuscode>ON</stat:Statuscode>"
-			+ "                 <stat:Statusomschrijving>Ontvangen</stat:Statusomschrijving>"
-			+ "                 <stat:Oge_id>0</stat:Oge_id>"
-			+ "             </stat:Status>"
-                        + "     </stat:ZaakCreateWithStapAndStatus>"
-			+ "	</soapenv:Body>"
-			+ "</soapenv:Envelope>";
-
 
 	String zaakCreatieRequest = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:stat=\"http://www.interaccess.nl/webplus/statuswfm_v2\">"
 			+ "	<soapenv:Header />"
@@ -149,7 +83,7 @@ public class TestZakenmagazijn extends FunctionalTestCase {
 			+ "				<stat:kenmerk>adres</stat:kenmerk>"
 			+ "				<stat:kenmerkBron>objectIdentificatie</stat:kenmerkBron>"
 			+ "			</stat:Kenmerk>"
-			+ "                     <stat:Trefwoord>UnitTester-ZakenMagazijn</stat:Trefwoord>"
+			+ "         <stat:Trefwoord>UnitTester-ZakenMagazijn</stat:Trefwoord>"
 			+ "			<stat:Resultaatcode>ontvangen</stat:Resultaatcode>"
 			+ "			<stat:Resultaatomschrijving>Ontvangen door het Rotterdamse verdeelpunt</stat:Resultaatomschrijving>"
 			+ "			<stat:Oge_id>0</stat:Oge_id>"
@@ -167,7 +101,7 @@ public class TestZakenmagazijn extends FunctionalTestCase {
 			+ "   <soapenv:Header/>"
 			+ "   <soapenv:Body>"
 			+ "      <stat:Stap>"
-			+ "         <stat:Zaakidentificatie>TMD.09.10.90000</stat:Zaakidentificatie>"
+			+ "         <stat:Zaakidentificatie>TMD.09.10.98765</stat:Zaakidentificatie>"
 			+ "         <!--Uitvoerder: nog ff geen, openstaande vraag bij IOO-->"
 			+ "         <stat:Geen_stap_uitvoerder>true</stat:Geen_stap_uitvoerder>"
 			+ "         <!--Uitvoerder: nog ff geen, openstaande vraag bij IOO-->"
@@ -183,14 +117,12 @@ public class TestZakenmagazijn extends FunctionalTestCase {
 			+ "   <soapenv:Header/>"
 			+ "   <soapenv:Body>"
 			+ "      <stat:Status>"
-			+ "         <stat:Zaakidentificatie>TMD.09.10.80000</stat:Zaakidentificatie>"
+			+ "         <stat:Zaakidentificatie>TMD.09.10.00001</stat:Zaakidentificatie>"
 			+ "         <!--Zetter: tijdelijk nog niet, openstaande vraag bij IOO-->"
 			+ "         <stat:Geen_status_zetter>true</stat:Geen_status_zetter>"
 			+ "         <stat:Datumstatusgezet>2009-10-06T00:00:00.000</stat:Datumstatusgezet>"
 			+ "         <stat:Statuscode>ON</stat:Statuscode>"
 			+ "         <stat:Statusomschrijving>Ontvangen</stat:Statusomschrijving>"
-                        + "         <stat:Statustoelichting></stat:Statustoelichting>"
-                        + "         <stat:Statusvolgnummer>1234</stat:Statusvolgnummer>"
 			+ "         <stat:Oge_id>0</stat:Oge_id>"
 			+ "      </stat:Status>"
 			+ "   </soapenv:Body>" + "</soapenv:Envelope>";
@@ -211,46 +143,12 @@ public class TestZakenmagazijn extends FunctionalTestCase {
 			+ "         <ns2:Operatiestatus>operatie is niet succesvol</ns2:Operatiestatus>"
 			+ "         <ns2:Operatiefout>Err: Not responding</ns2:Operatiefout>"
 			+ "      </ns2:Retour>" + "   </env:Body>" + "</env:Envelope>";
-        
-        String zaakUpdateMetStapEnStatusRequest = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:stat=\"http://www.interaccess.nl/webplus/statuswfm_v2\">"
-			+ "   <soapenv:Header/>"
-			+ "   <soapenv:Body>"
-                        + "     <stat:ZaakUpdateWithStapAndStatus>"
-			+ "         <stat:ZaakUpdate>"
-			+ "             <stat:Zaakidentificatie>TMD.09.10.99990</stat:Zaakidentificatie>"
-			+ "             <stat:Resultaatcode>gemeld</stat:Resultaatcode>"
-			+ "             <!--Optional:-->"
-			+ "             <stat:Resultaatomschrijving>De terugmelding is gemeld aan de bronhouder</stat:Resultaatomschrijving>"
-			+ "             <stat:Oge_id>0</stat:Oge_id>"
-			+ "         </stat:ZaakUpdate>"
-			+ "         <stat:StapUpdate>"
-			+ "             <stat:Zaakidentificatie>TMD.09.10.00001</stat:Zaakidentificatie>"
-			+ "             <stat:Begindatum>2009-10-06T00:00:00.000</stat:Begindatum>"
-			+ "             <stat:Staptypecode>ONTVANGEN</stat:Staptypecode>"
-			+ "             <stat:Resultaatcode>gemeld</stat:Resultaatcode>"
-			+ "             <stat:Stapeinddatum>2009-10-11T00:00:00.000</stat:Stapeinddatum>"
-			+ "             <stat:Oge_id>0</stat:Oge_id>"
-			+ "         </stat:StapUpdate>"
-                	+ "         <stat:Stap>"
-			+ "         <stat:Zaakidentificatie>TMD.09.10.90000</stat:Zaakidentificatie>"
-			+ "         <!--Uitvoerder: nog ff geen, openstaande vraag bij IOO-->"
-			+ "         <stat:Geen_stap_uitvoerder>true</stat:Geen_stap_uitvoerder>"
-			+ "         <!--Uitvoerder: nog ff geen, openstaande vraag bij IOO-->"
-			+ "         <stat:Geen_stap_verantwoordelijke>true</stat:Geen_stap_verantwoordelijke>"
-			+ "         <stat:Begindatum>2009-10-06T00:00:00.000</stat:Begindatum>"
-			+ "         <stat:Stapomschrijving>Het beoordelen van de terugmelding door de bronhouder</stat:Stapomschrijving>"
-			+ "        <stat:Staptypecode>BEOORDELEN</stat:Staptypecode>"
-			+ "        <stat:Oge_id>0</stat:Oge_id>"
-			+ "      </stat:Stap>"
-                        + "     </stat:ZaakUpdateWithStapAndStatus>"
-                        + "   </soapenv:Body>"
-			+ "</soapenv:Envelope>";
 
 	String zaakUpdateRequest = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:stat=\"http://www.interaccess.nl/webplus/statuswfm_v2\">"
 			+ "   <soapenv:Header/>"
 			+ "   <soapenv:Body>"
 			+ "      <stat:ZaakUpdate>"
-			+ "         <stat:Zaakidentificatie>TMD.09.10.99991</stat:Zaakidentificatie>"
+			+ "         <stat:Zaakidentificatie>TMD.09.10.00001</stat:Zaakidentificatie>"
 			+ "         <stat:Resultaatcode>gemeld</stat:Resultaatcode>"
 			+ "         <!--Optional:-->"
 			+ "         <stat:Resultaatomschrijving>De terugmelding is gemeld aan de bronhouder</stat:Resultaatomschrijving>"
@@ -263,7 +161,7 @@ public class TestZakenmagazijn extends FunctionalTestCase {
 			+ "   <soapenv:Header/>"
 			+ "   <soapenv:Body>"
 			+ "      <stat:StapUpdate>"
-			+ "         <stat:Zaakidentificatie>TMD.09.10.99992</stat:Zaakidentificatie>"
+			+ "         <stat:Zaakidentificatie>TMD.09.10.00001</stat:Zaakidentificatie>"
 			+ "         <stat:Begindatum>2009-10-06T00:00:00.000</stat:Begindatum>"
 			+ "         <stat:Staptypecode>ONTVANGEN</stat:Staptypecode>"
 			+ "         <stat:Resultaatcode>gemeld</stat:Resultaatcode>"
@@ -294,24 +192,6 @@ public class TestZakenmagazijn extends FunctionalTestCase {
 		assertNotNull("Geen payload teruggekregen van NieuwZaaknummer", payload);
 		assertTrue("Nieuwe zaaknummer komt niet overeen.", payload
 				.contains("TMD.09.10.10101"));
-
-		// System.out.println("Payload:" + payload);
-	}
-        
-        public void testZaakCreatieMetStapEnStatus() throws Exception {
-		MuleClient client = new MuleClient();
-		MuleMessage response = client.send(
-				"vm://guc/rtmfguc/zakenMagazijnZaakCreatieServiceMetStapEnStatus",
-				zaakCreatieMetStapEnStatusRequest, null);
-		assertNotNull("Geen response teruggekregen na aanroep ZaakCreatieServiceMetStapEnStatus.",
-				response);
-		assertNotNull("Geen payload gevonden in de response van ZaakCreatieServiceMetStapEnStatus",
-				response.getPayload());
-
-		String payload = response.getPayloadAsString();
-		assertNotNull("Geen payload teruggekregen van ZaakCreatieServiceMetStapEnStatus", payload);
-		assertTrue("De zaak is niet gecreeerd.", payload
-				.contains("operatie succesvol"));
 
 		// System.out.println("Payload:" + payload);
 	}
@@ -453,24 +333,6 @@ public class TestZakenmagazijn extends FunctionalTestCase {
 				"Geen exception payload gevonden in de response van ZakenmagazijnResponseMockIn",
 				exPayload);
 		// System.out.println("ExceptionPayload:" + exPayload.getMessage());
-	}
-        
-        public void testZaakUpdateMetStapEnStatus() throws Exception {
-		MuleClient client = new MuleClient();
-		MuleMessage response = client.send(
-				"vm://guc/rtmfguc/zakenMagazijnZaakUpdateServiceMetStapEnStatus",
-				zaakUpdateMetStapEnStatusRequest, null);
-		assertNotNull("Geen response teruggekregen na aanroep ZaakUpdateServiceMetStapEnStatus.",
-				response);
-		assertNotNull("Geen payload gevonden in de response van ZaakUpdateServiceMetStapEnStatus",
-				response.getPayload());
-
-		String payload = response.getPayloadAsString();
-		assertNotNull("Geen payload teruggekregen van ZaakUpdateServiceMetStapEnStatus", payload);
-		assertTrue("De zaak is niet ge-update/aangepast.", payload
-				.contains("operatie succesvol"));
-
-		// System.out.println("Payload:" + payload);
 	}
 
 	public void testZaakUpdate() throws Exception {

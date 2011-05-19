@@ -171,14 +171,14 @@ public class TestZaakTransformers extends FunctionalTestCase {
 	
 	@Override
 	protected String getConfigResources() {
-		return "rtmfguc-config.xml,rtmfguc-mocks-config.xml,rtmfguc-zm-config.xml,rtmfguc-mocks-zm-config.xml";
+		return "guc_generic_config.xml,rtmfguc-config.xml,rtmfguc-mocks-config.xml,rtmfguc-zm-config.xml,rtmfguc-mocks-zm-config.xml";
 	}
 
 	public void testZaakDetailNaarTmfFormaatTransformer() throws Exception {
 		MuleClient client = new MuleClient();
 		MuleMessage message = new DefaultMuleMessage(zaakDetailResponse);
 		MuleMessage response = client.send(
-				"vm://rtmfguc/zmManagerServiceIn",
+				"vm://guc/rtmfguc/zmManagerServiceIn",
 				message);
 		assertNotNull(
 				"Geen response teruggekregen na aanroep ZaakDetail.",
@@ -197,7 +197,7 @@ public class TestZaakTransformers extends FunctionalTestCase {
 		MuleClient client = new MuleClient();
 		MuleMessage message = new DefaultMuleMessage(NullPayload.getInstance());
 		MuleMessage response = client.send(
-				"vm://rtmfguc/zmManagerServiceIn",
+				"vm://guc/rtmfguc/zmManagerServiceIn",
 				message);
 		assertNotNull(
 				"Geen response teruggekregen na aanroep ZakenMagazijnIntrekkenMockNaarZaakDetail.",

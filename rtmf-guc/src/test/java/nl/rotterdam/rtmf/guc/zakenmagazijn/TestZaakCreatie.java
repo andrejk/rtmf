@@ -67,13 +67,13 @@ public class TestZaakCreatie extends FunctionalTestCase {
 
 	@Override
 	protected String getConfigResources() {
-		return "rtmfguc-config.xml,rtmfguc-mocks-config.xml,rtmfguc-zm-config.xml,rtmfguc-mocks-zm-config.xml";
+		return "guc_generic_config.xml,rtmfguc-config.xml,rtmfguc-mocks-config.xml,rtmfguc-zm-config.xml,rtmfguc-mocks-zm-config.xml";
 	}
 
 	public void testAanmakenZaak() throws Exception {
 		MuleClient client = new MuleClient();
 		MuleMessage response = client.send(
-				"vm://rtmfguc/zakenMagazijnAanmakenZaak",
+				"vm://guc/rtmfguc/zakenMagazijnAanmakenZaak",
 				terugmeldingGMRequest, null);
 		assertNotNull("Geen response teruggekregen na aanroep AanmakenZaak.",
 				response);

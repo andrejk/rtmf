@@ -66,13 +66,13 @@ public class TestTerugmeldingToZakenmagazijn extends FunctionalTestCase {
 
 	@Override
 	protected String getConfigResources() {
-		return "rtmfguc-config.xml,rtmfguc-mocks-config.xml,rtmfguc-zm-config.xml,rtmfguc-mocks-zm-config.xml";
+		return "guc_generic_config.xml,rtmfguc-config.xml,rtmfguc-mocks-config.xml,rtmfguc-zm-config.xml,rtmfguc-mocks-zm-config.xml";
 	}
 
 	public void testStuurTerugmeldingNaarZakenmagazijn() throws Exception {
 		MuleClient client = new MuleClient();
 		MuleMessage response = client.send(
-				"vm://rtmfguc/zmTerugmeldServiceIn",
+				"vm://guc/rtmfguc/zmTerugmeldServiceIn",
 				terugmeldingRequest, null);
 		assertNotNull("Geen response teruggekregen na aanroep StuurTerugmeldingNaarZakenmagazijn.",
 				response);

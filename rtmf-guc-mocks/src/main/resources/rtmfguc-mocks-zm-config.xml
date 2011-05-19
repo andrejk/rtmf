@@ -75,6 +75,11 @@
 					name="zm.mock.zakenmagazijnManager.inbound.http"  connector-ref="domein.http.connector" />
 			</inbound>
 			<outbound>
+                            	<filtering-router>
+					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}zaakCreatieServiceMetStapEnStatusMock"
+						synchronous="true" />
+					<wildcard-filter pattern="*ZaakCreateWithStapAndStatus>*" />
+				</filtering-router>
 				<filtering-router>
 					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}zaakCreatieServiceMock"
 						synchronous="true" />
@@ -89,9 +94,14 @@
 					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}statusCreatieServiceMock"
 						synchronous="true" />
 					<or-filter>
-					<wildcard-filter pattern="*Statuscode>ON*" />
-					<wildcard-filter pattern="*Statuscode>IB*" />
-					</or-filter>
+                                           <wildcard-filter pattern="*Statuscode>ON*" />
+                                                <wildcard-filter pattern="*Statuscode>IB*" />
+                                        </or-filter>
+				</filtering-router>
+                                <filtering-router>
+					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}zaakUpdateServiceMetStapEnStatusMock"
+						synchronous="true" />
+					<wildcard-filter pattern="*ZaakUpdateWithStapAndStatus>*" />
 				</filtering-router>
 				<filtering-router>
 					<vm:outbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}zaakUpdateServiceMock"
@@ -120,6 +130,23 @@
                 </filtering-router>
 			</outbound>
 
+		</service>
+                
+                <service name="zaakCreatieServiceMetStapEnStatusMock">
+			<description>
+				Een mock service om de nieuwe Zaak service na te
+				bootsen met Stap en Status.
+			</description>
+			<inbound>
+				<vm:inbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}zaakCreatieServiceMetStapEnStatusMock"
+					synchronous="true" responseTransformer-refs="rtmf.tracing.response.transformer"
+					name="zm.mock.zaakCreatieServiceMetStapEnStatus.inbound.vm" />
+			</inbound>
+			<scripting:component>
+				<scripting:script file="groovy-scripts/ZakenmagazijnResponseOkMock.groovy" >
+					<property key="zervice" value="zaakCreatieServiceMetStapEnStatusMock" />
+				</scripting:script>
+			</scripting:component>
 		</service>
 
 		<service name="zaakCreatieServiceMock">
@@ -181,6 +208,27 @@
 			<scripting:component>
 				<scripting:script
 					file="groovy-scripts/ZakenmagazijnResponseTransformer.groovy" />
+			</scripting:component>
+		</service>
+                
+                <!--  -->
+		<!-- Zakenmagazijn update mock services met Stap en Status-->
+		<!--  -->
+
+		<service name="zaakUpdateServiceMetStapEnStatusMock">
+			<description>
+				Een mock service om de update Zaak service na te
+				bootsen met Stap en Status.
+			</description>
+			<inbound>
+				<vm:inbound-endpoint path="${rtmf.cfg.rtmfguc.app.path}zaakUpdateServiceMetStapEnStatusMock"
+					synchronous="true" responseTransformer-refs="rtmf.tracing.response.transformer"
+					name="zm.mock.zaakUpdateMetStepEnService.inbound.vm" />
+			</inbound>
+			<scripting:component>
+				<scripting:script file="groovy-scripts/ZakenmagazijnResponseOkMock.groovy" >
+					<property key="zervice" value="zaakUpdateServiceMetStapEnStatusMock" />
+				</scripting:script>
 			</scripting:component>
 		</service>
 

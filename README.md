@@ -71,7 +71,9 @@ Voordat RTMF gecompileerd en getest kan worden dienen de volgende stappen uitgev
     Deze afhankelijkheden houden in dat dit project momenteel niet zonder aanpassingen gecompileerd kan worden.
 
 * Mule 2.2.1 installeren
-* Tomcat 6 installeren
+* Tomcat 6 of 7 installeren
+* Install James mailserver
+  Download and unzip apache James. Configure ports. Edit $JAMES_HOME/apps/james/SAR-INF/config.xml. Change smtpserver port to 18089.
 
 ### Build ###
 
@@ -93,8 +95,8 @@ Indien dit een integratie test is dient eerst selenium gestart te worden. Je kun
 
 ```
 .../selenium$ java -jar selenium-server-standalone-2.0b3.jar
-../apache-tomcat-6.0.32$ CATALINA_OPTS=-Dtmfportal.props=/tmp/tmfportal.properties bin/startup.sh
-.../rtmf-guc$ mvn -o -Dtest=*IntrekkenUseCaseTest* test
+.../apache-tomcat-6.0.32$ CATALINA_OPTS=-Dtmfportal.config=/tmp/tmfportal.properties bin/startup.sh
+.../rtmf-guc$ mvn -o -Dtest=*TerugmeldingUseCaseTest* test
 ```
 
 Het is ook mogelijk om selenium automatisch te laten starten door maven. Gebruik hiervoor het profiel standalone:
@@ -115,7 +117,7 @@ Stappen:
   TMFPortal war file in webapps folder van je tomcat installatie plaatsen. Hernoemen naar ROOT.war (TMFPortal 1.2.5 draait alleen als root web applicatie). Vervolgens tomcat starten:
 
   ```
-  CATALINA_OPTS=-Dtmfportal.props=/tmp/tmfportal.properties ./startup.sh
+  CATALINA_OPTS=-Dtmfportal.config=/tmp/tmfportal.properties ./startup.sh
   ```
 
 * Mule starten
