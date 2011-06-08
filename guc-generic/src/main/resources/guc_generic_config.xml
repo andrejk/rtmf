@@ -58,12 +58,12 @@
        <!--
            de generieke propertyConfigurer die de configuraties voor het domein
            + alle applicaties inleest
-       -->
+       
         <spring:bean id="domein.generiek.propertyConfigurer"
            class="nl.rotterdam.ioo.guc_algemeen.config.ListablePropertyPlaceholderConfigurer">
             <spring:property name="locationList" value="${mule.props}" />
         </spring:bean>
-
+-->
        <!-- functionele ping service bean -->
         <spring:bean id="domein.generiek.functionalPingService"
            class="nl.rotterdam.ioo.guc_algemeen.componenten.functional.FunctionalPingService" />
