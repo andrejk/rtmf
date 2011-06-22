@@ -26,7 +26,7 @@ import nl.interaccess.zakenmagazijn.model.ZaakQuery;
 import nl.interaccess.zakenmagazijn.model.ZaakQueryResponse;
 import nl.interaccess.zakenmagazijn.model.ZaakUpdate;
 import nl.interaccess.zakenmagazijn.model.ZaakidentificatieQueryType;
-import nl.rotterdam.ioo.zm.client.impl.ZakenmagazijnWsClient;
+import nl.rotterdam.ioo.zm.client.IZakenmagazijnWsClient;
 import nl.rotterdam.rtmf.exception.ZMWebException;
 import nl.rotterdam.rtmf.exception.ZMWebMailException;
 import nl.rotterdam.rtmf.form.helper.SelectOption;
@@ -45,7 +45,7 @@ import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl
 @Service
 public class ZaakService implements IZaakService{
 	@Autowired
-	private ZakenmagazijnWsClient zakenMagazijnClient;
+	private IZakenmagazijnWsClient zakenMagazijnClient;
 	@Autowired
 	private IEmailService emailService;
 	private ObjectFactory objectFactory = new ObjectFactory();
