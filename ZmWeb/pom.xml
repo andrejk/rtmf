@@ -175,8 +175,8 @@
         </dependency>
         <dependency>
         	<groupId>nl.rotterdam.ioo.zakenmagazijn</groupId>
-        	<artifactId>zm-client</artifactId>
-        	<version>1.5</version>
+        	<artifactId>zm-client-api</artifactId>
+        	<version>0.15</version>
         </dependency>
 	</dependencies>
 	<build>

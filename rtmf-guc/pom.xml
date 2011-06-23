@@ -311,14 +311,14 @@
             <artifactId>mule-core</artifactId>
             <version>${mule.version}</version>
             <scope>${runtime.library.scope}</scope>
-<!-- 			
+<!-- 		-->	
 			<exclusions>
 				<exclusion>
 					<groupId>org.safehaus.jug</groupId>
 					<artifactId>jug</artifactId>
 				</exclusion>
 			</exclusions>
--->
+<!---->
         </dependency>
 
         <dependency>
