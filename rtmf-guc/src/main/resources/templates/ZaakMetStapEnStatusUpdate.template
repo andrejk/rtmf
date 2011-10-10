@@ -13,13 +13,13 @@
                  <stat:Zaakidentificatie>${Zaakidentificatie}</stat:Zaakidentificatie>
                  <stat:Begindatum>${Begindatum}</stat:Begindatum>
                  <stat:Staptypecode>${StaptypecodeUpdate}</stat:Staptypecode>
-                 <stat:Resultaatcode>${Resultaatcode}</stat:Resultaatcode>
+                 <stat:Resultaatcode>${ResultaatcodeUpdate}</stat:Resultaatcode>
                  <stat:Stapeinddatum>${Stapeindedatum}</stat:Stapeinddatum>
-                 <stat:Resultaatomschrijving>${Resultaatomschrijving}</stat:Resultaatomschrijving>
-                 <stat:Resultaattoelichting>${Resultaattoelichting}</stat:Resultaattoelichting>
+                 <stat:Resultaatomschrijving>${ResultaatomschrijvingUpdate}</stat:Resultaatomschrijving>
+                 <stat:Resultaattoelichting>${ResultaattoelichtingUpdate}</stat:Resultaattoelichting>
                  <stat:Oge_id>0</stat:Oge_id>
             </stat:StapUpdate>
-           <!-- <stat:Stap>
+            <stat:Stap>
                  <stat:Zaakidentificatie>${Zaakidentificatie}</stat:Zaakidentificatie>
                  <stat:Geen_stap_uitvoerder>true</stat:Geen_stap_uitvoerder>
                  <stat:Geen_stap_verantwoordelijke>true</stat:Geen_stap_verantwoordelijke>
@@ -27,7 +27,7 @@
                  <stat:Stapomschrijving>${Stapomschrijving}</stat:Stapomschrijving>
                  <stat:Staptypecode>${Staptypecode}</stat:Staptypecode>
                  <stat:Oge_id>0</stat:Oge_id>
-            </stat:Stap>-->
+            </stat:Stap>
         </stat:ZaakUpdateWithStapAndStatus>
    </soapenv:Body>
 </soapenv:Envelope>
