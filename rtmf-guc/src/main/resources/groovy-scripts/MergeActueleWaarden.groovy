@@ -54,8 +54,10 @@ def gmDocument = xmlParser.parseText(getGMBericht(bericht1, bericht2))
 
 //Voeg alle GM attributen toe aan het tmf document
 gmDocument[soapenv.Body][stelgm.bevragenResponse][stelgm.objectinstantie][stelgm.attributeValues].each { attribuut ->
-	//logger.debug "GM attribuut '${attribuut[stelgm.attribuutInfo][stelgm.code].text()}'"
-	if (tmfDocument[soapenv.Body][stel.bevragenResponse][stel.objectinstantie].'**'.find{it[stel.attribuutInfo][stel.code].text() == attribuut[stelgm.attribuutInfo][stelgm.code].text()} == null) {
+	logger.debug "GM attribuut '${attribuut[stelgm.attribuutInfo][stelgm.code].text()}'"
+	if(attribuut[stelgm.attribuutInfo][stelgm.code].text() == ""){
+	    logger.debug("Code is leeg, waarde wordt overgeslagen")
+	} else if (tmfDocument[soapenv.Body][stel.bevragenResponse][stel.objectinstantie].'**'.find{it[stel.attribuutInfo][stel.code].text() == attribuut[stelgm.attribuutInfo][stelgm.code].text()} == null) {
 		logger.debug "Er wordt een attribuut '${attribuut}' toegevoegd"
 		tmfDocument[soapenv.Body][stel.bevragenResponse][stel.objectinstantie][0].children().add(attribuut)
 	} else { 

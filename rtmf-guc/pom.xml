@@ -6,7 +6,7 @@
         <parent>
         <groupId>nl.rotterdam.rtmf</groupId>
         <artifactId>rtmf</artifactId>
-        <version>1.0.4</version>
+        <version>1.0.5</version>
     </parent>
     <artifactId>rtmf-guc</artifactId>
     <packaging>jar</packaging>
@@ -311,14 +311,14 @@
             <artifactId>mule-core</artifactId>
             <version>${mule.version}</version>
             <scope>${runtime.library.scope}</scope>
-<!-- 			
+<!-- 		-->	
 			<exclusions>
 				<exclusion>
 					<groupId>org.safehaus.jug</groupId>
 					<artifactId>jug</artifactId>
 				</exclusion>
 			</exclusions>
--->
+<!---->
         </dependency>
 
         <dependency>
