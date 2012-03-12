@@ -23,7 +23,7 @@
     <artifactId>rtmf</artifactId>
 
     <packaging>pom</packaging>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <name>Rotterdamse terugmeld faciliteit</name>
     <description>
         In het kader van het programma Data Chain draagt het project Stelsel Basis- en Kernregistraties
@@ -83,7 +83,7 @@
     </developers>
     <properties>
         <mule.version>2.2.1</mule.version>
-        <rtmf.version>1.0.4</rtmf.version>
+        <rtmf.version>1.0.5</rtmf.version>
         <tmf.portal.version>1.2.5</tmf.portal.version>
         <runtime.library.scope>provided</runtime.library.scope>
         <!-- om encoding issues te voorkomen met copied files -->
@@ -181,6 +181,14 @@
             <url>http://www.ibiblio.org/maven/mule/dependencies/maven2/</url>
             <layout>default</layout>
         </repository>
+
+        <repository>
+            <id>ibiblio-mule-deps-mirrors</id>
+            <name>Ibiblio mule dependencies mirrors</name>
+            <url>http://mirrors.ibiblio.org/pub/mirrors/maven/mule/dependencies/maven2/</url>
+            <layout>default</layout>
+        </repository>
+        
         <repository>
             <id>java-net</id>
             <name>Java.net repo</name>

@@ -63,13 +63,15 @@ String zaakNummer = null
 
 def resultaatCodes = "gemeld"
 def resultaatOmschrijvingen = "De terugmelding is gemeld aan de bronhouder"
-                               
 
-def stapOmschrijvingCreate = "Het beoordelen van de terugmelding door de bronhouder"
-def stapTypeCodeCreate = "ONTVANGEN"
 def resultaatCodeUpdate = "gemeld"
 def stapTypeCodeUpdate = "ONTVANGEN"
-def resultaatomschrijvingUpdate = "De terugmelding is gemeld aan de bronhouder"
+def resultaatomschrijvingUpdate = "De terugmelding is gemeld aan de bronhouder"                               
+
+def stapOmschrijvingCreate = "Het beoordelen van de terugmelding door de bronhouder"
+def stapTypeCodeCreate = "BEOORDELEN"
+
+
 
 payload.each { p ->
     
@@ -118,16 +120,16 @@ logger.debug "Het Zaaknummer is: ${zaakNummer}"
 //
 def binding = ["Zaakidentificatie": zaakNummer,
                 "Resultaatcode": resultaatCodes,
-		"Resultaatomschrijving": resultaatOmschrijvingen,
-		"Resultaattoelichting": "",
+				"Resultaatomschrijving": resultaatOmschrijvingen,
+				"Resultaattoelichting": "",
                 "Begindatum": datumTijdNaarZakenmagazijnFormaat(beginDatum),
                 "StaptypecodeUpdate": stapTypeCodeUpdate,
-	        "Resultaatcode": resultaatCodeUpdate,
-                "Resultaatomschrijving": resultaatomschrijvingUpdate,
-                "Resultaattoelichting": "",
-	        "Stapeindedatum": DateUtils.getCurrentDateTimeStringValue(),
+	        	"ResultaatcodeUpdate": resultaatCodeUpdate,
+                "ResultaatomschrijvingUpdate": resultaatomschrijvingUpdate,
+                "ResultaattoelichtingUpdate": "",
+	        	"Stapeindedatum": DateUtils.getCurrentDateTimeStringValue(),
                 "Stapomschrijving": stapOmschrijvingCreate,
-	        "Staptypecode": stapTypeCodeCreate]
+	        	"Staptypecode": stapTypeCodeCreate]
 assert binding != null : "Binding is null"
 	
 	

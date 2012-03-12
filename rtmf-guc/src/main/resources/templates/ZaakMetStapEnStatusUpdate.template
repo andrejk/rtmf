@@ -13,10 +13,10 @@
                  <stat:Zaakidentificatie>${Zaakidentificatie}</stat:Zaakidentificatie>
                  <stat:Begindatum>${Begindatum}</stat:Begindatum>
                  <stat:Staptypecode>${StaptypecodeUpdate}</stat:Staptypecode>
-                 <stat:Resultaatcode>${Resultaatcode}</stat:Resultaatcode>
+                 <stat:Resultaatcode>${ResultaatcodeUpdate}</stat:Resultaatcode>
                  <stat:Stapeinddatum>${Stapeindedatum}</stat:Stapeinddatum>
-                 <stat:Resultaatomschrijving>${Resultaatomschrijving}</stat:Resultaatomschrijving>
-                 <stat:Resultaattoelichting>${Resultaattoelichting}</stat:Resultaattoelichting>
+                 <stat:Resultaatomschrijving>${ResultaatomschrijvingUpdate}</stat:Resultaatomschrijving>
+                 <stat:Resultaattoelichting>${ResultaattoelichtingUpdate}</stat:Resultaattoelichting>
                  <stat:Oge_id>0</stat:Oge_id>
             </stat:StapUpdate>
             <stat:Stap>

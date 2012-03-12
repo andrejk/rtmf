@@ -176,6 +176,12 @@ public class StelselCatalogusCacheOracle extends DetermineServiceCall {
 			throw new NullPointerException(
 					"Een null item kan niet worden gesaved in de cache");
 		}
+		// item niet in database opslaan indien key null is, tabel verwacht waarde voor key
+		logger.info("testing if key set for item: " + item.getObjectNaam() + ", key = " + item.getKey());
+		if (item.getKey() == null || item.getKey().equals("")){
+			logger.warn("Item niet gecached omdat key leeg is");
+			return;
+		}
 		// voorkom race condities met insert/update
 		synchronized (insertUpdateLock) {
 			Statement stmt = getConnection().createStatement();

@@ -20,7 +20,7 @@
     <parent>
         <groupId>nl.rotterdam.rtmf</groupId>
         <artifactId>rtmf</artifactId>
-        <version>1.0.4</version>
+        <version>1.0.5</version>
     </parent>
 	<artifactId>ZmWeb</artifactId>
 	<packaging>war</packaging>
@@ -176,7 +176,7 @@
         <dependency>
         	<groupId>nl.rotterdam.ioo.zakenmagazijn</groupId>
         	<artifactId>zm-client</artifactId>
-        	<version>1.5</version>
+        	<version>0.9</version>
         </dependency>
 	</dependencies>
 	<build>
