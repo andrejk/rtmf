@@ -756,6 +756,11 @@ else if (payload =~ /<.*getObjectInfo.*>/ && payload.contains("GBA") && payload.
             <code>08.86.10</code>
             <naam>Datum van opneming met betrekk</naam>
           </attributen>
+				<!-- AKO 12-3-2012 toegevoegd voor test -->
+            <attributen>
+            <code>01.03.06</code>
+            <naam>(Geboorte) Datum</naam>
+            </attributen>
         </objectInfo>
       </getObjectInfoResponse>
     </soapenv:Body>
@@ -877,6 +882,11 @@ else if (payload =~ /<.*getObjectInfo.*>/ && payload.contains("GBA")) {
 					<code>01.86.10</code>
 					<naam>Datum van opneming met betrekk</naam>
 				</attributen>
+				<!-- AKO 12-3-2012 geboortedatum toegevoegd voor test -->
+            <attributen>
+            <code>01.03.06</code>
+            <naam>(Geboorte) Datum</naam>
+            </attributen>
 			</objectInfo>
 		</getObjectInfoResponse>
 	</soapenv:Body>

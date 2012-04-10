@@ -21,7 +21,7 @@
     <parent>
         <groupId>nl.rotterdam.rtmf</groupId>
         <artifactId>rtmf</artifactId>
-        <version>1.0.5</version>
+        <version>1.0.6-SNAPSHOT</version>
     </parent>
     <artifactId>guc-generic</artifactId>
     <packaging>jar</packaging>
@@ -36,11 +36,16 @@
             <artifactId>guc_algemeen_componenten</artifactId>
             <version>1.2.0</version>
         </dependency>
+        <!--<dependency>-->
+        <!--<groupId>com.oracle</groupId>-->
+        <!--<artifactId>ojdbc14</artifactId>-->
+        <!--<version>10.2.0.4.0</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>com.oracle</groupId>
-            <artifactId>ojdbc14</artifactId>
-            <version>10.2.0.4.0</version>
-        </dependency>	
+            <artifactId>ojdbc5_g</artifactId>
+            <version>11.2.0.3</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -63,10 +68,15 @@
                                     <version>1.2.0</version>
                                     <type>jar</type>
                                 </artifactItem>
+                                <!--<artifactItem>-->
+                                <!--<groupId>com.oracle</groupId>-->
+                                <!--<artifactId>ojdbc14</artifactId>-->
+                                <!--<version>10.2.0.4.0</version>-->
+                                <!--</artifactItem>-->
                                 <artifactItem>
                                     <groupId>com.oracle</groupId>
-                                    <artifactId>ojdbc14</artifactId>
-                                    <version>10.2.0.4.0</version>
+                                    <artifactId>ojdbc5_g</artifactId>
+                                    <version>11.2.0.3</version>
                                 </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}</outputDirectory>

@@ -40,7 +40,8 @@ public class RTFMzmTerugmeldingUseCaseTest extends RtmfSeleniumUseCaseBase {
 			selenium.select("BasisRegistratieTag", "label=Havens (GM)");
 			selenium.click("//input[@value='Volgende >>']");
 			selenium.waitForPageToLoad(PAGE_WAIT_TIMEOUT);
-			// comment volgende regel om een fout te forceren voor de screencapture
+            selenium.select("BRObjectTag", "label=Rotterdamse-BOOT");
+            // comment volgende regel om een fout te forceren voor de screencapture
 			selenium.type("BRObjectID", "XB-01-YZ");
 			selenium.click("//input[@value='Volgende >>']");
 			selenium.waitForPageToLoad(PAGE_WAIT_TIMEOUT);

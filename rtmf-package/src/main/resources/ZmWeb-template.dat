@@ -49,7 +49,7 @@ moduleID=data-sources
 doctype=data-sources
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <data-sources/>
-moduleID=ZmWeb-0.9-SNAPSHOT.war
+moduleID=ZmWeb-1.0.6-SNAPSHOT.war
 doctype=orion-web-app
 <?xml version="1.0" encoding="UTF-8"?>
 <orion-web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/orion-web-10_0.xsd" directory-browsing="allow" context-root="ZmWeb">

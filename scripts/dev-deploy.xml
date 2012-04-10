@@ -3,7 +3,7 @@
   <property name="deploy.host" value="twd719"/>
   <property name="deploy.usr" value="tmf"/>
   <property name="deploy.pwd" value="kanariepietje"/>
-  <property name="rtmfguc.version" value="0.9-SNAPSHOT"/>
+  <property name="rtmfguc.version" value="1.0.6-SNAPSHOT"/>
   <property name="rtmfguc.package" value="rtmf-guc-${rtmfguc.version}-bin.tar.gz"/>
   <property name="rtmf.package" value="rtmf-package-${rtmfguc.version}-bin.tar.gz"/>
   <property name="gucgeneric.package" value="guc-generic-${rtmfguc.version}-bin.tar.gz"/>

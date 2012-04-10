@@ -18,7 +18,8 @@ echo "confpath=$confpath"
 MULE_PROPS=classpath:guc_generic.properties,classpath:rtmfguc_default.properties,classpath:rtmfguc_env.properties,classpath:rtmfguc-mocks_default.properties,classpath:rtmfguc-mocks_env.properties,classpath:rtmfguc-mailsender.properties,file:$HOME/rtmfguc_env.properties
 echo "mule_props=$MULE_PROPS"
 
-export MULE_LIB=$RTMFGUC_PATH/../guc-generic/target/ojdbc14-10.2.0.4.0.jar
+#export MULE_LIB=$RTMFGUC_PATH/../guc-generic/target/ojdbc14-10.2.0.4.0.jar
+export MULE_LIB=$RTMFGUC_PATH/../guc-generic/target/ojdbc5_g-11.2.0.3.jar
 export MULE_LIB=$MULE_LIB:$RTMFGUC_PATH/../guc-generic/target/guc_algemeen_componenten-1.2.0.jar
 export MULE_LIB=$MULE_LIB:$RTMFGUC_PATH/../guc-generic/target/guc-generic-1.0.jar
 export MULE_LIB=$MULE_LIB:$RTMFGUC_PATH/target/classes

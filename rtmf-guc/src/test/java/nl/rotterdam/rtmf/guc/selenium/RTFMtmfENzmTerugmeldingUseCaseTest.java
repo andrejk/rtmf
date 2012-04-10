@@ -37,14 +37,20 @@ public class RTFMtmfENzmTerugmeldingUseCaseTest extends RtmfSeleniumUseCaseBase 
 		selenium.waitForPageToLoad(PAGE_WAIT_TIMEOUT);
 		selenium.click("link=Terugmelden");
 		selenium.waitForPageToLoad(PAGE_WAIT_TIMEOUT);
+        selenium.select("BasisRegistratieTag", "label=Gemeentelijke Basisregistratie Persoonsgegevens");
 		selenium.click("//input[@value='Volgende >>']");
 		selenium.waitForPageToLoad(PAGE_WAIT_TIMEOUT);
 		selenium.type("BRObjectID", "3095146104");
 		selenium.click("//input[@value='Volgende >>']");
 		selenium.waitForPageToLoad(PAGE_WAIT_TIMEOUT);
-		selenium.type("newTMF-PERSOON-VOORNAAM", "Piet");
-		selenium.type("newTMF-PERSOON-TUSSENVOEGSEL", "van de");
-		selenium.type("newTMF-PERSOON-ACHTERNAAM", "boomen");
+        String htmlSource = selenium.getHtmlSource();
+        System.err.print(htmlSource);
+        /* newTMF-PERSOON-VOORNAAM -> new01.02.10 */
+		selenium.type("new01.02.10", "Piet");
+        /* newTMF-PERSOON-TUSSENVOEGSE -> new01.02.30 */
+		selenium.type("new01.02.30", "van de");
+        /* newTMF-PERSOON-ACHTERNAAM -> new01.02.40 */
+		selenium.type("new01.02.40", "boomen");
 		selenium.click("//input[@value='Volgende >>']");
 		selenium.waitForPageToLoad(PAGE_WAIT_TIMEOUT);
 		selenium.type("reason", "Test TMF en ZM");

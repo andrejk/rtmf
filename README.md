@@ -105,6 +105,11 @@ Het is ook mogelijk om selenium automatisch te laten starten door maven. Gebruik
 mvn -Pstandalone integration-test
 ```
 
+```
+mvn -Pstandalone integration-test -Dit.test=RTFMtmfENzmTerugmeldingUseCaseTest -Dtest=NamespaceFixerTest
+```
+
+
 ## Testen ##
 
 ### Alle services gemocked ###
@@ -124,12 +129,15 @@ Stappen:
 
   ```
   cd rtmf/rtm-guc
-  EXPORT MULE_HOME=$HOME/programs/mule-standalone-2.2.1
-  runMuleWithMocksModule.sh
+  export MULE_HOME=$HOME/programs/mule-standalone-2.2.1
+  ./runMuleWithMocksModule.sh
   ```
 
 * Oracle database starten
 * Browser openen op http://localhost:8080/. Terugmelden op natuurlijk persoon met BSN 78548718 levert actuele waarden op.
+
+    http://localhost:63080/guc/functionalPing
+    http://localhost:63080/guc/config
 
 ### Met lokale services ###
 

@@ -6,7 +6,7 @@
         <parent>
         <groupId>nl.rotterdam.rtmf</groupId>
         <artifactId>rtmf</artifactId>
-        <version>1.0.5</version>
+        <version>1.0.6-SNAPSHOT</version>
     </parent>
     <artifactId>rtmf-guc</artifactId>
     <packaging>jar</packaging>
@@ -311,14 +311,14 @@
             <artifactId>mule-core</artifactId>
             <version>${mule.version}</version>
             <scope>${runtime.library.scope}</scope>
-<!-- 		-->	
+<!--
 			<exclusions>
 				<exclusion>
 					<groupId>org.safehaus.jug</groupId>
 					<artifactId>jug</artifactId>
 				</exclusion>
 			</exclusions>
-<!---->
+-->
         </dependency>
 
         <dependency>
@@ -467,12 +467,19 @@
             <version>1.8.0.10</version>
         </dependency>
 
-		<!-- Adds support for ORACLEDB for the cache -->
+        <!-- Adds support for ORACLEDB for the cache -->
+        <!--        <dependency>
+                  <groupId>com.oracle</groupId>
+                  <artifactId>ojdbc14</artifactId>
+                  <version>10.2.0.4.0</version>
+              </dependency>
+        -->
         <dependency>
             <groupId>com.oracle</groupId>
-            <artifactId>ojdbc14</artifactId>
-            <version>10.2.0.4.0</version>
+            <artifactId>ojdbc5_g</artifactId>
+            <version>11.2.0.3</version>
         </dependency>
+
 
 		<!-- dummy mail server for unit tests -->
         <dependency>
@@ -650,6 +657,10 @@
                                     <name>tmfportal.props</name>
                                     <value>${user.home}/tmfportal.properties</value>
                                 </systemProperty>
+                            <systemProperty>
+                                <name>tmfportal.config</name>
+                                <value>${user.home}/tmfportal.properties</value>
+                            </systemProperty>
                         </systemProperties>
                 </configuration>
                 <executions>

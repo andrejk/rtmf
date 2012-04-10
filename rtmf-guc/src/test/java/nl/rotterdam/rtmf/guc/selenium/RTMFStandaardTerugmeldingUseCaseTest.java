@@ -34,17 +34,27 @@ public class RTMFStandaardTerugmeldingUseCaseTest extends RtmfSeleniumUseCaseBas
 		selenium.waitForPageToLoad(PAGE_WAIT_TIMEOUT);
 		selenium.click("link=Terugmelden");
 		selenium.waitForPageToLoad(PAGE_WAIT_TIMEOUT);
-		selenium.click("//input[@value='Volgende >>']");
+        selenium.select("BasisRegistratieTag", "label=Gemeentelijke Basisregistratie Persoonsgegevens");
+        selenium.click("//input[@value='Volgende >>']");
 		selenium.waitForPageToLoad(PAGE_WAIT_TIMEOUT);
 		selenium.type("BRObjectID", "2063193504");
 		selenium.click("//input[@value='Volgende >>']");
 		selenium.waitForPageToLoad(PAGE_WAIT_TIMEOUT);
-		selenium.type("oldTMF-PERSOON-VOORNAAM", "Petet");
-		selenium.type("newTMF-PERSOON-VOORNAAM", "Peter");
-		selenium.type("oldTMF-PERSOON-TUSSENVOEGSEL", "vab");
-		selenium.type("newTMF-PERSOON-TUSSENVOEGSEL", "van");
-		selenium.type("oldTMF-PERSOON-ACHTERNAAM", "Oort");
-		selenium.type("newTMF-PERSOON-ACHTERNAAM", "Oord");
+		//selenium.type("oldTMF-PERSOON-VOORNAAM", "Petet");
+        selenium.type("old01.02.10", "Petet");
+        //	selenium.type("newTMF-PERSOON-VOORNAAM", "Peter");
+        /* newTMF-PERSOON-VOORNAAM -> new01.02.10 */
+        selenium.type("new01.02.10", "Peter");
+		//selenium.type("oldTMF-PERSOON-TUSSENVOEGSEL", "vab");
+        selenium.type("old01.02.30", "vab");
+        //selenium.type("newTMF-PERSOON-TUSSENVOEGSEL", "van");
+        /* newTMF-PERSOON-TUSSENVOEGSE -> new01.02.30 */
+        selenium.type("new01.02.30", "van");
+		//selenium.type("oldTMF-PERSOON-ACHTERNAAM", "Oort");
+        selenium.type("old01.02.40", "Oord");
+        //selenium.type("newTMF-PERSOON-ACHTERNAAM", "Oord");
+        /* newTMF-PERSOON-ACHTERNAAM -> new01.02.40 */
+        selenium.type("new01.02.40", "Oord");
 		selenium.click("//input[@value='Volgende >>']");
 		selenium.waitForPageToLoad(PAGE_WAIT_TIMEOUT);
 		selenium.type("reason", "Naam klopt niet");

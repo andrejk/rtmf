@@ -75,6 +75,7 @@
        en bijvoorbeeld timeouts te zetten.
    -->
     <http:connector name="domein.http.connector" />
+    <!--<http:connector name="domein.http.connector" proxyHostname="${proxy.host}" proxyPort="${proxy.port}"/>-->
    <!-- Jboss transactie manager -->
    <!-- <jbossts:transaction-manager>
        <property

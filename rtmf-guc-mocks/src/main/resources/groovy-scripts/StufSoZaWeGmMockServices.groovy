@@ -406,11 +406,10 @@ result = """<?xml version="1.0" encoding="UTF-8"?>
 </BG:prsLa01>"""
 }
 
-
 if (payload =~ /bsn>199040382</) {
-	logger.info "match bsn: 199040382"
+    logger.info "match bsn: 199040382"
 
-result="""<BG:prsLa01 xmlns:StUF="http://www.egem.nl/StUF/StUF0300" xmlns:BG="http://www.egem.nl/StUF/sector/bg/0300" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    result="""<BG:prsLa01 xmlns:StUF="http://www.egem.nl/StUF/StUF0300" xmlns:BG="http://www.egem.nl/StUF/sector/bg/0300" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 <BG:stuurgegevens>
    <BG:versieStUF>0300</BG:versieStUF>
    <BG:sectormodel>BG</BG:sectormodel>
@@ -564,6 +563,76 @@ result="""<BG:prsLa01 xmlns:StUF="http://www.egem.nl/StUF/StUF0300" xmlns:BG="ht
 </BG:prsLa01>"""
 }
 
+/*
+ * AKO - 12-3-2012
+ * Testcase voor missende geboortedatum toegevoegd
+ */
+if (payload =~ /bsn>115752985</) {
+    logger.info "match bsn: 115752985"
+
+    result="""<?xml version="1.0" encoding="UTF-8"?><BG:prsLa01 xmlns:BG="http://www.egem.nl/StUF/sector/bg/0300" xmlns:StUF="http://www.egem.nl/StUF/StUF0300" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <BG:stuurgegevens>
+      <BG:versieStUF>0300</BG:versieStUF>
+      <BG:sectormodel>BG</BG:sectormodel>
+      <BG:versieSectormodel>0300</BG:versieSectormodel>
+      <BG:berichtcode>La01</BG:berichtcode>
+      <BG:zender>
+         <StUF:organisatie>PZR</StUF:organisatie>
+         <StUF:applicatie>ABKR</StUF:applicatie>
+      </BG:zender>
+      <BG:ontvanger>
+         <StUF:organisatie>Rotterdam</StUF:organisatie>
+         <StUF:applicatie>RTMF</StUF:applicatie>
+      </BG:ontvanger>
+      <BG:referentienummer>133155546596</BG:referentienummer>
+      <BG:tijdstipBericht>740322043906596</BG:tijdstipBericht>
+      <BG:crossRefnummer>7000</BG:crossRefnummer>
+      <BG:entiteittype>PRS</BG:entiteittype>
+   </BG:stuurgegevens>
+   <BG:body>
+      <BG:parametersAntwoord>
+         <StUF:indicatorVervolgvraag>false</StUF:indicatorVervolgvraag>
+         <StUF:indicatorAfnemerIndicatie>false</StUF:indicatorAfnemerIndicatie>
+      </BG:parametersAntwoord>
+      <BG:object StUF:entiteittype="PRS" StUF:sleutelVerzendend="529050">
+<BG:a-nummer>5946783247</BG:a-nummer>
+<BG:bsn>115752985</BG:bsn>
+         <BG:naamPrsGrp>
+            <BG:voornamen>Norman Marius</BG:voornamen>
+            <BG:voorletters>NM</BG:voorletters>
+            <BG:voorvoegselGeslachtsnaam StUF:noValue="geenWaarde" xsi:nil="true"/>
+            <BG:geslachtsnaam>Vredeman</BG:geslachtsnaam>
+         </BG:naamPrsGrp>
+         <BG:geboortedatum>19530324</BG:geboortedatum>
+         <BG:geboorteplaatsGrp>
+            <BG:geboorteplaats>Paramaribo</BG:geboorteplaats>
+            <BG:codeGeboorteland>5007</BG:codeGeboorteland>
+         </BG:geboorteplaatsGrp>
+         <BG:geslachtsaanduiding>M</BG:geslachtsaanduiding>
+         <BG:datumOverlijden StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:indicatieGeheim>0</BG:indicatieGeheim>
+                  <BG:adellijkeTitelPredikaat StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:codeGemeenteVanInschrijving StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:datumInschrijvingGemeente StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:datumOpschortingBijhouding>20110909</BG:datumOpschortingBijhouding>
+         <BG:omschrijvingRedenOpschortingBijhouding>E</BG:omschrijvingRedenOpschortingBijhouding>
+         <BG:codeLandEmigratie>5007</BG:codeLandEmigratie>
+         <BG:datumVertrekUitNederland>20110909</BG:datumVertrekUitNederland>
+         <BG:codeLandImmigratie StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:datumVestigingInNederland StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:indicatieGezagMinderjarige StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:indicatieCuratelestelling StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:aanduidingBijzonderNederlanderschap StUF:noValue="geenWaarde" xsi:nil="true"/>
+         <BG:burgerlijkeStaat>3</BG:burgerlijkeStaat>
+         <BG:aanduidingNaamgebruik>E</BG:aanduidingNaamgebruik>
+         <BG:tijdvakGeldigheid>
+    <StUF:beginGeldigheid StUF:noValue="geenWaarde" xsi:nil="true"/>
+    <StUF:eindGeldigheid StUF:noValue="geenWaarde" xsi:nil="true"/>
+</BG:tijdvakGeldigheid>
+               </BG:object>
+   </BG:body>
+</BG:prsLa01>"""
+}
 
 if (payload =~ /bsn>666</) {
 	logger.info "match bsn: 666"
