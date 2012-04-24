@@ -18,16 +18,20 @@ package nl.rotterdam.rtmf.guc.ping;
 
 import java.io.IOException;
 
+import org.apache.commons.beanutils.converters.IntegerArrayConverter;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.params.ConnRoutePNames;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
+import org.apache.http.HttpHost;
 import org.apache.log4j.Logger;
 
 import nl.rotterdam.ioo.guc_algemeen.componenten.functional.Pingable;
+import org.apache.ws.commons.schema.constants.Constants;
 
 public abstract class AbstractSoapPing implements Pingable {
 	private Logger logger = Logger.getLogger(AbstractSoapPing.class);
@@ -35,11 +39,18 @@ public abstract class AbstractSoapPing implements Pingable {
 	private static final int TIME_OUT = 2000;
 	abstract String getRequest();
 	abstract String getUrl();
+
 	abstract void setErrorMessage(String errorMessage);
 
 	@Override
 	public boolean isAlive() {
 		DefaultHttpClient client = new DefaultHttpClient();
+        System.out.println("Proxyhost: "+ getProxyHost() + ", proxyPort: "+ getProxyPort() );
+        if ( getProxyHost() != null ){
+
+            HttpHost proxy = new HttpHost(getProxyHost(),Integer.valueOf(getProxyPort()), "http");
+            client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
+        }
 		HttpPost httpget = new HttpPost(getUrl());
 		HttpParams params = client.getParams();
 		HttpConnectionParams.setConnectionTimeout(params, TIME_OUT);
@@ -68,9 +79,14 @@ public abstract class AbstractSoapPing implements Pingable {
 			return false;
 		}
 	}
-	
-//	public static void main(String[] args) {
-//		PingStelselcatalogusRott pingStelselcatalogusRott = new PingStelselcatalogusRott();
-//		System.out.println("isAlive? " + pingStelselcatalogusRott.isAlive() + " errorMessage: " + pingStelselcatalogusRott.getErrorMessage());
-//	}
+
+    abstract String getProxyHost();
+    abstract String getProxyPort();
+
+    /*
+     public static void main(String[] args) {
+         PingStelselcatalogusRott pingStelselcatalogusRott = new PingStelselcatalogusRott();
+         System.out.println("isAlive? " + pingStelselcatalogusRott.isAlive() + " errorMessage: " + pingStelselcatalogusRott.getErrorMessage());
+     }  */
+
 }

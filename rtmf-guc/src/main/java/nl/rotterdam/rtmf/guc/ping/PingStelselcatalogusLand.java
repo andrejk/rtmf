@@ -70,4 +70,22 @@ public class PingStelselcatalogusLand extends AbstractSoapPing {
 		PingStelselcatalogusLand pingStelselcatalogusRott = new PingStelselcatalogusLand();
 		System.out.println("isAlive? " + pingStelselcatalogusRott.isAlive() + " errorMessage: " + pingStelselcatalogusRott.getErrorMessage());
 	}
+    public String getProxyHost() {
+        return proxyHost;
+    }
+
+    public void setProxyHost(String proxyHost) {
+        this.proxyHost = proxyHost;
+    }
+
+    public String getProxyPort() {
+        return proxyPort;
+    }
+
+    public void setProxyPort(String proxyPort) {
+        this.proxyPort = proxyPort;
+    }
+    private String proxyHost = null;
+    private String proxyPort = null;
+
 }

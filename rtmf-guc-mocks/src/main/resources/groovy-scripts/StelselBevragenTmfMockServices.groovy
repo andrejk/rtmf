@@ -291,7 +291,7 @@ else if (payload =~ /<.*getObjectTypeList.*>/) {
     """
 }
 else if (payload =~ /<.*getObjectInfoAndValues.*>/ && payload.contains("GBA") && payload.contains("ObjectTag>01") ) {
-    logger.info "match getObjectInfo GBA objecttag 08"
+    logger.info "match getObjectInfo GBA objecttag 01"
     result = """
         <soapenv:Envelope xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
    <soapenv:Header>
@@ -622,6 +622,13 @@ else if (payload =~ /<.*getObjectInfoAndValues.*>/ && payload.contains("GBA") &&
                <ns2:code>01.86.10</ns2:code>
                <ns2:naam>Datum van opneming met betrekk</ns2:naam>
             </ns2:attributen>
+			<!-- AKO 12-3-2012 toegevoegd voor test -->
+<!--
+            <ns2:attributen>
+	            <ns2:code>01.03.06</ns2:code>
+	            <ns2:naam>(Geboorte) Datum</ns2:naam>
+            </ns2:attributen>
+-->
          </ns2:objectInfo>
       </ns2:getObjectInfoAndValuesResponse>
    </soapenv:Body>
@@ -757,10 +764,12 @@ else if (payload =~ /<.*getObjectInfo.*>/ && payload.contains("GBA") && payload.
             <naam>Datum van opneming met betrekk</naam>
           </attributen>
 				<!-- AKO 12-3-2012 toegevoegd voor test -->
+<!--
             <attributen>
             <code>01.03.06</code>
             <naam>(Geboorte) Datum</naam>
             </attributen>
+-->
         </objectInfo>
       </getObjectInfoResponse>
     </soapenv:Body>
@@ -883,10 +892,12 @@ else if (payload =~ /<.*getObjectInfo.*>/ && payload.contains("GBA")) {
 					<naam>Datum van opneming met betrekk</naam>
 				</attributen>
 				<!-- AKO 12-3-2012 geboortedatum toegevoegd voor test -->
+<!--
             <attributen>
             <code>01.03.06</code>
             <naam>(Geboorte) Datum</naam>
             </attributen>
+-->
 			</objectInfo>
 		</getObjectInfoResponse>
 	</soapenv:Body>

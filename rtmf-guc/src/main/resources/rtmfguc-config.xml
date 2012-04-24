@@ -158,22 +158,30 @@
 			class="nl.rotterdam.rtmf.guc.ping.PingStelselcatalogusRott"
 			name="pingStelselcatalogusRott">
 			<spring:property name="url" value="http://${rtmf.cfg.gm.stelselcatalogus.host}:${rtmf.cfg.gm.stelselcatalogus.port}/${rtmf.cfg.gm.stelselcatalogus.path}"/>
-		</spring:bean>
+            <spring:property name="proxyHost" value="${proxy.host}"/>
+            <spring:property name="proxyPort" value="${proxy.port}"/>
+        </spring:bean>
 		<spring:bean
 			class="nl.rotterdam.rtmf.guc.ping.PingStelselcatalogusLand"
 			name="pingStelselcatalogusLand">
 			<spring:property name="url" value="http://${rtmf.cfg.osbgw.stelselcatalogus.host}:${rtmf.cfg.osbgw.stelselcatalogus.port}/${rtmf.cfg.osbgw.stelselcatalogus.metadata.path}"/>
-		</spring:bean>
+            <spring:property name="proxyHost" value="${proxy.host}"/>
+            <spring:property name="proxyPort" value="${proxy.port}"/>
+        </spring:bean>
 		<spring:bean
 			class="nl.rotterdam.rtmf.guc.ping.PingOphalenStatusLand"
 			name="pingOphalenStatusLand">
 			<spring:property name="url" value="http://${rtmf.cfg.osbgw.tmf.ophalen.host}:${rtmf.cfg.osbgw.tmf.ophalen.port}/${rtmf.cfg.osbgw.tmf.ophalen.path}"/>
-		</spring:bean>
+            <spring:property name="proxyHost" value="${proxy.host}"/>
+            <spring:property name="proxyPort" value="${proxy.port}"/>
+        </spring:bean>
 		<spring:bean
 			class="nl.rotterdam.rtmf.guc.ping.PingZakenmagazijnRott"
 			name="pingZakenmagazijnRott">
 			<spring:property name="url" value="http://${rtmf.cfg.zm.host}:${rtmf.cfg.zm.port}/${rtmf.cfg.zm.manager.path}"/>
-		</spring:bean>
+            <spring:property name="proxyHost" value="${proxy.host}"/>
+            <spring:property name="proxyPort" value="${proxy.port}"/>
+        </spring:bean>
 		
 		<!-- <spring:bean class="nl.rotterdam.ioo.guc_algemeen.componenten.functional.PingableDataSourceBean"
 					 name="rtmfPingableDatasourceBean">
@@ -963,7 +971,7 @@
 					<http:outbound-endpoint host="${rtmf.cfg.gm.stelselcatalogus.host}"
 						port="${rtmf.cfg.gm.stelselcatalogus.port}" path="${rtmf.cfg.gm.stelselcatalogus.path}"
 						synchronous="true" transformer-refs="tmfObjectAndValuesRequestToGMObjectInfo TMFToGMTransformer"
-						 connector-ref="domein.http.connector"
+						 connector-ref="domein.http.connector.noproxy"
 						responseTransformer-refs="byteArrayToString validateMessage cacheTransformer"
 						name="rtmfguc.gm.stelselcatalogus.proxy.outbound.http" />
 				</pass-through-router>
@@ -1032,7 +1040,7 @@
                 <pass-through-router>
                     <http:outbound-endpoint host="${rtmf.cfg.gm.actuelewaarden.host}"
                         port="${rtmf.cfg.gm.actuelewaarden.port}" path="${rtmf.cfg.gm.actuelewaarden.path}"
-                        synchronous="true" connector-ref="domein.http.connector"
+                        synchronous="true" connector-ref="domein.http.connector.noproxy"
                          transformer-refs="byteArrayToString rtmf.tracing.request.transformer scBevragenNaarStufTransformer"
                         responseTransformer-refs="byteArrayToString validateMessage rtmf.tracing.response.transformer"
                         name="rtmfguc.gm.actuelewaarden.proxy.outbound.http" 

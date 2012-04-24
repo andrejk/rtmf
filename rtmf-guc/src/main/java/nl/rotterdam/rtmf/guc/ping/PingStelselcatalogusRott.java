@@ -17,9 +17,8 @@
 package nl.rotterdam.rtmf.guc.ping;
 
 public class PingStelselcatalogusRott extends AbstractSoapPing {
-
-	private String url = "http://twd676.resource.ta-twd.rotterdam.nl:2100/domein/gm/sozawe";
-	private String request = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+    private String url = "http://twd676.resource.ta-twd.rotterdam.nl:2100/domein/gm/sozawe";
+    private String request = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 			+ "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">"
 			+ "	<soapenv:Header xmlns:wsa=\"http://www.w3.org/2005/08/addressing\">"
 			+ "		<wsa:Action>http://wus.tmf.gbo.overheid.nl/wsdl/stelselBevragen/getBasisregistratieListRequest/stelselBevragenService"
@@ -73,9 +72,44 @@ public class PingStelselcatalogusRott extends AbstractSoapPing {
 	}
 	
 	public static void main(String[] args) {
+        // werkt door proxy heen vanuit IOO
+        String url1 = "http://esb.acc.ta-twd.rotterdam.nl:80/abkafnemers/gm/tmf";
+        // werkt niet door de proxy heen vanuit IOO
+        String url2 = "http://192.168.10.99:8080/domein/gm/tmf";
 		PingStelselcatalogusRott pingStelselcatalogusRott = new PingStelselcatalogusRott();
+        pingStelselcatalogusRott.setProxyHost("twdproxy.ir.rotterdam.nl");
+        pingStelselcatalogusRott.setProxyPort("8080");
+        /*
+         * test eerste url
+         */
+        pingStelselcatalogusRott.setUrl(url1);
 		System.out.println("isAlive? " + pingStelselcatalogusRott.isAlive()
 				+ " errorMessage: "
 				+ pingStelselcatalogusRott.getErrorMessage());
-	}
+        /*
+         * test tweede url
+         */
+        pingStelselcatalogusRott.setUrl(url2);
+        System.out.println("isAlive? " + pingStelselcatalogusRott.isAlive()
+                + ", errorMessage: "
+                + pingStelselcatalogusRott.getErrorMessage());
+    }
+    public String getProxyHost() {
+        return proxyHost;
+    }
+
+    public void setProxyHost(String proxyHost) {
+        this.proxyHost = proxyHost;
+    }
+
+    public String getProxyPort() {
+        return proxyPort;
+    }
+
+    public void setProxyPort(String proxyPort) {
+        this.proxyPort = proxyPort;
+    }
+    private String proxyHost = null;
+    private String proxyPort = null;
+
 }
